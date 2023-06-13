@@ -1,6 +1,26 @@
 import React, { useState } from "react";
+import {
+  useDispatch, 
+  useSelector
+} from 'react-redux'; 
 
-const ProductForm = () => {
+import { addProduct } from '../../redux/products/productsOperations';
+import { selectAllProducts, selectLoading } from '../../redux/products/productsSelectors';
+
+import css from './ProductForm.module.css';
+
+export const ProductForm = () => {
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectLoading);
+  console.log("isLoading:", isLoading); //!
+
+  const allProducts = useSelector(selectAllProducts);
+  console.log("allProducts:", allProducts); //!
+
+  let productListLocalStorage = JSON.parse(localStorage.getItem("productList")) || [];
+  console.log("productListLocalStorage:", productListLocalStorage); //!
+
   const [productName, setProductName] = useState("");
   const [productCode, setProductCode] = useState("");
   const [price, setPrice] = useState("");
@@ -37,10 +57,22 @@ const ProductForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Добавьте здесь логику для обработки отправки формы
-    // Например, можно отправить данные на сервер или выполнить другие действия
-
-    // Сбросить значения полей формы после отправки
+    //! Добавьте здесь логику для обработки отправки формы
+    //! Например, можно отправить данные на сервер или выполнить другие действия
+        const productItem = {
+      productName,
+      productCode,
+      price,
+      manufacturerCountry,
+      coverImage,
+      productImages,
+    };
+    productListLocalStorage.push(productItem);
+    //! Write an array (list) of products in Local Storage or send to the server:
+    localStorage.setItem("productList", JSON.stringify(productListLocalStorage));
+    dispatch(addProduct(productItem)); //! send to the server:
+    
+    //! Сбросить значения полей формы после отправки
     setProductName("");
     setProductCode("");
     setPrice("");
@@ -49,47 +81,88 @@ const ProductForm = () => {
     setProductImages([]);
   };
 
+  // console.log("productName:", productName); //!
+  // console.log("productCode:", productCode); //!
+  // console.log("price:", price); //!
+  // console.log("manufacturerCountry:", manufacturerCountry); //!
+  // console.log("coverImage:", coverImage); //!
+  // console.log("productImages:", productImages); //!
+
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <div>
+      <form
+        autoComplete="on"
+        className={css.formContainer}
+        onSubmit={handleSubmit}
+      >
+      <label className={css.label}>
         Назва товару
-        <input
-          type="text"
-          value={productName}
-          onChange={handleProductNameChange}
+          <input
+            className={css.input}
+            autoComplete="on"
+            type="text"
+            value={productName}
+            onChange={handleProductNameChange}
         />
       </label>
-      <label>
+      <label className={css.label}>
         Артикул
-        <input
-          type="text"
-          value={productCode}
-          onChange={handleProductCodeChange}
+          <input
+            className={css.input}
+            autoComplete="on"
+            type="text"
+            value={productCode}
+            onChange={handleProductCodeChange}
         />
       </label>
-      <label>
+      <label className={css.label}>
         Ціна
-        <input type="text" value={price} onChange={handlePriceChange} />
+          <input
+            className={css.input}
+            autoComplete="on"
+            type="text"
+            value={price}
+            onChange={handlePriceChange}
+          />
       </label>
-      <label>
+      <label className={css.label}>
         Країна походження
-        <input
-          type="text"
-          value={manufacturerCountry}
-          onChange={handleManufacturerCountryChange}
+          <input
+            className={css.input}
+            autoComplete="on"
+            type="text"
+            value={manufacturerCountry}
+            onChange={handleManufacturerCountryChange}
         />
       </label>
-      <label>
+      <label className={css.label}>
         Додати обкладинку
-        <input type="file" onChange={handleCoverImageChange} />
+          <input
+            className={css.input}
+            type="file"
+            onChange={handleCoverImageChange}
+          />
       </label>
-      <label>
+      <label className={css.label}>
         Додати зображення
-        <input type="file" multiple onChange={handleProductImagesChange} />
+          <input
+            className={css.input}
+            type="file"
+            multiple
+            onChange={handleProductImagesChange}
+          />
       </label>
-      <button type="submit">Зберегти</button>
-    </form>
+        <button
+          className={css.submitButtonForm}
+          type="submit"
+        >
+          Зберегти
+        </button>
+      </form>
+    </div>
+    
   );
 };
 
-export default ProductForm;
+// export default ProductForm;
