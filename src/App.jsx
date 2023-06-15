@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+
+import Layout from "./pages/Layout";
+import ProductsCatalogue from "module";
+import Authorisation from "./pages/AuthorisationPage";
+import Authors from "./pages/AuthorsPage";
+import CreateCard from "./pages/CreateCardPage";
+import CreateCataulogCard from "./pages/CreateCataulogCardPage";
+import CreateProductCard from "./pages/CreateProductCardPage";
+import EditCataulogueCard from "./pages/EditCataulogueCardPage";
+import EditProductCard from "./pages/EditProductCardPage";
+import PaymentDetails from "./pages/PaymentDetailsPage";
+import ProductCard from "./pages/ProductCardPage";
+import QrCodeGeneration from "./pages/QrCodeGenerationPage";
+import NotFound from "./pages/NotFoundPage";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<ProductsCatalogue />} />
+        <Route path="/authorisation" element={<Authorisation />} />
+        <Route path="/authors" element={<Authors />} />
+        <Route path="/createcard" element={<CreateCard />} />
+        <Route path="/createcataulogcard" element={<CreateCataulogCard />} />
+        <Route path="/createproductcard" element={<CreateProductCard />} />
+        <Route path="/editcatauloguecard" element={<EditCataulogueCard />} />
+        <Route path="/editproductcard" element={<EditProductCard />} />
+        <Route path="/paymentdetails" element={<PaymentDetails />} />
+        <Route path="/productcard" element={<ProductCard />} />
+        <Route path="/qrcodegeneration" element={<QrCodeGeneration />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
