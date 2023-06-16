@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilter } from "../../redux/Filter/selectors";
 import { setFilter } from "../../redux/Filter/slice";
 import { HiArrowUpTray} from "react-icons/hi"
+import { addCatalog } from "../../redux/Catalog/catalogOperations";
 
 const CatalogForm = () => {
     const [catalogName, setCatalogName] = useState("");
@@ -21,6 +22,23 @@ const CatalogForm = () => {
         setCoverImage(file);
       };
 
+    const handleCatalogNameChange = (event) => {
+       setCatalogName(event.target.value);
+    };
+
+    const handleYearChange = (event) => {
+        setYear(event.target.value);
+    }
+
+    const handleSubmit = (ev) => {
+       ev.preventDefault();
+       dispatch(addCatalog({
+        catalogName,
+        year,
+        coverImage,
+       }))
+    }
+
     return (
  <>
    <StyledTitle>Створити картку</StyledTitle>
@@ -30,14 +48,14 @@ const CatalogForm = () => {
         <option value="catalogCard">Картка каталогу</option>
       </StyledSelect>
     </StyledWrpSelector>
-    <form action="">
+    <form action="" onSubmit={handleSubmit}>
         <label htmlFor="catalogName">Назва каталогу</label>
         <br />
-        <input type="text" name="catalogName"/>
+        <input type="text" name="catalogName" onChange={handleCatalogNameChange}/>
         <br />
         <label htmlFor="year">Рік</label>
         <br />
-        <input type="text" name="year" />
+        <input type="text" name="year" onChange={handleYearChange}/>
         <br />
         <label htmlFor="cover">Додати обкладинку</label>
         <input id="cover" type="file" onChange={handleCoverImageChange} />
