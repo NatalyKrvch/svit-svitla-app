@@ -4,12 +4,15 @@ import { useDispatch } from "react-redux";
 import { setFilter } from "../../redux/Filter/slice";
 import { BiPlusCircle } from "react-icons/bi";
 import { StyledForm, StyledSelect, StyledTitle, StyledWrpSelector } from "./ProductFormStyled";
+import addFields from "../../helpers/addFields";
 
 const ProductForm = () => {
   const [productName, setProductName] = useState("");
   const [productCode, setProductCode] = useState("");
   const [price, setPrice] = useState("");
   const [manufacturerCountry, setManufacturerCountry] = useState("");
+  const [characteristicName, setCharacteristicName] = useState([]);
+  const [characteristicValue, setCharacteristicValue] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [productImages, setProductImages] = useState([]);
 
@@ -43,6 +46,14 @@ const ProductForm = () => {
 
   const handleChangeOptionFilter = (event) => {
     dispatch(setFilter(event.target.value))
+  };
+
+  const handleCharacteristicNameChange = (event) => {
+    setCharacteristicName(event.target.value);
+  };
+
+  const handleCharacteristicValueChange = (event) => {
+    setCharacteristicValue(event.trget.value);
   }
 
   const handleSubmit = (event) => {
@@ -102,8 +113,11 @@ const ProductForm = () => {
           onChange={handleManufacturerCountryChange}
         />
       </label>
+      <div id="inputsContainer">
       <input type="text" value={"Додати характеристику"} readOnly/>
-      <button type="button"><BiPlusCircle/></button>
+      <button type="button" onClick={addFields(handleCharacteristicNameChange, handleCharacteristicValueChange )}><BiPlusCircle/></button>
+      </div>
+     
       <label>
         Додати обкладинку
         <input type="file" onChange={handleCoverImageChange} />
@@ -119,4 +133,7 @@ const ProductForm = () => {
   );
 };
 
+
+
 export default ProductForm;
+
