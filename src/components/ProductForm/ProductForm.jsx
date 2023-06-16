@@ -1,12 +1,22 @@
 import React, { useState } from "react";
+import { addProduct } from "../../redux/Product/productOperations";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../redux/Filter/slice";
+import { BiPlusCircle } from "react-icons/bi";
+import { StyledForm, StyledSelect, StyledTitle, StyledWrpSelector } from "./ProductFormStyled";
+import addFields from "../../helpers/addFields";
 
 const ProductForm = () => {
   const [productName, setProductName] = useState("");
   const [productCode, setProductCode] = useState("");
   const [price, setPrice] = useState("");
   const [manufacturerCountry, setManufacturerCountry] = useState("");
+  const [characteristicName, setCharacteristicName] = useState([]);
+  const [characteristicValue, setCharacteristicValue] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [productImages, setProductImages] = useState([]);
+
+  const dispatch = useDispatch()
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -34,13 +44,30 @@ const ProductForm = () => {
     setProductImages(Array.from(files));
   };
 
+  const handleChangeOptionFilter = (event) => {
+    dispatch(setFilter(event.target.value))
+  };
+
+  const handleCharacteristicNameChange = (event) => {
+    setCharacteristicName(event.target.value);
+  };
+
+  const handleCharacteristicValueChange = (event) => {
+    setCharacteristicValue(event.trget.value);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(addProduct({
+      productName,
+      productCode,
+      price,
+      manufacturerCountry,
+      coverImage,
+      productImages,
+      characteristicName: characteristicValue,     
+    }))
 
-    // Добавьте здесь логику для обработки отправки формы
-    // Например, можно отправить данные на сервер или выполнить другие действия
-
-    // Сбросить значения полей формы после отправки
     setProductName("");
     setProductCode("");
     setPrice("");
@@ -50,7 +77,15 @@ const ProductForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+    <StyledTitle>Створити картку</StyledTitle>
+    <StyledWrpSelector>
+      <StyledSelect value={option} onChange={handleChangeOptionFilter}>
+        <option value="productCard">Картка товару</option>
+        <option value="catalogCard">Картка каталогу</option>
+      </StyledSelect>
+    </StyledWrpSelector>
+        <StyledForm onSubmit={handleSubmit}>
       <label>
         Назва товару
         <input
@@ -79,6 +114,11 @@ const ProductForm = () => {
           onChange={handleManufacturerCountryChange}
         />
       </label>
+      <div id="inputsContainer">
+      <input type="text" value={"Додати характеристику"} readOnly/>
+      <button type="button" onClick={addFields(handleCharacteristicNameChange, handleCharacteristicValueChange )}><BiPlusCircle/></button>
+      </div>
+     
       <label>
         Додати обкладинку
         <input type="file" onChange={handleCoverImageChange} />
@@ -88,8 +128,13 @@ const ProductForm = () => {
         <input type="file" multiple onChange={handleProductImagesChange} />
       </label>
       <button type="submit">Зберегти</button>
-    </form>
+    </StyledForm>
+    </>
+
   );
 };
 
+
+
 export default ProductForm;
+
