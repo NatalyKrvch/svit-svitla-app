@@ -13,6 +13,7 @@ import EditProductCard from "./pages/EditProductCardPage";
 import PaymentDetails from "./pages/PaymentDetailsPage";
 import ProductCard from "./pages/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
+import SelectCard from "./pages/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
 
 function App() {
@@ -22,9 +23,18 @@ function App() {
         <Route index element={<ProductsCatalogue />} />
         <Route path="/authorisation" element={<Authorisation />} />
         <Route path="/authors" element={<Authors />} />
-        <Route path="/createcard" element={<CreateCard />} />
-        <Route path="/createcataulogcard" element={<CreateCataulogCard />} />
-        <Route path="/createproductcard" element={<CreateProductCard />} />
+        <Route path="/createcard" element={<CreateCard />}>
+          <Route path="/createcard/selectcard" element={<SelectCard />} />
+          <Route
+            path="/createcard/createcataulogcard"
+            element={<CreateCataulogCard />}
+          />
+          <Route
+            path="/createcard/createproductcard"
+            element={<CreateProductCard />}
+          />
+        </Route>
+
         <Route path="/editcatauloguecard" element={<EditCataulogueCard />} />
         <Route path="/editproductcard" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
