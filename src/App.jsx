@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 import Layout from "./pages/Layout";
-import ProductsCatalogue from "./module";
+import ProductsCatalogue from "./pages/ProductsCataloguePage";
 import Authorisation from "./pages/AuthorisationPage";
 import Authors from "./pages/AuthorsPage";
 import CreateCard from "./pages/CreateCardPage";
