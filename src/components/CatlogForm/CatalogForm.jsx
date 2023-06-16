@@ -36,7 +36,10 @@ const CatalogForm = () => {
         catalogName,
         year,
         coverImage,
-       }))
+       }));
+       setCatalogName("");
+       setYear("");
+       setCoverImage(null);
     }
 
     return (
