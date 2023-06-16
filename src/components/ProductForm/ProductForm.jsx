@@ -65,6 +65,7 @@ const ProductForm = () => {
       manufacturerCountry,
       coverImage,
       productImages,
+      characteristicName: characteristicValue,     
     }))
 
     setProductName("");
