@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-axios.defaults.baseURL = "https://kapusta-backend.goit.global/api/products";
+const baseURL = import.meta.env.REACT_APP_BASE_URL_BACK;
+axios.defaults.baseURL = `${baseURL}/api/products`;
 
 
 export const getProductsAPI = () => {
