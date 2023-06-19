@@ -27,7 +27,7 @@ function App() {
           <Route path="/createcard/selectcard" element={<SelectCard />} />
           <Route
             path="/createcard/createcataulogcard"
-            element={<CreateCataulogCard />}
+            element={<CreateCatalogCard />}
           />
           <Route
             path="/createcard/createproductcard"
@@ -35,7 +35,7 @@ function App() {
           />
         </Route>
 
-        <Route path="/editcatauloguecard" element={<EditCataulogueCard />} />
+        <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />
         <Route path="/editproductcard" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
         <Route path="/productcard" element={<ProductCard />} />
