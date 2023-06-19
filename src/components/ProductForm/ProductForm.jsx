@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "../../redux/Filter/slice";
+import { useDispatch } from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -18,15 +17,11 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
-  StyledOptions,
-  StyledSelect,
   StyledTitle,
-  StyledWrpSelector,
   SubmitButton,
   TitleWrp,
 } from "./ProductFormStyled";
 
-import { selectFilter } from "../../redux/Filter/selectors";
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 
 const ProductForm = () => {
@@ -37,8 +32,6 @@ const ProductForm = () => {
   const [characteristicArray, setCharacteristicArray] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [productImages, setProductImages] = useState([]);
-
-  const option = useSelector(selectFilter);
 
   const dispatch = useDispatch();
 
@@ -68,9 +61,6 @@ const ProductForm = () => {
     setProductImages(Array.from(files));
   };
 
-  const handleChangeOptionFilter = (event) => {
-    dispatch(setFilter(event.target.value));
-  };
 
   const handleDeleteCharacteristicButton = (id) => {
     const index = characteristicArray.indexOf(
@@ -120,6 +110,7 @@ const ProductForm = () => {
     setManufacturerCountry("");
     setCoverImage(null);
     setProductImages([]);
+    setCharacteristicArray([]);
   };
 
   return (
@@ -127,12 +118,6 @@ const ProductForm = () => {
       <TitleWrp>
         <StyledTitle>Створити картку</StyledTitle>
       </TitleWrp>
-      <StyledWrpSelector>
-        <StyledSelect value={option} onChange={handleChangeOptionFilter}>
-          <StyledOptions value="productCard">Картка товару</StyledOptions>
-          <StyledOptions value="catalogCard">Картка каталогу</StyledOptions>
-        </StyledSelect>
-      </StyledWrpSelector>
       <StyledForm onSubmit={handleSubmit}>
         <StyledInputWrapper>
           <StyledLabel htmlFor="name">Назва товару</StyledLabel>

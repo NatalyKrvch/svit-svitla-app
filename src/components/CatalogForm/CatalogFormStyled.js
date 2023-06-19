@@ -4,6 +4,8 @@ export const StyledFragment = styled.div`
 position: relative;
 max-width: 328px;
 padding: 40px, 16px;
+margin-left: auto;
+margin-right: auto;
 `
 export const TitleWrp = styled.div`
   max-width: 328px;
@@ -41,6 +43,7 @@ gap: 16px;
 max-width: 328px;
 margin-left: auto;
 margin-right: auto;
+margin-top: 32px;
 
 `
 export const StyledInputWrapper = styled.div`
@@ -172,4 +175,28 @@ background-color: var(--warning);
 cursor: pointer;
 outline: none;
 
+`
+
+export const FakeInputWrpDownload = styled.div`
+display: flex;
+gap: 24px;
+justify-content: center;
+align-items: center;
+max-width: 328px;
+height: 56px;
+border: 1px solid var(--light-blue);
+border-radius: 4px;
+padding-left: 8px;
+`
+
+export const FakeButtonDownload = styled.span`
+display: block;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 48px;
+height: 56px;
+background-color: transparent;
+cursor: pointer;
+outline: none;
 `

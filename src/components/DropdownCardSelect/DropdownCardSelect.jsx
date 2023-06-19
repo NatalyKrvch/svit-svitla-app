@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { StyledSelect, StyledWrpSelector } from "./SelectCardSelectorStyled";
 import ProductForm from "../ProductForm/ProductForm";
 import CatalogForm from "../CatalogForm/CatalogForm";
+import { StyledOptions, StyledSelect, StyledWrpSelector } from "./DropdownCardSelectStyled";
 
 
 
@@ -14,14 +14,14 @@ const DropdownCardSelector = () => {
     <>
       <StyledWrpSelector>
         <StyledSelect value={filter} onChange={handleChangeOptionFilter}>
-          <option value="productCard">Картка товару</option>
-          <option value="catalogCard">Картка каталогу</option>
+          <StyledOptions value="productCard">Картка товару</StyledOptions>
+          <StyledOptions value="catalogCard">Картка каталогу</StyledOptions>
         </StyledSelect>
       </StyledWrpSelector>
       {filter === "productCard" &&  <ProductForm/> }
       {filter === "catalogCard" &&  <CatalogForm/> }
     </>
-  );
-};
+  )
+}
 
-export default DropdownCardSelector;
+export default DropdownCardSelector

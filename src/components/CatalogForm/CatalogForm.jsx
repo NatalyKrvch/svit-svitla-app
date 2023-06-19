@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DownloadCatalogButton, FakeButton, FakeInputText, FakeInputWrp, FileInput, StyledButtonDelete, StyledCoverLabel, StyledForm, StyledFragment, StyledImg, StyledInput, StyledInputWrapper, StyledLabel, StyledSelect, StyledTitle, StyledWrpSelector, SubmitButton, TitleWrp } from "./CatalogFormStyled";
+import { FakeButton, FakeButtonDownload, FakeInputText, FakeInputWrp, FakeInputWrpDownload, FileInput, StyledButtonDelete, StyledCoverLabel, StyledForm, StyledFragment, StyledImg, StyledInput, StyledInputWrapper, StyledLabel, StyledTitle, SubmitButton, TitleWrp } from "./CatalogFormStyled";
 import { useDispatch} from "react-redux";
 import { HiArrowUpTray} from "react-icons/hi2"
 import { addCatalog, getCatalogs } from "../../redux/Catalog/catalogOperations";
@@ -11,6 +11,7 @@ const CatalogForm = () => {
     const [catalogName, setCatalogName] = useState("");
     const [year, setYear] = useState("");
     const [coverImage, setCoverImage] = useState(null);
+    const [catalogImages, setCatalogImages] = useState([]);
     
     const dispatch = useDispatch();
 
@@ -32,21 +33,25 @@ const CatalogForm = () => {
        ev.preventDefault();
        dispatch(addCatalog({
         catalogName,
-        year,
-        coverImage,
+        catalogYear: year,
+        catalogCoverURL: coverImage,
+        catalogFileURL: catalogImages,
        }));
        setCatalogName("");
        setYear("");
        setCoverImage(null);
+       setCatalogImages;
     }
 
     const handleDeleteCoverImg = () => {
       setCoverImage(null);
     }
-  
-    const handleDownloadCatalog = () => {
-      dispatch(getCatalogs());
-    }
+
+
+    const handleCatalogImagesDownload = (event) => {
+      const files = event.target.files;
+      setCatalogImages(Array.from(files));
+    };
 
     return (
  <StyledFragment>
@@ -86,8 +91,21 @@ const CatalogForm = () => {
         />
         <StyledButtonDelete type="button " onClick={handleDeleteCoverImg} ><RiDeleteBin6Line size={'1.8em'} color="white"/></StyledButtonDelete>
       </StyledInputWrapper>}
-       
-        <DownloadCatalogButton type="button" onClick={handleDownloadCatalog}><HiArrowUpTray size={'1.5em'}/> Завантажити каталог</DownloadCatalogButton>
+      <label>
+            <FileInput
+              type="file"
+              multiple
+              onChange={handleCatalogImagesDownload}
+              accept=".jpg, .jpeg"
+            />
+            <FakeInputWrpDownload>
+            <FakeButtonDownload>
+            <HiArrowUpTray size={'1.5em'}/>
+              </FakeButtonDownload>
+              <FakeInputText>Завантажити каталог</FakeInputText>
+             
+            </FakeInputWrpDownload>
+          </label>
         <SubmitButton type="submit">Зберегти</SubmitButton>
     </StyledForm>
  </StyledFragment>
