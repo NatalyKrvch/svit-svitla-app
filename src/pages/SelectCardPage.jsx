@@ -1,9 +1,9 @@
-import SelectCardSelector from "../components/SelectCardSelector/SelectCardSelector";
+import DropdownCardSelector from "../components/SelectCardSelector/SelectCardSelector";
 
 function SelectCard() {
   return (
     <>
-    <SelectCardSelector/>
+    <DropdownCardSelector/>
     </>
   )
 }
