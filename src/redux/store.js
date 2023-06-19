@@ -4,6 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import authReducer from './Auth/authReducer';
 import productReducer from './Product/productReducer';
 import catalogReducer from './Catalog/catalogReducer';
+import { filterReducer } from './Filter/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -17,6 +18,7 @@ export const store = configureStore({
     products: productReducer,
     catalogs: catalogReducer,
     auth: persistedReducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

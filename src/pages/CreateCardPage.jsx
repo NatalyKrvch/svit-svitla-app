@@ -1,5 +1,7 @@
+import ProductForm from "../components/ProductForm/ProductForm";
+
 function CreateCard() {
-  return <>Create Card</>;
+  return   <ProductForm/>
 }
 
 export default CreateCard;
