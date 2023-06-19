@@ -7,52 +7,77 @@ import {
 } from "./AddCharacteristicInputsStyled";
 import { BiMinusCircle } from "react-icons/bi";
 
-const AddCharacteristicInputs = ({ onDelete , setCharacteristicArray }) => {
-  const [characteristicNames, setCharacteristicName] = useState([]);
-  const [characteristicValues, setCharacteristicValue] = useState([]);
+const AddCharacteristicInputs = ({
+  id,
+  onDelete,
+  setCharacteristicArray,
+  characteristicArray,
+}) => {
+  const [characteristicNamesInput, setCharacteristicNameInput] = useState("");
+  const [characteristicValuesInput, setCharacteristicValueInput] = useState("");
+  // const currentObj = characteristicArray.find(
+  //   (obj) => obj.characteristicId === id
+  // );
 
-  // setCharacteristicArray((prev)=>[...prev, {characteristicNames, characteristicValues}])
-
-  const handleCharacteristicNameBlur = (event) => {
-    setCharacteristicName((prevState) => [...prevState, event.target.value]);
-  };
-
-  const handleCharacteristicValueBlur = (event) => {
-    setCharacteristicValue((prevState) => [...prevState, event.target.value]);
-  };
   const handleCharacteristicNameChange = (evt) => {
-    setCharacteristicName(evt.target.value);
+    setCharacteristicNameInput(evt.target.value);
+    setCharacteristicArray((prev) =>
+      prev.map((obj) =>
+        obj.characteristicId === id
+          ? { ...obj, characteristicName: evt.target.value }
+          : obj
+      )
+    );
   };
 
   const handleCharacteristicValueChange = (evt) => {
-    setCharacteristicValue(evt.target.value);
+    setCharacteristicValueInput(evt.target.value);
+    setCharacteristicArray((prev) =>
+      prev.map((obj) =>
+        obj.characteristicId === id
+          ? { ...obj, characteristicValue: evt.target.value }
+          : obj
+      )
+    );
   };
-
+  console.log(characteristicArray);
   return (
     <>
       <StyledInputWrapper>
-        <StyledLabel htmlFor="price">Назва характеристики</StyledLabel>
+        <StyledLabel htmlFor={id + "priceName"}>
+          Назва характеристики
+        </StyledLabel>
         <StyledInput
-          id="price"
+          id={id + "priceName"}
           type="text"
-          value={characteristicNames}
+          value={characteristicNamesInput}
           onChange={handleCharacteristicNameChange}
-          onBlur={handleCharacteristicNameBlur}
+          // onBlur={handleCharacteristicNameBlur}
         />
-        <StyledButton type="button " onClick={onDelete}>
+        <StyledButton
+          type="button "
+          onClick={() => {
+            onDelete(id);
+          }}
+        >
           <BiMinusCircle size={"1.8em"} />
         </StyledButton>
       </StyledInputWrapper>
       <StyledInputWrapper>
-        <StyledLabel htmlFor="price">Характеристика</StyledLabel>
+        <StyledLabel htmlFor={id + "price"}>Характеристика</StyledLabel>
         <StyledInput
-          id="price"
+          id={id + "price"}
           type="text"
-          value={characteristicValues}
+          value={characteristicValuesInput}
           onChange={handleCharacteristicValueChange}
-          onBlur={handleCharacteristicValueBlur}
+          // onBlur={handleCharacteristicValueBlur}
         />
-        <StyledButton type="button " onClick={onDelete}>
+        <StyledButton
+          type="button "
+          onClick={() => {
+            onDelete(id);
+          }}
+        >
           <BiMinusCircle size={"1.8em"} />
         </StyledButton>
       </StyledInputWrapper>

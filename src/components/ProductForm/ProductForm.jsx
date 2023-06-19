@@ -3,7 +3,7 @@ import { addProduct } from "../../redux/Product/productOperations";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../../redux/Filter/slice";
 import { BiPlusCircle } from "react-icons/bi";
-import { RiDeleteBin6Line } from "react-icons/ri"
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
 import {
   FakeButton,
@@ -72,22 +72,36 @@ const ProductForm = () => {
     dispatch(setFilter(event.target.value));
   };
 
-  const handleDeleteCharacteristicButton = (key) => {
-    const index = characteristicArray.indexOf((item) => item.key === key);
+  const handleDeleteCharacteristicButton = (id) => {
+    const index = characteristicArray.indexOf(
+      (item) => item.characteristicId === id
+    );
     characteristicArray.splice(index, 1);
   };
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
-  }
+  };
 
   const handleDeletePhotoImg = () => {
     setProductImages([]);
-  }
+  };
 
   const handleSubmit = (event) => {
-    
     event.preventDefault();
+    const additionalAttributes = characteristicArray.map((obj) => {
+      return { name: obj.characteristicName, value: obj.characteristicValue };
+    });
+    // console.log({
+    //   productName,
+    //   productCode,
+    //   productPrice: price,
+    //   productCountry: manufacturerCountry,
+    //   productCoverURL: coverImage,
+    //   productPhotoURL: productImages,
+    //   additionalAttributes,
+    // });
+
     dispatch(
       addProduct({
         productName,
@@ -106,13 +120,12 @@ const ProductForm = () => {
     setManufacturerCountry("");
     setCoverImage(null);
     setProductImages([]);
-
   };
 
   return (
     <StyledFragment>
-      <TitleWrp >
-      <StyledTitle>Створити картку</StyledTitle>
+      <TitleWrp>
+        <StyledTitle>Створити картку</StyledTitle>
       </TitleWrp>
       <StyledWrpSelector>
         <StyledSelect value={option} onChange={handleChangeOptionFilter}>
@@ -163,76 +176,87 @@ const ProductForm = () => {
         </StyledInputWrapper>
         {characteristicArray.map((item) => (
           <AddCharacteristicInputs
-            key={item}
+            key={item.characteristicId}
+            id={item.characteristicId}
             onDelete={handleDeleteCharacteristicButton}
             setCharacteristicArray={setCharacteristicArray}
-  
+            characteristicArray={characteristicArray}
           />
         ))}
         <FakeInputWrp>
           <FakeInputText>Додати характеристику</FakeInputText>
           <FakeButton
             type="button"
-            onClick={() =>
+            onClick={() => {
+              const id = nanoid();
               setCharacteristicArray((prevState) => {
-                return [...prevState, nanoid()];
-              })
-            }
+                return [...prevState, { characteristicId: id }];
+              });
+              return;
+            }}
           >
             <BiPlusCircle size={"1.5em"} />
           </FakeButton>
         </FakeInputWrp>
 
-        { coverImage === null ? <label>
-          <FileInput
-            type="file"
-            onChange={handleCoverImageChange}
-            accept=".jpg, .jpeg"
-          />
-          <FakeInputWrp>
-            <FakeInputText>Додати обкладинку</FakeInputText>
-            <FakeButton type="button">
-              <BiPlusCircle size={"1.5em"} />
-            </FakeButton>
-          </FakeInputWrp>
-        </label> : 
-        <StyledInputWrapper>
-          <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={`${coverImage}`} alt="cover" />
-          <StyledInput
-            id="name"
-            type="text"
-            onChange={handleCoverImageChange}
-          />
-          <StyledButtonDelete type="button " onClick={handleDeleteCoverImg} ><RiDeleteBin6Line size={'1.8em'} color="white"/></StyledButtonDelete>
-        </StyledInputWrapper>}
-        {productImages.length === 0 ? <label>
-          <FileInput
-            type="file"
-            multiple
-            onChange={handleProductImagesChange}
-            accept=".jpg, .jpeg"
-          />
-          <FakeInputWrp>
-            <FakeInputText>Додати зображення</FakeInputText>
-            <FakeButton>
-              <BiPlusCircle size={"1.5em"} />
-            </FakeButton>
-          </FakeInputWrp>
-        </label> :  <StyledInputWrapper>
-          <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
-          <img src={`${coverImage}`} alt="cover" />
-          <StyledInput
-            id="name"
-            type="text"
-          />
-          <StyledButtonDelete type="button " onClick={handleDeletePhotoImg} ><RiDeleteBin6Line size={'1.8em'} color="white"/></StyledButtonDelete>
-        </StyledInputWrapper>}
+        {coverImage === null ? (
+          <label>
+            <FileInput
+              type="file"
+              onChange={handleCoverImageChange}
+              accept=".jpg, .jpeg"
+            />
+            <FakeInputWrp>
+              <FakeInputText>Додати обкладинку</FakeInputText>
+              <FakeButton type="button">
+                <BiPlusCircle size={"1.5em"} />
+              </FakeButton>
+            </FakeInputWrp>
+          </label>
+        ) : (
+          <StyledInputWrapper>
+            <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
+            <StyledImg src={`${coverImage}`} alt="cover" />
+            <StyledInput
+              id="name"
+              type="text"
+              onChange={handleCoverImageChange}
+            />
+            <StyledButtonDelete type="button " onClick={handleDeleteCoverImg}>
+              <RiDeleteBin6Line size={"1.8em"} color="white" />
+            </StyledButtonDelete>
+          </StyledInputWrapper>
+        )}
+        {productImages.length === 0 ? (
+          <label>
+            <FileInput
+              type="file"
+              multiple
+              onChange={handleProductImagesChange}
+              accept=".jpg, .jpeg"
+            />
+            <FakeInputWrp>
+              <FakeInputText>Додати зображення</FakeInputText>
+              <FakeButton>
+                <BiPlusCircle size={"1.5em"} />
+              </FakeButton>
+            </FakeInputWrp>
+          </label>
+        ) : (
+          <StyledInputWrapper>
+            <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
+            <img src={`${coverImage}`} alt="cover" />
+            <StyledInput id="name" type="text" />
+            <StyledButtonDelete type="button" onClick={handleDeletePhotoImg}>
+              <RiDeleteBin6Line size={"1.8em"} color="white" />
+            </StyledButtonDelete>
+          </StyledInputWrapper>
+        )}
 
         <SubmitButton type="submit">Зберегти</SubmitButton>
       </StyledForm>
     </StyledFragment>
-  )
-}
+  );
+};
 
-export default ProductForm
+export default ProductForm;
