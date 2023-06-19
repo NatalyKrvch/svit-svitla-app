@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { DownloadCatalogButton, FakeButton, FakeInputText, FakeInputWrp, FileInput, StyledButtonDelete, StyledCoverLabel, StyledForm, StyledFragment, StyledImg, StyledInput, StyledInputWrapper, StyledLabel, StyledSelect, StyledTitle, StyledWrpSelector, SubmitButton, TitleWrp } from "./CatalogFormStyled";
-import { useDispatch, useSelector } from "react-redux";
-import { selectFilter } from "../../redux/Filter/selectors";
-import { setFilter } from "../../redux/Filter/slice";
+import { useDispatch} from "react-redux";
 import { HiArrowUpTray} from "react-icons/hi2"
 import { addCatalog, getCatalogs } from "../../redux/Catalog/catalogOperations";
 import { BiPlusCircle } from "react-icons/bi";
@@ -13,12 +11,9 @@ const CatalogForm = () => {
     const [catalogName, setCatalogName] = useState("");
     const [year, setYear] = useState("");
     const [coverImage, setCoverImage] = useState(null);
-    const optionFilter = useSelector(selectFilter);
+    
     const dispatch = useDispatch();
 
-    const handleChangeOptionFilter = (event) => {
-        dispatch(setFilter(event.target.value))
-      };
 
       const handleCoverImageChange = (event) => {
         const file = event.target.files[0];
@@ -58,12 +53,6 @@ const CatalogForm = () => {
   <TitleWrp>
    <StyledTitle>Створити картку</StyledTitle>
    </TitleWrp>
-    <StyledWrpSelector>
-      <StyledSelect value={optionFilter} onChange={handleChangeOptionFilter}>
-        <option value="productCard">Картка товару</option>
-        <option value="catalogCard">Картка каталогу</option>
-      </StyledSelect>
-    </StyledWrpSelector>
     <StyledForm action="" onSubmit={handleSubmit}>
       <StyledInputWrapper>
         <StyledLabel htmlFor="catalogName">Назва каталогу</StyledLabel> 

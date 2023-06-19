@@ -1,5 +1,11 @@
+import SelectCardSelector from "../components/SelectCardSelector/SelectCardSelector";
+
 function SelectCard() {
-  return <> Select Card</>;
+  return (
+    <>
+    <SelectCardSelector/>
+    </>
+  )
 }
 
 export default SelectCard;
