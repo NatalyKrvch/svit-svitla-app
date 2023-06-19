@@ -6,9 +6,9 @@ import ProductsCatalogue from "./pages/ProductsCataloguePage";
 import Authorisation from "./pages/AuthorisationPage";
 import Authors from "./pages/AuthorsPage";
 import CreateCard from "./pages/CreateCardPage";
-import CreateCataulogCard from "./pages/CreateCataulogCardPage";
+import CreateCatalogCard from "./pages/CreateCatalogCardPage";
 import CreateProductCard from "./pages/CreateProductCardPage";
-import EditCataulogueCard from "./pages/EditCataulogueCardPage";
+import EditCatalogueCard from "./pages/EditCatalogueCardPage";
 import EditProductCard from "./pages/EditProductCardPage";
 import PaymentDetails from "./pages/PaymentDetailsPage";
 import ProductCard from "./pages/ProductCardPage";
@@ -23,9 +23,9 @@ function App() {
         <Route path="/authorisation" element={<Authorisation />} />
         <Route path="/authors" element={<Authors />} />
         <Route path="/createcard" element={<CreateCard />} />
-        <Route path="/createcataulogcard" element={<CreateCataulogCard />} />
+        <Route path="/createcatalogcard" element={<CreateCatalogCard />} />
         <Route path="/createproductcard" element={<CreateProductCard />} />
-        <Route path="/editcatauloguecard" element={<EditCataulogueCard />} />
+        <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />
         <Route path="/editproductcard" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
         <Route path="/productcard" element={<ProductCard />} />
