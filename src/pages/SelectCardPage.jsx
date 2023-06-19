@@ -1,6 +1,6 @@
 import DropdownCardSelector from "../components/SelectCardSelector/SelectCardSelector";
 
-function SelectCard() {
+function SelectCardPage() {
   return (
     <>
     <DropdownCardSelector/>
@@ -8,4 +8,4 @@ function SelectCard() {
   )
 }
 
-export default SelectCard;
+export default SelectCardPage;
