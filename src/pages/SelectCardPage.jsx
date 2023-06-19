@@ -1,5 +1,5 @@
-function SelectCard() {
+function SelectCardPage() {
   return <> Select Card</>;
 }
 
-export default SelectCard;
+export default SelectCardPage;
