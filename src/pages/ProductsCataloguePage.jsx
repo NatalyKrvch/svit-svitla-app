@@ -1,5 +1,5 @@
-function ProductsCatalogue() {
-  return <>Products Catalogue</>;
+export const ProductsCatalogue = () => {
+    return <h2>Products Catalog</h2>
 }
 
-export default ProductsCatalogue;
+export default ProductsCatalogue
