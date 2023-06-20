@@ -131,6 +131,7 @@ height: 48px;
 background: var(--dark-blue);
 color: white;
 border-radius: 8px;
+cursor: pointer;
 `
 export const DownloadCatalogButton = styled.button`
 display: flex;
