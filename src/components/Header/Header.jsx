@@ -5,7 +5,7 @@ function Header() {
   const { isMobile, isDesktop, isTablet } = useMediaRules();
   return (
     <>
-      <StyledHeader></StyledHeader>
+      <StyledHeader />
     </>
   );
 }
