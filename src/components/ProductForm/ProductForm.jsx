@@ -61,7 +61,6 @@ const ProductForm = () => {
     setProductImages(Array.from(files));
   };
 
-
   const handleDeleteCharacteristicButton = (id) => {
     const index = characteristicArray.indexOf(
       (item) => item.characteristicId === id
@@ -124,6 +123,9 @@ const ProductForm = () => {
           <StyledInput
             id="name"
             type="text"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces."
+            maxLength={16}
             required
             value={productName}
             onChange={handleProductNameChange}
@@ -134,6 +136,8 @@ const ProductForm = () => {
           <StyledInput
             id="article"
             type="text"
+            pattern="^\d+(\.\d{1,2})?$"
+            title="Будь-ласка введіть числовий формат (наприклад, 100 або 1099)"
             required
             value={productCode}
             onChange={handleProductCodeChange}
@@ -144,6 +148,8 @@ const ProductForm = () => {
           <StyledInput
             id="price"
             type="text"
+            pattern="^\d+(\.\d{1,2})?$"
+            title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
             required
             value={price}
             onChange={handlePriceChange}
@@ -154,6 +160,7 @@ const ProductForm = () => {
           <StyledInput
             id="country"
             type="text"
+            pattern="[A-Za-z]+" title="Будь-ласка введіть тільки літери"
             required
             value={manufacturerCountry}
             onChange={handleManufacturerCountryChange}

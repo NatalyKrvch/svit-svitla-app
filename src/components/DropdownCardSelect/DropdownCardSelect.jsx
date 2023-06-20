@@ -1,25 +1,29 @@
-import { useState } from "react";
-import ProductForm from "../ProductForm/ProductForm";
-import CatalogForm from "../CatalogForm/CatalogForm";
+import { useDispatch, useSelector } from "react-redux";
 import { StyledOptions, StyledSelect, StyledWrpSelector } from "./DropdownCardSelectStyled";
+import { selectFilter } from "../../redux/Filter/selectors";
+import { setFilter } from "../../redux/Filter/slice";
+
 
 
 
 const DropdownCardSelector = () => {
-  const [filter, setFilter] = useState("Вид картки");
 
-  const handleChangeOptionFilter = (evt) => setFilter(evt.target.value);
+  const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
+
+  const setFilterOnChange = (evt) => {
+    dispatch(setFilter(evt.target.value));
+  }
 
   return (
     <>
       <StyledWrpSelector>
-        <StyledSelect value={filter} onChange={handleChangeOptionFilter}>
-          <StyledOptions value="productCard">Картка товару</StyledOptions>
-          <StyledOptions value="catalogCard">Картка каталогу</StyledOptions>
+        <StyledSelect value={filter} onChange={setFilterOnChange}>
+          <StyledOptions value="Вид картки" hidden>Вид картки</StyledOptions>
+          <StyledOptions value="Картка товару">Картка товару</StyledOptions>
+          <StyledOptions value="Картка каталогу">Картка каталогу</StyledOptions>
         </StyledSelect>
       </StyledWrpSelector>
-      {filter === "productCard" &&  <ProductForm/> }
-      {filter === "catalogCard" &&  <CatalogForm/> }
     </>
   )
 }

@@ -61,7 +61,12 @@ const CatalogForm = () => {
     <StyledForm action="" onSubmit={handleSubmit}>
       <StyledInputWrapper>
         <StyledLabel htmlFor="catalogName">Назва каталогу</StyledLabel> 
-        <StyledInput type="text" name="catalogName" onChange={handleCatalogNameChange}/>
+        <StyledInput 
+        type="text" 
+        name="catalogName"
+         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+         title="Name may contain only letters, apostrophe, dash and spaces." 
+         onChange={handleCatalogNameChange}/>
         </StyledInputWrapper>
         <StyledInputWrapper>
         <StyledLabel htmlFor="year">Рік</StyledLabel>

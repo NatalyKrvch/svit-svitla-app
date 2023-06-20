@@ -50,9 +50,9 @@ const AddCharacteristicInputs = ({
         <StyledInput
           id={id + "priceName"}
           type="text"
+          pattern="[A-Za-z]+" title="Пожалуйста, введите только буквы"
           value={characteristicNamesInput}
           onChange={handleCharacteristicNameChange}
-          // onBlur={handleCharacteristicNameBlur}
         />
         <StyledButton
           type="button "
@@ -68,9 +68,10 @@ const AddCharacteristicInputs = ({
         <StyledInput
           id={id + "price"}
           type="text"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Характеристика може включати тільки літери, апостроф, тире "
           value={characteristicValuesInput}
           onChange={handleCharacteristicValueChange}
-          // onBlur={handleCharacteristicValueBlur}
         />
         <StyledButton
           type="button "
