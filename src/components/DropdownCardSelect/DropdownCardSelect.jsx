@@ -1,58 +1,31 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { StyledOptions, StyledSelect, StyledWrpSelector } from "./DropdownCardSelectStyled";
+import { selectFilter } from "../../redux/Filter/selectors";
+import { setFilter } from "../../redux/Filter/slice";
 
-const ProductForm = () => {
-  const [productName, setProductName] = useState("");
-  const [productCode, setProductCode] = useState("");
-  const [price, setPrice] = useState("");
-  const [manufacturerCountry, setManufacturerCountry] = useState("");
-  const [coverImage, setCoverImage] = useState(null);
-  const [productImages, setProductImages] = useState([]);
 
-  const handleProductNameChange = (event) => {
-    setProductName(event.target.value);
-  };
 
-  const handleProductCodeChange = (event) => {
-    setProductCode(event.target.value);
-  };
 
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
-  };
+const DropdownCardSelector = () => {
 
-  const handleManufacturerCountryChange = (event) => {
-    setManufacturerCountry(event.target.value);
-  };
+  const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
 
-  const handleCoverImageChange = (event) => {
-    const file = event.target.files[0];
-    setCoverImage(file);
-  };
-
-  const handleProductImagesChange = (event) => {
-    const files = event.target.files;
-    setProductImages(Array.from(files));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Добавьте здесь логику для обработки отправки формы
-    // Например, можно отправить данные на сервер или выполнить другие действия
-
-    // Сбросить значения полей формы после отправки
-    setProductName("");
-    setProductCode("");
-    setPrice("");
-    setManufacturerCountry("");
-    setCoverImage(null);
-    setProductImages([]);
-  };
+  const setFilterOnChange = (evt) => {
+    dispatch(setFilter(evt.target.value));
+  }
 
   return (
-      <>
-      </>
-  );
-};
+    <>
+      <StyledWrpSelector>
+        <StyledSelect value={filter} onChange={setFilterOnChange}>
+          <StyledOptions value="Вид картки" hidden>Вид картки</StyledOptions>
+          <StyledOptions value="Картка товару">Картка товару</StyledOptions>
+          <StyledOptions value="Картка каталогу">Картка каталогу</StyledOptions>
+        </StyledSelect>
+      </StyledWrpSelector>
+    </>
+  )
+}
 
-export default ProductForm;
+export default DropdownCardSelector

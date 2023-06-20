@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { DownloadCatalogButton, FakeButton, FakeInputText, FakeInputWrp, FileInput, StyledButtonDelete, StyledCoverLabel, StyledForm, StyledFragment, StyledImg, StyledInput, StyledInputWrapper, StyledLabel, StyledSelect, StyledTitle, StyledWrpSelector, SubmitButton, TitleWrp } from "./CatalogFormStyled";
-import { useDispatch, useSelector } from "react-redux";
-import { selectFilter } from "../../redux/Filter/selectors";
-import { setFilter } from "../../redux/Filter/slice";
+import { FakeButton, FakeButtonDownload, FakeInputText, FakeInputWrp, FakeInputWrpDownload, FileInput, StyledButtonDelete, StyledCoverLabel, StyledForm, StyledFragment, StyledImg, StyledInput, StyledInputWrapper, StyledLabel, StyledTitle, SubmitButton, TitleWrp } from "./CatalogFormStyled";
+import { useDispatch} from "react-redux";
 import { HiArrowUpTray} from "react-icons/hi2"
 import { addCatalog, getCatalogs } from "../../redux/Catalog/catalogOperations";
 import { BiPlusCircle } from "react-icons/bi";
@@ -13,12 +11,10 @@ const CatalogForm = () => {
     const [catalogName, setCatalogName] = useState("");
     const [year, setYear] = useState("");
     const [coverImage, setCoverImage] = useState(null);
-    const optionFilter = useSelector(selectFilter);
+    const [catalogImages, setCatalogImages] = useState([]);
+    
     const dispatch = useDispatch();
 
-    const handleChangeOptionFilter = (event) => {
-        dispatch(setFilter(event.target.value))
-      };
 
       const handleCoverImageChange = (event) => {
         const file = event.target.files[0];
@@ -37,37 +33,40 @@ const CatalogForm = () => {
        ev.preventDefault();
        dispatch(addCatalog({
         catalogName,
-        year,
-        coverImage,
+        catalogYear: year,
+        catalogCoverURL: coverImage,
+        catalogFileURL: catalogImages,
        }));
        setCatalogName("");
        setYear("");
        setCoverImage(null);
+       setCatalogImages;
     }
 
     const handleDeleteCoverImg = () => {
       setCoverImage(null);
     }
-  
-    const handleDownloadCatalog = () => {
-      dispatch(getCatalogs());
-    }
+
+
+    const handleCatalogImagesDownload = (event) => {
+      const files = event.target.files;
+      setCatalogImages(Array.from(files));
+    };
 
     return (
  <StyledFragment>
   <TitleWrp>
    <StyledTitle>Створити картку</StyledTitle>
    </TitleWrp>
-    <StyledWrpSelector>
-      <StyledSelect value={optionFilter} onChange={handleChangeOptionFilter}>
-        <option value="productCard">Картка товару</option>
-        <option value="catalogCard">Картка каталогу</option>
-      </StyledSelect>
-    </StyledWrpSelector>
     <StyledForm action="" onSubmit={handleSubmit}>
       <StyledInputWrapper>
         <StyledLabel htmlFor="catalogName">Назва каталогу</StyledLabel> 
-        <StyledInput type="text" name="catalogName" onChange={handleCatalogNameChange}/>
+        <StyledInput 
+        type="text" 
+        name="catalogName"
+         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+         title="Name may contain only letters, apostrophe, dash and spaces." 
+         onChange={handleCatalogNameChange}/>
         </StyledInputWrapper>
         <StyledInputWrapper>
         <StyledLabel htmlFor="year">Рік</StyledLabel>
@@ -97,8 +96,21 @@ const CatalogForm = () => {
         />
         <StyledButtonDelete type="button " onClick={handleDeleteCoverImg} ><RiDeleteBin6Line size={'1.8em'} color="white"/></StyledButtonDelete>
       </StyledInputWrapper>}
-       
-        <DownloadCatalogButton type="button" onClick={handleDownloadCatalog}><HiArrowUpTray size={'1.5em'}/> Завантажити каталог</DownloadCatalogButton>
+      <label>
+            <FileInput
+              type="file"
+              multiple
+              onChange={handleCatalogImagesDownload}
+              accept=".jpg, .jpeg"
+            />
+            <FakeInputWrpDownload>
+            <FakeButtonDownload>
+            <HiArrowUpTray size={'1.5em'}/>
+              </FakeButtonDownload>
+              <FakeInputText>Завантажити каталог</FakeInputText>
+             
+            </FakeInputWrpDownload>
+          </label>
         <SubmitButton type="submit">Зберегти</SubmitButton>
     </StyledForm>
  </StyledFragment>
