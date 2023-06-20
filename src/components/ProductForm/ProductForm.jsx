@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "../../redux/Filter/slice";
+import { useDispatch } from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -18,15 +17,11 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
-  StyledOptions,
-  StyledSelect,
   StyledTitle,
-  StyledWrpSelector,
   SubmitButton,
   TitleWrp,
 } from "./ProductFormStyled";
 
-import { selectFilter } from "../../redux/Filter/selectors";
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 
 const ProductForm = () => {
@@ -37,8 +32,6 @@ const ProductForm = () => {
   const [characteristicArray, setCharacteristicArray] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [productImages, setProductImages] = useState([]);
-
-  const option = useSelector(selectFilter);
 
   const dispatch = useDispatch();
 
@@ -66,10 +59,6 @@ const ProductForm = () => {
   const handleProductImagesChange = (event) => {
     const files = event.target.files;
     setProductImages(Array.from(files));
-  };
-
-  const handleChangeOptionFilter = (event) => {
-    dispatch(setFilter(event.target.value));
   };
 
   const handleDeleteCharacteristicButton = (id) => {
@@ -120,6 +109,7 @@ const ProductForm = () => {
     setManufacturerCountry("");
     setCoverImage(null);
     setProductImages([]);
+    setCharacteristicArray([]);
   };
 
   return (
@@ -127,18 +117,15 @@ const ProductForm = () => {
       <TitleWrp>
         <StyledTitle>Створити картку</StyledTitle>
       </TitleWrp>
-      <StyledWrpSelector>
-        <StyledSelect value={option} onChange={handleChangeOptionFilter}>
-          <StyledOptions value="productCard">Картка товару</StyledOptions>
-          <StyledOptions value="catalogCard">Картка каталогу</StyledOptions>
-        </StyledSelect>
-      </StyledWrpSelector>
       <StyledForm onSubmit={handleSubmit}>
         <StyledInputWrapper>
           <StyledLabel htmlFor="name">Назва товару</StyledLabel>
           <StyledInput
             id="name"
             type="text"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces."
+            maxLength={16}
             required
             value={productName}
             onChange={handleProductNameChange}
@@ -149,6 +136,8 @@ const ProductForm = () => {
           <StyledInput
             id="article"
             type="text"
+            pattern="^\d+(\.\d{1,2})?$"
+            title="Будь-ласка введіть числовий формат (наприклад, 100 або 1099)"
             required
             value={productCode}
             onChange={handleProductCodeChange}
@@ -159,6 +148,8 @@ const ProductForm = () => {
           <StyledInput
             id="price"
             type="text"
+            pattern="^\d+(\.\d{1,2})?$"
+            title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
             required
             value={price}
             onChange={handlePriceChange}
@@ -169,6 +160,7 @@ const ProductForm = () => {
           <StyledInput
             id="country"
             type="text"
+            pattern="[A-Za-z]+" title="Будь-ласка введіть тільки літери"
             required
             value={manufacturerCountry}
             onChange={handleManufacturerCountryChange}

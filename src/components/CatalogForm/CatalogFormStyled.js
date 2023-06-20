@@ -4,6 +4,8 @@ export const StyledFragment = styled.div`
 position: relative;
 max-width: 328px;
 padding: 40px, 16px;
+margin-left: auto;
+margin-right: auto;
 `
 export const TitleWrp = styled.div`
   max-width: 328px;
@@ -33,28 +35,6 @@ text-align: left;
 
 `
 
-export const StyledWrpSelector = styled.div`
-max-width: 328px;
-height: 56px;
-background-color: var(--light-blue);
-border-radius: 4px 4px 0px 0px;
-padding: 16px;
-margin-left: auto;
-margin-right: auto;
-margin-bottom: 16px;
-margin-top: 32px;
-`
-export const StyledSelect = styled.select`
-border: none;
-background-color: transparent;
-width: 100%;
-height: 100%;
-font-size: 16px;
-line-height: 150%;
-letter-spacing: -0.4px;
-margin-bottom: 16px;
-
-`
 
 export const StyledForm = styled.form`
 display: flex;
@@ -63,6 +43,7 @@ gap: 16px;
 max-width: 328px;
 margin-left: auto;
 margin-right: auto;
+margin-top: 32px;
 
 `
 export const StyledInputWrapper = styled.div`
@@ -150,6 +131,7 @@ height: 48px;
 background: var(--dark-blue);
 color: white;
 border-radius: 8px;
+cursor: pointer;
 `
 export const DownloadCatalogButton = styled.button`
 display: flex;
@@ -194,4 +176,28 @@ background-color: var(--warning);
 cursor: pointer;
 outline: none;
 
+`
+
+export const FakeInputWrpDownload = styled.div`
+display: flex;
+gap: 24px;
+justify-content: center;
+align-items: center;
+max-width: 328px;
+height: 56px;
+border: 1px solid var(--light-blue);
+border-radius: 4px;
+padding-left: 8px;
+`
+
+export const FakeButtonDownload = styled.span`
+display: block;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 48px;
+height: 56px;
+background-color: transparent;
+cursor: pointer;
+outline: none;
 `
