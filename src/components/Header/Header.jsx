@@ -1,11 +1,13 @@
-import { useMediaRules } from "../../MediaRules/MediaRules";
-import { StyledHeader } from "./HeaderStyled";
+//import { useMediaRules } from "../../MediaRules/MediaRules";
+import { StyledHeader, HeaderWrapper } from "./HeaderStyled";
 
 function Header() {
-  const { isMobile, isDesktop, isTablet } = useMediaRules();
+  // const { isMobile, isDesktop, isTablet } = useMediaRules();
   return (
     <>
-      <StyledHeader />
+      <StyledHeader>
+        <HeaderWrapper></HeaderWrapper>
+      </StyledHeader>
     </>
   );
 }
