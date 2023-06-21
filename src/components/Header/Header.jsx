@@ -1,11 +1,5 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-import {
-  StyledHeader,
-  HeaderWrapper,
-  LogoWrapper,
-  Image,
-  BurgerWrapper,
-} from "./HeaderStyled";
+import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
 
 function Header() {
   const { isMobile, isDesktop, isTablet } = useMediaRules();
@@ -13,31 +7,31 @@ function Header() {
     <>
       <StyledHeader>
         <HeaderWrapper>
-          <LogoWrapper>
+          <WrapperDiv>
             {isDesktop && (
-              <Image
+              <img
                 src="src/images/Logo/Desktop/Header/logo_des@1x.svg"
                 alt="Logo"
               />
             )}
             {isTablet && (
-              <Image
+              <img
                 src="src/images/Logo/Tablet/Header/logo_tab@1x.svg"
                 alt="Logo"
               />
             )}
             {isMobile && (
-              <Image
+              <img
                 src="src/images/Logo/Mobile/Header/logo_mob@1x.svg"
                 alt="Logo"
               />
             )}
-          </LogoWrapper>
+          </WrapperDiv>
           {isMobile && (
             <>
-              <BurgerWrapper>
-                <Image src="src/images/Menu/Burger.svg" alt="Menu" />
-              </BurgerWrapper>
+              <WrapperDiv>
+                <img src="src/images/Menu/Burger.svg" alt="Menu" />
+              </WrapperDiv>
             </>
           )}
           {/* тут ще буде умовний рендеринг меню для планшета і десктопа */}
