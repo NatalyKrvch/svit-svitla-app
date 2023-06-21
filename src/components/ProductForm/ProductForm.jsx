@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { addProduct } from "../../redux/Product/productOperations";
 import { useDispatch } from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
@@ -97,7 +97,9 @@ const ProductForm = () => {
         productCode,
         productPrice: price,
         productCountry: manufacturerCountry,
-        productCoverURL: coverImage||"",
+
+        productCoverURL: coverImage || "",
+
         productPhotoURL: productImages,
         additionalAttributes,
       })
@@ -160,7 +162,8 @@ const ProductForm = () => {
           <StyledInput
             id="country"
             type="text"
-            pattern="[A-Za-z]+" title="Будь-ласка введіть тільки літери"
+            pattern="[A-Za-z]+"
+            title="Будь-ласка введіть тільки літери"
             required
             value={manufacturerCountry}
             onChange={handleManufacturerCountryChange}
