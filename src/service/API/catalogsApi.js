@@ -1,28 +1,31 @@
 import axios from 'axios';
-const baseURL = import.meta.env.REACT_APP_BASE_URL_BACK;
-axios.defaults.baseURL = `${baseURL}/api/catalogs`;
-
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getCatalogsAPI = () => {
-  return axios.get("/").then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.get("/api/catalogs/").then(({ data }) => {
     return data;
   });
 };
 
 export const addCatalogAPI = catalog => {
-  return axios.post("/", catalog).then(({ data }) => {
+  console.log(axios.defaults.baseURL);
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.post("/api/catalogs/", catalog).then(({ data }) => {
     return data;
   });
 };
 
 export const removeCatalogAPI = (id) => {
-  return axios.delete(`/${id}`).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.delete(`/api/catalogs/${id}`).then(({ data }) => {
     return data;
   });
 };
 
 export const changeCatalogAPI = (id, catalog) => {
-  return axios.put(`/${id}`, catalog).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.put(`/api/catalogs/${id}`, catalog).then(({ data }) => {
     return data;
   });
 };

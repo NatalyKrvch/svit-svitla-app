@@ -1,15 +1,17 @@
 import axios from 'axios';
-const baseURL = import.meta.env.REACT_APP_BASE_URL_BACK;
-axios.defaults.baseURL = `${baseURL}/api/users`;
+const baseURL = import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL = baseURL;
 
 export const logInUserAPI = user => {
-  return axios.post('/login', user).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.post("/api/users/login", user).then(({ data }) => {
     return data;
   });
 };
 
 export const logOutUserAPI = () => {
-  return axios.post('/logout').then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.post("/api/users/logout").then(({ data }) => {
     return data;
   });
 };
