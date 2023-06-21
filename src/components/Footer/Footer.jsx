@@ -1,12 +1,29 @@
 //import { useMediaRules } from "../../hooks/useMediaRules";
 
-import { StyledFooter } from "./FooterStyled";
+import {
+  StyledFooter,
+  FooterWrapper,
+  LogoWrapper,
+  InformationContainer,
+  TextWrapper,
+} from "./FooterStyled";
 
 function Footer() {
   //const { isMobile, isDesktop, isTablet } = useMediaRules();
   return (
     <>
-      <StyledFooter>Footer</StyledFooter>
+      <StyledFooter>
+        <FooterWrapper>
+          <LogoWrapper>
+            <img src="src/images/Logo/logo.svg" alt="logo" />
+          </LogoWrapper>
+          <InformationContainer>
+            <TextWrapper>Адреса:</TextWrapper>
+            <TextWrapper>Телефон:</TextWrapper>
+            <TextWrapper>Години роботи:</TextWrapper>
+          </InformationContainer>
+        </FooterWrapper>
+      </StyledFooter>
     </>
   );
 }
