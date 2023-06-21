@@ -25,6 +25,7 @@ import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const CatalogForm = () => {
+
   const [catalogName, setCatalogName] = useState("");
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
@@ -51,7 +52,9 @@ const CatalogForm = () => {
       addCatalog({
         catalogName,
         catalogYear: year,
+
         catalogCoverURL: coverImage || "",
+
         catalogFileURL: catalogImages,
       })
     );
