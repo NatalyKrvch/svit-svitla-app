@@ -35,11 +35,12 @@ export const authSlice = createSlice({
       .addCase(logout.rejected, rejected)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.userData = {
-          email: payload.email,
+          login: payload.login,
           id: payload.id,
         };
         state.accessToken = payload.accessToken;
         state.isLoggedIn = true;
+        state.isUserFetching = false;
       })
       .addCase(logout.fulfilled, () => ({ ...initialState })),
 });
