@@ -1,12 +1,15 @@
-//import { useMediaRules } from "../../MediaRules/MediaRules";
-import { StyledHeader, HeaderWrapper } from "./HeaderStyled";
+//import { useMediaRules } from "../../hooks/useMediaRules";
+import { StyledHeader, HeaderWrapper, LogoWrapper } from "./HeaderStyled";
 
 function Header() {
   // const { isMobile, isDesktop, isTablet } = useMediaRules();
   return (
     <>
       <StyledHeader>
-        <HeaderWrapper></HeaderWrapper>
+        <HeaderWrapper>
+          <LogoWrapper />
+          {/* тут ще буде умовний рендеринг меню в залежності від розміру екрану */}
+        </HeaderWrapper>
       </StyledHeader>
     </>
   );
