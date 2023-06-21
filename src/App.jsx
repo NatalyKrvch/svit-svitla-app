@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Layout from "./pages/Layout";
+import Layout from "./pages/Layout/Layout";
 import ProductsCatalogue from "./pages/ProductsCataloguePage";
 import Authorisation from "./pages/AuthorisationPage";
 import Authors from "./pages/AuthorsPage";
@@ -12,7 +12,7 @@ import ProductCard from "./pages/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
-import CreateCardPage from "./pages/CreateCardPage"
+import CreateCardPage from "./pages/CreateCardPage";
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
         <Route index element={<ProductsCatalogue />} />
         <Route path="/authorisation" element={<Authorisation />} />
         <Route path="/authors" element={<Authors />} />
-        <Route path="/selectcreatecard" element={<SelectCardPage />}/>
-        <Route path="/createcard" element={<CreateCardPage/>}/>  
+        <Route path="/selectcreatecard" element={<SelectCardPage />} />
+        <Route path="/createcard" element={<CreateCardPage />} />
         <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />
         <Route path="/editproductcard" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
