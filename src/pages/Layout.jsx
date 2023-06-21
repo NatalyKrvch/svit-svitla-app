@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <>
       <Suspense>
-        <Outlet />;
+        <Outlet />
       </Suspense>
     </>
   );

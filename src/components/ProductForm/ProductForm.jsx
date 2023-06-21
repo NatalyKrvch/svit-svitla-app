@@ -97,7 +97,7 @@ const ProductForm = () => {
         productCode,
         productPrice: price,
         productCountry: manufacturerCountry,
-        productCoverURL: coverImage,
+        productCoverURL: coverImage||"",
         productPhotoURL: productImages,
         additionalAttributes,
       })

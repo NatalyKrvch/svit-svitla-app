@@ -1,34 +1,37 @@
 import axios from 'axios';
-const baseURL = import.meta.env.REACT_APP_BASE_URL_BACK;
-axios.defaults.baseURL = `${baseURL}/api/products`;
-
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getProductsAPI = () => {
-  return axios.get("/").then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.get("/api/products/").then(({ data }) => {
     return data;
   });
 };
 
 export const addProductAPI = product => {
-  return axios.post("/", product).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.post("/api/products/", product).then(({ data }) => {
     return data;
   });
 };
 
 export const removeProductAPI = (id) => {
-  return axios.delete(`/${id}`).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.delete(`/api/products/${id}`).then(({ data }) => {
     return data;
   });
 };
 
 export const changeProductAPI = (id, product) => {
-  return axios.put(`/${id}`, product).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.put(`/api/products/${id}`, product).then(({ data }) => {
     return data;
   });
 };
 
 export const getProductByIdAPI = (id) => {
-  return axios.get(`/${id}`).then(({ data }) => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.get(`/api/products/${id}`).then(({ data }) => {
     return data;
   });
 };

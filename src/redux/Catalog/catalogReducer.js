@@ -47,7 +47,7 @@ const catalogsSlice = createSlice({
       .addCase(addCatalog.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.catalogs.push(...payload);
+        state.catalogs.push(payload);
       })
       .addCase(removeCatalog.fulfilled, (state, { payload }) => {
         state.isLoading = false;

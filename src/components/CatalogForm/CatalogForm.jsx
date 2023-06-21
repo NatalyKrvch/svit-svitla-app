@@ -11,7 +11,7 @@ const CatalogForm = () => {
     const [catalogName, setCatalogName] = useState("");
     const [year, setYear] = useState("");
     const [coverImage, setCoverImage] = useState(null);
-    const [catalogImages, setCatalogImages] = useState([]);
+    const [catalogImages, setCatalogImages] = useState("");
     
     const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const CatalogForm = () => {
        dispatch(addCatalog({
         catalogName,
         catalogYear: year,
-        catalogCoverURL: coverImage,
+        catalogCoverURL: coverImage||"",
         catalogFileURL: catalogImages,
        }));
        setCatalogName("");

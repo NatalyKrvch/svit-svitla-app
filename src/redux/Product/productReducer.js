@@ -43,14 +43,14 @@ const productsSlice = createSlice({
       .addCase(getProductById.pending, pending)
       .addCase(getProductById.rejected, rejected)
       .addCase(getProducts.fulfilled, (state, { payload }) => {
-        state.products.push(...payload);
         state.isLoading = false;
         state.error = null;
+        state.products.push(...payload);
       })
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.products.push(...payload);
+        state.products.push(payload);
       })
       .addCase(removeProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
