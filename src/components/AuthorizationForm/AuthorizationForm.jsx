@@ -58,8 +58,7 @@ const AuthorizationForm = () => {
             placeholder="e.g.lampalampa"
             required
             minLength={8}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Пароль може складатися тільки із латиниці, апострофа, пробілу, тире"
+            maxLength={16}
             value={login}
             onChange={handleChangeLogin}
           />
@@ -69,6 +68,7 @@ const AuthorizationForm = () => {
           <StyledInput
             type={passwordVisible ? "text" : "password"}
             minLength={8}
+            maxLength={16}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Пароль може складатися тільки із латиниці, апострофа, пробілу, тире"
             id="password"

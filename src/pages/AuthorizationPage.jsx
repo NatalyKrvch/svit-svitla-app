@@ -1,6 +1,6 @@
 import AuthorizationForm from "../components/AuthorizationForm/AuthorizationForm";
 
-function Authorisation() {
+function Authorization() {
   return (
     <>
     <AuthorizationForm/>
@@ -8,4 +8,4 @@ function Authorisation() {
   )
 }
 
-export default Authorisation;
+export default Authorization;
