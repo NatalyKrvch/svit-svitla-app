@@ -1,14 +1,21 @@
-import axios from 'axios';
+import axios from "axios";
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-export const getProductsAPI = () => {
+export const getProductsAPI = (page, per_page) => {
   axios.defaults.baseURL = `${baseURL}`;
-  return axios.get("/api/products/").then(({ data }) => {
+  if (page && per_page) {
+    return axios
+      .get(`/api/products?page=${page}&per_page=${per_page}`)
+      .then(({ data }) => {
+        return data;
+      });
+  }
+  return axios.get("/api/products").then(({ data }) => {
     return data;
   });
 };
 
-export const addProductAPI = product => {
+export const addProductAPI = (product) => {
   axios.defaults.baseURL = `${baseURL}`;
   return axios.post("/api/products/", product).then(({ data }) => {
     return data;
@@ -35,4 +42,3 @@ export const getProductByIdAPI = (id) => {
     return data;
   });
 };
-
