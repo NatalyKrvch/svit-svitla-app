@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const StyledFooter = styled.footer`
     background-color: var(--dark-blue);
@@ -31,16 +32,12 @@ export const LogoWrapper = styled.div`
         left: 15px;
     }
 `
-
-//замінити на кнопку, доробити адаптацію
 export const InstaWrapper = styled.div`   
     position: absolute;
 
     @media screen and (max-width: 767px) {
-        height: 48px;
-        width: 48px;
-        left: 15px;
-        bottom: 20px;
+      top: 90px;
+      left: 7px;
     }
 `
 export const InformationContainer = styled.div`
@@ -58,7 +55,9 @@ export const InformationContainer = styled.div`
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
-    flex-wrap: nowrap;
+    @media screen and (min-width: 768px) {
+        order: 1;
+    }
 
 `
 export const StyledSpan = styled.span`
@@ -68,8 +67,13 @@ export const StyledSpan = styled.span`
     font-weight: 400;
     font-size: 10px;
 `
-
 export const StyledAdress = styled.address`
     margin: 0;
     font-style: normal;
+`
+export const StyledLink = styled(Link)`
+    margin-top: 20px;
+    text-decoration: underline;
+    color: var(--light-blue); 
+    &:visited {color: var(--light-blue);}
 `

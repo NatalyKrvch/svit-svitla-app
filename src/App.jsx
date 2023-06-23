@@ -13,6 +13,8 @@ import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
 import CreateCardPage from "./pages/CreateCardPage";
+import Feedback from "./pages/FeedbackPage";
+import PreorderCataloguePage from "./pages/PreorderCataloguePage/PreorderCataloguePage";
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<ProductsCataloguePage />} />
         <Route path="/authorization" element={<Authorization />} />
+        <Route path="/feedback" element={<Feedback />} />
         <Route path="/authors" element={<Authors />} />
+        <Route path="/preordercatalogue" element={<PreorderCataloguePage />} />
         <Route path="/selectcreatecard" element={<SelectCardPage />} />
         <Route path="/createcard" element={<CreateCardPage />} />
         <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />

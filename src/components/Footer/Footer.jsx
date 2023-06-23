@@ -8,6 +8,8 @@ import {
   TextWrapper,
   StyledSpan,
   StyledAdress,
+  StyledLink,
+  InstaWrapper,
 } from "./FooterStyled";
 
 function Footer() {
@@ -19,6 +21,7 @@ function Footer() {
           <LogoWrapper>
             <img src="src/images/Logo/logo.svg" alt="logo" />
           </LogoWrapper>
+
           <InformationContainer>
             <TextWrapper>
               <StyledSpan>Адреса:</StyledSpan>
@@ -26,29 +29,19 @@ function Footer() {
             </TextWrapper>
             <TextWrapper>
               <StyledSpan>Телефон:</StyledSpan>
-              <StyledAdress>+38 063 477 98 88</StyledAdress>
+              <p>+38 063 477 98 88</p>
             </TextWrapper>
             <TextWrapper>
               <StyledSpan>Працюємо:</StyledSpan>
-              <StyledAdress>10:00 - 18:00 (без вихідних)</StyledAdress>
-            </TextWrapper>
-
-            {/* <TextWrapper>
-              <TextWrapper>Адреса:</TextWrapper>
-              <TextWrapper>м. Чернігів, пр. Миру, 194 корп. 12</TextWrapper>
+              <time>10:00 - 18:00 (без вихідних)</time>
             </TextWrapper>
             <TextWrapper>
-              <TextWrapper>Телефон:</TextWrapper>
-              <TextWrapper>+38 063 477 98 88</TextWrapper>
+              <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
             </TextWrapper>
-            <TextWrapper>
-              <TextWrapper>Працюємо:</TextWrapper>
-              <TextWrapper>10:00 - 18:00 (без вихідних)</TextWrapper>
-            </TextWrapper>
-            <TextWrapper>
-              <TextWrapper>Автори веб-сервісу</TextWrapper>
-            </TextWrapper> */}
           </InformationContainer>
+          <InstaWrapper>
+            <img src="src/images/Logo/Insta_btn.svg" alt="Instagram" />
+          </InstaWrapper>
         </FooterWrapper>
       </StyledFooter>
     </>
