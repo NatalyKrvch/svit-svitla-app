@@ -4,7 +4,7 @@ export const StyledFooter = styled.footer`
     background-color: var(--dark-blue);
     margin: 20px 0 0 0;
 
-    @media screen and (min-width: 300px) and (max-width: 767px) {
+    @media screen and (max-width: 767px) {
         height: 152px;
     }
     
@@ -24,7 +24,7 @@ export const FooterWrapper = styled.div`
 export const LogoWrapper = styled.div`
     position: absolute;
 
-    @media screen and (min-width: 300px) and (max-width: 767px) {
+    @media screen and (max-width: 767px) {
         height: 48px;
         width: 48px;
         top: 15px;
@@ -36,7 +36,7 @@ export const LogoWrapper = styled.div`
 export const InstaWrapper = styled.div`   
     position: absolute;
 
-    @media screen and (min-width: 300px) and (max-width: 767px) {
+    @media screen and (max-width: 767px) {
         height: 48px;
         width: 48px;
         left: 15px;
@@ -45,15 +45,31 @@ export const InstaWrapper = styled.div`
 `
 export const InformationContainer = styled.div`
     position: absolute;
-    left: 100px;
+    left: 70px;
     top: 15px;
-    display: flex;
-    flex-direction: column;
     color: var(--light-blue);
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 10px;
 `
 export const TextWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 
 `
+export const StyledSpan = styled.span`
+    height: 15px;
+    min-width: 70px;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 10px;
+`
 
+export const StyledAdress = styled.address`
+    margin: 0;
+    font-style: normal;
+`
