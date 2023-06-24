@@ -1,13 +1,19 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
 import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   const { isMobile, isDesktop, isTablet } = useMediaRules();
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <StyledHeader>
         <HeaderWrapper>
-          <WrapperDiv>
+          <WrapperDiv onClick={handleLogoClick}>
             {isDesktop && (
               <img
                 src="src/images/Logo/Desktop/Header/logo_des@1x.svg"
