@@ -7,12 +7,12 @@ export const StyledFragment = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     padding: 64px 40px;
     margin: 0;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     padding: 72px, 136px;
   }
 `;
@@ -23,7 +23,7 @@ export const StyledTitle = styled.h1`
   letter-spacing: -0.4px;
   text-align: left;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     font-size: 48px;
     line-height: 1.2;
   }
@@ -32,6 +32,14 @@ export const StyledTitle = styled.h1`
 export const TitleWrp = styled.div`
   width: 328px;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    width: 754px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 1168px;
+  }
 
   &::after {
     content: " ";
@@ -43,25 +51,16 @@ export const TitleWrp = styled.div`
     border: 1px solid var(--middle-grey);
     margin-bottom: 32px;
 
-    @media screen and (min-width: 834px) {
+    @media screen and (min-width: 768px) {
       width: 754px;
-      margin-bottom: 40px;
+     
     }
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1280px) {
       width: 1168px;
-      margin-bottom: 54px;
+     
     }
   }
 
-  @media screen and (min-width: 834px) {
-    width: 754px;
-    height: 56px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1168px;
-    height: 64px;
-  }
 `;
 
 export const StyledForm = styled.form`
@@ -73,34 +72,29 @@ export const StyledForm = styled.form`
   margin-right: auto;
   margin-top: 32px;
 
-  @media screen and (min-width: 834px) {
-    max-width: 495px;
+  @media screen and (min-width: 768px) {
     margin-left: 0;
-    margin-right: 0;
-    margin-top: 40px;
+    max-width: 495px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     max-width: 572px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 54px;
   }
 `;
 
 export const StyledInputWrapper = styled.div`
   position: relative;
-  max-width: 328px;
+  width: 328px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: left;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     width: 495px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     max-width: 572px;
   }
 `;
@@ -116,7 +110,7 @@ export const StyledLabel = styled.label`
   left: 12px;
   top: -8px;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     font-size: 14px;
   }
 `;
@@ -129,12 +123,12 @@ export const StyledInput = styled.input`
   border-radius: 4px;
   outline: var(--dark-blue);
 
-  @media screen and (min-width: 834px) {
-    max-width: 495px;
+  @media screen and (min-width: 768px) {
+    width: 495px;
   }
 
-  @media screen and (min-width: 1440px) {
-    max-width: 572px;
+  @media screen and (min-width: 1280px) {
+    width: 572px;
   }
 `;
 
@@ -143,7 +137,7 @@ export const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 12px 24px;
-  max-width: 328px;
+  width: 328px;
   height: 48px;
   font-size: 16px;
   background: var(--dark-blue);
@@ -151,13 +145,13 @@ export const SubmitButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
 
-  @media screen and (min-width: 834px) {
-    max-width: 365px;
+  @media screen and (min-width: 768px) {
+    width: 365px;
     font-size: 20px;
   }
 
-  @media screen and (min-width: 1440px) {
-    max-width: 371px;
+  @media screen and (min-width: 1280px) {
+    width: 371px;
   }
 `;
 

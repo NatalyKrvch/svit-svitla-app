@@ -40,7 +40,7 @@ const AddCharacteristicInputs = ({
       )
     );
   };
-  console.log(characteristicArray);
+  // console.log(characteristicArray);
   return (
     <>
       <StyledInputWrapper>
