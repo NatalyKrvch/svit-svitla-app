@@ -14,6 +14,7 @@ import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
 import Feedback from "./pages/FeedbackPage";
 import PreorderCataloguePage from "./pages/PreorderCataloguePage/PreorderCataloguePage";
+import CreateCardPage from "./pages/CreateCardPage/CreateCardPage";
 
 function App() {
   return (
