@@ -1,41 +1,5 @@
 import styled from "styled-components";
 
-export const StyledFragment = styled.div`
-  position: relative;
-  max-width: 328px;
-  padding: 40px, 16px;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-export const TitleWrp = styled.div`
-  max-width: 328px;
-  position: relative;
-
-  &::after {
-    content: ' ';
-    position: absolute;
-    width: 328px;
-    bottom: -40px;
-    left: 0;
-    height: 1px;
-    border: 1px solid var(--middle-grey);
-    
-    margin-bottom: 32px;
-  }
-`;
-
-export const StyledTitle = styled.h2`
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 120%;
-  letter-spacing: -0.4px;
-  margin-bottom: 8px;
-  text-align: left;
-`;
-
-
-
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -44,6 +8,15 @@ export const StyledForm = styled.form`
   margin-left: auto;
   margin-right: auto;
   margin-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+    max-width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 572px;
+  }
 `;
 
 export const StyledInputWrapper = styled.div`
@@ -53,6 +26,13 @@ export const StyledInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
+  @media screen and (min-width: 768px) {
+    max-width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 572px;
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -85,6 +65,13 @@ export const StyledInput = styled.input`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
+  @media screen and (min-width: 768px) {
+   width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+  }
 `;
 
 export const FileInput = styled.input`
@@ -99,12 +86,24 @@ export const FakeInputWrp = styled.div`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 572px;
+  }
 `;
 export const FakeInputText = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.4px;
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  line-height: 1;
+  }
 `;
 export const FakeButton = styled.span`
   display: block;
@@ -127,9 +126,16 @@ export const SubmitButton = styled.button`
   padding: 12px 24px;
   max-width: 328px;
   height: 48px;
-  background: var(--dark-blue);
+  background-color: ${props => props.disabled? "var(--middle-grey)" : "var(--dark-blue)"};;
   color: white;
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 373px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 export const StyledImg = styled.img`
   display: block;

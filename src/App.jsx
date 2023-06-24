@@ -12,7 +12,8 @@ import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
-import CreateCardPage from "./pages/CreateCardPage"
+import CreateCardPage from "./pages/CreateCardPage/CreateCardPage";
+
 
 function App() {
   return (

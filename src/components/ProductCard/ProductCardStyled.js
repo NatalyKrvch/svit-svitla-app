@@ -4,12 +4,12 @@ export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     width: 235px;
     height: 208px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     width: 274px;
     height: 256px;
   }
@@ -23,11 +23,11 @@ export const StyledTextWrapper = styled.div`
   gap: 4px;
   margin-top: 4px;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     width: 235px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     width: 274px;
   }
 `;
@@ -43,10 +43,10 @@ export const StyledP = styled.p`
   line-height: 1, 5;
   letter-spacing: -0.4px;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     font-size: 20px;
     line-height: 1.5;
   }
@@ -70,13 +70,13 @@ export const StyledButton = styled.button`
   letter-spacing: -0.4px;
   cursor: pointer;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     width: 235px;
     font-size: 20px;
     line-height: 1.2;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     width: 274px;
   }
 `;
