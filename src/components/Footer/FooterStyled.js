@@ -51,21 +51,29 @@ export const InformationContainer = styled.div`
     font-family: Inter;
     font-weight: 400;
     font-size: 10px;
+
+    @media screen and  (min-width: 768px) {
+     
+        font-weight: 500;
+        font-size: 14px;
+        left: 90px;
+        top: 25px;
+    }
 `
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
-    @media screen and (min-width: 768px) {
-        order: 1;
-    }
 
 `
 export const StyledSpan = styled.span`
     height: 15px;
     min-width: 70px;
-    font-family: Inter;
-    font-weight: 400;
-    font-size: 10px;
+
+    @media screen and  (min-width: 768px) {
+        margin-left: 40px;
+        height: 29px;
+        min-width: 86px;
+    }
 `
 export const StyledAdress = styled.address`
     margin: 0;
