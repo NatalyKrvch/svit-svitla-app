@@ -1,0 +1,34 @@
+{
+    "adminMenu": [
+        {
+            "title": "Створити картку",
+            "url": "/createcard"
+        },
+        {
+            "title": "Картки товару",
+            "url": "/"
+        },
+        {
+            "title": "Каталоги",
+            "url": "/catalogs"
+        },
+        {
+            "title": "Вийти",
+            "url": "/authorization"
+        }
+    ],
+    "userMenu": [
+        {
+            "title": "Залишити відгук",
+            "url": "/feedback"
+        },
+        {
+            "title": "Товари у наявності",
+            "url": "/"
+        },
+        {
+            "title": "Каталоги для передзамовлення",
+            "url": "/preordercatalogue"
+        }
+    ]
+}
