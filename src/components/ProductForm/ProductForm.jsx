@@ -77,33 +77,36 @@ const ProductForm = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();    
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.characteristicName, value: obj.characteristicValue };
     });
-    // console.log({
-    //   productName,
-    //   productCode,
-    //   productPrice: price,
-    //   productCountry: manufacturerCountry,
-    //   productCoverURL: coverImage,
-    //   productPhotoURL: productImages,
-    //   additionalAttributes,
-    // });
+    
+    const formData = new FormData();
+    formData.append("productName", productName);
+    formData.append("productCode", productCode);
+    formData.append("productPrice", price);
+    formData.append("productCountry", manufacturerCountry);
+    formData.append("productCoverURL", coverImage || "");
+    productImages.forEach((file) => {
+      formData.append("productPhotoURL", file);
+    });
+    formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
+   
+    dispatch(addProduct(formData))
+    // dispatch(
+    //   addProduct({
+    //     productName,
+    //     productCode,
+    //     productPrice: price,
+    //     productCountry: manufacturerCountry,
 
-    dispatch(
-      addProduct({
-        productName,
-        productCode,
-        productPrice: price,
-        productCountry: manufacturerCountry,
+    //     productCoverURL: coverImage || "",
 
-        productCoverURL: coverImage || "",
-
-        productPhotoURL: productImages,
-        additionalAttributes,
-      })
-    );
+    //     productPhotoURL: productImages,
+    //     additionalAttributes,
+    //   })
+    // );
 
     setProductName("");
     setProductCode("");
@@ -119,7 +122,7 @@ const ProductForm = () => {
       <TitleWrp>
         <StyledTitle>Створити картку</StyledTitle>
       </TitleWrp>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit} enctype="multipart/form-data">
         <StyledInputWrapper>
           <StyledLabel htmlFor="name">Назва товару</StyledLabel>
           <StyledInput
