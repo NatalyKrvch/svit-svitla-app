@@ -45,20 +45,28 @@ const CatalogForm = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    dispatch(
-      addCatalog({
-        catalogName,
-        catalogYear: year,
+    const formData = new FormData();
+    formData.append("catalogName", catalogName);
+    formData.append("catalogYear", year);
+    formData.append("catalogCoverURL", coverImage || "");
+    formData.append("catalogFileURL", catalogImages);
 
-        catalogCoverURL: coverImage || "",
+    dispatch(addCatalog(formData));
 
-        catalogFileURL: catalogImages,
-      })
-    );
+    // dispatch(
+    //   addCatalog({
+    //     catalogName,
+    //     catalogYear: year,
+
+    //     catalogCoverURL: coverImage || "",
+
+    //     catalogFileURL: catalogImages,
+    //   })
+    // );
     setCatalogName("");
     setYear("");
     setCoverImage(null);
-    setCatalogImages;
+    setCatalogImages("");
   };
 
   const handleDeleteCoverImg = () => {
@@ -67,7 +75,7 @@ const CatalogForm = () => {
 
   const handleCatalogImagesDownload = (event) => {
     const files = event.target.files;
-    setCatalogImages(Array.from(files));
+    setCatalogImages(files);
   };
 
   return (
@@ -95,6 +103,10 @@ const CatalogForm = () => {
             required
             onChange={handleCoverImageChange}
             accept=".jpg, .jpeg "
+            multiple
+            onChange={handleCatalogImagesDownload}
+            accept=".pdf"
+
           />
           <FakeInputWrp>
             <FakeInputText>Додати обкладинку</FakeInputText>
