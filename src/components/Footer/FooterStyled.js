@@ -9,13 +9,11 @@ export const StyledFooter = styled.footer`
         height: 152px;
     }
     
-    @media screen and (min-width: 768px) and (max-width: 1279px) {
-        height: 149px;
-    }
-
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: 768px) {
         height: 160px;
     }
+
+ 
 `
 export const FooterWrapper = styled.div`
     position: relative;
@@ -26,18 +24,40 @@ export const LogoWrapper = styled.div`
     position: absolute;
 
     @media screen and (max-width: 767px) {
-        height: 48px;
-        width: 48px;
+
         top: 15px;
         left: 15px;
     }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+
+        top: 30px;
+        left: 25px;
+    }
+    
+    @media screen and (min-width: 1280px) {
+
+        top: 25px;
+        left: 100px;
+    }
 `
+
 export const InstaWrapper = styled.div`   
     position: absolute;
 
     @media screen and (max-width: 767px) {
       top: 90px;
       left: 7px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+      top: 10px;
+      right: 10px;
+    }
+
+    @media screen and (min-width: 1279px) {
+        top: 10px;
+        right: 100px;
     }
 `
 export const InformationContainer = styled.div`
@@ -52,11 +72,18 @@ export const InformationContainer = styled.div`
     font-weight: 400;
     font-size: 10px;
 
-    @media screen and  (min-width: 768px) {
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
      
         font-weight: 500;
         font-size: 14px;
         left: 90px;
+        top: 25px;
+    }
+
+    @media screen and (min-width: 1279px) {
+        font-weight: 500;
+        font-size: 16px;
+        left: 250px;
         top: 25px;
     }
 `
@@ -84,4 +111,8 @@ export const StyledLink = styled(Link)`
     text-decoration: underline;
     color: var(--light-blue); 
     &:visited {color: var(--light-blue);}
+
+    @media screen and (min-width: 768px) {
+        margin-left: 40px;
+    }
 `

@@ -12,69 +12,87 @@ import {
   InstaWrapper,
 } from "./FooterStyled";
 
+const adress = (
+  <>
+    <StyledSpan>Адреса:</StyledSpan>
+    <StyledAdress>м. Чернігів, пр. Миру, 194 корп. 12</StyledAdress>
+  </>
+);
+
+const telephone = (
+  <>
+    <StyledSpan>Телефон:</StyledSpan>
+    <p>+38 063 477 98 88</p>
+  </>
+);
+
+const workingHours = (
+  <>
+    <StyledSpan>Працюємо:</StyledSpan>
+    <time>10:00 - 18:00 (без вихідних)</time>
+  </>
+);
+
+const handleClick = () => {
+  window.open("https://www.instagram.com/", "_blank");
+};
+
 function Footer() {
-  const { isMobile } = useMediaRules();
+  const { isMobile, isTablet, isDesktop } = useMediaRules();
   return (
     <>
       <StyledFooter>
         <FooterWrapper>
-          {isMobile && (
-            <>
-              <LogoWrapper>
-                <img src="src/images/Logo/logo.svg" alt="logo" />
-              </LogoWrapper>
-
-              <InformationContainer>
+          <LogoWrapper>
+            {isMobile && (
+              <>
+                <img
+                  src="src/images/Logo/Mobile/Footer/logo-mob@1x.png"
+                  alt="logo"
+                />
+              </>
+            )}
+            {isTablet && (
+              <>
+                <img
+                  src="src/images/Logo/Tablet/Footer/logo-tablet@1x.png"
+                  alt="logo"
+                />
+              </>
+            )}
+            {isDesktop && (
+              <>
+                <img
+                  src="src/images/Logo/Desktop/Footer/logo_desktop@1x.png"
+                  alt="logo"
+                />
+              </>
+            )}
+          </LogoWrapper>
+          <InformationContainer>
+            {isMobile && (
+              <>
+                <TextWrapper>{adress}</TextWrapper>
+                <TextWrapper>{telephone}</TextWrapper>
+                <TextWrapper>{workingHours}</TextWrapper>
+              </>
+            )}
+            {!isMobile && (
+              <>
                 <TextWrapper>
-                  <StyledSpan>Адреса:</StyledSpan>
-                  <StyledAdress>
-                    м. Чернігів, пр. Миру, 194 корп. 12
-                  </StyledAdress>
+                  {adress}
+                  {telephone}
                 </TextWrapper>
-                <TextWrapper>
-                  <StyledSpan>Телефон:</StyledSpan>
-                  <p>+38 063 477 98 88</p>
-                </TextWrapper>
-                <TextWrapper>
-                  <StyledSpan>Працюємо:</StyledSpan>
-                  <time>10:00 - 18:00 (без вихідних)</time>
-                </TextWrapper>
-                <TextWrapper>
-                  <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
-                </TextWrapper>
-              </InformationContainer>
-              <InstaWrapper>
-                <img src="src/images/Logo/Insta_btn.svg" alt="Instagram" />
-              </InstaWrapper>
-            </>
-          )}
-
-          {!isMobile && (
-            <>
-              <LogoWrapper>
-                <img src="src/images/Logo/logo.svg" alt="logo" />
-              </LogoWrapper>
-
-              <InformationContainer>
-                <TextWrapper>
-                  <StyledSpan>Адреса:</StyledSpan>
-                  <StyledAdress>
-                    м. Чернігів, пр. Миру, 194 корп. 12
-                  </StyledAdress>
-                  <StyledSpan>Телефон:</StyledSpan>
-                  <p>+38 063 477 98 88</p>
-                </TextWrapper>
-                <TextWrapper>
-                  <StyledSpan>Працюємо:</StyledSpan>
-                  <time>10:00 - 18:00 (без вихідних)</time>
-                  <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
-                </TextWrapper>
-              </InformationContainer>
-              <InstaWrapper>
-                <img src="src/images/Logo/Insta_btn.svg" alt="Instagram" />
-              </InstaWrapper>
-            </>
-          )}
+                <TextWrapper>{workingHours}</TextWrapper>
+              </>
+            )}
+            <TextWrapper>
+              <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
+            </TextWrapper>
+          </InformationContainer>
+          <InstaWrapper onClick={handleClick}>
+            <img src="src/images/Logo/Insta_btn.svg" alt="Instagram" />
+          </InstaWrapper>
         </FooterWrapper>
       </StyledFooter>
     </>
