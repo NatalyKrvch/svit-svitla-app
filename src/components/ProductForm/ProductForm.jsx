@@ -29,7 +29,7 @@ const ProductForm = () => {
   const [manufacturerCountry, setManufacturerCountry] = useState("");
   const [characteristicArray, setCharacteristicArray] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
-  const [productImages, setProductImages] = useState([]);
+  const [productImages, setProductImages] = useState("");
 
   const dispatch = useDispatch();
 
@@ -59,7 +59,8 @@ const ProductForm = () => {
     setProductImages(Array.from(files));
   };
 
-  const handleDeleteCharacteristicButton = (id) => {
+  const handleDeleteCharacteristicButton = (id, ev) => {
+    ev.preventDefault();
     const index = characteristicArray.indexOf(
       (item) => item.characteristicId === id
     );
@@ -109,8 +110,9 @@ const ProductForm = () => {
         <StyledInput
           id="name"
           type="text"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces."
+          pattern="^[A-Za-z\s]*$"
+          title="Будь-ласка вводьте літери англійського алфавіту"
+          minLength={3}
           maxLength={16}
           required
           value={productName}
@@ -233,7 +235,7 @@ const ProductForm = () => {
       )}
 
       <SubmitButton type="submit"
-      disabled={(!productName || !productCode || !price || !manufacturerCountry || !coverImage)}>Зберегти</SubmitButton>
+      disabled={(!productName || !productCode || !price || !manufacturerCountry)}>Зберегти</SubmitButton>
     </StyledForm>
   );
 };

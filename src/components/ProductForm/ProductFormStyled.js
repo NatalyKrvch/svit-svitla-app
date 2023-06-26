@@ -81,18 +81,18 @@ export const FakeInputWrp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 328px;
+  width: 328px;
   height: 56px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
 
   @media screen and (min-width: 768px) {
-    max-width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 572px;
+    width: 572px;
   }
 `;
 export const FakeInputText = styled.p`
@@ -102,7 +102,12 @@ export const FakeInputText = styled.p`
   letter-spacing: -0.4px;
   @media screen and (min-width: 768px) {
     font-size: 24px;
-  line-height: 1;
+    line-height: 1;
+     width: 495px;
+  }
+  
+  @media screen and (min-width: 1280px) {
+    width: 572px;
   }
 `;
 export const FakeButton = styled.span`

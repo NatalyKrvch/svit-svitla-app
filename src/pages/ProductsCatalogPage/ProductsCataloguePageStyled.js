@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const StyledFragment   = styled.div`
+padding: 40px 16px 16px 16px;
+margin-left:auto;
+margin-right: auto;
+
+ @media screen and (min-width: 768px) {
+   padding: 48px 40px 32px 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 72px 136px 48px 136px;
+  }
+`
+
 export const StyledTitle = styled.h2`
   font-size: 24px;
   font-weight: 400;
