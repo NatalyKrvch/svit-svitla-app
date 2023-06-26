@@ -4,8 +4,9 @@ import {
   HeaderWrapper,
   WrapperDiv,
   StyledUl,
+  StyledLink,
 } from "./HeaderStyled";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useSelector } from "react-redux";
 import menuConfig from "./menuConfig.json";
@@ -18,9 +19,7 @@ function Header() {
     navigate("/");
   };
 
-  //const isLoggedIn = useSelector(getIsLoggedIn);
-
-  const isLoggedIn = true;
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   const navigationMenu = () => {
     const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
@@ -30,7 +29,7 @@ function Header() {
         <StyledUl>
           {menuData.map((item, index) => (
             <li key={index}>
-              <Link to={item.url}>{item.title}</Link>
+              <StyledLink to={item.url}>{item.title}</StyledLink>
             </li>
           ))}
         </StyledUl>
@@ -62,7 +61,7 @@ function Header() {
               />
             )}
           </WrapperDiv>
-          {navigationMenu()}
+          {!isMobile && navigationMenu()}
           {isMobile && (
             <>
               <WrapperDiv>

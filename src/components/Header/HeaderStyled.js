@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 export const StyledHeader = styled.header`
@@ -30,11 +31,21 @@ export const WrapperDiv = styled.div`
 
 export const StyledUl = styled.ul`
     display: flex;
-    gap: 40px;
+    color: var(--main-white);
     font-family: "Inter";
     font-weight: 500;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.4px;
-    color: var(--main-white);
+    gap: 40px;
+    
+    @media screen and (min-width: 1280px){
+        font-size: 24px;
+    }
+`
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: var(--main-white); 
+    &:visited {color: var(--main-white);}
 `
