@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Layout from "./pages/Layout";
+import Layout from "./pages/Layout/Layout";
 import ProductsCataloguePage from "./pages/ProductsCatalogPage/ProductsCataloguePage";
 import Authorization from "./pages/AuthorizationPage";
 import Authors from "./pages/AuthorsPage";
@@ -12,8 +12,9 @@ import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
+import Feedback from "./pages/FeedbackPage";
+import PreorderCataloguePage from "./pages/PreorderCataloguePage/PreorderCataloguePage";
 import CreateCardPage from "./pages/CreateCardPage/CreateCardPage";
-
 
 function App() {
   return (
@@ -21,9 +22,11 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<ProductsCataloguePage />} />
         <Route path="/authorization" element={<Authorization />} />
+        <Route path="/feedback" element={<Feedback />} />
         <Route path="/authors" element={<Authors />} />
-        <Route path="/selectcreatecard" element={<SelectCardPage />}/>
-        <Route path="/createcard" element={<CreateCardPage/>}/>  
+        <Route path="/preordercatalogue" element={<PreorderCataloguePage />} />
+        <Route path="/selectcreatecard" element={<SelectCardPage />} />
+        <Route path="/createcard" element={<CreateCardPage />} />
         <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />
         <Route path="/editproductcard" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />

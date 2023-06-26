@@ -2,8 +2,18 @@ import styled from "styled-components";
 
 export const StyledInputWrapper = styled.div`
 position: relative;
-max-width: 328px;
+width: 328px;
 height: 56px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+@media screen and (min-width: 768px) {
+    width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+  }
 
 `
 
@@ -20,7 +30,6 @@ top: -8px;
 
 `
 export const StyledInput = styled.input`
-
 width: 328px;
 height: 56px;
 padding: 16px;
@@ -28,11 +37,19 @@ border: 1px solid var(--light-blue);
 border-radius: 4px;
 outline: var(--dark-blue);
 
+@media screen and (min-width: 768px) {
+    width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+  }
+
 `
 export const StyledButton = styled.button`
-position: absolute;
+/* position: absolute;
 top: 0;
-right: 0;
+right: 0; */
 display: flex;
 align-items: center;
 justify-content: center;
