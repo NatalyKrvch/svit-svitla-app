@@ -44,6 +44,7 @@ export const LogoWrapper = styled.div`
 
 export const InstaWrapper = styled.div`   
     position: absolute;
+    cursor: pointer;
 
     @media screen and (max-width: 767px) {
       top: 90px;
@@ -100,6 +101,7 @@ export const StyledSpan = styled.span`
         margin-left: 40px;
         height: 29px;
         min-width: 86px;
+        margin-right: 10px;
     }
 `
 export const StyledAdress = styled.address`

@@ -26,7 +26,8 @@ export const HeaderWrapper = styled.div`
 
 export const WrapperDiv = styled.div`
     margin: 0;
-    padding: 0;
+    padding: 12px 0;
+    cursor: pointer;
 `;
 
 export const StyledUl = styled.ul`
@@ -47,5 +48,7 @@ export const StyledUl = styled.ul`
 export const StyledLink = styled(Link)`
     text-decoration: none;
     color: var(--main-white); 
+    padding: 12px 0;
     &:visited {color: var(--main-white);}
+    
 `
