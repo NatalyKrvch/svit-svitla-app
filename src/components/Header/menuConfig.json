@@ -5,12 +5,12 @@
             "url": "/createcard"
         },
         {
-            "title": "Картки товару",
+            "title": "Картки товарів",
             "url": "/"
         },
         {
             "title": "Каталоги",
-            "url": "/catalogs"
+            "url": "/preordercatalogue"
         },
         {
             "title": "Вийти",

@@ -1,12 +1,41 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
-import { useNavigate } from "react-router-dom";
+import {
+  StyledHeader,
+  HeaderWrapper,
+  WrapperDiv,
+  StyledUl,
+} from "./HeaderStyled";
+import { useNavigate, Link } from "react-router-dom";
+import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
+import { useSelector } from "react-redux";
+import menuConfig from "./menuConfig.json";
 
 function Header() {
-  const navigate = useNavigate();
   const { isMobile, isDesktop, isTablet } = useMediaRules();
+
+  const navigate = useNavigate();
   const handleLogoClick = () => {
     navigate("/");
+  };
+
+  //const isLoggedIn = useSelector(getIsLoggedIn);
+
+  const isLoggedIn = true;
+
+  const navigationMenu = () => {
+    const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
+
+    return (
+      <>
+        <StyledUl>
+          {menuData.map((item, index) => (
+            <li key={index}>
+              <Link to={item.url}>{item.title}</Link>
+            </li>
+          ))}
+        </StyledUl>
+      </>
+    );
   };
 
   return (
@@ -33,6 +62,7 @@ function Header() {
               />
             )}
           </WrapperDiv>
+          {navigationMenu()}
           {isMobile && (
             <>
               <WrapperDiv>
@@ -40,7 +70,6 @@ function Header() {
               </WrapperDiv>
             </>
           )}
-          {/* тут ще буде умовний рендеринг меню для планшета і десктопа */}
         </HeaderWrapper>
       </StyledHeader>
     </>

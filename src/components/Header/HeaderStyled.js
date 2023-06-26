@@ -27,3 +27,14 @@ export const WrapperDiv = styled.div`
     margin: 0;
     padding: 0;
 `;
+
+export const StyledUl = styled.ul`
+    display: flex;
+    gap: 40px;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    color: var(--main-white);
+`
