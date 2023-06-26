@@ -1,5 +1,4 @@
 import { useState } from "react";
-import DropdownCardSelector from "../DropdownCardSelect/DropdownCardSelect";
 import {
   FakeButton,
   FakeButtonDownload,
@@ -26,7 +25,9 @@ const CatalogForm = () => {
   const [catalogName, setCatalogName] = useState("");
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
-  const [catalogImages, setCatalogImages] = useState("");
+  const [catalogFile, setCatalogFile] = useState("");
+  console.log(coverImage);
+  console.log(catalogFile);
 
   const dispatch = useDispatch();
 
@@ -49,7 +50,7 @@ const CatalogForm = () => {
     formData.append("catalogName", catalogName);
     formData.append("catalogYear", year);
     formData.append("catalogCoverURL", coverImage || "");
-    formData.append("catalogFileURL", catalogImages);
+    formData.append("catalogFileURL", catalogFile);
 
     dispatch(addCatalog(formData));
 
@@ -66,7 +67,7 @@ const CatalogForm = () => {
     setCatalogName("");
     setYear("");
     setCoverImage(null);
-    setCatalogImages("");
+    setCatalogFile("");
   };
 
   const handleDeleteCoverImg = () => {
@@ -74,8 +75,9 @@ const CatalogForm = () => {
   };
 
   const handleCatalogImagesDownload = (event) => {
+    console.log(event.target.files);
     const files = event.target.files;
-    setCatalogImages(files);
+    setCatalogFile(files);
   };
 
   return (
@@ -86,7 +88,7 @@ const CatalogForm = () => {
           type="text"
           name="catalogName"
           required
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
           title="Name may contain only letters, apostrophe, dash and spaces."
           onChange={handleCatalogNameChange}
         />
@@ -102,10 +104,7 @@ const CatalogForm = () => {
             type="file"
             required
             onChange={handleCoverImageChange}
-            accept=".jpg, .jpeg "
-            multiple
-            onChange={handleCatalogImagesDownload}
-            accept=".pdf"
+            accept=".jpeg, .jpg"
 
           />
           <FakeInputWrp>
@@ -118,7 +117,7 @@ const CatalogForm = () => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={`${coverImage}`} alt="cover" />
+          <StyledImg src={coverImage}  alt="cover" />
           <StyledInput
             id="name"
             type="text"
@@ -132,9 +131,8 @@ const CatalogForm = () => {
       <label>
         <FileInput
           type="file"
-          multiple
           onChange={handleCatalogImagesDownload}
-          accept=".jpg, .jpeg"
+          accept=".pdf"
         />
         <FakeInputWrpDownload>
           <FakeButtonDownload>
@@ -146,7 +144,7 @@ const CatalogForm = () => {
       <SubmitButton
         type="submit"
         disabled={
-          !catalogName || !year || !coverImage || catalogImages.length === 0
+          !catalogName || !year || !coverImage 
         }
       >
         Зберегти

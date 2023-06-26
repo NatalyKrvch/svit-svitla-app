@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
 export const StyledWrpSelector = styled.div`
-position: relative;
-z-index: 10;
- width: 328px;
-  height: 56px;
+  width: 328px;
   background-color: var(--light-blue);
   border-radius: 4px 4px 0px 0px;
   /* padding: 16px; */

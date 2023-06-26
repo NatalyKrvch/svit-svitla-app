@@ -9,7 +9,7 @@ import {
 } from "./SelectCardPageStyled";
 import { useSelector } from "react-redux";
 import { selectFilter } from "../../redux/Filter/selectors";
-import { Container } from "postcss";
+
 
 const SelectCardPage = () => {
   const navigate = useNavigate();
@@ -22,14 +22,21 @@ const SelectCardPage = () => {
       </TitleWrp>
       <StyledWrp>
         <DropdownCardSelector />
-        <NextButton
+        {/* <NextButton
+          type="button"
+          disabled={filter === "Вид картки"}
+          onClick={() => navigate("/createcard")}
+        >
+          Далі
+        </NextButton> */}
+      </StyledWrp>
+      <NextButton
           type="button"
           disabled={filter === "Вид картки"}
           onClick={() => navigate("/createcard")}
         >
           Далі
         </NextButton>
-      </StyledWrp>
     </StyledFragment>
   );
 };
