@@ -44,19 +44,19 @@ function Header() {
           <WrapperDiv onClick={handleLogoClick}>
             {isDesktop && (
               <img
-                src="./images/Logo/Desktop/Header/logo_des@1x.svg"
+                src="../images/Logo/Desktop/Header/logo_des@1x.svg"
                 alt="Logo"
               />
             )}
             {isTablet && (
               <img
-                src="./images/Logo/Tablet/Header/logo_tab@1x.svg"
+                src="../images/Logo/Tablet/Header/logo_tab@1x.svg"
                 alt="Logo"
               />
             )}
             {isMobile && (
               <img
-                src="./images/Logo/Mobile/Header/logo_mob@1x.svg"
+                src="../images/Logo/Mobile/Header/logo_mob@1x.svg"
                 alt="Logo"
               />
             )}
