@@ -18,6 +18,7 @@ const rejected = (state, { payload }) => {
 
 const initialState = {
   products: [],
+  currentProduct: null,
   isLoading: false,
   error: null,
 };
@@ -69,8 +70,9 @@ const productsSlice = createSlice({
       .addCase(getProductById.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.expences.transactions = payload.expenses;
-        state.expences.stats = payload.monthsStats;
+        state.currentProduct = payload;
+        // state.expences.transactions = payload.expenses;
+        // state.expences.stats = payload.monthsStats;
       }),
 });
 

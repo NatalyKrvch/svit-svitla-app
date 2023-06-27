@@ -22,13 +22,6 @@ const SelectCardPage = () => {
       </TitleWrp>
       <StyledWrp>
         <DropdownCardSelector />
-        {/* <NextButton
-          type="button"
-          disabled={filter === "Вид картки"}
-          onClick={() => navigate("/createcard")}
-        >
-          Далі
-        </NextButton> */}
       </StyledWrp>
       <NextButton
           type="button"

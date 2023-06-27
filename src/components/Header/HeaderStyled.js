@@ -11,7 +11,6 @@ export const StyledHeader = styled.header`
 `;
 
 export const HeaderWrapper = styled.div`
-
     display: flex;
     justify-content:space-between;
     align-items: center;
