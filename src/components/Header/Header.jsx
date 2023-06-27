@@ -3,7 +3,7 @@ import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
 import { useNavigate } from "react-router-dom";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useSelector } from "react-redux";
-import MenuHeader from "../Menu/MenuHeader";
+import MenuHeader from "../Menu/MenuHeader/MenuHeader";
 
 function Header() {
   const { isMobile, isDesktop, isTablet } = useMediaRules();
