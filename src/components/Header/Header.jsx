@@ -1,15 +1,9 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-import {
-  StyledHeader,
-  HeaderWrapper,
-  WrapperDiv,
-  StyledUl,
-  StyledLink,
-} from "./HeaderStyled";
+import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
 import { useNavigate } from "react-router-dom";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useSelector } from "react-redux";
-import menuConfig from "./menuConfig.json";
+import MenuHeader from "../Menu/MenuHeader";
 
 function Header() {
   const { isMobile, isDesktop, isTablet } = useMediaRules();
@@ -20,22 +14,6 @@ function Header() {
   };
 
   const isLoggedIn = useSelector(getIsLoggedIn);
-
-  const navigationMenu = () => {
-    const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
-
-    return (
-      <>
-        <StyledUl>
-          {menuData.map((item, index) => (
-            <li key={index}>
-              <StyledLink to={item.url}>{item.title}</StyledLink>
-            </li>
-          ))}
-        </StyledUl>
-      </>
-    );
-  };
 
   return (
     <>
@@ -61,7 +39,7 @@ function Header() {
               />
             )}
           </WrapperDiv>
-          {!isMobile && navigationMenu()}
+          {!isMobile && <MenuHeader isLoggedIn={isLoggedIn} />}
           {isMobile && (
             <>
               <WrapperDiv>
