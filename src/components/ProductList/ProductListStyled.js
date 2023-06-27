@@ -7,7 +7,7 @@ export const StyledList = styled.ul`
   gap: 16px;
 
   @media screen and (min-width: 768px) {
-    max-height: 753px;
+    max-width: 753px;
     gap: 24px;
   }
 
