@@ -12,14 +12,14 @@ import { getProducts } from "../../redux/Product/productOperations";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const [perPage, setPerPage] = useState(4);
+  const [perPage, setPerPage] = useState(8);
 
   // const { isMobile, isTablet} = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
-  const lastProductIndex = pageNumber * perPage;
-  const firstProductIndex = lastProductIndex - perPage;
-  const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+  // const lastProductIndex = pageNumber * perPage;
+  // const firstProductIndex = lastProductIndex - perPage;
+  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
 
 
   // if (isMobile) {
@@ -43,7 +43,7 @@ const ProductsCataloguePage = () => {
     <StyledFragment>
       <StyledTitle>Каталог товарів</StyledTitle>
       <StyledButton><FiFilter size={'1.5em'}/>Фільтрувати</StyledButton>
-      <ProductList productsList={currentProducts} />
+      <ProductList productsList={products} />
       {/* <Pagination 
       cardsPerPage={perPage}
       totalCards={products.length} 

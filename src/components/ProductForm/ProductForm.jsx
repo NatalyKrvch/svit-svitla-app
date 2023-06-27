@@ -22,14 +22,14 @@ import {
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 
 
-const ProductForm = () => {
-  const [productName, setProductName] = useState("");
-  const [productCode, setProductCode] = useState("");
-  const [price, setPrice] = useState("");
-  const [manufacturerCountry, setManufacturerCountry] = useState("");
-  const [characteristicArray, setCharacteristicArray] = useState([]);
-  const [coverImage, setCoverImage] = useState(null);
-  const [productImages, setProductImages] = useState("");
+const ProductForm = ({title, code, productPrice, country, characteristics, coverPicture, productPhotos }) => {
+  const [productName, setProductName] = useState(title || "");
+  const [productCode, setProductCode] = useState(code || "");
+  const [price, setPrice] = useState(productPrice || "");
+  const [manufacturerCountry, setManufacturerCountry] = useState(country || "");
+  const [characteristicArray, setCharacteristicArray] = useState(characteristics || []);
+  const [coverImage, setCoverImage] = useState(coverPicture || null);
+  const [productImages, setProductImages] = useState(productPhotos || "");
 
   const dispatch = useDispatch();
 
@@ -197,7 +197,7 @@ const ProductForm = () => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={`${coverImage}`} alt="cover" />
+          <StyledImg src={coverImage} alt="cover" />
           <StyledInput
             id="name"
             type="text"
