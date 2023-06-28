@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFragment = styled.div`
+width: 328px;
 margin-left: auto;
 margin-right: auto;
 padding: 40px 16px;
@@ -9,7 +10,7 @@ padding: 40px 16px;
 
 export const StyledH = styled.h2`
 font-weight: 400;
-font-size: 24px;
+font-size: 22px;
 line-height: 1,2;
 letter-spacing: -0.4px;
 margin-bottom: 16px;
@@ -32,36 +33,36 @@ margin-bottom: 32px;
 `
 export const StyledInputWrapper = styled.div`
   position: relative;
-  max-width: 328px;
+  width: 328px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: left;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
-    max-width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 572px;
+    width: 572px;
   }
 `;
 
 
 export const StyledInputWrapperPhoto = styled.li`
   position: relative;
-  max-width: 328px;
+  width: 328px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: left;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
-    max-width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 572px;
+    width: 572px;
   }
 `;
 

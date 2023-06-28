@@ -33,6 +33,7 @@ import ProductForm from "../../components/ProductForm/ProductForm";
 
 const EditProductCard = () => {
   const currentProduct = useSelector(getCurrentProduct);
+
   // const [product, setProduct] = useState({...currentProduct})
   const [productImages, setProductImages] = useState("");
   const dispatch = useDispatch();
@@ -51,16 +52,16 @@ const EditProductCard = () => {
 
   const handleProductImagesChange = (event) => {
     const files = event.target.files;
-    setProductImages(Array.from(files));
+    // setProductImages(Array.from(files));
   };
 
-  const handleDeletePhotoImg = () => {
-    setProductImages([]);
-  };
+  // const handleDeletePhotoImg = () => {
+  //   setProductImages([]);
+  // };
 
-  // const handleDeleteImgProduct = (id) => {
-  //   productPhotoURL.splice(id, 1);
-  // }
+  const handleDeleteImgProduct = ( photo )=> {
+    console.log(productImages);
+  }
 
   const {
     productName,
@@ -71,6 +72,7 @@ const EditProductCard = () => {
     productCountry,
     additionalAttributes,
   } = currentProduct;
+
   return (
     <StyledFragment>
       <StyledH>Редагувати картку товару</StyledH>
@@ -92,7 +94,7 @@ const EditProductCard = () => {
           <StyledImg src={`${photo}`} alt="photo" />
           <StyledInput type="text" value={`${productName}.jpeg`} readOnly />
           <StyledButtonDelete 
-          >
+          onClick={handleDeleteImgProduct(photo)}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
           </StyledButtonDelete>
         </StyledInputWrapperPhoto>

@@ -21,17 +21,17 @@ export const StyledForm = styled.form`
 
 export const StyledInputWrapper = styled.div`
   position: relative;
-  max-width: 328px;
+  width: 328px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: left;
   @media screen and (min-width: 768px) {
-    max-width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 572px;
+    width: 572px;
   }
 `;
 
@@ -162,4 +162,21 @@ export const StyledButtonDelete = styled.button`
   background-color: var(--warning);
   cursor: pointer;
   outline: none;
+`;
+
+export const StyledInputWrapperPhoto = styled.li`
+  position: relative;
+  width: 328px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 16px;
+  @media screen and (min-width: 768px) {
+    width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+  }
 `;

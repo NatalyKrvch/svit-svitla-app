@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -15,11 +15,13 @@ import {
   StyledImg,
   StyledInput,
   StyledInputWrapper,
+  StyledInputWrapperPhoto,
   StyledLabel,
   SubmitButton,
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
+import { getCurrentProduct } from "../../redux/Product/productSelectors";
 
 
 const ProductForm = ({title, code, productPrice, country, characteristics, coverPicture, productPhotos }) => {
@@ -32,6 +34,9 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
   const [productImages, setProductImages] = useState(productPhotos || "");
 
   const dispatch = useDispatch();
+  const currentProduct = useSelector(getCurrentProduct);
+  console.log(currentProduct);
+  console.log(coverImage);
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -197,7 +202,7 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImage} alt="cover" />
+          <StyledImg src={coverImage.name} alt="cover" />
           <StyledInput
             id="name"
             type="text"
@@ -224,18 +229,32 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
           </FakeInputWrp>
         </label>
       ) : (
-        <StyledInputWrapper>
-          <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
-          <img src={`${coverImage}`} alt="cover" />
-          <StyledInput id="name" type="text" />
-          <StyledButtonDelete type="button" onClick={handleDeletePhotoImg}>
+        // <StyledInputWrapper>
+        //   <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
+        //   <StyledImg src={`${coverImage}`} alt="cover" />
+        //   <StyledInput id="name" type="text" />
+        //   <StyledButtonDelete type="button" onClick={handleDeletePhotoImg}>
+        //     <RiDeleteBin6Line size={"1.8em"} color="white" />
+        //   </StyledButtonDelete>
+        // </StyledInputWrapper>
+        <ul>
+      { productImages.map((photo, index) => 
+        (<StyledInputWrapperPhoto key={index}>
+          <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
+          <StyledImg src={`${photo}`} alt="photo" />
+          <StyledInput type="text" value={`${productName}.jpeg`} readOnly />
+          <StyledButtonDelete 
+          onClick={handleDeletePhotoImg}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
           </StyledButtonDelete>
-        </StyledInputWrapper>
+        </StyledInputWrapperPhoto>
+        ))}
+      </ul>
       )}
 
       <SubmitButton type="submit"
-      disabled={(!productName || !productCode || !price || !manufacturerCountry)}>Зберегти</SubmitButton>
+      disabled={(!productName || !productCode || !price || !manufacturerCountry)}
+      >{ currentProduct? `Зберегти зміни ` : `Зберегти`}</SubmitButton>
     </StyledForm>
   );
 };
