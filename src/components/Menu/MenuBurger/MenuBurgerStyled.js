@@ -6,4 +6,6 @@ export const MenuBurgerContainer = styled.div`
     height: 100hv;
     position: fixed;
     display: flex;
+    justify-content: center;
+    z-index: 10;
 `

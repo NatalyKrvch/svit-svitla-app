@@ -24,6 +24,6 @@ export const HeaderWrapper = styled.div`
 
 export const WrapperDiv = styled.div`
     margin: 0;
-    padding: 12px 0;
+    padding: 12px;
     cursor: pointer;
 `;
