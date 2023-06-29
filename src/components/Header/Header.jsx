@@ -58,7 +58,9 @@ function Header() {
           )}
         </HeaderWrapper>
       </StyledHeader>
-      {isMenuOpen && <MenuBurger isLoggedIn={isLoggedIn} />}
+      {isMenuOpen && (
+        <MenuBurger isLoggedIn={isLoggedIn} onClose={toggleBurgerMenu} />
+      )}
     </>
   );
 }
