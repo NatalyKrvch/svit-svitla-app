@@ -1,4 +1,10 @@
-import { MenuBurgerContainer } from "./MenuBurgerStyled";
+import {
+  MenuBurgerContainer,
+  CrossWrapper,
+  StyledUl,
+  StyledLi,
+  StyledLink,
+} from "./MenuBurgerStyled";
 import PropTypes from "prop-types";
 import menuConfig from "../menuConfig.json";
 
@@ -7,6 +13,7 @@ function MenuBurger({ onClose, ...props }) {
     isLoggedIn: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
   };
+
   const { isLoggedIn } = props;
 
   console.log("onClose", onClose);
@@ -17,7 +24,20 @@ function MenuBurger({ onClose, ...props }) {
 
   return (
     <>
-      <MenuBurgerContainer></MenuBurgerContainer>
+      <MenuBurgerContainer>
+        <CrossWrapper onClick={onClose}>
+          <img src="src/images/Menu/close_24px.svg" />
+        </CrossWrapper>
+        <StyledUl>
+          {menuData.map((item, index) => (
+            <StyledLi key={index}>
+              <StyledLink to={item.url} onClick={onClose}>
+                {item.title}
+              </StyledLink>
+            </StyledLi>
+          ))}
+        </StyledUl>
+      </MenuBurgerContainer>
     </>
   );
 }
