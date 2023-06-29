@@ -16,11 +16,7 @@ function MenuBurger({ onClose, ...props }) {
 
   const { isLoggedIn } = props;
 
-  console.log("onClose", onClose);
-
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
-
-  console.log("menuData", menuData);
 
   return (
     <>

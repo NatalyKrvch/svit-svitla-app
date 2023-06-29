@@ -17,11 +17,12 @@ function Header() {
     navigate("/");
   };
 
-  const isLoggedIn = useSelector(getIsLoggedIn);
+  // const isLoggedIn = useSelector(getIsLoggedIn);
+
+  const isLoggedIn = true;
 
   const toggleBurgerMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    console.log("is menu open", isMenuOpen);
   };
 
   return (
