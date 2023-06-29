@@ -58,9 +58,7 @@ export const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: var(--main-white); 
     &:visited {color: var(--main-white);} 
-
     &.active {
         color: var(--middle-grey);
-        /* background-color: var(--pressed-outlined); */
     }
 `

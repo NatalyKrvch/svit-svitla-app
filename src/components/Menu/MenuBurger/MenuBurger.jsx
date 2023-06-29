@@ -25,6 +25,7 @@ function MenuBurger({ onClose, ...props }) {
         <CrossWrapper onClick={onClose}>
           <img src={crossImg} alt="close" />
         </CrossWrapper>
+
         <StyledUl>
           {menuData.map((item, index) => (
             <StyledLi key={index}>
