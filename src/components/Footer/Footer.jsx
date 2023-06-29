@@ -1,5 +1,4 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-
 import {
   StyledFooter,
   FooterWrapper,
@@ -11,6 +10,10 @@ import {
   StyledLink,
   InstaWrapper,
 } from "./FooterStyled";
+import mobileLogo from "../../images/Logo/Mobile/Footer/logo-mob@1x.png";
+import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.png";
+import desktopLogo from "../../images/Logo/Desktop/Footer/logo_desktop@1x.png";
+import instagramLogo from "../../images/Logo/Insta_btn.svg";
 
 const adress = (
   <>
@@ -44,30 +47,9 @@ function Footer() {
       <StyledFooter>
         <FooterWrapper>
           <LogoWrapper>
-            {isMobile && (
-              <>
-                <img
-                  src="src/images/Logo/Mobile/Footer/logo-mob@1x.png"
-                  alt="logo"
-                />
-              </>
-            )}
-            {isTablet && (
-              <>
-                <img
-                  src="src/images/Logo/Tablet/Footer/logo-tablet@1x.png"
-                  alt="logo"
-                />
-              </>
-            )}
-            {isDesktop && (
-              <>
-                <img
-                  src="src/images/Logo/Desktop/Footer/logo_desktop@1x.png"
-                  alt="logo"
-                />
-              </>
-            )}
+            {isMobile && <img src={mobileLogo} alt="logo" />}
+            {isTablet && <img src={tabletLogo} alt="logo" />}
+            {isDesktop && <img src={desktopLogo} alt="logo" />}
           </LogoWrapper>
           <InformationContainer>
             {isMobile && (
@@ -91,7 +73,7 @@ function Footer() {
             </TextWrapper>
           </InformationContainer>
           <InstaWrapper onClick={handleClick}>
-            <img src="src/images/Logo/Insta_btn.svg" alt="Instagram" />
+            <img src={instagramLogo} alt="Instagram" />
           </InstaWrapper>
         </FooterWrapper>
       </StyledFooter>
