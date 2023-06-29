@@ -10,7 +10,7 @@ margin-right: auto;
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 72px 136px 48px 136px;
+    padding: 72px 136px 48px 72px;
   }
 `
 
@@ -22,12 +22,12 @@ export const StyledTitle = styled.h2`
   letter-spacing: -0.4px;
   text-align: left;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     font-size: 32px;
     line-height: 1;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width:  1280px) {
     font-size: 48px;
     line-height: 1, 2;
   }
@@ -54,7 +54,7 @@ export const StyledButton = styled.button`
   outline: none;
   cursor: pointer;
 
-  @media screen and (min-width: 834px) {
+  @media screen and (min-width: 768px) {
     width: 235px;
     height: 48px;
     font-size: 20px;

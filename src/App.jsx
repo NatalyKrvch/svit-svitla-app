@@ -6,7 +6,7 @@ import ProductsCataloguePage from "./pages/ProductsCatalogPage/ProductsCatalogue
 import Authorization from "./pages/AuthorizationPage";
 import Authors from "./pages/AuthorsPage";
 import EditCatalogueCard from "./pages/EditCatalogueCardPage";
-import EditProductCard from "./pages/EditProductCardPage";
+import EditProductCard from "./pages/EditProductCardPage/EditProductCardPage";
 import PaymentDetails from "./pages/PaymentDetailsPage";
 import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/selectcreatecard" element={<SelectCardPage />} />
         <Route path="/createcard" element={<CreateCardPage />} />
         <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />
-        <Route path="/editproductcard" element={<EditProductCard />} />
+        <Route path="/editproductcard/:id" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
         <Route path="/productcard" element={<ProductCardPage />} />
         <Route path="/qrcodegeneration" element={<QrCodeGeneration />} />

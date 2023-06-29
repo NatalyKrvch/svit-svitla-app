@@ -3,9 +3,9 @@ import ProductList from "../../components/ProductList/ProductList";
 import { StyledButton, StyledFragment, StyledTitle } from "./ProductsCataloguePageStyled";
 import { FiFilter } from "react-icons/fi"
 import { useEffect } from "react";
-import { getProducts } from "../../redux/Product/productOperations";
 import { useState } from "react";
 import { getAllProducts } from "../../redux/Product/productSelectors";
+import { getProducts } from "../../redux/Product/productOperations";
 // import Pagination from "../../components/Pagination/Pagination";
 // import { useMediaRules } from "../../hooks/useMediaRules";
 

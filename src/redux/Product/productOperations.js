@@ -32,10 +32,10 @@ export const addProduct = createAsyncThunk(
 );
 
 export const removeProduct = createAsyncThunk(
-  'products/removeProduct',
-  async (_, thunkAPI) => {
+  "products/removeProduct",
+  async (id, thunkAPI) => {
     try {
-      const data = await removeProductAPI();
+      const data = await removeProductAPI(id);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -45,9 +45,9 @@ export const removeProduct = createAsyncThunk(
 
 export const changeProduct = createAsyncThunk(
   "products/changeProduct",
-  async (product, thunkAPI) => {
+  async ({ id, product }, thunkAPI) => {
     try {
-      const data = await changeProductAPI(product);
+      const data = await changeProductAPI(id, product);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -57,9 +57,10 @@ export const changeProduct = createAsyncThunk(
 
 export const getProductById = createAsyncThunk(
   'products/getProductById',
-  async (_, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => { 
+    console.log(id);
     try {
-      const data = await getProductByIdAPI();
+      const data = await getProductByIdAPI(id);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
