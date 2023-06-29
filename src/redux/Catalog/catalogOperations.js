@@ -7,7 +7,7 @@ import {
 } from "../../service/API/catalogsApi";
 
 export const getCatalogs = createAsyncThunk(
-  "products/getProducts",
+  "catalogs/getCatalogs",
   async ({ page, per_page }, { rejectWithValue }) => {
     try {
       const data = await getCatalogsAPI(page ?? null, per_page ?? null);
@@ -19,7 +19,7 @@ export const getCatalogs = createAsyncThunk(
 );
 
 export const addCatalog = createAsyncThunk(
-  "products/addProduct",
+  "catalogs/addCatalog",
   async (product, thunkAPI) => {
     try {
       const data = await addCatalogAPI(product);
@@ -31,7 +31,7 @@ export const addCatalog = createAsyncThunk(
 );
 
 export const removeCatalog = createAsyncThunk(
-  "products/removeProduct",
+  "catalogs/removeCatalog",
   async (_, thunkAPI) => {
     try {
       const data = await removeCatalogAPI();
@@ -43,10 +43,10 @@ export const removeCatalog = createAsyncThunk(
 );
 
 export const changeCatalog = createAsyncThunk(
-  "products/changeProduct",
-  async (product, thunkAPI) => {
+  "catalogs/changeCatalog",
+  async (catalog, thunkAPI) => {
     try {
-      const data = await changeCatalogAPI(product);
+      const data = await changeCatalogAPI(catalog);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
