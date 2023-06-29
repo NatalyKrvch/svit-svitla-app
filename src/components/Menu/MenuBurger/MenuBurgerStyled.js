@@ -3,19 +3,19 @@ import { NavLink } from 'react-router-dom';
 
 const slideIn = keyframes`
   from {
-    transform: translateY(-100%);
+    transform: translateY(0);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(-100%);
   }
 `;
 
 const slideOut = keyframes`
-  from {
-    transform: translateY(0);
+   from {
+    transform: translateY(-100%);
   }
   to {
-    transform: translateY(-100%);
+    transform: translateY(0);
   }
 `;
 
@@ -30,7 +30,7 @@ export const MenuBurgerContainer = styled.div`
     animation-duration: 0.3s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
-    animation-name: ${({ isMenuOpen }) => (isMenuOpen ? slideOut : slideIn)};
+    animation-name: ${({ isMenuOpen }) => (isMenuOpen ? slideIn : slideOut)};
 `
 export const CrossWrapper = styled.div`
     padding: 12px;
@@ -57,5 +57,10 @@ export const StyledLi = styled.li`
 export const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: var(--main-white); 
-    &:visited {color: var(--main-white);}
+    &:visited {color: var(--main-white);} 
+
+    &.active {
+        color: var(--middle-grey);
+        /* background-color: var(--pressed-outlined); */
+    }
 `
