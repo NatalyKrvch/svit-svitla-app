@@ -1,5 +1,23 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+import { NavLink } from 'react-router-dom';
+
+const slideIn = keyframes`
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+`;
 
 export const MenuBurgerContainer = styled.div`
     background-color: var(--dark-blue);
@@ -9,6 +27,10 @@ export const MenuBurgerContainer = styled.div`
     display: flex;
     justify-content: center;
     z-index: 10;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    animation-name: ${({ isMenuOpen }) => (isMenuOpen ? slideOut : slideIn)};
 `
 export const CrossWrapper = styled.div`
     padding: 12px;
@@ -32,9 +54,8 @@ export const StyledLi = styled.li`
     border-bottom: 1px solid var(--main-white);
     margin-bottom: 32px;
 `
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: var(--main-white); 
     &:visited {color: var(--main-white);}
-    
 `
