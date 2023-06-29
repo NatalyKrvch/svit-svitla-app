@@ -17,9 +17,7 @@ function Header() {
     navigate("/");
   };
 
-  // const isLoggedIn = useSelector(getIsLoggedIn);
-
-  const isLoggedIn = true;
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   const toggleBurgerMenu = () => {
     setIsMenuOpen(!isMenuOpen);
