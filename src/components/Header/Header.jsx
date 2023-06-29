@@ -1,17 +1,15 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-import {
-  StyledHeader,
-  HeaderWrapper,
-  WrapperDiv,
-  StyledUl,
-  StyledLink,
-} from "./HeaderStyled";
+import { useState } from "react";
+import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
 import { useNavigate } from "react-router-dom";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useSelector } from "react-redux";
-import menuConfig from "./menuConfig.json";
+import MenuHeader from "../Menu/MenuHeader/MenuHeader";
+import MenuBurger from "../Menu/MenuBurger/MenuBurger";
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { isMobile, isDesktop, isTablet } = useMediaRules();
 
   const navigate = useNavigate();
@@ -21,20 +19,8 @@ function Header() {
 
   const isLoggedIn = useSelector(getIsLoggedIn);
 
-  const navigationMenu = () => {
-    const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
-
-    return (
-      <>
-        <StyledUl>
-          {menuData.map((item, index) => (
-            <li key={index}>
-              <StyledLink to={item.url}>{item.title}</StyledLink>
-            </li>
-          ))}
-        </StyledUl>
-      </>
-    );
+  const toggleBurgerMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -61,16 +47,19 @@ function Header() {
               />
             )}
           </WrapperDiv>
-          {!isMobile && navigationMenu()}
+          {!isMobile && <MenuHeader isLoggedIn={isLoggedIn} />}
           {isMobile && (
             <>
-              <WrapperDiv>
+              <WrapperDiv onClick={toggleBurgerMenu}>
                 <img src="src/images/Menu/Burger.svg" alt="Menu" />
               </WrapperDiv>
             </>
           )}
         </HeaderWrapper>
       </StyledHeader>
+      {isMenuOpen && (
+        <MenuBurger isLoggedIn={isLoggedIn} onClose={toggleBurgerMenu} />
+      )}
     </>
   );
 }
