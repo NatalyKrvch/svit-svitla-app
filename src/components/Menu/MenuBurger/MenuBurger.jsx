@@ -7,6 +7,7 @@ import {
 } from "./MenuBurgerStyled";
 import PropTypes from "prop-types";
 import menuConfig from "../menuConfig.json";
+import crossImg from "../../../images/Menu/close_24px.svg";
 
 function MenuBurger({ onClose, ...props }) {
   MenuBurger.propTypes = {
@@ -22,8 +23,9 @@ function MenuBurger({ onClose, ...props }) {
     <>
       <MenuBurgerContainer>
         <CrossWrapper onClick={onClose}>
-          <img src="src/images/Menu/close_24px.svg" />
+          <img src={crossImg} alt="close" />
         </CrossWrapper>
+
         <StyledUl>
           {menuData.map((item, index) => (
             <StyledLi key={index}>
