@@ -10,9 +10,9 @@ import {
   StyledLink,
   InstaWrapper,
 } from "./FooterStyled";
-import mobileLogo from "../../images/Logo/Mobile/Footer/logo-mob@1x.png";
-import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.png";
-import desktopLogo from "../../images/Logo/Desktop/Footer/logo_desktop@1x.png";
+import mobileLogo from "../../images/Logo/Mobile/Footer/logo-mob@1x.svg";
+import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.svg";
+import desktopLogo from "../../images/Logo/Desktop/Footer/logo_desktop@1x.svg";
 import instagramLogo from "../../images/Logo/Insta_btn.svg";
 
 const adress = (
