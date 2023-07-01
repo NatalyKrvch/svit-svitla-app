@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const StyledUl = styled.ul`
     display: flex;
@@ -16,10 +16,13 @@ export const StyledUl = styled.ul`
     }
 `
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: var(--main-white); 
     padding: 12px 0;
     &:visited {color: var(--main-white);}
-    
+    &:hover {color: var(--middle-grey);}
+    &.active {
+        color: var(--middle-grey);
+    }
 `
