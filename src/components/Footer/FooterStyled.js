@@ -12,8 +12,6 @@ export const StyledFooter = styled.footer`
     @media screen and (min-width: 768px) {
         height: 160px;
     }
-
- 
 `
 export const FooterWrapper = styled.div`
     position: relative;
@@ -42,7 +40,7 @@ export const LogoWrapper = styled.div`
     }
 `
 
-export const InstaWrapper = styled.div`   
+export const StyledInstaA = styled.a`   
     position: absolute;
     cursor: pointer;
 
@@ -91,7 +89,6 @@ export const InformationContainer = styled.div`
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
-
 `
 export const StyledSpan = styled.span`
     height: 15px;
@@ -104,7 +101,6 @@ export const StyledSpan = styled.span`
         margin-right: 10px;
     }
 `
-
 export const StyledLink = styled(Link)`
     margin-top: 20px;
     text-decoration: underline;
@@ -115,7 +111,6 @@ export const StyledLink = styled(Link)`
         margin-left: 40px;
     }
 `
-
 export const StyledA = styled.a`
     color: var(--light-blue); 
     &:visited {color: var(--light-blue);}
