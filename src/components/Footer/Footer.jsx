@@ -6,7 +6,7 @@ import {
   InformationContainer,
   TextWrapper,
   StyledSpan,
-  StyledAdress,
+  StyledA,
   StyledLink,
   InstaWrapper,
 } from "./FooterStyled";
@@ -22,16 +22,18 @@ const handlePhoneClick = () => {
 const adress = (
   <>
     <StyledSpan>Адреса:</StyledSpan>
-    <StyledAdress>м. Чернігів, пр. Миру, 194 корп. 12</StyledAdress>
+    <StyledA href="https://goo.gl/maps/61MJb9vJXFnWGjra9">
+      м. Чернігів, пр. Миру, 194 корп. 12
+    </StyledA>
   </>
 );
 
 const telephone = (
   <>
     <StyledSpan>Телефон:</StyledSpan>
-    <a href="tel:+380634779888" onClick={handlePhoneClick}>
+    <StyledA href="tel:+380634779888" onClick={handlePhoneClick}>
       +38 063 477 98 88
-    </a>
+    </StyledA>
   </>
 );
 

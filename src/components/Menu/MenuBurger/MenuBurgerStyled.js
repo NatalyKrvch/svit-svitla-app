@@ -27,7 +27,7 @@ export const MenuBurgerContainer = styled.div`
     display: flex;
     justify-content: center;
     z-index: 10;
-    animation-duration: 0.3s;
+    animation-duration: 0.4s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
     animation-name: ${({ isMenuOpen }) => (isMenuOpen ? slideIn : slideOut)};

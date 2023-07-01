@@ -104,10 +104,7 @@ export const StyledSpan = styled.span`
         margin-right: 10px;
     }
 `
-export const StyledAdress = styled.address`
-    margin: 0;
-    font-style: normal;
-`
+
 export const StyledLink = styled(Link)`
     margin-top: 20px;
     text-decoration: underline;
@@ -117,4 +114,10 @@ export const StyledLink = styled(Link)`
     @media screen and (min-width: 768px) {
         margin-left: 40px;
     }
+`
+
+export const StyledA = styled.a`
+    color: var(--light-blue); 
+    &:hover {color: var(--middle-grey);}
+    &:visited {color: var(--light-blue);}
 `
