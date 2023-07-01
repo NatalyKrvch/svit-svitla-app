@@ -118,6 +118,5 @@ export const StyledLink = styled(Link)`
 
 export const StyledA = styled.a`
     color: var(--light-blue); 
-    &:hover {color: var(--middle-grey);}
     &:visited {color: var(--light-blue);}
 `

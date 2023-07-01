@@ -44,7 +44,7 @@ const workingHours = (
   </>
 );
 
-const handleClick = () => {
+const handleInstagramClick = () => {
   window.open("https://www.instagram.com/", "_blank");
 };
 
@@ -80,7 +80,7 @@ function Footer() {
               <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
             </TextWrapper>
           </InformationContainer>
-          <InstaWrapper onClick={handleClick}>
+          <InstaWrapper onClick={handleInstagramClick}>
             <img src={instagramLogo} alt="Instagram" />
           </InstaWrapper>
         </FooterWrapper>
