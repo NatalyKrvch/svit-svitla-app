@@ -15,6 +15,10 @@ import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.svg";
 import desktopLogo from "../../images/Logo/Desktop/Footer/logo_desktop@1x.svg";
 import instagramLogo from "../../images/Logo/Insta_btn.svg";
 
+const handlePhoneClick = () => {
+  window.location.href = "tel:+380634779888";
+};
+
 const adress = (
   <>
     <StyledSpan>Адреса:</StyledSpan>
@@ -25,7 +29,9 @@ const adress = (
 const telephone = (
   <>
     <StyledSpan>Телефон:</StyledSpan>
-    <p>+38 063 477 98 88</p>
+    <a href="tel:+380634779888" onClick={handlePhoneClick}>
+      +38 063 477 98 88
+    </a>
   </>
 );
 
