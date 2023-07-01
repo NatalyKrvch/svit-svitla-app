@@ -8,21 +8,21 @@ import {
   StyledSpan,
   StyledA,
   StyledLink,
-  InstaWrapper,
+  StyledInstaA,
 } from "./FooterStyled";
 import mobileLogo from "../../images/Logo/Mobile/Footer/logo-mob@1x.svg";
 import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.svg";
 import desktopLogo from "../../images/Logo/Desktop/Footer/logo_desktop@1x.svg";
 import instagramLogo from "../../images/Logo/Insta_btn.svg";
 
-const handlePhoneClick = () => {
-  window.location.href = "tel:+380634779888";
-};
+// const handlePhoneClick = () => {
+//   window.location.href = "tel:+380634779888";
+// };
 
 const adress = (
   <>
     <StyledSpan>Адреса:</StyledSpan>
-    <StyledA href="https://goo.gl/maps/61MJb9vJXFnWGjra9">
+    <StyledA href="https://goo.gl/maps/61MJb9vJXFnWGjra9" target="_blank">
       м. Чернігів, пр. Миру, 194 корп. 12
     </StyledA>
   </>
@@ -31,9 +31,7 @@ const adress = (
 const telephone = (
   <>
     <StyledSpan>Телефон:</StyledSpan>
-    <StyledA href="tel:+380634779888" onClick={handlePhoneClick}>
-      +38 063 477 98 88
-    </StyledA>
+    <StyledA href="tel:+380634779888">+38 063 477 98 88</StyledA>
   </>
 );
 
@@ -43,10 +41,6 @@ const workingHours = (
     <time>10:00 - 18:00 (без вихідних)</time>
   </>
 );
-
-const handleInstagramClick = () => {
-  window.open("https://www.instagram.com/", "_blank");
-};
 
 function Footer() {
   const { isMobile, isTablet, isDesktop } = useMediaRules();
@@ -80,9 +74,9 @@ function Footer() {
               <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
             </TextWrapper>
           </InformationContainer>
-          <InstaWrapper onClick={handleInstagramClick}>
+          <StyledInstaA href="https://www.instagram.com/" target="_blank">
             <img src={instagramLogo} alt="Instagram" />
-          </InstaWrapper>
+          </StyledInstaA>
         </FooterWrapper>
       </StyledFooter>
     </>

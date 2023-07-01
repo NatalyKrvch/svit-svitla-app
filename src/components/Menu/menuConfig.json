@@ -19,16 +19,16 @@
     ],
     "userMenu": [
         {
-            "title": "Залишити відгук",
-            "url": "/feedback"
-        },
-        {
             "title": "У наявності",
             "url": "/"
         },
         {
             "title": "Передзамовлення",
             "url": "/preordercatalogue"
+        },
+        {
+            "title": "Залишити відгук",
+            "url": "/feedback"
         }
     ]
 }
