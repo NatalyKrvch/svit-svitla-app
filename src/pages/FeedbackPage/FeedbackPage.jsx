@@ -1,5 +1,11 @@
+import Raiting from "../../components/Raiting/Raiting";
+
 function Feedback() {
-  return <>Feedback page</>;
+  return (
+    <>
+      <Raiting />
+    </>
+  );
 }
 
 export default Feedback;
