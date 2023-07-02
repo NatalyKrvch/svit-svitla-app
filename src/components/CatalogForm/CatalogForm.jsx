@@ -26,9 +26,7 @@ const CatalogForm = () => {
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
   const [catalogFile, setCatalogFile] = useState("");
-  console.log(coverImage);
-  console.log(catalogFile);
-
+ 
   const dispatch = useDispatch();
 
   const handleCoverImageChange = (event) => {
