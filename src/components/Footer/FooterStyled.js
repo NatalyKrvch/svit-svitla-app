@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export const StyledFooter = styled.footer`
     background-color: var(--dark-blue);
-    margin: 20px 0 0 0;
 
     @media screen and (max-width: 767px) {
         height: 152px;

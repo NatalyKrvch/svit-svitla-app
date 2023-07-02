@@ -12,7 +12,7 @@ import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
-import Feedback from "./pages/FeedbackPage";
+import Feedback from "./pages/FeedbackPage/FeedbackPage";
 import PreorderCataloguePage from "./pages/PreorderCataloguePage/PreorderCataloguePage";
 import CreateCardPage from "./pages/CreateCardPage/CreateCardPage";
 
