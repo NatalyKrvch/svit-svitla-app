@@ -36,7 +36,7 @@ export const StyledP = styled.p`
   line-height: 24px;
   letter-spacing: -0.4px;
 
-  @media screen and (min-width: 769px) and (max-width: 1280px){
+  @media screen and (min-width: 769px) {
     margin: 40px 0 24px;
     font-size: 24px;
     line-height: 36px;
@@ -44,8 +44,6 @@ export const StyledP = styled.p`
 
   @media screen and (min-width: 1281px) {
     margin: 48px 0 24px;
-    font-size: 24px;
-    line-height: 36px;
   }
 `
 export const StyledInput = styled.input`
@@ -84,7 +82,6 @@ export const StyledForm = styled.form`
 
 export const StyledButton = styled.button`
   background-color: var(--dark-blue);
-
   height: 48px;
   width: 328px;
   margin-top: 24px;
