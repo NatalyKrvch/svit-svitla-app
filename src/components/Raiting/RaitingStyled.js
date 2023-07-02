@@ -46,7 +46,8 @@ export const StyledP = styled.p`
     margin: 48px 0 24px;
   }
 `
-export const StyledInput = styled.input`
+export const StyledInput = styled.textarea`
+  font-family: Inter;
   height: 169px;
   width: 327px;
   padding: 12px;
@@ -56,11 +57,14 @@ export const StyledInput = styled.input`
   font-size: 14px;
   line-height: 29px;
   letter-spacing: -0.4px;
+  resize: none;
 
   &::placeholder {
     position: absolute;
+    color: var(--middle-grey);
     top: 12px;
     left: 12px;
+    letter-spacing: -0.4px;
   }
 
   &:focus {
