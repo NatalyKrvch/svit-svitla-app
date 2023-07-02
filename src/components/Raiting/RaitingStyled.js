@@ -48,3 +48,62 @@ export const StyledP = styled.p`
     line-height: 36px;
   }
 `
+export const StyledInput = styled.input`
+  height: 169px;
+  width: 327px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid var(--light-blue);
+  &::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 29px;
+    letter-spacing: -0.4px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+
+  @media screen and (min-width: 769px) {
+    height: 364px;
+    width: 495px;
+    &::placeholder {
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (min-width: 1281px) {
+    width: 570px;
+  }
+`
+export const StyledForm = styled.form`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+`
+
+export const StyledButton = styled.button`
+  background-color: var(--dark-blue);
+
+  height: 48px;
+  width: 328px;
+  margin-top: 24px;
+  border-radius: 8px;
+  border: none;
+  color: var(--main-white);
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+
+  @media screen and (min-width: 769px) {
+    height: 56px;
+    width: 365px;
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1281px) {
+    width: 371px;
+  }
+`
