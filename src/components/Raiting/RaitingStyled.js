@@ -52,14 +52,19 @@ export const StyledInput = styled.input`
   padding: 12px;
   border-radius: 8px;
   border: 2px solid var(--light-blue);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 29px;
+  letter-spacing: -0.4px;
+
   &::placeholder {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 29px;
-    letter-spacing: -0.4px;
     position: absolute;
     top: 12px;
     left: 12px;
+  }
+
+  &:focus {
+    outline: none;
   }
 
   @media screen and (min-width: 769px) {
