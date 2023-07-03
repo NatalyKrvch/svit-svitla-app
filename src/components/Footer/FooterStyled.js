@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export const StyledFooter = styled.footer`
     background-color: var(--dark-blue);
-    margin: 20px 0 0 0;
 
     @media screen and (max-width: 767px) {
         height: 152px;
@@ -12,8 +11,6 @@ export const StyledFooter = styled.footer`
     @media screen and (min-width: 768px) {
         height: 160px;
     }
-
- 
 `
 export const FooterWrapper = styled.div`
     position: relative;
@@ -42,8 +39,9 @@ export const LogoWrapper = styled.div`
     }
 `
 
-export const InstaWrapper = styled.div`   
+export const StyledInstaA = styled.a`   
     position: absolute;
+    cursor: pointer;
 
     @media screen and (max-width: 767px) {
       top: 90px;
@@ -90,7 +88,6 @@ export const InformationContainer = styled.div`
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
-
 `
 export const StyledSpan = styled.span`
     height: 15px;
@@ -100,11 +97,8 @@ export const StyledSpan = styled.span`
         margin-left: 40px;
         height: 29px;
         min-width: 86px;
+        margin-right: 10px;
     }
-`
-export const StyledAdress = styled.address`
-    margin: 0;
-    font-style: normal;
 `
 export const StyledLink = styled(Link)`
     margin-top: 20px;
@@ -115,4 +109,8 @@ export const StyledLink = styled(Link)`
     @media screen and (min-width: 768px) {
         margin-left: 40px;
     }
+`
+export const StyledA = styled.a`
+    color: var(--light-blue); 
+    &:visited {color: var(--light-blue);}
 `

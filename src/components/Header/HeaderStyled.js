@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const StyledHeader = styled.header`
     background-color: var(--dark-blue);
     height: 56px;
@@ -24,5 +23,6 @@ export const HeaderWrapper = styled.div`
 
 export const WrapperDiv = styled.div`
     margin: 0;
-    padding: 0;
+    padding: 12px;
+    cursor: pointer;
 `;

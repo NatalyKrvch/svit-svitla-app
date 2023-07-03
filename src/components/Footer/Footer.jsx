@@ -1,5 +1,4 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-
 import {
   StyledFooter,
   FooterWrapper,
@@ -7,22 +6,32 @@ import {
   InformationContainer,
   TextWrapper,
   StyledSpan,
-  StyledAdress,
+  StyledA,
   StyledLink,
-  InstaWrapper,
+  StyledInstaA,
 } from "./FooterStyled";
+import mobileLogo from "../../images/Logo/Mobile/Footer/logo-mob@1x.svg";
+import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.svg";
+import desktopLogo from "../../images/Logo/Desktop/Footer/logo_desktop@1x.svg";
+import instagramLogo from "../../images/Logo/Insta_btn.svg";
+
+// const handlePhoneClick = () => {
+//   window.location.href = "tel:+380634779888";
+// };
 
 const adress = (
   <>
     <StyledSpan>Адреса:</StyledSpan>
-    <StyledAdress>м. Чернігів, пр. Миру, 194 корп. 12</StyledAdress>
+    <StyledA href="https://goo.gl/maps/61MJb9vJXFnWGjra9" target="_blank">
+      м. Чернігів, пр. Миру, 194 корп. 12
+    </StyledA>
   </>
 );
 
 const telephone = (
   <>
     <StyledSpan>Телефон:</StyledSpan>
-    <p>+38 063 477 98 88</p>
+    <StyledA href="tel:+380634779888">+38 063 477 98 88</StyledA>
   </>
 );
 
@@ -33,10 +42,6 @@ const workingHours = (
   </>
 );
 
-const handleClick = () => {
-  window.open("https://www.instagram.com/", "_blank");
-};
-
 function Footer() {
   const { isMobile, isTablet, isDesktop } = useMediaRules();
   return (
@@ -44,30 +49,9 @@ function Footer() {
       <StyledFooter>
         <FooterWrapper>
           <LogoWrapper>
-            {isMobile && (
-              <>
-                <img
-                  src="src/images/Logo/Mobile/Footer/logo-mob@1x.png"
-                  alt="logo"
-                />
-              </>
-            )}
-            {isTablet && (
-              <>
-                <img
-                  src="src/images/Logo/Tablet/Footer/logo-tablet@1x.png"
-                  alt="logo"
-                />
-              </>
-            )}
-            {isDesktop && (
-              <>
-                <img
-                  src="src/images/Logo/Desktop/Footer/logo_desktop@1x.png"
-                  alt="logo"
-                />
-              </>
-            )}
+            {isMobile && <img src={mobileLogo} alt="logo" />}
+            {isTablet && <img src={tabletLogo} alt="logo" />}
+            {isDesktop && <img src={desktopLogo} alt="logo" />}
           </LogoWrapper>
           <InformationContainer>
             {isMobile && (
@@ -90,9 +74,9 @@ function Footer() {
               <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
             </TextWrapper>
           </InformationContainer>
-          <InstaWrapper onClick={handleClick}>
-            <img src="src/images/Logo/Insta_btn.svg" alt="Instagram" />
-          </InstaWrapper>
+          <StyledInstaA href="https://www.instagram.com/" target="_blank">
+            <img src={instagramLogo} alt="Instagram" />
+          </StyledInstaA>
         </FooterWrapper>
       </StyledFooter>
     </>

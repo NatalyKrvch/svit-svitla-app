@@ -7,7 +7,7 @@ import {
 } from "../../service/API/catalogsApi";
 
 export const getCatalogs = createAsyncThunk(
-  "products/getProducts",
+  "catalogs/getCatalogs",
   async ({ page, per_page }, { rejectWithValue }) => {
     try {
       const data = await getCatalogsAPI(page ?? null, per_page ?? null);
@@ -19,10 +19,10 @@ export const getCatalogs = createAsyncThunk(
 );
 
 export const addCatalog = createAsyncThunk(
-  "products/addProduct",
-  async (product, thunkAPI) => {
+  "catalogs/addCatalog",
+  async (catalog, thunkAPI) => {
     try {
-      const data = await addCatalogAPI(product);
+      const data = await addCatalogAPI(catalog);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -31,10 +31,11 @@ export const addCatalog = createAsyncThunk(
 );
 
 export const removeCatalog = createAsyncThunk(
-  "products/removeProduct",
-  async (_, thunkAPI) => {
+  "catalogs/removeCatalog",
+  async (id, thunkAPI) => {
     try {
-      const data = await removeCatalogAPI();
+      console.log(id);
+      const data = await removeCatalogAPI(id);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,14 +44,13 @@ export const removeCatalog = createAsyncThunk(
 );
 
 export const changeCatalog = createAsyncThunk(
-  "products/changeProduct",
-  async (product, thunkAPI) => {
+  "catalogs/changeCatalog",
+  async (catalog, thunkAPI) => {
     try {
-      const data = await changeCatalogAPI(product);
+      const data = await changeCatalogAPI(catalog);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
