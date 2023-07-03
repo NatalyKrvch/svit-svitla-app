@@ -1,17 +1,19 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
-import {
-  StyledHeader,
-  HeaderWrapper,
-  WrapperDiv,
-  StyledUl,
-  StyledLink,
-} from "./HeaderStyled";
+import { useState } from "react";
+import { StyledHeader, HeaderWrapper, WrapperDiv } from "./HeaderStyled";
 import { useNavigate } from "react-router-dom";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useSelector } from "react-redux";
-import menuConfig from "./menuConfig.json";
+import MenuHeader from "../Menu/MenuHeader/MenuHeader";
+import MenuBurger from "../Menu/MenuBurger/MenuBurger";
+import desktopLogo from "../../images/Logo/Desktop/Header/logo_des@1x.svg";
+import tabletLogo from "../../images/Logo/Tablet/Header/logo_tab@1x.svg";
+import mobileLogo from "../../images/Logo/Mobile/Header/logo_mob@1x.svg";
+import burgerImg from "../../images/Menu/Burger.svg";
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { isMobile, isDesktop, isTablet } = useMediaRules();
 
   const navigate = useNavigate();
@@ -21,20 +23,8 @@ function Header() {
 
   const isLoggedIn = useSelector(getIsLoggedIn);
 
-  const navigationMenu = () => {
-    const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
-
-    return (
-      <>
-        <StyledUl>
-          {menuData.map((item, index) => (
-            <li key={index}>
-              <StyledLink to={item.url}>{item.title}</StyledLink>
-            </li>
-          ))}
-        </StyledUl>
-      </>
-    );
+  const toggleBurgerMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -42,35 +32,23 @@ function Header() {
       <StyledHeader>
         <HeaderWrapper>
           <WrapperDiv onClick={handleLogoClick}>
-            {isDesktop && (
-              <img
-                src="scr/images/Logo/Desktop/Header/logo_des@1x.svg"
-                alt="Logo"
-              />
-            )}
-            {isTablet && (
-              <img
-                src="src/images/Logo/Tablet/Header/logo_tab@1x.svg"
-                alt="Logo"
-              />
-            )}
-            {isMobile && (
-              <img
-                src="src/images/Logo/Mobile/Header/logo_mob@1x.svg"
-                alt="Logo"
-              />
-            )}
+            {isDesktop && <img src={desktopLogo} alt="Logo" />}
+            {isTablet && <img src={tabletLogo} alt="Logo" />}
+            {isMobile && <img src={mobileLogo} alt="Logo" />}
           </WrapperDiv>
-          {!isMobile && navigationMenu()}
+          {!isMobile && <MenuHeader isLoggedIn={isLoggedIn} />}
           {isMobile && (
             <>
-              <WrapperDiv>
-                <img src="src/images/Menu/Burger.svg" alt="Menu" />
+              <WrapperDiv onClick={toggleBurgerMenu}>
+                <img src={burgerImg} alt="Menu" />
               </WrapperDiv>
             </>
           )}
         </HeaderWrapper>
       </StyledHeader>
+      {isMobile && isMenuOpen && (
+        <MenuBurger isLoggedIn={isLoggedIn} onClose={toggleBurgerMenu} />
+      )}
     </>
   );
 }

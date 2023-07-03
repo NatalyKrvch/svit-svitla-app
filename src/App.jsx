@@ -5,14 +5,14 @@ import Layout from "./pages/Layout/Layout";
 import ProductsCataloguePage from "./pages/ProductsCatalogPage/ProductsCataloguePage";
 import Authorization from "./pages/AuthorizationPage";
 import Authors from "./pages/AuthorsPage";
-import EditCatalogueCard from "./pages/EditCatalogueCardPage";
+import EditCatalogueCard from "./pages/EditCatalogueCardPage/EditCatalogueCardPage";
 import EditProductCard from "./pages/EditProductCardPage/EditProductCardPage";
 import PaymentDetails from "./pages/PaymentDetailsPage";
 import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
-import Feedback from "./pages/FeedbackPage";
+import Feedback from "./pages/FeedbackPage/FeedbackPage";
 import PreorderCataloguePage from "./pages/PreorderCataloguePage/PreorderCataloguePage";
 import CreateCardPage from "./pages/CreateCardPage/CreateCardPage";
 
@@ -27,7 +27,7 @@ function App() {
         <Route path="/preordercatalogue" element={<PreorderCataloguePage />} />
         <Route path="/selectcreatecard" element={<SelectCardPage />} />
         <Route path="/createcard" element={<CreateCardPage />} />
-        <Route path="/editcatauloguecard" element={<EditCatalogueCard />} />
+        <Route path="/editcatauloguecard/:id" element={<EditCatalogueCard />} />
         <Route path="/editproductcard/:id" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
         <Route path="/productcard" element={<ProductCardPage />} />

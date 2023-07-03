@@ -20,9 +20,9 @@ export const getCatalogs = createAsyncThunk(
 
 export const addCatalog = createAsyncThunk(
   "catalogs/addCatalog",
-  async (product, thunkAPI) => {
+  async (catalog, thunkAPI) => {
     try {
-      const data = await addCatalogAPI(product);
+      const data = await addCatalogAPI(catalog);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -32,9 +32,11 @@ export const addCatalog = createAsyncThunk(
 
 export const removeCatalog = createAsyncThunk(
   "catalogs/removeCatalog",
-  async (_, thunkAPI) => {
+
+  async (id, thunkAPI) => {
     try {
-      const data = await removeCatalogAPI();
+      console.log(id);
+      const data = await removeCatalogAPI(id);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,4 +55,3 @@ export const changeCatalog = createAsyncThunk(
     }
   }
 );
-
