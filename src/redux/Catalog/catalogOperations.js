@@ -35,7 +35,6 @@ export const removeCatalog = createAsyncThunk(
 
   async (id, thunkAPI) => {
     try {
-      console.log(id);
       const data = await removeCatalogAPI(id);
       return data;
     } catch (error) {
