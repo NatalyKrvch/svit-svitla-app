@@ -40,7 +40,7 @@ const catalogsSlice = createSlice({
       .addCase(changeCatalog.pending, pending)
       .addCase(changeCatalog.rejected, rejected)
       .addCase(getCatalogs.fulfilled, (state, { payload }) => {
-        state.catalogs.push(...payload);
+        state.catalogs = payload;
         state.isLoading = false;
         state.error = null;
       })

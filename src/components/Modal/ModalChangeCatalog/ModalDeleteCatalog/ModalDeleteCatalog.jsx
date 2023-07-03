@@ -2,6 +2,7 @@ import { GrClose } from "react-icons/gr";
 import { CloseButton, ModalBody, Overlay, StyledBtnBack, StyledDiv, StyledImg, StyledP, StyledTitle} from "./ModalDeleteCatalogStyled";
 import { useDispatch } from "react-redux";
 import { removeCatalog } from "../../../../redux/Catalog/catalogOperations";
+import lampRed from "../../../../images/Popup/lamp-red@1x.png"
 
 
 const ModalDeleteCatalog = ({catalogName, catalogYear, catalogId, catalogsList,  onCloseModal, updateCatalogsList}) => {
@@ -18,7 +19,7 @@ const ModalDeleteCatalog = ({catalogName, catalogYear, catalogId, catalogsList, 
      <Overlay>
         <ModalBody>
             <CloseButton onClick={()=> onCloseModal()}> <GrClose/></CloseButton>
-            <StyledImg src="../../../images/Popup/lamp-red@1x.png" alt="lamp" />
+            <StyledImg src={lampRed} alt="lamp" />
             <StyledTitle>Ви певні що хочете видалити каталог</StyledTitle>
             <StyledP>{`${catalogName} ${catalogYear}?`}</StyledP>
             <StyledDiv>

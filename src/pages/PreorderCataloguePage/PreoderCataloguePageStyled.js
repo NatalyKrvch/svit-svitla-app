@@ -34,7 +34,6 @@ export const StyledInputWrp = styled.div`
     height: 64px;
     font-weight: 500;
     line-height: 29px;
-    margin-bottom: 52px;
   }
 `;
 export const StyledBtnSearch = styled.button`
@@ -75,6 +74,8 @@ export const StyledH2 = styled.h2`
   font-weight: 400;
   line-height: 1,2;
   letter-spacing: -0.4px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
   }
@@ -83,5 +84,7 @@ export const StyledH2 = styled.h2`
     width: 572px;
     font-size: 48px;
     line-height: 0,5;
+    margin-top: 48px;
+    margin-bottom: 32px;
   }
 `;

@@ -32,6 +32,7 @@ export const addCatalog = createAsyncThunk(
 
 export const removeCatalog = createAsyncThunk(
   "catalogs/removeCatalog",
+
   async (id, thunkAPI) => {
     try {
       console.log(id);
