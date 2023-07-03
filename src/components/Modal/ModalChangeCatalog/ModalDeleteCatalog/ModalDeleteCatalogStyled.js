@@ -17,7 +17,6 @@ export const Overlay = styled.div`
 export const ModalBody = styled.div`
 position: relative;
 width: 320px;
-height: 385px;
 padding: 8px 8px 16px 8px;
 position: fixed;
   background-color: var(--main-white) ;
@@ -50,8 +49,7 @@ cursor: pointer;
 export const StyledImg = styled.img`
 width: 158px;
 height: 117px;
-margin-left: auto;
-margin-right: auto;
+margin: 40px auto 16px auto;
 `
 
 export const StyledTitle = styled.h2`
