@@ -17,7 +17,6 @@ export const Overlay = styled.div`
 export const ModalBody = styled.div`
 position: relative;
 width: 320px;
-height: 263px;
 padding: 40px 20px 32px 20px;
 position: fixed;
   background-color: var(--main-white) ;
@@ -26,7 +25,6 @@ position: fixed;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 8px;
-  /* border: 1px solid rgba(220, 227, 229, 0.8); */
   box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
  border-radius: 8px;
 
@@ -51,8 +49,7 @@ cursor: pointer;
 export const StyledImg = styled.img`
 width: 158px;
 height: 117px;
-margin-left: auto;
-margin-right: auto;
+margin: 40px auto 16px auto;
 `
 
 export const StyledTitle = styled.h2`
@@ -63,4 +60,6 @@ font-size: 24px;
 font-weight: 400;
 line-height: 1,2;
 letter-spacing: -0.4px;
+margin-left: auto;
+margin-right: auto;
 `

@@ -1,21 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import CatalogsList from "../../components/CatalogsList/CatalogsList";
-import { useEffect,  useState } from "react";
-import { getCatalogs, removeCatalog } from "../../redux/Catalog/catalogOperations";
+import { useEffect, useState } from "react";
+import {
+  getCatalogs,
+  removeCatalog,
+} from "../../redux/Catalog/catalogOperations";
 import { getAllCatalogs } from "../../redux/Catalog/catalogSelectors";
-import { STyledContainer, StyledBtnSearch, StyledDiv, StyledH2, StyledInput, StyledInputWrp } from "./PreoderCataloguePageStyled";
+import {
+  STyledContainer,
+  StyledBtnSearch,
+  StyledDiv,
+  StyledH2,
+  StyledInput,
+  StyledInputWrp,
+} from "./PreoderCataloguePageStyled";
 import { AiOutlineSearch } from "react-icons/ai";
 import ModalDeleteCatalog from "../../components/Modal/ModalChangeCatalog/ModalDeleteCatalog/ModalDeleteCatalog";
+import Notiflix from 'notiflix';
 
 const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [showModal, setShowModal] = useState(false);
-  const [catalogName, setCatalogName] = useState('');
-  const [catalogYear, setCatalogYear] = useState('');
-  const [catalogId, detCatalogId] = useState('');
+  const [catalogName, setCatalogName] = useState("");
+  const [catalogYear, setCatalogYear] = useState("");
+  const [catalogId, detCatalogId] = useState("");
+  const [filter, setFilter] = useState("");
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
@@ -31,49 +43,73 @@ const PreorderCataloguePage = () => {
   const updateCatalogsList = (updatedList) => {
     setFetchedCatalogsList(updatedList);
   };
-  
-  
+
   const openModal = (name, year, id) => {
     setShowModal(true);
     setCatalogName(name);
     setCatalogYear(year);
-    detCatalogId(id)
-  }
+    detCatalogId(id);
+  };
 
   const closeModal = () => {
     setShowModal(false);
-  }
-
+  };
 
   const handleDeleteCatalog = (id) => {
-    dispatch(removeCatalog(id));  
-    catalogsList.filter(catalog => catalog._id !== id);
-  }
+    dispatch(removeCatalog(id));
+    catalogsList.filter((catalog) => catalog._id !== id);
+  };
+
+  const handleFilterCatalog = (ev) => {
+    setFilter(ev.target.value);
+  };
+
+  const handleOnSearchButton = (name) => {
+    const filteredCatalog = fetchedCatalogsList.find(
+      (catalog) => catalog.catalogName === name
+    );
+    if (filteredCatalog) {
+      setFetchedCatalogsList([filteredCatalog]);
+      setFilter('');
+    }
+    else {Notiflix.Notify.failure("Каталог з таким ім'ям не знайдено")}
+    return;
+  };
 
   return (
     <STyledContainer>
-     <StyledDiv>
-     {isLoggedIn && (
-        <StyledInputWrp>
-          <StyledBtnSearch><AiOutlineSearch size={'1.8em'}/></StyledBtnSearch>
-          <StyledInput type="text" placeholder="Пошук" />
-        </StyledInputWrp>
+      <StyledDiv>
+        {isLoggedIn && (
+          <StyledInputWrp>
+            <StyledBtnSearch onClick={() => handleOnSearchButton(filter)}>
+              <AiOutlineSearch size={"1.8em"} />
+            </StyledBtnSearch>
+            <StyledInput
+              type="text"
+              placeholder="Пошук"
+              value={filter}
+              onChange={handleFilterCatalog}
+            />
+          </StyledInputWrp>
+        )}
+        <StyledH2>Каталоги для передзамовлення</StyledH2>
+        <CatalogsList
+          catalogsList={fetchedCatalogsList}
+          onDelete={handleDeleteCatalog}
+          onOpenModal={openModal}
+          closeModal={closeModal}
+        />
+      </StyledDiv>
+      {showModal && (
+        <ModalDeleteCatalog
+          catalogName={catalogName}
+          catalogYear={catalogYear}
+          catalogId={catalogId}
+          onCloseModal={closeModal}
+          catalogsList={fetchedCatalogsList}
+          updateCatalogsList={updateCatalogsList}
+        />
       )}
-      <StyledH2>Каталоги для передзамовлення</StyledH2>
-      <CatalogsList 
-      catalogsList={fetchedCatalogsList}
-      onDelete={handleDeleteCatalog} 
-      onOpenModal={openModal}
-      closeModal={closeModal}
-      />
-     </StyledDiv>
-     {showModal && <ModalDeleteCatalog
-      catalogName={catalogName}
-      catalogYear={catalogYear} 
-      catalogId={catalogId} 
-      onCloseModal={closeModal} 
-      catalogsList={fetchedCatalogsList}
-      updateCatalogsList={updateCatalogsList} />}
     </STyledContainer>
   );
 };
