@@ -64,6 +64,9 @@ outline: none;
 
 export const StyledUlCharacteristics = styled.ul`
 width: 328px;
+display: flex;
+flex-direction: column;
+gap: 16px;
 
 @media screen and (min-width: 768px) {
     width: 495px;
@@ -74,8 +77,8 @@ width: 328px;
   }
 
 `
-export const StyledLi = styled.li`
-display: flex;
-flex-direction: column;
-gap: 16px;
-`
+// export const StyledLi = styled.li`
+// display: flex;
+// flex-direction: column;
+// gap: 16px;
+// `

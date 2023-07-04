@@ -134,7 +134,7 @@ const EditProductCard = () => {
   };
 
   const handleDeleteCharacteristicButton = (id, ev) => {
-    ev.preventDefault();
+    // ev.preventDefault();
     const index = characteristicArray.indexOf(
       (item) => item.characteristicId === id
     );
@@ -256,9 +256,11 @@ const EditProductCard = () => {
       {characteristicArray.length !== 0 && (
         <StyledUl>
           {characteristicArray.map((item) => (
-            <StyledLi key={item._id}>
-              <StyledPAttribute>{`${item.name }: `}</StyledPAttribute>
-              <StyledSpanAttribute>{item.value }</StyledSpanAttribute>
+            <StyledLi key={item.characteristicId
+            }>
+              <StyledPAttribute>{`${item.characteristicName
+}: `}</StyledPAttribute>
+              <StyledSpanAttribute>{item.characteristicValue }</StyledSpanAttribute>
             </StyledLi>
           ))}
         </StyledUl>

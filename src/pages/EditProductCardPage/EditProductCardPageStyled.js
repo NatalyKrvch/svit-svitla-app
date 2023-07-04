@@ -5,6 +5,7 @@ width: 328px;
 margin-left: auto;
 margin-right: auto;
 padding: 40px 16px;
+
   @media screen and (min-width: 768px) {
     width: 495px;
     margin-left: 0;
@@ -12,7 +13,7 @@ padding: 40px 16px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 572px;
+    width: 609px;
     padding: 72px 136px 60px 136px;
   }
 
@@ -25,6 +26,15 @@ line-height: 1,2;
 letter-spacing: -0.4px;
 margin-bottom: 16px;
 
+
+@media screen and (min-width: 768px) {
+  font-size: 32px;
+  
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 48px;
+  }
 `
 export const StyledTitleProduct = styled.h3`
 font-weight: 400;
@@ -32,6 +42,13 @@ font-size: 24px;
 line-height: 1,2;
 letter-spacing: -0.4px;
 margin-bottom: 4px;
+
+@media screen and (min-width: 768px) {
+  font-size: 32px;
+    line-height: 1;
+  
+  }
+
 `
 
 export const StyledP = styled.p`
@@ -40,6 +57,12 @@ font-size: 16px;
 line-height: 1,5;
 letter-spacing: -0.4px;
 margin-bottom: 32px;
+
+@media screen and (min-width: 768px) {
+  font-size: 24px;
+  
+  }
+
 `
 export const StyledInputWrapper = styled.div`
   position: relative;

@@ -4,7 +4,7 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
-  StyledLi,
+  // StyledLi,
   StyledUlCharacteristics,
 } from "./AddCharacteristicInputsStyled";
 import { BiMinusCircle } from "react-icons/bi";
@@ -17,7 +17,7 @@ const AddCharacteristicInputs = ({
 }) => {
   const [characteristicNamesInput, setCharacteristicNameInput] = useState("");
   const [characteristicValuesInput, setCharacteristicValueInput] = useState("");
-  // const currentObj = characteristicArray.find(
+  // const currentObj = charcharacteristicValuesInputacteristicArray.find(
   //   (obj) => obj.characteristicId === id
   // );
 
@@ -45,11 +45,10 @@ const AddCharacteristicInputs = ({
     );
   };
   console.log(characteristicArray);
+  
   return (
     <>
         <StyledUlCharacteristics>
-          {characteristicArray.map(item => (
-            <StyledLi key={item._id}>
               <StyledInputWrapper>
                 <StyledLabel htmlFor={id + "priceName"}>
                   Назва характеристики
@@ -59,7 +58,7 @@ const AddCharacteristicInputs = ({
                   type="text"
                   pattern="[A-Za-z]+"
                   title="Пожалуйста, введите только буквы"
-                  value={item.name}
+                  value={characteristicNamesInput}
                   onChange={handleCharacteristicNameChange}
                 />
                 <StyledButton
@@ -78,7 +77,7 @@ const AddCharacteristicInputs = ({
                   type="text"
                   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                   title="Характеристика може включати тільки літери, апостроф, тире "
-                  value={item.value}
+                  value={characteristicValuesInput}
                   onChange={handleCharacteristicValueChange}
                 />
                 <StyledButton
@@ -90,8 +89,6 @@ const AddCharacteristicInputs = ({
                   <BiMinusCircle size={"1.8em"} />
                 </StyledButton>
               </StyledInputWrapper>
-            </StyledLi>
-          ))}
         </StyledUlCharacteristics>
     </>
   );
