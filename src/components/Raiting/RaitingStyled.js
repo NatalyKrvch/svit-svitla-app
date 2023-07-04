@@ -4,7 +4,6 @@ export const Star = styled.img`
   fill: yellow;
 `
 
-
 export const PageWrapper = styled.div`
   display: flex;
   align-items: flex-start;
