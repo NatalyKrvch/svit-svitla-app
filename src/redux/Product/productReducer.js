@@ -57,7 +57,7 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.products = state.products.filter(
-          (product) => product._id !== payload._id
+          (product) => product._id !== payload._doc._id
         );
       })
       .addCase(changeProduct.fulfilled, (state, { payload }) => {

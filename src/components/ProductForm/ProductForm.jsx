@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch } from "react-redux";
+import { addProduct, changeProduct } from "../../redux/Product/productOperations";
+import { useDispatch} from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -15,11 +15,13 @@ import {
   StyledImg,
   StyledInput,
   StyledInputWrapper,
+  StyledInputWrapperPhoto,
   StyledLabel,
   SubmitButton,
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
+
 
 
 const ProductForm = () => {
@@ -32,6 +34,7 @@ const ProductForm = () => {
   const [productImages, setProductImages] = useState("");
 
   const dispatch = useDispatch();
+
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -91,8 +94,9 @@ const ProductForm = () => {
       formData.append("productPhotoURL", file);
     });
     formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
-   
+    console.log(formData);
     dispatch(addProduct(formData))
+    
 
     setProductName("");
     setProductCode("");
@@ -148,8 +152,8 @@ const ProductForm = () => {
         <StyledInput
           id="country"
           type="text"
-          pattern="[A-Za-z]+"
-          title="Будь-ласка введіть тільки літери"
+          pattern="^[а-яА-Я\s]+$"
+          title="Будь-ласка введіть літери украънського алфавіту"
           required
           value={manufacturerCountry}
           onChange={handleManufacturerCountryChange}
@@ -197,10 +201,11 @@ const ProductForm = () => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={`${coverImage}`} alt="cover" />
+          <StyledImg src={coverImage} alt="cover" />
           <StyledInput
             id="name"
             type="text"
+            value={`Cover_${productName}.jpeg`}
             onChange={handleCoverImageChange}
           />
           <StyledButtonDelete type="button " onClick={handleDeleteCoverImg}>
@@ -224,18 +229,32 @@ const ProductForm = () => {
           </FakeInputWrp>
         </label>
       ) : (
-        <StyledInputWrapper>
-          <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
-          <img src={`${coverImage}`} alt="cover" />
-          <StyledInput id="name" type="text" />
-          <StyledButtonDelete type="button" onClick={handleDeletePhotoImg}>
+        // <StyledInputWrapper>
+        //   <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
+        //   <StyledImg src={`${coverImage}`} alt="cover" />
+        //   <StyledInput id="name" type="text" />
+        //   <StyledButtonDelete type="button" onClick={handleDeletePhotoImg}>
+        //     <RiDeleteBin6Line size={"1.8em"} color="white" />
+        //   </StyledButtonDelete>
+        // </StyledInputWrapper>
+        <ul>
+      { productImages.map((photo, index) => 
+        (<StyledInputWrapperPhoto key={index}>
+          <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
+          <StyledImg src={photo} alt="photo" />
+          <StyledInput type="text" value={`${index+1}.jpeg`} readOnly />
+          <StyledButtonDelete 
+          onClick={handleDeletePhotoImg}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
           </StyledButtonDelete>
-        </StyledInputWrapper>
+        </StyledInputWrapperPhoto>
+        ))}
+      </ul>
       )}
 
       <SubmitButton type="submit"
-      disabled={(!productName || !productCode || !price || !manufacturerCountry)}>Зберегти</SubmitButton>
+      disabled={(!productName || !productCode || !price || !manufacturerCountry)}
+      >Зберегти</SubmitButton>
     </StyledForm>
   );
 };

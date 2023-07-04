@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   StyledBtn,
@@ -11,17 +11,19 @@ import {
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+import { removeProduct } from "../../redux/Product/productOperations.js"
 
 const ProductCard = ({
   product: { productCoverURL, productName, productCode, productPrice,  _id },
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-//   const handleEditButton = () => {
-//     navigate(`/editproductcard/${_id}`)
-//   };
-
+const handleDeleteButton = (_id) => {
+  console.log(_id);
+  dispatch(removeProduct(_id));
+}
   return (
     <div>
       <StyledImg src={productCoverURL} alt="Picture" />
@@ -39,7 +41,8 @@ const ProductCard = ({
             >
               <RiPencilLine size={"1.5em"} />
             </StyledBtn>
-            <StyledBtn type="button">
+            <StyledBtn type="button"
+            onClick={()=> handleDeleteButton(_id)}>
               <RiDeleteBin6Line size={"1.5em"} />
             </StyledBtn>
           </StyledBtnWrp>

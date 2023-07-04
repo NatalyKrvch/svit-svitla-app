@@ -1,9 +1,11 @@
-import { useState } from "react";
+import {  useState } from "react";
 import {
   StyledButton,
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
+  // StyledLi,
+  StyledUlCharacteristics,
 } from "./AddCharacteristicInputsStyled";
 import { BiMinusCircle } from "react-icons/bi";
 
@@ -15,9 +17,11 @@ const AddCharacteristicInputs = ({
 }) => {
   const [characteristicNamesInput, setCharacteristicNameInput] = useState("");
   const [characteristicValuesInput, setCharacteristicValueInput] = useState("");
-  // const currentObj = characteristicArray.find(
+  // const currentObj = charcharacteristicValuesInputacteristicArray.find(
   //   (obj) => obj.characteristicId === id
   // );
+
+  console.log(characteristicArray);
 
   const handleCharacteristicNameChange = (evt) => {
     setCharacteristicNameInput(evt.target.value);
@@ -40,50 +44,97 @@ const AddCharacteristicInputs = ({
       )
     );
   };
-  // console.log(characteristicArray);
+  console.log(characteristicArray);
+  
   return (
     <>
-      <StyledInputWrapper>
-        <StyledLabel htmlFor={id + "priceName"}>
-          Назва характеристики
-        </StyledLabel>
-        <StyledInput
-          id={id + "priceName"}
-          type="text"
-          pattern="[A-Za-z]+" title="Пожалуйста, введите только буквы"
-          value={characteristicNamesInput}
-          onChange={handleCharacteristicNameChange}
-        />
-        <StyledButton
-          type="button "
-          onClick={() => {
-            onDelete(id);
-          }}
-        >
-          <BiMinusCircle size={"1.8em"} />
-        </StyledButton>
-      </StyledInputWrapper>
-      <StyledInputWrapper>
-        <StyledLabel htmlFor={id + "price"}>Характеристика</StyledLabel>
-        <StyledInput
-          id={id + "price"}
-          type="text"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Характеристика може включати тільки літери, апостроф, тире "
-          value={characteristicValuesInput}
-          onChange={handleCharacteristicValueChange}
-        />
-        <StyledButton
-          type="button "
-          onClick={() => {
-            onDelete(id);
-          }}
-        >
-          <BiMinusCircle size={"1.8em"} />
-        </StyledButton>
-      </StyledInputWrapper>
+        <StyledUlCharacteristics>
+              <StyledInputWrapper>
+                <StyledLabel htmlFor={id + "priceName"}>
+                  Назва характеристики
+                </StyledLabel>
+                <StyledInput
+                  id={id + "priceName"}
+                  type="text"
+                  pattern="[A-Za-z]+"
+                  title="Пожалуйста, введите только буквы"
+                  value={characteristicNamesInput}
+                  onChange={handleCharacteristicNameChange}
+                />
+                <StyledButton
+                  type="button "
+                  onClick={() => {
+                    onDelete(id);
+                  }}
+                >
+                  <BiMinusCircle size={"1.8em"} />
+                </StyledButton>
+              </StyledInputWrapper>
+              <StyledInputWrapper>
+                <StyledLabel htmlFor={id + "price"}>Характеристика</StyledLabel>
+                <StyledInput
+                  id={id + "price"}
+                  type="text"
+                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Характеристика може включати тільки літери, апостроф, тире "
+                  value={characteristicValuesInput}
+                  onChange={handleCharacteristicValueChange}
+                />
+                <StyledButton
+                  type="button "
+                  onClick={() => {
+                    onDelete(id);
+                  }}
+                >
+                  <BiMinusCircle size={"1.8em"} />
+                </StyledButton>
+              </StyledInputWrapper>
+        </StyledUlCharacteristics>
     </>
   );
 };
 
 export default AddCharacteristicInputs;
+
+// <>
+//   <StyledInputWrapper>
+//     <StyledLabel htmlFor={id + "priceName"}>
+//       Назва характеристики
+//     </StyledLabel>
+//     <StyledInput
+//       id={id + "priceName"}
+//       type="text"
+//       pattern="[A-Za-z]+"
+//       title="Пожалуйста, введите только буквы"
+//       value={characteristicNamesInput}
+//       onChange={handleCharacteristicNameChange}
+//     />
+//     <StyledButton
+//       type="button "
+//       onClick={() => {
+//         onDelete(id);
+//       }}
+//     >
+//       <BiMinusCircle size={"1.8em"} />
+//     </StyledButton>
+//   </StyledInputWrapper>
+//   <StyledInputWrapper>
+//     <StyledLabel htmlFor={id + "price"}>Характеристика</StyledLabel>
+//     <StyledInput
+//       id={id + "price"}
+//       type="text"
+//       pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+//       title="Характеристика може включати тільки літери, апостроф, тире "
+//       value={characteristicValuesInput}
+//       onChange={handleCharacteristicValueChange}
+//     />
+//     <StyledButton
+//       type="button "
+//       onClick={() => {
+//         onDelete(id);
+//       }}
+//     >
+//       <BiMinusCircle size={"1.8em"} />
+//     </StyledButton>
+//   </StyledInputWrapper>
+// </>

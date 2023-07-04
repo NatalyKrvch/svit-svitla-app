@@ -61,3 +61,24 @@ background-color: transparent;
 cursor: pointer;
 outline: none;
 `
+
+export const StyledUlCharacteristics = styled.ul`
+width: 328px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+
+@media screen and (min-width: 768px) {
+    width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+  }
+
+`
+// export const StyledLi = styled.li`
+// display: flex;
+// flex-direction: column;
+// gap: 16px;
+// `
