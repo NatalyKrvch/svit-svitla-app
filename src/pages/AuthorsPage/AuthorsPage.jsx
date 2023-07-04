@@ -20,7 +20,7 @@ function Authors() {
               <BoldItem key={index}>{author.Position}</BoldItem>
               <Item>{author.Name}</Item>
               <Item>
-                <a href={author.LinkedIn}>
+                <a href={author.LinkedIn} target="_blank" rel="noreferrer">
                   <Img src={linkedInIcon} alt="LinkedIn" />
                 </a>
               </Item>
