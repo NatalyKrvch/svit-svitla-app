@@ -22,7 +22,7 @@ export const GridWrapper = styled.div`
     padding: 32px 16px;
 
     @media screen and (min-width: 769px){
-      grid-template-columns: 259px 447px 48px;
+      grid-template-columns: 180px 447px 48px;
       grid-row-gap: 16px;
     }
 
