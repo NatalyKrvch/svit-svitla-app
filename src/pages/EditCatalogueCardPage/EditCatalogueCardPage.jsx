@@ -84,7 +84,6 @@ const  EditCatalogueCard = () =>  {
  
 
 
-
   return (
    <StyledDiv>
      <StyledTitle>Редагувати картку товару</StyledTitle>

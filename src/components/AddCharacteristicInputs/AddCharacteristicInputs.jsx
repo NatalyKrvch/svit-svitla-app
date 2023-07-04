@@ -1,9 +1,10 @@
-import { useLayoutEffect, useState } from "react";
+import {  useState } from "react";
 import {
   StyledButton,
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
+  StyledLi,
   StyledUlCharacteristics,
 } from "./AddCharacteristicInputsStyled";
 import { BiMinusCircle } from "react-icons/bi";
@@ -43,13 +44,12 @@ const AddCharacteristicInputs = ({
       )
     );
   };
-  // console.log(characteristicArray);
+  console.log(characteristicArray);
   return (
     <>
-      {characteristicArray.length !== 0 && (
         <StyledUlCharacteristics>
           {characteristicArray.map(item => (
-            <li key={item._id}>
+            <StyledLi key={item._id}>
               <StyledInputWrapper>
                 <StyledLabel htmlFor={id + "priceName"}>
                   Назва характеристики
@@ -90,10 +90,9 @@ const AddCharacteristicInputs = ({
                   <BiMinusCircle size={"1.8em"} />
                 </StyledButton>
               </StyledInputWrapper>
-            </li>
+            </StyledLi>
           ))}
         </StyledUlCharacteristics>
-      )}
     </>
   );
 };

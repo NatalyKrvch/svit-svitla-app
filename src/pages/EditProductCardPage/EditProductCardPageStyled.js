@@ -5,6 +5,16 @@ width: 328px;
 margin-left: auto;
 margin-right: auto;
 padding: 40px 16px;
+  @media screen and (min-width: 768px) {
+    width: 495px;
+    margin-left: 0;
+    padding: 64px 40px 60px 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+    padding: 72px 136px 60px 136px;
+  }
 
 `
 
@@ -219,9 +229,60 @@ letter-spacing: 0.25px;
 `
 
 export const StyledSpanAttribute = styled.span`
+width: 242px;
 margin-left: 16px;
 font-weight: 400;
 font-size: 14px;
 line-height: 1,5;
 letter-spacing: 0.25px;
 `
+
+export const SubmitButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  max-width: 328px;
+  height: 48px;
+  background-color: ${props => props.disabled? "var(--middle-grey)" : "var(--dark-blue)"};;
+  color: white;
+  border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 373px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 328px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+    max-width: 495px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 572px;
+  }
+`;
+
+export const StyledLabel = styled.label`
+  position: absolute;
+  height: 24px;
+  font-size: 12px;
+  line-height: 2;
+  color: var(--dark-grey);
+  background-color: var(--light-blue);
+  padding: 0 4px;
+  left: 12px;
+  top: -8px;
+`;

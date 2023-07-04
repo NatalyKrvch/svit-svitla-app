@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch, useSelector } from "react-redux";
+import { addProduct, changeProduct } from "../../redux/Product/productOperations";
+import { useDispatch} from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -21,22 +21,20 @@ import {
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
-import { getCurrentProduct } from "../../redux/Product/productSelectors";
 
 
-const ProductForm = ({title, code, productPrice, country, characteristics, coverPicture, productPhotos }) => {
-  const [productName, setProductName] = useState(title || "");
-  const [productCode, setProductCode] = useState(code || "");
-  const [price, setPrice] = useState(productPrice || "");
-  const [manufacturerCountry, setManufacturerCountry] = useState(country || "");
-  const [characteristicArray, setCharacteristicArray] = useState(characteristics || []);
-  const [coverImage, setCoverImage] = useState(coverPicture || null);
-  const [productImages, setProductImages] = useState(productPhotos || "");
+
+const ProductForm = () => {
+  const [productName, setProductName] = useState("");
+  const [productCode, setProductCode] = useState("");
+  const [price, setPrice] = useState("");
+  const [manufacturerCountry, setManufacturerCountry] = useState("");
+  const [characteristicArray, setCharacteristicArray] = useState([]);
+  const [coverImage, setCoverImage] = useState(null);
+  const [productImages, setProductImages] = useState("");
 
   const dispatch = useDispatch();
-  const currentProduct = useSelector(getCurrentProduct);
-  console.log(currentProduct);
-  console.log(coverImage);
+
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -96,8 +94,9 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
       formData.append("productPhotoURL", file);
     });
     formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
-   
+    console.log(formData);
     dispatch(addProduct(formData))
+    
 
     setProductName("");
     setProductCode("");
@@ -153,8 +152,8 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
         <StyledInput
           id="country"
           type="text"
-          pattern="[A-Za-z]+"
-          title="Будь-ласка введіть тільки літери"
+          pattern="^[а-яА-Я\s]+$"
+          title="Будь-ласка введіть літери украънського алфавіту"
           required
           value={manufacturerCountry}
           onChange={handleManufacturerCountryChange}
@@ -202,10 +201,11 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImage.name} alt="cover" />
+          <StyledImg src={coverImage} alt="cover" />
           <StyledInput
             id="name"
             type="text"
+            value={`Cover_${productName}.jpeg`}
             onChange={handleCoverImageChange}
           />
           <StyledButtonDelete type="button " onClick={handleDeleteCoverImg}>
@@ -241,8 +241,8 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
       { productImages.map((photo, index) => 
         (<StyledInputWrapperPhoto key={index}>
           <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
-          <StyledImg src={`${photo}`} alt="photo" />
-          <StyledInput type="text" value={`${productName}.jpeg`} readOnly />
+          <StyledImg src={photo} alt="photo" />
+          <StyledInput type="text" value={`${index+1}.jpeg`} readOnly />
           <StyledButtonDelete 
           onClick={handleDeletePhotoImg}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
@@ -254,7 +254,7 @@ const ProductForm = ({title, code, productPrice, country, characteristics, cover
 
       <SubmitButton type="submit"
       disabled={(!productName || !productCode || !price || !manufacturerCountry)}
-      >{ currentProduct? `Зберегти зміни ` : `Зберегти`}</SubmitButton>
+      >Зберегти</SubmitButton>
     </StyledForm>
   );
 };
