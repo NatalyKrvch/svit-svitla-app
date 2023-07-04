@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout/Layout";
 import ProductsCataloguePage from "./pages/ProductsCatalogPage/ProductsCataloguePage";
 import Authorization from "./pages/AuthorizationPage";
-import Authors from "./pages/AuthorsPage";
+import Authors from "./pages/AuthorsPage/AuthorsPage";
 import EditCatalogueCard from "./pages/EditCatalogueCardPage/EditCatalogueCardPage";
 import EditProductCard from "./pages/EditProductCardPage/EditProductCardPage";
 import PaymentDetails from "./pages/PaymentDetailsPage";
