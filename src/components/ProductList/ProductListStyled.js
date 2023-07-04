@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
 export const StyledList = styled.ul`
-  max-width: 328px;
+  width: 328px;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
-    max-width: 753px;
+    width: 753px;
     gap: 24px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1168px;
+    width: 1168px;
   }
 `;
