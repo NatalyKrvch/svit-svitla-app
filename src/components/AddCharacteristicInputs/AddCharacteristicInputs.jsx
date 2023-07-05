@@ -56,7 +56,7 @@ const AddCharacteristicInputs = ({
                 <StyledInput
                   id={id + "priceName"}
                   type="text"
-                  pattern="[A-Za-z]+"
+                  pattern="^[а-яА-Я\s]+$"
                   title="Пожалуйста, введите только буквы"
                   value={characteristicNamesInput}
                   onChange={handleCharacteristicNameChange}
