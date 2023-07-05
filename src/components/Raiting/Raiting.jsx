@@ -2,22 +2,28 @@ import {
   StyledH1,
   PageWrapper,
   StyledP,
-  StyledInput,
+  StyledTextarea,
   StyledButton,
   StyledForm,
   StarsContainer,
 } from "./RaitingStyled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sprite from "../../images/symbol-defs.svg";
 import { useMediaRules } from "../../hooks/useMediaRules";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import addReview from "../../redux/Review/reviewOperations";
 
 function Raiting() {
-  // const dispatch = useDispatch();
-
   const [selectedStars, setSelectedStars] = useState([]);
-  // const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState("");
+
   const { isTablet, isDesktop } = useMediaRules();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addReview(reviewMark, feedback));
+  }, [dispatch, reviewMark, feedback]);
 
   const starCounter = [1, 2, 3, 4, 5];
   let starSize = 36;
@@ -30,6 +36,12 @@ function Raiting() {
     const clickedIndex = starCounter.indexOf(starKey);
     const selectedStars = starCounter.slice(0, clickedIndex + 1);
     setSelectedStars(selectedStars);
+  };
+
+  const reviewMark = selectedStars[selectedStars.length - 1];
+
+  const handleChange = (event) => {
+    setFeedback(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -62,7 +74,11 @@ function Raiting() {
           })}
         </StarsContainer>
         <StyledForm onSubmit={handleSubmit}>
-          <StyledInput type="text" placeholder="Ваші враження" />
+          <StyledTextarea
+            onChange={handleChange}
+            type="text"
+            placeholder="Ваші враження"
+          />
           <StyledButton type="submit">Надіслати</StyledButton>
         </StyledForm>
       </PageWrapper>

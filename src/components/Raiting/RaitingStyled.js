@@ -59,7 +59,7 @@ export const StarsContainer = styled.div`
   gap: 23px;
 `
 
-export const StyledInput = styled.textarea`
+export const StyledTextarea = styled.textarea`
   font-family: Inter;
   height: 169px;
   width: 327px;
