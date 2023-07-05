@@ -115,6 +115,7 @@ export const StyledButton = styled.button`
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.4px;
+  cursor: pointer;
 
   @media screen and (min-width: 769px) {
     height: 56px;

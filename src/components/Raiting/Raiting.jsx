@@ -10,8 +10,8 @@ import {
 import { useState, useEffect } from "react";
 import Sprite from "../../images/symbol-defs.svg";
 import { useMediaRules } from "../../hooks/useMediaRules";
-import { useDispatch } from "react-redux";
-import addReview from "../../redux/Review/reviewOperations";
+// import { useDispatch } from "react-redux";
+// import { addReview } from "../../redux/Review/reviewOperations";
 
 function Raiting() {
   const [selectedStars, setSelectedStars] = useState([]);
@@ -19,11 +19,11 @@ function Raiting() {
 
   const { isTablet, isDesktop } = useMediaRules();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(addReview(reviewMark, feedback));
-  }, [dispatch, reviewMark, feedback]);
+  // useEffect(() => {
+  //   dispatch(addReview(reviewMark, feedback));
+  // }, [dispatch, reviewMark, feedback]);
 
   const starCounter = [1, 2, 3, 4, 5];
   let starSize = 36;
@@ -39,6 +39,19 @@ function Raiting() {
   };
 
   const reviewMark = selectedStars[selectedStars.length - 1];
+
+  console.log(selectedStars);
+
+  const sendMail = () => {
+    var link =
+      "mailto:svitsvitlacn@ukr.net" +
+      "&subject=" +
+      encodeURIComponent("Feedback") +
+      "&body=" +
+      encodeURIComponent(document.getElementById("feedback").value);
+    window.location.href = link;
+    console.log("button is clicked");
+  };
 
   const handleChange = (event) => {
     setFeedback(event.target.value);
@@ -78,8 +91,11 @@ function Raiting() {
             onChange={handleChange}
             type="text"
             placeholder="Ваші враження"
+            id="feedback"
           />
-          <StyledButton type="submit">Надіслати</StyledButton>
+          <StyledButton type="submit" onClick={sendMail}>
+            Надіслати
+          </StyledButton>
         </StyledForm>
       </PageWrapper>
     </>
