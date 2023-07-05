@@ -32,8 +32,12 @@ const ProductForm = () => {
   const [characteristicArray, setCharacteristicArray] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [productImages, setProductImages] = useState("");
+  const [coverImageUrl, setCoverImageUrl] = useState('');
+  const [productImagesUrl, setProductImagesUrl] = useState([]);
 
   const dispatch = useDispatch();
+
+  console.log(coverImage);
 
 
   const handleProductNameChange = (event) => {
@@ -54,28 +58,44 @@ const ProductForm = () => {
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
+    console.log(event);
+    console.log(file);
+    setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
   };
 
   const handleProductImagesChange = (event) => {
     const files = event.target.files;
-    setProductImages(Array.from(files));
+    const productImagesAdded = Array.from(files); 
+    setProductImages([...productImages, ...productImagesAdded]);
+    const urlArray = [...files].map(file => URL.createObjectURL(file))
+    setProductImagesUrl([...productImagesUrl, ...urlArray]);
   };
 
-  const handleDeleteCharacteristicButton = (id, ev) => {
-    ev.preventDefault();
-    const index = characteristicArray.indexOf(
-      (item) => item.characteristicId === id
-    );
-    characteristicArray.splice(index, 1);
+  const handleDeleteCharacteristicButton = (id) => {
+    const index = characteristicArray.findIndex(item => item.characteristicId === id);
+    if (index !== -1) {
+      const updatedCharacteristics = [...characteristicArray];
+      updatedCharacteristics.splice(index, 1);
+      setCharacteristicArray(updatedCharacteristics);
+    }
   };
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
+    setCoverImageUrl('');
+    URL.revokeObjectURL(coverImageUrl);
   };
 
-  const handleDeletePhotoImg = () => {
-    setProductImages([]);
+  const handleDeletePhotoImg = (index) => {
+    const newProductImages = [...productImages];
+    newProductImages.splice(index, 1);
+    setProductImages(newProductImages);
+    const newProductImagesUrl = [...productImagesUrl];
+    newProductImagesUrl.splice(index, 1);
+    URL.revokeObjectURL(productImages[index]);
+    setProductImagesUrl(newProductImagesUrl);
+
   };
 
   const handleSubmit = (event) => {
@@ -90,9 +110,11 @@ const ProductForm = () => {
     formData.append("productPrice", price);
     formData.append("productCountry", manufacturerCountry);
     formData.append("productCoverURL", coverImage || "");
-    productImages.forEach((file) => {
-      formData.append("productPhotoURL", file);
-    });
+    if(productImages){
+      productImages.forEach((file) => {
+        formData.append("productPhotoURL", file);
+      });
+    }
     formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
     console.log(formData);
     dispatch(addProduct(formData))
@@ -201,7 +223,7 @@ const ProductForm = () => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImage} alt="cover" />
+          <StyledImg src={coverImageUrl} alt="cover" />
           <StyledInput
             id="name"
             type="text"
@@ -229,29 +251,36 @@ const ProductForm = () => {
           </FakeInputWrp>
         </label>
       ) : (
-        // <StyledInputWrapper>
-        //   <StyledCoverLabel htmlFor="name">Фото товару</StyledCoverLabel>
-        //   <StyledImg src={`${coverImage}`} alt="cover" />
-        //   <StyledInput id="name" type="text" />
-        //   <StyledButtonDelete type="button" onClick={handleDeletePhotoImg}>
-        //     <RiDeleteBin6Line size={"1.8em"} color="white" />
-        //   </StyledButtonDelete>
-        // </StyledInputWrapper>
+       <>
         <ul>
-      { productImages.map((photo, index) => 
+      { productImagesUrl.map((photo, index) => 
         (<StyledInputWrapperPhoto key={index}>
           <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
           <StyledImg src={photo} alt="photo" />
           <StyledInput type="text" value={`${index+1}.jpeg`} readOnly />
           <StyledButtonDelete 
-          onClick={handleDeletePhotoImg}>
+          onClick={()=> handleDeletePhotoImg(index)}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
           </StyledButtonDelete>
         </StyledInputWrapperPhoto>
         ))}
       </ul>
+         <label>
+         <FileInput
+           type="file"
+           multiple
+           onChange={handleProductImagesChange}
+           accept=".jpg, .jpeg"
+         />
+         <FakeInputWrp>
+           <FakeInputText>Додати зображення</FakeInputText>
+           <FakeButton>
+             <BiPlusCircle size={"1.5em"} />
+           </FakeButton>
+         </FakeInputWrp>
+       </label>
+       </>
       )}
-
       <SubmitButton type="submit"
       disabled={(!productName || !productCode || !price || !manufacturerCountry)}
       >Зберегти</SubmitButton>
