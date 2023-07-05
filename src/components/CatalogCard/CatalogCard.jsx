@@ -11,8 +11,8 @@ const CatalogCard = ({catalog,  onOpenModal}) => {
   const { catalogName, catalogYear, catalogCoverURL, _id} = catalog
   const navigate = useNavigate();
   
-  const handleClick = (catalogName, catalogYear) => {
-    onOpenModal(catalogName, catalogYear );
+  const handleClick = (name, year, id) => {
+    onOpenModal(name, year, id );
   };
 
   return (
@@ -26,7 +26,7 @@ const CatalogCard = ({catalog,  onOpenModal}) => {
         <StyledBtn type="button" onClick={()=> navigate(`/editcatauloguecard/${_id}`)}>
           {isLoggedIn ? <RiPencilLine size={"1.5em"} /> : <TbDownload />}
         </StyledBtn>
-        <StyledBtn type="button" onClick={(catalogName, catalogYear)=> handleClick(catalogName, catalogYear)}>
+        <StyledBtn type="button" onClick={()=> handleClick(catalogName, catalogYear, _id)}>
           {isLoggedIn ? <RiDeleteBin6Line size={"1.5em"} /> : <BiShareAlt />}
         </StyledBtn>
       </StyledBtnWrp>

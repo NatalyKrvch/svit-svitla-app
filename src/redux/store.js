@@ -4,7 +4,8 @@ import { persistStore, persistReducer } from 'redux-persist';
 import authReducer from './Auth/authReducer';
 import productReducer from './Product/productReducer';
 import catalogReducer from './Catalog/catalogReducer';
-import { filterReducer } from './Filter/slice';
+import reviewReducer from './Review/reviewReducer';
+import { filterReducer } from "./Filter/slice";
 
 const authPersistConfig = {
   key: 'auth',
@@ -17,6 +18,7 @@ export const store = configureStore({
   reducer: {
     products: productReducer,
     catalogs: catalogReducer,
+    reviews: reviewReducer,
     auth: persistedReducer,
     filter: filterReducer,
   },

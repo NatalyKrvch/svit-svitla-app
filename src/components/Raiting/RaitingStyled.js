@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Star = styled.img`
+  fill: yellow;
+`
+
 export const PageWrapper = styled.div`
   display: flex;
   align-items: flex-start;
@@ -46,6 +50,15 @@ export const StyledP = styled.p`
     margin: 48px 0 24px;
   }
 `
+export const StarsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 22px 0;
+  width: 327px;
+  gap: 23px;
+`
+
 export const StyledInput = styled.textarea`
   font-family: Inter;
   height: 169px;

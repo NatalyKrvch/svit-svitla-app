@@ -1,0 +1,32 @@
+[
+    {
+        "Position": "Frontend",
+        "Name": "Nataliia Kravchenko",
+        "LinkedIn": "https://www.linkedin.com/in/nataliiakravchenko"
+    },
+    {
+        "Position": "Frontend",
+        "Name": "Oksana Koss",
+        "LinkedIn": "https://www.linkedin.com/in/oksana-koss-it"
+    },
+    {
+        "Position": "Backend",
+        "Name": "Mykyta Kresik",
+        "LinkedIn": "https://www.linkedin.com/in/mykyta-kresik/"
+    },
+    {
+        "Position": "UI/UX Design",
+        "Name": "Maryna Borovikova",
+        "LinkedIn": "https://www.linkedin.com/in/maryna-borovikova/"
+    },
+    {
+        "Position": "QA",
+        "Name": "Yuriy Abramovych",
+        "LinkedIn": "https://www.linkedin.com/in/yuriy-abramovych/"
+    },
+    {
+        "Position": "PM",
+        "Name": "Anastasiia Smirnova",
+        "LinkedIn": "https://www.linkedin.com/in/anastasiasmirnovapm/"
+    }
+]
