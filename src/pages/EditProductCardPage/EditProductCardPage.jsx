@@ -66,6 +66,9 @@ const EditProductCard = () => {
     currentProduct?.productPhotoURL || ""
   );
   const [showModal, setShowModal] = useState(false);
+  const [coverImageUrl, setCoverImageUrl] = useState(currentProduct?.productCoverURL);
+  const [productImagesUrl, setProductImagesUrl] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,19 +96,23 @@ const EditProductCard = () => {
 
   const handleProductImagesChange = (event) => {
     const files = event.target.files;
-    console.log(Array.from(files));
-    setProductImages([...productImages, ...Array.from(files)]);
+    const newProductImages = Array.from(files);
+    setProductImages([...productImages, ...newProductImages]);
+    const urlArray = [...files].map(file => URL.createObjectURL(file))
+    setProductImagesUrl([...productImagesUrl, ...urlArray]);
   };
 
   const handleDeleteProductImg = (index) => {
     const newProductImages = [...productImages];
     newProductImages.splice(index, 1);
     setProductImages(newProductImages);
+    const newProductImagesUrl = [...productImagesUrl];
+    newProductImagesUrl.splice(index, 1);
+    URL.revokeObjectURL(productImages[index]);
+    setProductImagesUrl(newProductImagesUrl);
   };
 
-  // const handleDeleteImgProduct = (photo) => {
-  //   console.log(photo);
-  // };
+
 
 
   const handleProductNameChange = (event) => {
@@ -124,22 +131,27 @@ const EditProductCard = () => {
     setManufacturerCountry(event.target.value);
   };
 
-  const handleCoverImageChange = (event) => {
+   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
+    console.log(event);
+    console.log(file);
+    setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
   };
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
+    setCoverImageUrl('');
+    URL.revokeObjectURL(coverImageUrl);
   };
 
-  const handleDeleteCharacteristicButton = (id, ev) => {
-    // ev.preventDefault();
-    const index = characteristicArray.indexOf(
+  const handleDeleteCharacteristicButton = (id) => {
+    const index = characteristicArray.findIndex(
       (item) => item.characteristicId === id
     );
-    characteristicArray.splice(index, 1);
-  };
+    if (index !== -1) {
+      characteristicArray.splice(index, 1);
+  }};
 
   const onOpenModal = () => {
     setShowModal(true);
@@ -204,7 +216,7 @@ const EditProductCard = () => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImage} alt="cover" />
+          <StyledImg src={coverImageUrl} alt="cover" />
           <StyledInput
             id="name"
             type="text"
@@ -219,7 +231,7 @@ const EditProductCard = () => {
       )}
       {productImages.length !== 0 &&  (
         <ul>
-          {productImages.map((photo, index) => (
+          {productImagesUrl.map((photo, index) => (
             <StyledInputWrapperPhoto key={index}>
               <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
               <StyledImg src={`${photo}`} alt="photo" />
@@ -258,9 +270,9 @@ const EditProductCard = () => {
           {characteristicArray.map((item) => (
             <StyledLi key={item.characteristicId
             }>
-              <StyledPAttribute>{`${item.characteristicName
-}: `}</StyledPAttribute>
-              <StyledSpanAttribute>{item.characteristicValue }</StyledSpanAttribute>
+              <StyledPAttribute>{item.characteristicName ? `${item.characteristicName
+}: ` : ''}</StyledPAttribute>
+              <StyledSpanAttribute>{item.characteristicValue? item.characteristicValue : "" }</StyledSpanAttribute>
             </StyledLi>
           ))}
         </StyledUl>
@@ -309,8 +321,8 @@ const EditProductCard = () => {
         <StyledInput
           id="country"
           type="text"
-          pattern="[A-Za-z]+"
-          title="Будь-ласка введіть тільки літери"
+          pattern="^[а-яА-Я\s]+$"
+          title="Будь-ласка введіть тільки літери кирилиці"
           required
           value={manufacturerCountry}
           onChange={handleManufacturerCountryChange}
