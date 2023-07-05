@@ -18,6 +18,8 @@ import {
 import { AiOutlineSearch } from "react-icons/ai";
 import ModalDeleteCatalog from "../../components/Modal/ModalChangeCatalog/ModalDeleteCatalog/ModalDeleteCatalog";
 import Notiflix from 'notiflix';
+import Pagination from "../../components/Pagination/Pagination";
+import { useMediaRules } from "../../hooks/useMediaRules";
 
 const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
@@ -31,6 +33,11 @@ const PreorderCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
+  const { isMobile, isTablet} = useMediaRules();
+  const lastCatalogIndex = pageNumber * perPage;
+  const firstCatalogIndex = lastCatalogIndex - perPage;
+  const currentCatalogs = fetchedCatalogsList.slice(firstCatalogIndex, firstCatalogIndex);
+ console.log(fetchedCatalogsList);
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage }));
@@ -43,6 +50,19 @@ const PreorderCataloguePage = () => {
   const updateCatalogsList = (updatedList) => {
     setFetchedCatalogsList(updatedList);
   };
+
+  useEffect(() => {
+    let newPerPage = 8; 
+
+    if (isMobile) {
+      newPerPage = 4;
+    } else if (isTablet) {
+      newPerPage = 6;
+    }
+
+    setPerPage(newPerPage);
+  }, [isMobile, isTablet]);
+
 
   const openModal = (name, year, id) => {
     setShowModal(true);
@@ -76,6 +96,27 @@ const PreorderCataloguePage = () => {
     return;
   };
 
+  const handlePaginationClick = (i) => {
+    setPageNumber(i);
+  };
+
+  const handleNextPageButton = () => {
+    setPageNumber(pageNumber + 1)
+  };
+
+  const handlePreviousPageButton = () => {
+    setPageNumber(pageNumber - 1)
+  };
+
+  const handleLastPageButton = () => {
+    const lastPage = Math.ceil(fetchedCatalogsList.length / perPage);
+    setPageNumber(lastPage);
+  };
+
+  const handleFirstPageButton = () => {
+    setPageNumber(1);
+  }
+
   return (
     <STyledContainer>
       <StyledDiv>
@@ -106,10 +147,19 @@ const PreorderCataloguePage = () => {
           catalogYear={catalogYear}
           catalogId={catalogId}
           onCloseModal={closeModal}
-          catalogsList={fetchedCatalogsList}
+          catalogsList={currentCatalogs}
           updateCatalogsList={updateCatalogsList}
         />
       )}
+        <Pagination 
+      pageNumber={pageNumber}
+      cardsPerPage={perPage}
+      totalCards={fetchedCatalogsList.length} 
+      onClick={handlePaginationClick}
+      handleNextPageButton={handleNextPageButton}
+      handlePreviousPageButton={handlePreviousPageButton}
+      handleLastPageButton={handleLastPageButton}
+      handleFirstPageButton={handleFirstPageButton}/>
     </STyledContainer>
   );
 };
