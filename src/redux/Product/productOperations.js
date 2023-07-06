@@ -48,7 +48,6 @@ export const changeProduct = createAsyncThunk(
   "products/changeProduct",
   async ({id, body}, thunkAPI) => {
     console.log(id, body);
-    // console.log(id);
     try {
       const data = await changeProductAPI(id, body);
       return data;
