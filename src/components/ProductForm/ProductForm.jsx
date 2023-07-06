@@ -58,8 +58,6 @@ const ProductForm = () => {
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
-    console.log(event);
-    console.log(file);
     setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
   };
@@ -116,7 +114,6 @@ const ProductForm = () => {
       });
     }
     formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
-    console.log(formData);
     dispatch(addProduct(formData))
     
 

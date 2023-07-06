@@ -21,7 +21,6 @@ const AddCharacteristicInputs = ({
   //   (obj) => obj.characteristicId === id
   // );
 
-  console.log(characteristicArray);
 
   const handleCharacteristicNameChange = (evt) => {
     setCharacteristicNameInput(evt.target.value);
@@ -44,7 +43,7 @@ const AddCharacteristicInputs = ({
       )
     );
   };
-  console.log(characteristicArray);
+  
   
   return (
     <>

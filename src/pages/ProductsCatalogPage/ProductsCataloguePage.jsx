@@ -17,7 +17,6 @@ const ProductsCataloguePage = () => {
   const { isMobile, isTablet} = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
-  console.log(products);
   const lastProductIndex = pageNumber * perPage;
   const firstProductIndex = lastProductIndex - perPage;
   const currentProducts = products.slice(firstProductIndex, lastProductIndex);
