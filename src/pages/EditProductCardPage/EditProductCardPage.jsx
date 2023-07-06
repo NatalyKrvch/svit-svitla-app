@@ -61,6 +61,7 @@ const EditProductCard = () => {
   const [productImages, setProductImages] = useState(
     currentProduct?.productPhotoURL || ""
   );
+  const [productImagesNew, setProductImagesNew] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [coverImageUrl, setCoverImageUrl] = useState(
     currentProduct?.productCoverURL
@@ -90,18 +91,20 @@ const EditProductCard = () => {
   //   const files = event.target.files;
   //   const newProductImages = Array.from(files);
   //   console.log(files);
-  //   setProductImages((prev)=> { 
+  //   setProductImages((prev)=> {
   //     return [...prev, ...newProductImages]
   //   })
   // };
 
   const handleProductImagesChangeUrl = (event) => {
     const files = event.target.files;
+    const newFiles = Array.from(files);
     const urlArray = [...files].map((file) => URL.createObjectURL(file));
-    setProductImagesUrl((prev)=> {
-      return [...prev, ...urlArray]});
-  }
-
+    setProductImagesUrl((prev) => {
+      return [...prev, ...urlArray];
+    });
+    setProductImagesNew((prev) => [...prev, ...newFiles]);
+  };
 
   const handleDeleteProductImg = (index) => {
     const newProductImages = [...productImages];
@@ -114,7 +117,7 @@ const EditProductCard = () => {
     newProductImagesUrl.splice(index, 1);
     URL.revokeObjectURL(productImages[index]);
     setProductImagesUrl(newProductImagesUrl);
-  }
+  };
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -167,8 +170,8 @@ const EditProductCard = () => {
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.characteristicName, value: obj.characteristicValue };
     });
-    
-    const mergedProductImages = productImages.concat(productImagesUrl)
+
+    const mergedProductImages = productImages.concat(productImagesUrl);
     console.log(mergedProductImages);
 
     const formData = new FormData();
@@ -177,22 +180,18 @@ const EditProductCard = () => {
     formData.append("productPrice", price);
     formData.append("productCountry", manufacturerCountry);
     formData.append("productCoverURL", coverImage || "");
-    // mergedProductImages.forEach((file) => {
-    //   formData.append("productPhotoURL", file);
-    // });
-    productImages.forEach((image) => {
-      formData.append("productPhotoURL", image);
+    formData.append("productPhotoUrlOld", JSON.stringify(productImages));
+   
+    productImagesNew.forEach((file) => {
+      formData.append(`productPhotoURL`, file);
     });
-    
-    productImagesUrl.forEach((file, index) => {
-      formData.append(`productPhotoFile[${index}]`, file);
-    });
+
     formData.append(
       "additionalAttributes",
       JSON.stringify(additionalAttributes)
     );
-  
-    dispatch(changeProduct({id: currentProduct._id, body: formData}));
+
+    dispatch(changeProduct({ id: currentProduct._id, body: formData }));
 
     onOpenModal();
     setProductName("");
@@ -317,7 +316,7 @@ const EditProductCard = () => {
           <StyledInput
             id="name"
             type="text"
-            pattern="^[A-Za-z\s]*$"
+            pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
             title="Будь-ласка вводьте літери англійського алфавіту"
             minLength={3}
             maxLength={16}
@@ -355,7 +354,7 @@ const EditProductCard = () => {
           <StyledInput
             id="country"
             type="text"
-            pattern="^[а-яА-Я\s]+$"
+            pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
             title="Будь-ласка введіть тільки літери кирилиці"
             required
             value={manufacturerCountry}

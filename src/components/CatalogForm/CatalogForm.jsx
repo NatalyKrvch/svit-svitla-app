@@ -86,15 +86,15 @@ const CatalogForm = () => {
           type="text"
           name="catalogName"
           required
-          pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
-          title="Name may contain only letters, apostrophe, dash and spaces."
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+          title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           onChange={handleCatalogNameChange}
         />
       </StyledInputWrapper>
       <StyledInputWrapper>
-        <StyledLabel htmlFor="year">Рік</StyledLabel>
-
-        <StyledInput type="text" name="year" onChange={handleYearChange} />
+        <StyledLabel htmlFor="year" >Рік</StyledLabel>
+        <StyledInput type="text" name="year"  pattern="^\d{4}$"
+        onChange={handleYearChange} />
       </StyledInputWrapper>
       {coverImage === null ? (
         <label>
