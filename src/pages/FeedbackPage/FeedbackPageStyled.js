@@ -105,12 +105,9 @@ export const StyledButton = styled.button`
   &[disabled] {
     background-color: var(--middle-grey);
     cursor: not-allowed; 
-    @media (hover: none) {
-      touch-action: none;
-    }
   }
 
-  &:active {
+  &:active:not(:disabled) {
     background-color: var(--pressed-blue);
     border: 2px solid var(--dark-blue);
   }
