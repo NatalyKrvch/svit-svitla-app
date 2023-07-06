@@ -73,7 +73,7 @@ const AuthorizationForm = () => {
             title="Пароль може складатися тільки із латиниці, апострофа, пробілу, тире"
             id="password"
             required
-            placeholder="все з маленької"
+            placeholder="eXaMple-Password"
             value={password}
             onChange={handleChangePassword}
           />

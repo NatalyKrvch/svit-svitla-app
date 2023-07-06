@@ -133,8 +133,8 @@ const ProductForm = () => {
         <StyledInput
           id="name"
           type="text"
-          pattern="^[A-Za-z\s]*$"
-          title="Будь-ласка вводьте літери англійського алфавіту"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+          title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           minLength={3}
           maxLength={16}
           required
@@ -171,8 +171,8 @@ const ProductForm = () => {
         <StyledInput
           id="country"
           type="text"
-          pattern="^[а-яА-Я\s]+$"
-          title="Будь-ласка введіть літери украънського алфавіту"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+          title="Будь-ласка введіть літери англійсього чи українського алфавіту"
           required
           value={manufacturerCountry}
           onChange={handleManufacturerCountryChange}
