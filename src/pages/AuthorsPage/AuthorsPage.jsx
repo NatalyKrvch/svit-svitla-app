@@ -5,7 +5,7 @@ import {
   PageWrapper,
   Img,
 } from "./AuthorsPageStyled";
-import { StyledH1 } from "../../components/Raiting/RaitingStyled";
+import { StyledH1 } from "../../pages/FeedbackPage/FeedbackPageStyled";
 import authorsList from "./authorsList.json";
 import linkedInIcon from "../../images/linkedin.svg";
 
