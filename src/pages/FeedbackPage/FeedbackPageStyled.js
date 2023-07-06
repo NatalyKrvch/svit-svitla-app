@@ -2,17 +2,15 @@ import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   margin: 40px 16px 32px;
 
   @media screen and (min-width: 769px) and (max-width: 1280px){
-    align-items: flex-start;
     margin: 64px 40px 227px;
   }
 
   @media screen and (min-width: 1281px){
-    align-items: flex-start;
     margin: 72px 136px 56px;
   }
 `
