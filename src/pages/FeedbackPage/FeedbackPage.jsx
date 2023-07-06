@@ -7,34 +7,52 @@ import {
   StyledButton,
   StyledForm,
 } from "./FeedbackPageStyled";
-import { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { addReview } from "../../redux/Review/reviewOperations";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addReview } from "../../redux/Review/reviewOperations";
 
 function Feedback() {
   const [feedback, setFeedback] = useState("");
+  const [selectedStars, setSelectedStars] = useState([]);
 
-  const handleChange = (event) => {
-    setFeedback(event.target.value);
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setFeedback(e.target.value);
+    console.log(feedback);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Додаткова логіка для відправки даних
+  const handleSelectedStars = (stars) => {
+    setSelectedStars(stars);
   };
 
-  // const dispatch = useDispatch();
+  const mark = selectedStars[selectedStars.length - 1];
 
-  // useEffect(() => {
-  //   dispatch(addReview(reviewMark, feedback));
-  // }, [dispatch, reviewMark, feedback]);
+  const review = {
+    mark: mark,
+    feedback: feedback,
+  };
+  console.log(review);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addReview(review));
+    console.log("button is clicked");
+  };
+
+  const isButtonDisabled =
+    typeof selectedStars === "undefined" || (mark !== 5 && feedback === "");
+
+  const buttonTitle = isButtonDisabled
+    ? "Будь ласка, напишіть як ми можемо стати краще"
+    : "";
 
   return (
     <>
       <PageWrapper>
         <StyledH1>Залиште відгук тут</StyledH1>
         <StyledP>Як вам було у Світі світла?</StyledP>
-        <Raiting />
+        <Raiting onSelectedStars={handleSelectedStars} />
         <StyledForm onSubmit={handleSubmit}>
           <StyledTextarea
             onChange={handleChange}
@@ -42,7 +60,12 @@ function Feedback() {
             placeholder="Ваші враження"
             id="feedback"
           />
-          <StyledButton type="submit" onSubmit={handleSubmit}>
+          <StyledButton
+            type="submit"
+            onSubmit={handleSubmit}
+            disabled={isButtonDisabled}
+            title={buttonTitle}
+          >
             Надіслати
           </StyledButton>
         </StyledForm>

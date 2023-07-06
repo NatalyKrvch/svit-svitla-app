@@ -102,6 +102,16 @@ export const StyledButton = styled.button`
   letter-spacing: -0.4px;
   cursor: pointer;
 
+  &[disabled] {
+    background-color: var(--middle-grey);
+    cursor: not-allowed; 
+  }
+
+  &:active {
+    background-color: var(--pressed-blue);
+    border: 2px solid var(--dark-blue);
+  }
+
   @media screen and (min-width: 769px) {
     height: 56px;
     width: 365px;

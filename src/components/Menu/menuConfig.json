@@ -2,7 +2,7 @@
     "adminMenu": [
         {
             "title": "Створити картку",
-            "url": "//selectcreatecard"
+            "url": "/selectcreatecard"
         },
         {
             "title": "Картки товарів",
