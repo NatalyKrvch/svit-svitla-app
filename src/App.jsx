@@ -7,7 +7,7 @@ import Authorization from "./pages/AuthorizationPage";
 import Authors from "./pages/AuthorsPage/AuthorsPage";
 import EditCatalogueCard from "./pages/EditCatalogueCardPage/EditCatalogueCardPage";
 import EditProductCard from "./pages/EditProductCardPage/EditProductCardPage";
-import PaymentDetails from "./pages/PaymentDetailsPage";
+import PaymentDetails from "./pages/PaymentDetailsPage/PaymentDetailsPage";
 import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
 import QrCodeGeneration from "./pages/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";

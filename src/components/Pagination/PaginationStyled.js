@@ -9,19 +9,19 @@ padding: 0px 6px;
 justify-content: center;
 align-items: center;
 gap: 6px;
-max-width: 360px;
+width: 328px;
 margin-top: 48px;
 margin-right: auto;
 margin-left: auto;
 
 
 @media screen and (min-width: 768px) {
- max-width: 834px;
+ width: 512px;
  margin-right: 0;
   }
 
   @media screen and (min-width:  1280px) {
-   max-width: 568px;
+   width: 568px;
   }
 
 `
