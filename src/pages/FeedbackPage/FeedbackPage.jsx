@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addReview } from "../../redux/Review/reviewOperations";
+import emailjs from "emailjs-com";
 
 function Feedback() {
   const [feedback, setFeedback] = useState("");
@@ -38,6 +39,28 @@ function Feedback() {
     e.preventDefault();
     dispatch(addReview(review));
     console.log("button is clicked");
+
+    emailjs
+      .send(
+        "service_t6kj58k",
+        "template_sve4rwo",
+        {
+          from_name: "Svit Svitla Web-service",
+          from_email: "nataly.krvch@gmail.com",
+          message: JSON.stringify(review),
+        },
+        "pqRefVTtRtVcV8Pvw_WJ9"
+      )
+      .then((response) => {
+        console.log(
+          "Повідомлення успішно надіслано!",
+          response.status,
+          response.text
+        );
+      })
+      .catch((error) => {
+        console.error("Помилка під час відправки повідомлення:", error);
+      });
   };
 
   const isButtonDisabled =
