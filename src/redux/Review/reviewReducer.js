@@ -11,7 +11,7 @@ const rejected = (state, { payload }) => {
 };
 
 const initialState = {
-  reviews: [],
+  review: null,
   isLoading: false,
   error: null,
 };
@@ -31,7 +31,7 @@ const reviewsSlice = createSlice({
       .addCase(addReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.reviews.push(payload);
+        state.review = payload;
       }),
 });
 
