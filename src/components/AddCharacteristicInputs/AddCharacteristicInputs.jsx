@@ -21,7 +21,6 @@ const AddCharacteristicInputs = ({
   //   (obj) => obj.characteristicId === id
   // );
 
-  console.log(characteristicArray);
 
   const handleCharacteristicNameChange = (evt) => {
     setCharacteristicNameInput(evt.target.value);
@@ -44,7 +43,7 @@ const AddCharacteristicInputs = ({
       )
     );
   };
-  console.log(characteristicArray);
+  
   
   return (
     <>
@@ -56,7 +55,7 @@ const AddCharacteristicInputs = ({
                 <StyledInput
                   id={id + "priceName"}
                   type="text"
-                  pattern="^[а-яА-Я\s]+$"
+                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
                   title="Пожалуйста, введите только буквы"
                   value={characteristicNamesInput}
                   onChange={handleCharacteristicNameChange}
