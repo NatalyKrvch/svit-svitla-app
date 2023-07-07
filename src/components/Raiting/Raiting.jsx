@@ -1,16 +1,11 @@
 import { StarsContainer } from "./RaitingStyled";
-import { useState } from "react";
 import Sprite from "../../images/symbol-defs.svg";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import PropTypes from "prop-types";
 
 function Raiting(props) {
-  const { onSelectedStars } = props;
-  Raiting.propTypes = {
-    onSelectedStars: PropTypes.func.isRequired,
-  };
+  const { onSelectedStars, selectedStars } = props;
 
-  const [selectedStars, setSelectedStars] = useState([]);
   const { isTablet, isDesktop } = useMediaRules();
   const starCounter = [1, 2, 3, 4, 5];
 
@@ -21,9 +16,8 @@ function Raiting(props) {
 
   const handleStarClick = (starKey) => {
     const clickedIndex = starCounter.indexOf(+starKey);
-    const selectedStars = starCounter.slice(0, clickedIndex + 1);
-    setSelectedStars(selectedStars);
-    onSelectedStars(selectedStars);
+    const selectedStarsArr = starCounter.slice(0, clickedIndex + 1);
+    onSelectedStars(selectedStarsArr);
   };
 
   return (
@@ -55,5 +49,10 @@ function Raiting(props) {
     </>
   );
 }
+
+Raiting.propTypes = {
+  onSelectedStars: PropTypes.func.isRequired,
+  selectedStars: PropTypes.array.isRequired,
+};
 
 export default Raiting;

@@ -57,9 +57,10 @@ export const StyledTextarea = styled.textarea`
   line-height: 29px;
   letter-spacing: -0.4px;
   resize: none;
+  position: relative;
 
   &::placeholder {
-    position: absolute;
+    /* position: absolute; */
     color: var(--middle-grey);
     top: 12px;
     left: 12px;
