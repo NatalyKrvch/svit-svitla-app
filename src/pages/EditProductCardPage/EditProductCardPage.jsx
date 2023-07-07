@@ -112,10 +112,12 @@ const EditProductCard = () => {
     setProductImages(newProductImages);
   };
 
-  const handleDeleteProductImgUrl = (index) => {
-    const newProductImagesUrl = [...productImagesUrl];
-    newProductImagesUrl.splice(index, 1);
-    URL.revokeObjectURL(productImages[index]);
+  const handleDeleteProductImgUrl = (url) => {
+    // const newProductImagesUrl = [...productImagesUrl];
+    const newProductImagesUrl = productImagesUrl.filter((card) => card !== url);
+    // newProductImagesUrl.splice(index, 1);
+    // URL.revokeObjectURL(productImages[index]);
+    URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
   };
 
@@ -181,7 +183,7 @@ const EditProductCard = () => {
     formData.append("productCountry", manufacturerCountry);
     formData.append("productCoverURL", coverImage || "");
     formData.append("productPhotoUrlOld", JSON.stringify(productImages));
-   
+
     productImagesNew.forEach((file) => {
       formData.append(`productPhotoURL`, file);
     });
@@ -242,12 +244,12 @@ const EditProductCard = () => {
         {productImages.length !== 0 && (
           <ul>
             {productImages.map((photo, index) => (
-              <StyledInputWrapperPhoto key={index}>
+              <StyledInputWrapperPhoto key={photo}>
                 <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
                 <StyledImg src={`${photo}`} alt="photo" />
                 <StyledInput type="text" value={`${index + 1}.jpeg`} readOnly />
                 <StyledButtonDelete
-                  onClick={() => handleDeleteProductImg(index)}
+                  onClick={() => handleDeleteProductImg(photo)}
                 >
                   <RiDeleteBin6Line size={"1.8em"} color="white" />
                 </StyledButtonDelete>
