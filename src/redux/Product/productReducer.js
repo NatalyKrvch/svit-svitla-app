@@ -47,7 +47,7 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         // state.products.push(...payload);
-        state.products=payload;
+        state.products = payload;
       })
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -64,16 +64,15 @@ const productsSlice = createSlice({
       .addCase(changeProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.products = state.products
-          .filter((product) => product._id !== payload._id)
-          .push(...payload); //переделать скорее всего !!!
+        state.products = state.products.map((obj) => {
+          if (obj._id !== payload._id) return payload;
+          return obj;
+        });
       })
       .addCase(getProductById.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.currentProduct = payload;
-        // state.expences.transactions = payload.expenses;
-        // state.expences.stats = payload.monthsStats;
       }),
 });
 
