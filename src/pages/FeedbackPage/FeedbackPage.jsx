@@ -49,7 +49,7 @@ function Feedback() {
           from_email: "nataly.krvch@gmail.com",
           message: JSON.stringify(review),
         },
-        "pqRefVTtRtVcV8Pvw_WJ9"
+        "PRsszXr5qEOiC2sof"
       )
       .then((response) => {
         console.log(
