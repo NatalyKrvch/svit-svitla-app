@@ -63,7 +63,7 @@ export const StyledTextarea = styled.textarea`
   ${(props) =>
     props.isTextareaEmpty &&
     css`
-      border-color: red;
+      border-color: var(--warning);
     `}
 
   &::placeholder {
