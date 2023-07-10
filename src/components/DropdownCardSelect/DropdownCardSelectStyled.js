@@ -55,8 +55,8 @@ background-color: transparent;
 `
 
 export const StyledOptions = styled.li`
-  width: 328px;
-  height: 72.5px;
+  max-width: 328px;
+  /* height: 72.5px; */
   padding: 20px 16px;
   font-size: 16px;
   line-height: 1,5;
@@ -67,11 +67,11 @@ export const StyledOptions = styled.li`
   border-radius: 4px;
 
   @media screen and (min-width: 768px) {
-    width: 495px;
+    max-width: 495px;
     
   }
 
   @media screen and (min-width: 1280px) {
-    width: 572px;
+    max-width: 572px;
   }
 `;

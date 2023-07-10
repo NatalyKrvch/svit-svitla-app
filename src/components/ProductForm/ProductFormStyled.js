@@ -146,6 +146,7 @@ export const StyledImg = styled.img`
   display: block;
   width: 48px;
   height: 56px;
+  object-fit: cover;
 `;
 
 export const StyledButtonDelete = styled.button`

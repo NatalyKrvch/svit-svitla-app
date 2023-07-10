@@ -35,10 +35,10 @@ const PreorderCataloguePage = () => {
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
   const { isMobile, isTablet} = useMediaRules();
-  const lastCatalogIndex = pageNumber * perPage;
-  const firstCatalogIndex = lastCatalogIndex - perPage;
-  const currentCatalogs = fetchedCatalogsList.slice(firstCatalogIndex, firstCatalogIndex);
- console.log(fetchedCatalogsList);
+//   const lastCatalogIndex = pageNumber * perPage;
+//   const firstCatalogIndex = lastCatalogIndex - perPage;
+//   const currentCatalogs = fetchedCatalogsList.slice(firstCatalogIndex, firstCatalogIndex);
+//  console.log(fetchedCatalogsList);
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage }));
@@ -51,6 +51,9 @@ const PreorderCataloguePage = () => {
   const updateCatalogsList = (updatedList) => {
     setFetchedCatalogsList(updatedList);
   };
+
+  console.log(catalogsList);
+  console.log(fetchedCatalogsList);
 
   useEffect(() => {
     let newPerPage = 8; 
@@ -109,6 +112,8 @@ const PreorderCataloguePage = () => {
     setPageNumber(pageNumber - 1)
   };
 
+  
+  //Необходимо заменит функцию после исправления бекенда  на запрос всех каталогов, без пагинации
   const handleLastPageButton = () => {
     const lastPage = Math.ceil(fetchedCatalogsList.length / perPage);
     setPageNumber(lastPage);
@@ -148,11 +153,12 @@ const PreorderCataloguePage = () => {
           catalogYear={catalogYear}
           catalogId={catalogId}
           onCloseModal={closeModal}
-          catalogsList={currentCatalogs}
+          catalogsList={fetchedCatalogsList}
           updateCatalogsList={updateCatalogsList}
         />
       )}
-        <Pagination 
+      {catalogsList !== 0  && 
+      <Pagination 
       pageNumber={pageNumber}
       cardsPerPage={perPage}
       totalCards={fetchedCatalogsList.length} 
@@ -160,7 +166,7 @@ const PreorderCataloguePage = () => {
       handleNextPageButton={handleNextPageButton}
       handlePreviousPageButton={handlePreviousPageButton}
       handleLastPageButton={handleLastPageButton}
-      handleFirstPageButton={handleFirstPageButton}/>
+      handleFirstPageButton={handleFirstPageButton}/> }  
     </STyledContainer>
   );
 };

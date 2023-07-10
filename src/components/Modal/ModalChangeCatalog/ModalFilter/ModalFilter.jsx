@@ -13,8 +13,17 @@ import {
   StyledIconCircleFill,
   StyledTitle,
 } from "./ModalFilterStyled";
+import { useState } from "react";
 
-const ModalFilter = ({onCloseModal}) => {
+const ModalFilter = ({onCloseModal, onSubmit}) => {
+
+  const [filter, setFilter] = useState('');
+
+const handleChooseFilterButton = (value) => {
+  // const newFilter = ev.target.innerText;
+  setFilter(value.toLowerCase());
+}
+
   return (
     <Overlay>
       <ModalBody>
@@ -22,50 +31,57 @@ const ModalFilter = ({onCloseModal}) => {
           <GrClose />
         </CloseButton>
         <StyledTitle>Фільтри</StyledTitle>
-        <StyledFiltersWrp>
-          <FilterBtn>
+        <StyledFiltersWrp >
+          <FilterBtn onClick={()=> handleChooseFilterButton('Стельові')}>
             Стельові
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'стельові' && <StyledIconCircleFill />}
             </IconBtn>
           </FilterBtn>
-          <FilterBtn>
+          <FilterBtn onClick={()=> handleChooseFilterButton('Підвісні')}>
             Підвісні
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'підвісні' && <StyledIconCircleFill />}
             </IconBtn>
           </FilterBtn>
-          <FilterBtn>
+          <FilterBtn onClick={()=> handleChooseFilterButton('Бра')}>
             Бра
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'бра' && <StyledIconCircleFill />}
             </IconBtn>
-          </FilterBtn>
-          <FilterBtn>
+          </FilterBtn >
+          <FilterBtn onClick={()=> handleChooseFilterButton('Точкові')}>
             Точкові
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'точкові' && <StyledIconCircleFill />}
             </IconBtn>
           </FilterBtn>
-          <FilterBtn>
+          <FilterBtn onClick={()=> handleChooseFilterButton('Торшери')}>
             Торшери
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'торшери' && <StyledIconCircleFill />}
             </IconBtn>
           </FilterBtn>
-          <FilterBtn>
+          <FilterBtn onClick={()=> handleChooseFilterButton('Настільні')}>
             Настільні
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'настільні' && <StyledIconCircleFill />}
             </IconBtn>
           </FilterBtn>
-          <FilterBtn>
+          <FilterBtn onClick={()=> handleChooseFilterButton('Нічники')}>
             Нічники
             <IconBtn>
-              <StyledIconCircle /> <StyledIconCircleFill />
+              <StyledIconCircle /> 
+              {filter === 'нічники' && <StyledIconCircleFill />}
             </IconBtn>
           </FilterBtn>
-          <StyledButtonChoose>
+          <StyledButtonChoose onClick={()=> onSubmit(filter)}>
             Застосувати
           </StyledButtonChoose>
         </StyledFiltersWrp>

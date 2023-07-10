@@ -19,7 +19,8 @@ const  EditCatalogueCard = () =>  {
 
   const [name, setCatalogName] = useState(currentCatalog?.catalogName || "");
   const [year, setYear] = useState(currentCatalog?.catalogYear || "");
-  const [coverImage, setCoverImage] = useState(currentCatalog?.catalogCoverURL || null);
+  // const [coverImage, setCoverImage] = useState(currentCatalog?.catalogCoverURL || null);
+  const [coverImageUrl, setCoverImageUrl] = useState(currentCatalog?.catalogCoverURL || "");
   const [catalogFile, setCatalogFile] = useState(currentCatalog?.catalogFileURL || "");
   const [showModal, setShowModal] = useState(false);
   
@@ -29,7 +30,7 @@ const  EditCatalogueCard = () =>  {
   useEffect(() => {
     setCatalogName(currentCatalog?.catalogName || "");
     setYear(currentCatalog?.catalogYear || "");
-    setCoverImage(currentCatalog?.catalogCoverURL || null);
+    setCoverImageUrl(currentCatalog?.catalogCoverURL || null);
     setCatalogFile("");
   }, [currentCatalog]);
 
@@ -45,11 +46,12 @@ const  EditCatalogueCard = () =>  {
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
-    setCoverImage(file);
+    setCoverImageUrl(URL.createObjectURL(file));
   };
 
   const handleDeleteCoverImg = () => {
-    setCoverImage(null);
+    setCoverImageUrl("");
+    URL.revokeObjectURL(coverImageUrl);
   };
 
   const handleCatalogImagesDownload = (event) => {
@@ -69,7 +71,7 @@ const  EditCatalogueCard = () =>  {
     const formData = new FormData();
     formData.append("catalogName", name);
     formData.append("catalogYear", year);
-    formData.append("catalogCoverURL", coverImage || "");
+    formData.append("catalogCoverURL", coverImageUrl || "");
     formData.append("catalogFileURL", catalogFile);
     console.log(formData);
 
@@ -77,7 +79,7 @@ const  EditCatalogueCard = () =>  {
 
     setCatalogName("");
     setYear("");
-    setCoverImage(null);
+    setCoverImageUrl(null);
     setCatalogFile("");
     setShowModal(true);
   };
@@ -90,14 +92,14 @@ const  EditCatalogueCard = () =>  {
      <StyledP>{name}</StyledP>
      <StyledP>{year}</StyledP>
      <StyledForm action="" onSubmit={handleSubmit}>
-     {!coverImage ? (
+     {!coverImageUrl ? (
         <label>
           <FileInput
             type="file"
             required
             onChange={handleCoverImageChange}
             accept=".jpeg, .jpg"
-            value={coverImage}
+            value={coverImageUrl}
           />
           <FakeInputWrp>
             <FakeInputText>Додати обкладинку</FakeInputText>
@@ -109,7 +111,7 @@ const  EditCatalogueCard = () =>  {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImage}  alt="cover" />
+          <StyledImg src={coverImageUrl}  alt="cover" />
           <StyledInput
             id="name"
             type="text"
@@ -154,7 +156,7 @@ const  EditCatalogueCard = () =>  {
       <SubmitButton
         type="submit"
         disabled={
-          !name || !year || !coverImage 
+          !name || !year || !coverImageUrl 
         }
       >
         Зберегти
