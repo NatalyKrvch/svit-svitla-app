@@ -74,8 +74,8 @@ const Pagination = ({
           size={"1.5em"}
         />
       </StyledButton>
-      <StyledButton onClick={() => handlePreviousPageButton()}>
-        <StyledReactIconPrevious disabled={pageNumber === 1} size={"1.5em"} />
+      <StyledButton onClick={() => handlePreviousPageButton()} disabled={pageNumber === 1}>
+        <StyledReactIconPrevious disabled={pageNumber === 1}  size={"1.5em"} color={"inherit"} />  
       </StyledButton>
       <StyledUl>
         {visiblePages[0] > 1 && (
@@ -98,13 +98,14 @@ const Pagination = ({
           <StyledLi onClick={() => onClick(lastPage)}>{lastPage}</StyledLi>
         )}
       </StyledUl>
-      <StyledButton onClick={() => handleNextPageButton()}>
+      <StyledButton onClick={() => handleNextPageButton()} disabled={pageNumber === lastPage} >
         <StyledReactIconNext
           disabled={pageNumber === lastPage}
           size={"1.5em"}
+          color={"inherit"} 
         />
       </StyledButton>
-      <StyledButton onClick={() => handleLastPageButton()}>
+      <StyledButton onClick={() => handleLastPageButton()} >
         <StyledReactIconTrackNext
           disabled={pageNumber === lastPage}
           size={"2em"}

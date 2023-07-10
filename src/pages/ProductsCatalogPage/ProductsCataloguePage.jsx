@@ -88,7 +88,6 @@ const ProductsCataloguePage = () => {
     closeModal();
   };
 
-  console.log(query);
 
   return (
     <StyledFragment>
@@ -98,7 +97,7 @@ const ProductsCataloguePage = () => {
         <FiFilter size={"1.5em"} />
         Фільтрувати
       </StyledButton>
-      <ProductList productsList={products} />
+     {products.length !== 0 && <ProductList productsList={products} />}
      {products.length !== 0 &&  
       <Pagination
         pageNumber={pageNumber}

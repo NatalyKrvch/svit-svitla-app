@@ -357,7 +357,7 @@ const EditProductCard = () => {
         </StyledInputWrapper>
         {characteristicArray.map((item) => (
           <AddCharacteristicInputs
-            key={nanoid()}
+            key={item.characteristicId}
             id={item.characteristicId}
             onDelete={handleDeleteCharacteristicButton}
             setCharacteristicArray={setCharacteristicArray}
