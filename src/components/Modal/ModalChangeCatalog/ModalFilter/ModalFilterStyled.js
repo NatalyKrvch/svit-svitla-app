@@ -115,7 +115,8 @@ export const FilterBtn = styled.button`
   }
 `;
 
-export const IconBtn = styled.button`
+export const IconBtn = styled.span`
+display: block;
   width: 18px;
   height: 18px;
   position: relative;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeProduct } from "../../redux/Product/productOperations";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiPlusCircle } from "react-icons/bi";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import { getAllProducts } from "../../redux/Product/productSelectors";
 import {
   StyledButtonDelete,
@@ -67,6 +67,7 @@ const EditProductCard = () => {
     currentProduct?.productCoverURL
   );
   const [productImagesUrl, setProductImagesUrl] = useState([]);
+ 
 
   const navigate = useNavigate();
 
@@ -80,21 +81,12 @@ const EditProductCard = () => {
     setProductImages(currentProduct?.productPhotoURL || "");
   }, [currentProduct]);
 
-  console.log(productImages);
   const dispatch = useDispatch();
-
+  
   if (!currentProduct) {
     return;
   }
-
-  // const handleProductImagesChange = (event) => {
-  //   const files = event.target.files;
-  //   const newProductImages = Array.from(files);
-  //   console.log(files);
-  //   setProductImages((prev)=> {
-  //     return [...prev, ...newProductImages]
-  //   })
-  // };
+  
 
   const handleProductImagesChangeUrl = (event) => {
     const files = event.target.files;
@@ -149,7 +141,8 @@ const EditProductCard = () => {
     URL.revokeObjectURL(coverImageUrl);
   };
 
-  const handleDeleteCharacteristicButton = (id) => {
+  const handleDeleteCharacteristicButton = (id, evt) => {
+    evt.preventDefault()
     const index = characteristicArray.findIndex(
       (item) => item.characteristicId === id
     );
@@ -173,8 +166,7 @@ const EditProductCard = () => {
       return { name: obj.characteristicName, value: obj.characteristicValue };
     });
 
-    const mergedProductImages = productImages.concat(productImagesUrl);
-    console.log(mergedProductImages);
+
 
     const formData = new FormData();
     formData.append("productName", productName);
@@ -263,7 +255,7 @@ const EditProductCard = () => {
               <StyledInputWrapperPhoto key={index}>
                 <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
                 <StyledImg src={`${photo}`} alt="photo" />
-                <StyledInput type="text" value={`${index + 1}.jpeg`} readOnly />
+                <StyledInput type="text" value={`New Photo ${index + 1}.jpeg`} readOnly />
                 <StyledButtonDelete
                   onClick={() => handleDeleteProductImgUrl(index)}
                 >
@@ -365,7 +357,7 @@ const EditProductCard = () => {
         </StyledInputWrapper>
         {characteristicArray.map((item) => (
           <AddCharacteristicInputs
-            key={item.characteristicId}
+            key={nanoid()}
             id={item.characteristicId}
             onDelete={handleDeleteCharacteristicButton}
             setCharacteristicArray={setCharacteristicArray}

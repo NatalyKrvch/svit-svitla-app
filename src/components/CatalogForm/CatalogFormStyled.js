@@ -12,16 +12,17 @@ export const StyledForm = styled.form`
   @media screen and (min-width: 768px) {
     margin-left: 0;
     max-width: 495px;
+    gap: 24px;
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 572px;
+    gap: 32px;
   }
 `;
 export const StyledInputWrapper = styled.div`
   position: relative;
   max-width: 328px;
-  height: 56px;
   display: flex;
   align-items: center;
   justify-content: left;
@@ -65,7 +66,7 @@ export const StyledCoverLabel = styled.label`
 export const StyledInput = styled.input`
   width: 328px;
   height: 56px;
-  padding: 16px;
+  padding-left: 16px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
@@ -177,6 +178,7 @@ export const StyledImg = styled.img`
   display: block;
   width: 48px;
   height: 56px;
+  object-fit: cover;
 `;
 
 export const StyledButtonDelete = styled.button`

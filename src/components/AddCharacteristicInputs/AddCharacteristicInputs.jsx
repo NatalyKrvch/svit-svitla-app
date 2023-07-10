@@ -17,12 +17,11 @@ const AddCharacteristicInputs = ({
 }) => {
   const [characteristicNamesInput, setCharacteristicNameInput] = useState("");
   const [characteristicValuesInput, setCharacteristicValueInput] = useState("");
-  // const currentObj = charcharacteristicValuesInputacteristicArray.find(
-  //   (obj) => obj.characteristicId === id
-  // );
+ 
 
 
   const handleCharacteristicNameChange = (evt) => {
+    evt.preventDefault()
     setCharacteristicNameInput(evt.target.value);
     setCharacteristicArray((prev) =>
       prev.map((obj) =>
@@ -34,6 +33,7 @@ const AddCharacteristicInputs = ({
   };
 
   const handleCharacteristicValueChange = (evt) => {
+    evt.preventDefault()
     setCharacteristicValueInput(evt.target.value);
     setCharacteristicArray((prev) =>
       prev.map((obj) =>
@@ -74,8 +74,8 @@ const AddCharacteristicInputs = ({
                 <StyledInput
                   id={id + "price"}
                   type="text"
-                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                  title="Характеристика може включати тільки літери, апостроф, тире "
+                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9-\s]*"
+                  title="Характеристика може включати тільки літери українського чи англійського алфавіту, цифри та тире "
                   value={characteristicValuesInput}
                   onChange={handleCharacteristicValueChange}
                 />

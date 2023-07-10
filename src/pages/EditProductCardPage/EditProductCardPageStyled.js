@@ -67,11 +67,12 @@ margin-bottom: 32px;
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   display: flex;
   align-items: center;
   justify-content: left;
   margin-bottom: 16px;
+
   @media screen and (min-width: 768px) {
     width: 495px;
   }
@@ -85,7 +86,7 @@ export const StyledInputWrapper = styled.div`
 export const StyledInputWrapperPhoto = styled.li`
   position: relative;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   display: flex;
   align-items: center;
   justify-content: left;
@@ -115,12 +116,13 @@ export const StyledImg = styled.img`
   display: block;
   width: 48px;
   height: 56px;
+  object-fit: cover;
 `;
 
 export const StyledInput = styled.input`
   width: 328px;
-  height: 56px;
-  padding: 16px;
+  /* height: 56px; */
+  padding: 20px 16px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
@@ -158,7 +160,7 @@ export const FakeInputWrp = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;

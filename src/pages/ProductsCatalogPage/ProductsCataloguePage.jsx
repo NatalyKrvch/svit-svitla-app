@@ -13,6 +13,7 @@ import { getProducts } from "../../redux/Product/productOperations";
 import Pagination from "../../components/Pagination/Pagination";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalChangeCatalog/ModalFilter/ModalFilter";
+import { useSearchParams } from "react-router-dom";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -22,9 +23,12 @@ const ProductsCataloguePage = () => {
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
-  const lastProductIndex = pageNumber * perPage;
-  const firstProductIndex = lastProductIndex - perPage;
-  const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+
+  // const lastProductIndex = pageNumber * perPage;
+  // const firstProductIndex = lastProductIndex - perPage;
+  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -42,6 +46,13 @@ const ProductsCataloguePage = () => {
     dispatch(getProducts({ page: pageNumber, per_page: perPage }));
   }, [pageNumber]);
 
+  // useEffect(() => {
+  //   if (!query) {
+  //     return;
+  //   }
+  //   getProductsByQuery(query);
+  // }, [query]);
+
   const handlePaginationClick = (i) => {
     setPageNumber(i);
   };
@@ -54,6 +65,8 @@ const ProductsCataloguePage = () => {
     setPageNumber(pageNumber - 1);
   };
 
+
+//Необходимо исправить функцию после исправления бекенда. 
   const handleLastPageButton = () => {
     const lastPage = Math.ceil(products.length / perPage);
     setPageNumber(lastPage);
@@ -70,25 +83,33 @@ const ProductsCataloguePage = () => {
     setShowModalFilter(false);
   };
 
+  const handleSubmit = (filter) => {
+    setSearchParams({ query: filter });
+    closeModal();
+  };
+
+  console.log(query);
+
   return (
     <StyledFragment>
-      {showModalFilter && <ModalFilter onCloseModal = {closeModal}/>}
+      {showModalFilter && <ModalFilter onCloseModal = {closeModal} onSubmit={handleSubmit}/>}
       <StyledTitle>Каталог товарів</StyledTitle>
       <StyledButton onClick={() => openModal()}>
         <FiFilter size={"1.5em"} />
         Фільтрувати
       </StyledButton>
-      <ProductList productsList={currentProducts} />
+      <ProductList productsList={products} />
+     {products.length !== 0 &&  
       <Pagination
         pageNumber={pageNumber}
         cardsPerPage={perPage}
-        totalCards={products.length}
+        totalCards={products.length}          //исправить после исправления бекенда.
         onClick={handlePaginationClick}
         handleNextPageButton={handleNextPageButton}
         handlePreviousPageButton={handlePreviousPageButton}
         handleLastPageButton={handleLastPageButton}
         handleFirstPageButton={handleFirstPageButton}
-      />
+      />}
     </StyledFragment>
   );
 };
