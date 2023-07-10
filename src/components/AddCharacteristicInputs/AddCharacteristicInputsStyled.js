@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledInputWrapper = styled.div`
 position: relative;
 width: 328px;
-height: 56px;
+/* height: 56px; */
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -31,8 +31,8 @@ top: -8px;
 `
 export const StyledInput = styled.input`
 width: 328px;
-height: 56px;
-padding: 16px;
+/* height: 56px; */
+padding: 20px 16px;
 border: 1px solid var(--light-blue);
 border-radius: 4px;
 outline: var(--dark-blue);

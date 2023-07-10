@@ -25,12 +25,14 @@ const CatalogForm = () => {
   const [catalogName, setCatalogName] = useState("");
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
+  const [coverImageUrl, setCoverImageUrl] = useState('');
   const [catalogFile, setCatalogFile] = useState("");
  
   const dispatch = useDispatch();
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
+    setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
   };
 
@@ -52,24 +54,18 @@ const CatalogForm = () => {
 
     dispatch(addCatalog(formData));
 
-    // dispatch(
-    //   addCatalog({
-    //     catalogName,
-    //     catalogYear: year,
-
-    //     catalogCoverURL: coverImage || "",
-
-    //     catalogFileURL: catalogImages,
-    //   })
-    // );
     setCatalogName("");
     setYear("");
     setCoverImage(null);
+    setCoverImageUrl("")
+    URL.revokeObjectURL(coverImageUrl);
     setCatalogFile("");
   };
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
+    setCoverImageUrl('');
+    URL.revokeObjectURL(coverImageUrl);
   };
 
   const handleCatalogImagesDownload = (event) => {
@@ -88,13 +84,14 @@ const CatalogForm = () => {
           required
           pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
           title="Будь-ласка вводьте літери англійського чи українського алфавіту"
+          value={catalogName}
           onChange={handleCatalogNameChange}
         />
       </StyledInputWrapper>
       <StyledInputWrapper>
         <StyledLabel htmlFor="year" >Рік</StyledLabel>
         <StyledInput type="text" name="year"  pattern="^\d{4}$"
-        onChange={handleYearChange} />
+        value={year} onChange={handleYearChange} />
       </StyledInputWrapper>
       {coverImage === null ? (
         <label>
@@ -115,7 +112,7 @@ const CatalogForm = () => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImage}  alt="cover" />
+          <StyledImg src={coverImageUrl}  alt="cover" />
           <StyledInput
             id="name"
             type="text"
