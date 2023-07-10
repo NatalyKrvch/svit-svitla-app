@@ -18,6 +18,7 @@ const rejected = (state, { payload }) => {
 
 const initialState = {
   products: [],
+  totalItems: 0,
   currentProduct: null,
   isLoading: false,
   error: null,
@@ -46,8 +47,8 @@ const productsSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // state.products.push(...payload);
-        state.products = payload;
+        state.products = payload.data;
+        state.totalItems = payload.total;
       })
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
