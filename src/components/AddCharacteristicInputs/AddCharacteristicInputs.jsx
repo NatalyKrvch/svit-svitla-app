@@ -4,7 +4,6 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
-  // StyledLi,
   StyledUlCharacteristics,
 } from "./AddCharacteristicInputsStyled";
 import { BiMinusCircle } from "react-icons/bi";
@@ -13,7 +12,6 @@ const AddCharacteristicInputs = ({
   id,
   onDelete,
   setCharacteristicArray,
-  characteristicArray,
 }) => {
   const [characteristicNamesInput, setCharacteristicNameInput] = useState("");
   const [characteristicValuesInput, setCharacteristicValueInput] = useState("");

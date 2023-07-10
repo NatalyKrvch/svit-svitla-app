@@ -4,13 +4,16 @@ export const StyledFragment   = styled.div`
 padding: 40px 16px 16px 16px;
 margin-left:auto;
 margin-right: auto;
+width: 328px;
 
  @media screen and (min-width: 768px) {
    padding: 48px 40px 32px 40px;
+   width: 753px;
   }
 
   @media screen and (min-width: 1280px) {
     padding: 72px 136px 48px 136px;
+    width: 1168px;
   }
 `
 

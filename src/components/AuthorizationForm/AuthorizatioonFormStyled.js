@@ -85,10 +85,14 @@ export const StyledForm = styled.form`
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   display: flex;
   align-items: center;
   justify-content: left;
+
+  &:focus {
+   border: 0px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     width: 495px;
@@ -117,7 +121,7 @@ export const StyledLabel = styled.label`
 
 export const StyledInput = styled.input`
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   padding: 16px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;

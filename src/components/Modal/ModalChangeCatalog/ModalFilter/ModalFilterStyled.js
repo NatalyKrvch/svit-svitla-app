@@ -17,7 +17,7 @@ export const Overlay = styled.div`
 
 export const ModalBody = styled.div`
   position: relative;
-  width: 320px;
+  max-width: 320px;
   padding: 64px 20px 16px 20px;
   position: fixed;
   background-color: var(--main-white);
@@ -30,12 +30,8 @@ export const ModalBody = styled.div`
   border-radius: 8px;
 
   @media screen and (min-width: 768px) {
-    width: 494px;
+    max-width: 494px;
     padding: 80px 16px 16px 16px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    /* width: 274px; */
   }
 `;
 
@@ -71,18 +67,24 @@ export const StyledTitle = styled.h3`
     font-size: 32px;
     line-height: 1;
     margin-bottom: 24px;
+    max-width: 462px;
   }
 
   @media screen and (min-width: 1280px) {
     font-size: 48px;
     font-weight: 400;
-    line-height: 1, 2;
+    line-height: 1,2;
+   
   }
 `;
 export const StyledFiltersWrp = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  
+  @media screen and (min-width: 768px) {
+    width: 462px;
+  }
 `;
 
 export const FilterBtn = styled.button`

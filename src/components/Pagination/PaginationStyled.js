@@ -42,7 +42,7 @@ justify-content: center;
 align-items: center;
 border: none;
 background-color: transparent;
-color: ${((props) => props.disabled ? 'var(--light-blue)' : 'var(--main-black)')};
+color: ${((props) => props.disabled ? 'var(--middle-grey)' : 'var(--main-black)')};
 outline: none;
 cursor: pointer;
 `
