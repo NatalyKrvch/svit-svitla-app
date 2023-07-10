@@ -1,12 +1,12 @@
 import ProductCard from "../ProductCard/ProductCard";
 import { StyledList } from "./ProductListStyled";
 
-const ProductList = ({productsList: {data}}) => {
-  console.log(data);
+const ProductList = ({productsList}) => {
+  
 
   return (
     <StyledList>
-      {data.map((product, index) => (
+      {productsList.map((product, index) => (
         <li key={index}><ProductCard product={product}/> </li>
       ))}
     </StyledList>
