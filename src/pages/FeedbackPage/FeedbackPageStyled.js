@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -52,6 +52,7 @@ export const StyledTextarea = styled.textarea`
   padding: 12px;
   border-radius: 8px;
   border: 2px solid var(--light-blue);
+
   font-weight: 500;
   font-size: 14px;
   line-height: 29px;
@@ -59,8 +60,13 @@ export const StyledTextarea = styled.textarea`
   resize: none;
   position: relative;
 
+  ${(props) =>
+    props.isTextareaEmpty &&
+    css`
+      border-color: red;
+    `}
+
   &::placeholder {
-    /* position: absolute; */
     color: var(--middle-grey);
     top: 12px;
     left: 12px;
