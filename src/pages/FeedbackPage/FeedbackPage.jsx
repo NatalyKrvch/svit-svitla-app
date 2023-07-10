@@ -19,11 +19,13 @@ function Feedback() {
 
   const [feedback, setFeedback] = useState("");
   const [selectedStars, setSelectedStars] = useState([]);
+  const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFeedback(e.target.value);
+    setIsTextareaEmpty(false);
   };
 
   const handleSelectedStars = (stars) => {
@@ -39,6 +41,12 @@ function Feedback() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (feedback.trim() === "") {
+      setIsTextareaEmpty(true);
+      return;
+    }
+
     dispatch(addReview(review));
 
     // emailjs
@@ -67,11 +75,7 @@ function Feedback() {
   };
 
   const isButtonDisabled =
-    typeof selectedStars === "undefined" || (mark !== 5 && feedback === "");
-
-  const buttonTitle = isButtonDisabled
-    ? "Будь ласка, напишіть як ми можемо стати краще"
-    : "";
+    typeof selectedStars === "undefined" || selectedStars < 1;
 
   return (
     <>
@@ -89,12 +93,16 @@ function Feedback() {
             type="text"
             placeholder="Ваші враження"
             id="feedback"
+            isTextareaEmpty={isTextareaEmpty}
+            // style={{ borderColor: isTextareaEmpty ? "red" : "initial" }}
           />
+          {isTextareaEmpty && (
+            <p style={{ color: "red" }}>Будь ласка, заповніть це поле</p>
+          )}
           <StyledButton
             type="submit"
             onSubmit={handleSubmit}
             disabled={isButtonDisabled}
-            title={buttonTitle}
           >
             Надіслати
           </StyledButton>
