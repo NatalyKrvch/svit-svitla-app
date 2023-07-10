@@ -21,6 +21,8 @@ function Feedback() {
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
 
+  const maxChar = 500;
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -93,11 +95,11 @@ function Feedback() {
             type="text"
             placeholder="Ваші враження"
             id="feedback"
+            maxLength={maxChar}
             isTextareaEmpty={isTextareaEmpty}
-            // style={{ borderColor: isTextareaEmpty ? "red" : "initial" }}
           />
           {isTextareaEmpty && (
-            <p style={{ color: "red" }}>Будь ласка, заповніть це поле</p>
+            <p style={{ color: "#B3261E" }}>Будь ласка, заповніть це поле</p>
           )}
           <StyledButton
             type="submit"
