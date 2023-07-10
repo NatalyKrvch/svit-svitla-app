@@ -99,7 +99,9 @@ function Feedback() {
             isTextareaEmpty={isTextareaEmpty}
           />
           {isTextareaEmpty && (
-            <p style={{ color: "#B3261E" }}>Будь ласка, заповніть це поле</p>
+            <p style={{ color: "#B3261E" }}>
+              Будь ласка, заповніть поле відгуку
+            </p>
           )}
           <StyledButton
             type="submit"
