@@ -1,25 +1,43 @@
-import { configureStore } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer } from 'redux-persist';
-import authReducer from './Auth/authReducer';
-import productReducer from './Product/productReducer';
-import catalogReducer from './Catalog/catalogReducer';
-import reviewReducer from './Review/reviewReducer';
+import { configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistStore, persistReducer } from "redux-persist";
+import authReducer from "./Auth/authReducer";
+import productReducer from "./Product/productReducer";
+import catalogReducer from "./Catalog/catalogReducer";
+import reviewReducer from "./Review/reviewReducer";
 import { filterReducer } from "./Filter/slice";
 
 const authPersistConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
 };
 
-const persistedReducer = persistReducer(authPersistConfig, authReducer);
+const productsPersistConfig = {
+  key: "products",
+  storage,
+};
+
+const catalogsPersistConfig = {
+  key: "catalogs",
+  storage,
+};
+
+const persistedReducerAuth = persistReducer(authPersistConfig, authReducer);
+const persistedReducerProducts = persistReducer(
+  productsPersistConfig,
+  productReducer
+);
+const persistedReducerCatalogs = persistReducer(
+  catalogsPersistConfig,
+  catalogReducer
+);
 
 export const store = configureStore({
   reducer: {
-    products: productReducer,
-    catalogs: catalogReducer,
+    products: persistedReducerProducts,
+    catalogs: persistedReducerCatalogs,
     reviews: reviewReducer,
-    auth: persistedReducer,
+    auth: persistedReducerAuth,
     filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>

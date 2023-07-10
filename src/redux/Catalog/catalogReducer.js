@@ -17,6 +17,7 @@ const rejected = (state, { payload }) => {
 
 const initialState = {
   catalogs: [],
+  totalItems: 0,
   isLoading: false,
   error: null,
 };
@@ -40,7 +41,8 @@ const catalogsSlice = createSlice({
       .addCase(changeCatalog.pending, pending)
       .addCase(changeCatalog.rejected, rejected)
       .addCase(getCatalogs.fulfilled, (state, { payload }) => {
-        state.catalogs = payload;
+        state.catalogs = payload.data;
+        state.totalItems = payload.total;
         state.isLoading = false;
         state.error = null;
       })
