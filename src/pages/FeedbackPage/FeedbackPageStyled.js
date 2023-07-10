@@ -60,7 +60,6 @@ export const StyledTextarea = styled.textarea`
   position: relative;
 
   &::placeholder {
-    /* position: absolute; */
     color: var(--middle-grey);
     top: 12px;
     left: 12px;
