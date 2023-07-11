@@ -154,6 +154,8 @@ const PaymentDetails = () => {
             )}
           </StyledInputWrapper>
         )}
+
+        
         <FakeInputWrp>
           <FakeInputText>Додати інформацію</FakeInputText>
           <FakeButton onClick={handleBtnAddDetail}>
