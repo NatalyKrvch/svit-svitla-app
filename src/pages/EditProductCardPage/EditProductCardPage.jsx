@@ -34,6 +34,7 @@ const EditProductCard = () => {
   const { id } = useParams();
   const productsList = useSelector(getAllProducts);
   const currentProduct = productsList.find((product) => product._id === id);
+  
 
   const [productName, setProductName] = useState(
     currentProduct?.productName || ""
@@ -60,6 +61,8 @@ const EditProductCard = () => {
     currentProduct?.productCoverURL
   );
   const [productImagesUrl, setProductImagesUrl] = useState([]);
+
+  console.log(characteristicArray);
 
   const navigate = useNavigate();
 
@@ -96,13 +99,15 @@ const EditProductCard = () => {
   };
 
   const handleDeleteProductImgUrl = (url) => {
-    // const newProductImagesUrl = [...productImagesUrl];
+    console.log(productImagesUrl);
     const newProductImagesUrl = productImagesUrl.filter((card) => card !== url);
+    console.log(newProductImagesUrl);
     // newProductImagesUrl.splice(index, 1);
     // URL.revokeObjectURL(productImages[index]);
     URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
   };
+  console.log(productImagesUrl);
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -134,12 +139,10 @@ const EditProductCard = () => {
 
   const handleDeleteCharacteristicButton = (id, evt) => {
     evt.preventDefault();
-    const index = characteristicArray.findIndex(
-      (item) => item.characteristicId === id
+    const newArray = characteristicArray.filter(
+      (item) => item._id !== id
     );
-    if (index !== -1) {
-      characteristicArray.splice(index, 1);
-    }
+    setCharacteristicArray(newArray);
   };
 
   const onOpenModal = () => {
@@ -154,8 +157,10 @@ const EditProductCard = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const additionalAttributes = characteristicArray.map((obj) => {
-      return { name: obj.characteristicName, value: obj.characteristicValue };
+      return { name: obj.name, value: obj.value };
     });
+    console.log(additionalAttributes);
+    console.log(characteristicArray);
 
     const formData = new FormData();
     formData.append("productName", productName);
@@ -186,6 +191,7 @@ const EditProductCard = () => {
     setCharacteristicArray([]);
   };
 
+  console.log('render');
   return (
     <StyledFragment>
       <StyledForm onSubmit={handleSubmit}>
@@ -230,7 +236,7 @@ const EditProductCard = () => {
                 <StyledImg src={`${photo}`} alt="photo" />
                 <StyledInput type="text" value={`${index + 1}.jpeg`} readOnly />
                 <StyledButtonDelete
-                  onClick={() => handleDeleteProductImg(photo)}
+                  onClick={() => handleDeleteProductImg(index)}
                 >
                   <RiDeleteBin6Line size={"1.8em"} color="white" />
                 </StyledButtonDelete>
@@ -241,7 +247,7 @@ const EditProductCard = () => {
         {productImagesUrl.length !== 0 && (
           <ul>
             {productImagesUrl.map((photo, index) => (
-              <StyledInputWrapperPhoto key={index}>
+              <StyledInputWrapperPhoto key={photo}>
                 <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
                 <StyledImg src={`${photo}`} alt="photo" />
                 <StyledInput
@@ -250,7 +256,7 @@ const EditProductCard = () => {
                   readOnly
                 />
                 <StyledButtonDelete
-                  onClick={() => handleDeleteProductImgUrl(index)}
+                  onClick={() => handleDeleteProductImgUrl(photo)}
                 >
                   <RiDeleteBin6Line size={"1.8em"} color="white" />
                 </StyledButtonDelete>
@@ -331,11 +337,11 @@ const EditProductCard = () => {
         </StyledInputWrapper>
         {characteristicArray.map((item) => (
           <AddCharacteristicInputs
-            key={item.characteristicId}
-            id={item.characteristicId}
+            key={item._id}
+            id={item._id}
             onDelete={handleDeleteCharacteristicButton}
             setCharacteristicArray={setCharacteristicArray}
-            characteristicArray={characteristicArray}
+            characteristic={item}
           />
         ))}
         <FakeInputWrp>
@@ -345,7 +351,8 @@ const EditProductCard = () => {
             onClick={() => {
               const id = nanoid();
               setCharacteristicArray((prevState) => {
-                return [...prevState, { characteristicId: id }];
+                console.log(prevState);
+                return [...prevState, { _id: id }];
               });
               return;
             }}

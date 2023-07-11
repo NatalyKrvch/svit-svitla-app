@@ -22,7 +22,7 @@ export const StyledForm = styled.form`
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   display: flex;
   align-items: center;
   justify-content: left;
@@ -60,7 +60,7 @@ export const StyledCoverLabel = styled.label`
 
 export const StyledInput = styled.input`
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   padding: 16px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
@@ -82,7 +82,7 @@ export const FakeInputWrp = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;

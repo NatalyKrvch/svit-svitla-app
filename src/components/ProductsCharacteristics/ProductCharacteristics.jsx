@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 
 
 const ProductCharacteristics = ({price, manufacturerCountry, characteristicArray}) => {
+
     return(
     <>
          <Styledh4>Характеристики товару</Styledh4>
@@ -18,12 +19,12 @@ const ProductCharacteristics = ({price, manufacturerCountry, characteristicArray
             {characteristicArray.map((item) => (
               <StyledLi key={nanoid()}>
                 <StyledPAttribute>
-                  {item.characteristicName
-                    ? `${item.characteristicName}: `
+                  {item.name
+                    ? `${item.name}: `
                     : ""}
                 </StyledPAttribute>
                 <StyledSpanAttribute>
-                  {item.characteristicValue ? item.characteristicValue : ""}
+                  {item.value ? item.value : ""}
                 </StyledSpanAttribute>
               </StyledLi>
             ))}
