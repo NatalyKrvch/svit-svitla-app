@@ -17,6 +17,25 @@ export const StyledContainer = styled.div`
   }
 `;
 
+export const StyledTitleWrp = styled.div`
+max-width: 328px;
+margin-left: auto;
+margin-right: auto;
+
+
+@media screen and (min-width: 768px) {
+  max-width: 754px;
+  margin: 0;
+  border-bottom: 1px solid var(--middle-grey);
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1168px;
+
+  }
+
+`
+
 export const StyledTitle = styled.h2`
   font-weight: 400;
   font-size: 24px;
@@ -41,6 +60,7 @@ export const StyledDiv = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-left: 0;
+    margin-top: 40px;
     max-width: 624px;
   }
 
@@ -53,21 +73,21 @@ export const StyledDiv = styled.div`
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   display: flex;
   align-items: center;
   justify-content: left;
 
   @media screen and (min-width: 768px) {
-    align-items: flex-start;
-    justify-content: space-evenly;
-    width: 495px;
+    /* align-items: flex-start;
+    justify-content: space-evenly; */
+    width: 624px;
     gap: 18px;
   }
   
 
   @media screen and (min-width: 1280px) {
-    width: 671px;
+    width: 572px;
     justify-content: space-evenly;
     line-height: 1;
     letter-spacing: -0.4px;
@@ -86,11 +106,11 @@ export const StyledLabel = styled.label`
   top: -8px;
 
   @media screen and (min-width: 768px) {
-    position: static;
+    /* position: static;
     width: 128px;
-    height: 48px;
-    color: var(--main-black);
-    background-color: var(--main-white);
+    height: 48px; */
+    /* color: var(--main-black);
+    background-color: var(--main-white); */
     text-align: start;
     font-size: 16px;
     line-height: 1, 5;
@@ -114,7 +134,7 @@ export const StyledCoverLabel = styled.label`
 
 export const StyledInput = styled.input`
   width: 328px;
-  height: 56px;
+  /* height: 56px; */
   padding: 16px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
@@ -122,11 +142,9 @@ export const StyledInput = styled.input`
 
   @media screen and (min-width: 768px) {
     height: auto;
-    padding: 0;
-    text-align: start;
-    width: 495px;
+    /* text-align: start; */
+    width: 624px;
     outline: none;
-    border: none;
     font-size: 20px;
   }
 
@@ -139,34 +157,37 @@ export const FakeInputWrp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 328px;
-  height: 56px;
+  max-width: 328px;
+  /* height: 56px; */
   border: 1px solid var(--light-blue);
-  border-radius: 4px;
+  border-radius: 8px;
   padding-left: 8px;
 
   @media screen and (min-width: 768px) {
-    width: 495px;
+    max-width: 624px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 572px;
+    max-width: 572px;
+   
+  
   }
 `;
 export const FakeInputText = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.4px; 
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
     line-height: 1;
-    width: 495px;
+    max-width: 624px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 572px;
+    max-width: 572px;
+    height: 56px;
   }
 `;
 export const FakeButton = styled.button`
@@ -174,8 +195,8 @@ export const FakeButton = styled.button`
   align-items: center;
   justify-content: center;
   width: 48px;
-  height: 56px;
-  border: 1px solid var(--light-blue);
+  height: 48px;
+  border: none;
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
@@ -187,7 +208,49 @@ export const FakeButton = styled.button`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 572px;
+  
    
   }
 `;
+
+export const StyledButton = styled.button`
+/* position: absolute;
+top: 0;
+right: 0; */
+display: flex;
+align-items: center;
+justify-content: center;
+width: 48px;
+height: 49px;
+border: none;
+border-radius: 4px;
+background-color: transparent;
+cursor: pointer;
+outline: none;
+`
+
+export const FakeButtonDelete = styled.button`
+position: absolute;
+top: 0;
+right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+
+  @media screen and (min-width: 768px) {
+    outline: none;
+    border: none;
+  }
+
+  @media screen and (min-width: 1280px) {
+  
+   
+  }
+  `

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeProduct } from "../../redux/Product/productOperations";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiPlusCircle } from "react-icons/bi";
-import { useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getAllProducts } from "../../redux/Product/productSelectors";
 import {
   StyledButtonDelete,
@@ -19,14 +19,6 @@ import {
   FakeInputWrp,
   FakeInputText,
   FakeButton,
-  Styledh4,
-  StyledPriceCurrency,
-  StyledPCountry,
-  StyledSpanCountry,
-  StyledUl,
-  StyledPAttribute,
-  StyledSpanAttribute,
-  StyledLi,
   StyledInputWrapperPhoto,
   SubmitButton,
   StyledForm,
@@ -36,6 +28,7 @@ import {
 import { nanoid } from "nanoid";
 import AddCharacteristicInputs from "../../components/AddCharacteristicInputs/AddCharacteristicInputs";
 import ModalChangeProductCard from "../../components/Modal/ModalChangeCatalog/ModalChangeProductCard/ModalChangeProductCard";
+import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
 
 const EditProductCard = () => {
   const { id } = useParams();
@@ -67,7 +60,6 @@ const EditProductCard = () => {
     currentProduct?.productCoverURL
   );
   const [productImagesUrl, setProductImagesUrl] = useState([]);
- 
 
   const navigate = useNavigate();
 
@@ -82,11 +74,10 @@ const EditProductCard = () => {
   }, [currentProduct]);
 
   const dispatch = useDispatch();
-  
+
   if (!currentProduct) {
     return;
   }
-  
 
   const handleProductImagesChangeUrl = (event) => {
     const files = event.target.files;
@@ -142,7 +133,7 @@ const EditProductCard = () => {
   };
 
   const handleDeleteCharacteristicButton = (id, evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
     const index = characteristicArray.findIndex(
       (item) => item.characteristicId === id
     );
@@ -165,8 +156,6 @@ const EditProductCard = () => {
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.characteristicName, value: obj.characteristicValue };
     });
-
-
 
     const formData = new FormData();
     formData.append("productName", productName);
@@ -255,7 +244,11 @@ const EditProductCard = () => {
               <StyledInputWrapperPhoto key={index}>
                 <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
                 <StyledImg src={`${photo}`} alt="photo" />
-                <StyledInput type="text" value={`New Photo ${index + 1}.jpeg`} readOnly />
+                <StyledInput
+                  type="text"
+                  value={`New Photo ${index + 1}.jpeg`}
+                  readOnly
+                />
                 <StyledButtonDelete
                   onClick={() => handleDeleteProductImgUrl(index)}
                 >
@@ -280,30 +273,11 @@ const EditProductCard = () => {
           </FakeInputWrp>
         </label>
 
-        <Styledh4>Характеристики товару</Styledh4>
-        <StyledP>
-          Ціна: <StyledPriceCurrency>{`${price} грн`}</StyledPriceCurrency>
-        </StyledP>
-        <StyledPCountry>
-          Країна <br /> походження:{" "}
-          <StyledSpanCountry>{`${manufacturerCountry}`}</StyledSpanCountry>
-        </StyledPCountry>
-        {characteristicArray.length !== 0 && (
-          <StyledUl>
-            {characteristicArray.map((item) => (
-              <StyledLi key={nanoid()}>
-                <StyledPAttribute>
-                  {item.characteristicName
-                    ? `${item.characteristicName}: `
-                    : ""}
-                </StyledPAttribute>
-                <StyledSpanAttribute>
-                  {item.characteristicValue ? item.characteristicValue : ""}
-                </StyledSpanAttribute>
-              </StyledLi>
-            ))}
-          </StyledUl>
-        )}
+        <ProductCharacteristics
+          price={price}
+          manufacturerCountry={manufacturerCountry}
+          characteristicArray={characteristicArray}
+        />
 
         <StyledInputWrapper>
           <StyledLabel htmlFor="name">Назва товару</StyledLabel>
