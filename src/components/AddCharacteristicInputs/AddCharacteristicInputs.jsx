@@ -12,19 +12,20 @@ const AddCharacteristicInputs = ({
   id,
   onDelete,
   setCharacteristicArray,
+  characteristic
 }) => {
-  const [characteristicNamesInput, setCharacteristicNameInput] = useState("");
-  const [characteristicValuesInput, setCharacteristicValueInput] = useState("");
+  const [characteristicNamesInput, setCharacteristicNameInput] = useState(characteristic?.name);
+  const [characteristicValuesInput, setCharacteristicValueInput] = useState(characteristic?.value);
  
-
+  console.log(id);
 
   const handleCharacteristicNameChange = (evt) => {
     evt.preventDefault()
     setCharacteristicNameInput(evt.target.value);
     setCharacteristicArray((prev) =>
       prev.map((obj) =>
-        obj.characteristicId === id
-          ? { ...obj, characteristicName: evt.target.value }
+        obj._id === id
+          ? { ...obj, name: evt.target.value }
           : obj
       )
     );
@@ -35,8 +36,8 @@ const AddCharacteristicInputs = ({
     setCharacteristicValueInput(evt.target.value);
     setCharacteristicArray((prev) =>
       prev.map((obj) =>
-        obj.characteristicId === id
-          ? { ...obj, characteristicValue: evt.target.value }
+        obj._id === id
+          ? { ...obj, value: evt.target.value }
           : obj
       )
     );
@@ -60,8 +61,8 @@ const AddCharacteristicInputs = ({
                 />
                 <StyledButton
                   type="button "
-                  onClick={() => {
-                    onDelete(id);
+                  onClick={(evt) => {
+                    onDelete(id, evt);
                   }}
                 >
                   <BiMinusCircle size={"1.8em"} />
@@ -79,8 +80,8 @@ const AddCharacteristicInputs = ({
                 />
                 <StyledButton
                   type="button "
-                  onClick={() => {
-                    onDelete(id);
+                  onClick={(evt) => {
+                    onDelete(id, evt);
                   }}
                 >
                   <BiMinusCircle size={"1.8em"} />

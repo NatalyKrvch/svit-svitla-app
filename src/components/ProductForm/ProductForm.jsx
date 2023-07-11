@@ -70,6 +70,7 @@ const ProductForm = () => {
     setProductImagesUrl([...productImagesUrl, ...urlArray]);
   };
 
+
   const handleDeleteCharacteristicButton = (id) => {
     const index = characteristicArray.findIndex(item => item.characteristicId === id);
     if (index !== -1) {
@@ -116,7 +117,7 @@ const ProductForm = () => {
     formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
     dispatch(addProduct(formData))
     
-
+    console.log(formData);
     setProductName("");
     setProductCode("");
     setPrice("");
