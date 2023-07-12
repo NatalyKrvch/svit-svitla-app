@@ -8,8 +8,9 @@ import {
   StyledForm,
 } from "./FeedbackPageStyled";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../redux/Review/reviewOperations";
+import { getCurrentReviews } from "../../redux/Review/reviewSelectors";
 // import emailjs from "emailjs-com";
 
 function Feedback() {
@@ -20,6 +21,9 @@ function Feedback() {
   const [feedback, setFeedback] = useState("");
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
+
+  const createdReview = useSelector(getCurrentReviews);
+  console.log(createdReview);
 
   const maxChar = 500;
 

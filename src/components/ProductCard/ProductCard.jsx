@@ -11,19 +11,19 @@ import {
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
-import { removeProduct } from "../../redux/Product/productOperations.js"
+import { removeProduct } from "../../redux/Product/productOperations.js";
 
 const ProductCard = ({
-  product: { productCoverURL, productName, productCode, productPrice,  _id },
+  product: { productCoverURL, productName, productCode, productPrice, _id },
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-const handleDeleteButton = (_id) => {
-  console.log(_id);
-  dispatch(removeProduct(_id));
-}
+  const handleDeleteButton = (_id) => {
+    console.log(_id);
+    dispatch(removeProduct(_id));
+  };
   return (
     <div>
       <StyledImg src={productCoverURL} alt="Picture" />
@@ -32,17 +32,21 @@ const handleDeleteButton = (_id) => {
         <StyledP>{`Артикул: ${productCode}`}</StyledP>
         <StyledP>{`Ціна: ${productPrice} грн`}</StyledP>
         {!isLoggedIn ? (
-          <StyledButton>Деталі</StyledButton>
+          <StyledButton
+            type="button"
+            onClick={() => navigate(`/productcard/${_id}`)}
+          >
+            Деталі
+          </StyledButton>
         ) : (
           <StyledBtnWrp>
             <StyledBtn
               type="button"
-              onClick={()=>  navigate(`/editproductcard/${_id}`)}
+              onClick={() => navigate(`/editproductcard/${_id}`)}
             >
               <RiPencilLine size={"1.5em"} />
             </StyledBtn>
-            <StyledBtn type="button"
-            onClick={()=> handleDeleteButton(_id)}>
+            <StyledBtn type="button" onClick={() => handleDeleteButton(_id)}>
               <RiDeleteBin6Line size={"1.5em"} />
             </StyledBtn>
           </StyledBtnWrp>

@@ -1,1 +1,1 @@
-export const getAllReviews = (state) => state.reviews.reviews;
+export const getCurrentReviews = (state) => state.reviews.review;
