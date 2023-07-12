@@ -1,21 +1,23 @@
 import styled from "styled-components";
 
-export const StyledFragment   = styled.div`
-padding: 40px 16px 16px 16px;
-margin-left:auto;
-margin-right: auto;
-width: 328px;
+export const StyledFragment = styled.div`
+  padding: 40px 16px auto 16px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 328px;
 
- @media screen and (min-width: 768px) {
-   padding: 48px 40px 32px 40px;
-   width: 753px;
+  @media screen and (min-width: 768px) {
+    padding: 48px 40px auto 40px;
+    width: 753px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 72px 136px 48px 136px;
+    padding: 0;
     width: 1168px;
+    margin-top: 72px;
+    margin-bottom: 40px;
   }
-`
+`;
 
 export const StyledTitle = styled.h2`
   font-size: 24px;
@@ -30,7 +32,7 @@ export const StyledTitle = styled.h2`
     line-height: 1;
   }
 
-  @media screen and (min-width:  1280px) {
+  @media screen and (min-width: 1280px) {
     font-size: 48px;
     line-height: 1, 2;
   }
@@ -63,5 +65,4 @@ export const StyledButton = styled.button`
     font-size: 20px;
     gap: 30px;
   }
-
 `;

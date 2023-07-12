@@ -10,40 +10,27 @@ import { BiMinusCircle } from "react-icons/bi";
 
 const AddCharacteristicInputs = ({
   id,
-  onDelete,
+  name,
+  value,
+  characteristicArray,
   setCharacteristicArray,
-  characteristic
+  
 }) => {
-  const [characteristicNamesInput, setCharacteristicNameInput] = useState(characteristic?.name);
-  const [characteristicValuesInput, setCharacteristicValueInput] = useState(characteristic?.value);
+
+
+  const handleChange = (ev) => {
+     const {name, value} = ev.target
+     setCharacteristicArray(p => 
+      p.map((el) => el._id !== id ? el : {...el, [name] : value}))
+  };
  
-  console.log(id);
-
-  const handleCharacteristicNameChange = (evt) => {
-    evt.preventDefault()
-    setCharacteristicNameInput(evt.target.value);
-    setCharacteristicArray((prev) =>
-      prev.map((obj) =>
-        obj._id === id
-          ? { ...obj, name: evt.target.value }
-          : obj
-      )
+  const handleDeleteCharacteristic = (id) => {
+    const newArray = characteristicArray.filter(
+      (item) => item._id !== id
     );
+    setCharacteristicArray(newArray);
   };
 
-  const handleCharacteristicValueChange = (evt) => {
-    evt.preventDefault()
-    setCharacteristicValueInput(evt.target.value);
-    setCharacteristicArray((prev) =>
-      prev.map((obj) =>
-        obj._id === id
-          ? { ...obj, value: evt.target.value }
-          : obj
-      )
-    );
-  };
-  
-  
   return (
     <>
         <StyledUlCharacteristics>
@@ -53,16 +40,17 @@ const AddCharacteristicInputs = ({
                 </StyledLabel>
                 <StyledInput
                   id={id + "priceName"}
+                  name="name"
                   type="text"
                   pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
                   title="Пожалуйста, введите только буквы"
-                  value={characteristicNamesInput}
-                  onChange={handleCharacteristicNameChange}
+                  value={name}
+                  onChange={handleChange}
                 />
                 <StyledButton
                   type="button "
-                  onClick={(evt) => {
-                    onDelete(id, evt);
+                  onClick={() => {
+                    handleDeleteCharacteristic(id);
                   }}
                 >
                   <BiMinusCircle size={"1.8em"} />
@@ -72,16 +60,17 @@ const AddCharacteristicInputs = ({
                 <StyledLabel htmlFor={id + "price"}>Характеристика</StyledLabel>
                 <StyledInput
                   id={id + "price"}
+                  name="value"
                   type="text"
                   pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9-\s]*"
                   title="Характеристика може включати тільки літери українського чи англійського алфавіту, цифри та тире "
-                  value={characteristicValuesInput}
-                  onChange={handleCharacteristicValueChange}
+                  value={value}
+                  onChange={handleChange}
                 />
                 <StyledButton
                   type="button "
-                  onClick={(evt) => {
-                    onDelete(id, evt);
+                  onClick={() => {
+                    handleDeleteCharacteristic(id);
                   }}
                 >
                   <BiMinusCircle size={"1.8em"} />
