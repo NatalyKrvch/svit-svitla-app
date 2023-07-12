@@ -11,10 +11,6 @@
         {
             "title": "Каталоги",
             "url": "/preordercatalogue"
-        },
-        {
-            "title": "Вийти",
-            "url": "/authorization"
         }
     ],
     "userMenu": [
