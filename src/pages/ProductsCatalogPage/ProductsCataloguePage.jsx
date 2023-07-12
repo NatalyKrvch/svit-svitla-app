@@ -24,7 +24,7 @@ const ProductsCataloguePage = () => {
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query');
+  const query = searchParams.get("query");
 
   // const lastProductIndex = pageNumber * perPage;
   // const firstProductIndex = lastProductIndex - perPage;
@@ -65,8 +65,7 @@ const ProductsCataloguePage = () => {
     setPageNumber(pageNumber - 1);
   };
 
-
-//Необходимо исправить функцию после исправления бекенда. 
+  //Необходимо исправить функцию после исправления бекенда.
   const handleLastPageButton = () => {
     const lastPage = Math.ceil(products.length / perPage);
     setPageNumber(lastPage);
@@ -88,27 +87,29 @@ const ProductsCataloguePage = () => {
     closeModal();
   };
 
-
   return (
     <StyledFragment>
-      {showModalFilter && <ModalFilter onCloseModal = {closeModal} onSubmit={handleSubmit}/>}
+      {showModalFilter && (
+        <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
+      )}
       <StyledTitle>Каталог товарів</StyledTitle>
       <StyledButton onClick={() => openModal()}>
         <FiFilter size={"1.5em"} />
         Фільтрувати
       </StyledButton>
-     {products.length !== 0 && <ProductList productsList={products} />}
-     {products.length !== 0 &&  
-      <Pagination
-        pageNumber={pageNumber}
-        cardsPerPage={perPage}
-        totalCards={products.length}          //исправить после исправления бекенда.
-        onClick={handlePaginationClick}
-        handleNextPageButton={handleNextPageButton}
-        handlePreviousPageButton={handlePreviousPageButton}
-        handleLastPageButton={handleLastPageButton}
-        handleFirstPageButton={handleFirstPageButton}
-      />}
+      {products.length !== 0 && <ProductList productsList={products} />}
+      {products.length !== 0 && (
+        <Pagination
+          pageNumber={pageNumber}
+          cardsPerPage={perPage}
+          totalCards={products.length} //исправить после исправления бекенда.
+          onClick={handlePaginationClick}
+          handleNextPageButton={handleNextPageButton}
+          handlePreviousPageButton={handlePreviousPageButton}
+          handleLastPageButton={handleLastPageButton}
+          handleFirstPageButton={handleFirstPageButton}
+        />
+      )}
     </StyledFragment>
   );
 };
