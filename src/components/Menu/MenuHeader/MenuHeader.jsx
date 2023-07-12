@@ -1,4 +1,4 @@
-import { StyledUl, StyledLink } from "./MenuHeaderStyled";
+import { StyledUl, StyledLink, logOutButton } from "./MenuHeaderStyled";
 import menuConfig from "../menuConfig.json";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
@@ -28,9 +28,9 @@ function MenuHeader(props) {
         ))}
       </StyledUl>
       {isLoggedIn && (
-        <button type="button" onClick={handleLogOut}>
+        <logOutButton type="button" onClick={handleLogOut}>
           Вийти
-        </button>
+        </logOutButton>
       )}
     </>
   );

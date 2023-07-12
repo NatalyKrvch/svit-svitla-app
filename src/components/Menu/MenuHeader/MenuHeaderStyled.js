@@ -26,3 +26,7 @@ export const StyledLink = styled(NavLink)`
         color: var(--middle-grey);
     }
 `
+export const logOutButton = styled.button`
+    color: var(--main-white);
+    &:hover {color: var(--middle-grey);}
+`
