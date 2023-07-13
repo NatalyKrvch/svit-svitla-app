@@ -29,7 +29,7 @@ const ProductsCataloguePage = () => {
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query');
+  const query = searchParams.get("query");
 
   // const lastProductIndex = pageNumber * perPage;
   // const firstProductIndex = lastProductIndex - perPage;
@@ -74,8 +74,7 @@ const ProductsCataloguePage = () => {
     setPageNumber(pageNumber - 1);
   };
 
-
-//Необходимо исправить функцию после исправления бекенда. 
+  //Необходимо исправить функцию после исправления бекенда.
   const handleLastPageButton = () => {
     const lastPage = Math.ceil(products.length / perPage);
     setPageNumber(lastPage);
@@ -117,6 +116,7 @@ const ProductsCataloguePage = () => {
       id={productId} 
       products={updatedProductList}
       setUpdatedProductList={setUpdatedProductList}/>}
+
       <StyledTitle>Каталог товарів</StyledTitle>
       <StyledButton onClick={() => openModal()}>
         <FiFilter size={"1.5em"} />
@@ -134,6 +134,7 @@ const ProductsCataloguePage = () => {
         handleLastPageButton={handleLastPageButton}
         handleFirstPageButton={handleFirstPageButton}
       />}
+
     </StyledFragment>
   );
 };

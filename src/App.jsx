@@ -30,7 +30,7 @@ function App() {
         <Route path="/editcatauloguecard/:id" element={<EditCatalogueCard />} />
         <Route path="/editproductcard/:id" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
-        <Route path="/productcard" element={<ProductCardPage />} />
+        <Route path="/productcard/:id" element={<ProductCardPage />} />
         <Route path="/qrcodegeneration" element={<QrCodeGeneration />} />
         <Route path="*" element={<NotFound />} />
       </Route>
