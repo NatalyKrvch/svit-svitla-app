@@ -25,7 +25,8 @@ export const MenuBurgerContainer = styled.div`
     min-height: 100vh;
     position: fixed;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
     z-index: 10;
     animation-duration: 0.4s;
     animation-timing-function: ease-in-out;
@@ -40,7 +41,7 @@ export const CrossWrapper = styled.div`
 `
 
 export const StyledUl = styled.ul`
-    margin-top: 84px;
+    margin: 84px 16px 0;
     min-width: 328px;
     color: var(--main-white);
     font-family: "Inter";

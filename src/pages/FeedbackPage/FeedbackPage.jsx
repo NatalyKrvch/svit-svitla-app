@@ -22,8 +22,11 @@ function Feedback() {
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
 
-  const createdReview = useSelector(getCurrentReviews);
-  console.log(createdReview);
+  const currentReview = useSelector(getCurrentReviews);
+  console.log(currentReview);
+
+  const currentReviewDate = currentReview.lastDate;
+  console.log(currentReviewDate);
 
   const maxChar = 500;
 
@@ -50,6 +53,11 @@ function Feedback() {
 
     if (feedback.trim() === "") {
       setIsTextareaEmpty(true);
+      return;
+    }
+
+    if (currentReview !== null) {
+      alert("Ви вже надіслали відгук, дякуємо");
       return;
     }
 

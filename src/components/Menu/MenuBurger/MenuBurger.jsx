@@ -8,6 +8,7 @@ import {
 import PropTypes from "prop-types";
 import menuConfig from "../menuConfig.json";
 import crossImg from "../../../images/Menu/close_24px.svg";
+import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
 
 function MenuBurger({ onClose, ...props }) {
   MenuBurger.propTypes = {
@@ -25,7 +26,6 @@ function MenuBurger({ onClose, ...props }) {
         <CrossWrapper onClick={onClose}>
           <img src={crossImg} alt="close" />
         </CrossWrapper>
-
         <StyledUl>
           {menuData.map((item, index) => (
             <StyledLi key={index}>
@@ -35,6 +35,7 @@ function MenuBurger({ onClose, ...props }) {
             </StyledLi>
           ))}
         </StyledUl>
+        <LogOutButton />
       </MenuBurgerContainer>
     </>
   );
