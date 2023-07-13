@@ -18,8 +18,9 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 import * as htmlToImage from 'html-to-image';
 
 const QrCodeGeneration = () => {
-  const addedProduct = useSelector(getCurrentProduct);
-  const { isMobile, isTablet, isDesktop } = useMediaRules();
+  const {productName, productCode, _id} = useSelector(getCurrentProduct);
+  
+  const { isMobile } = useMediaRules();
 
   const handleDownloadQrCode = async () => {
     const qrCodeWrapper = document.getElementById('qrCodeWrapper');
@@ -48,8 +49,8 @@ const QrCodeGeneration = () => {
       </StyledTitleWrp>
       <StyledTextWrp>
         <div>
-          <StyledProductName>Circolo Led S</StyledProductName>
-          <StyledArticle>50326</StyledArticle>
+          <StyledProductName>{productName}</StyledProductName>
+          <StyledArticle>{productCode}</StyledArticle>
         </div>
 
         <StyledButton onClick={handleDownloadQrCode}>
@@ -60,7 +61,7 @@ const QrCodeGeneration = () => {
         <StyledQrCodeWrp id="qrCodeWrapper">
           <QRCode
             id="qrCode"
-            value={`http://localhost:5173//editproductcard/${addedProduct._id}`}
+            value={`http://localhost:5173//editproductcard/${_id}`}
             size={isMobile ? 128 : 624}
             fgColor="#000000"
             bgColor="#ffffff"
