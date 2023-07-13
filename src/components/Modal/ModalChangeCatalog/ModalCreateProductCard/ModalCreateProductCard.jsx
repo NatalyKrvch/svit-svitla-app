@@ -1,10 +1,9 @@
 import { GrClose } from "react-icons/gr";
 import lampYellow from "../../../../images/Popup/lamp-yellow@1x.png" 
-import { CloseButton, ModalBody, Overlay, StyledImg, StyledTitle, SubmitButtonQRCode } from "./ModalChangeProductCardStyled";
 import { useNavigate } from "react-router-dom";
+import { CloseButton, ModalBody, Overlay, StyledImg, StyledTitle, SubmitButtonQRCode } from "./ModalCreateProductCardStyled";
 
-
-const ModalChangeProductCard = ({onCloseModal}) => {
+const ModalCreateProductCard = ({onCloseModal, addedProduct}) => {
     const navigate = useNavigate();
 
     return (
@@ -12,11 +11,11 @@ const ModalChangeProductCard = ({onCloseModal}) => {
         <ModalBody>
             <CloseButton onClick={()=> onCloseModal()}> <GrClose/></CloseButton>
             <StyledImg src={lampYellow} alt="lamp" />
-            <StyledTitle>Картка успішно змінена</StyledTitle>  
+            <StyledTitle>Картка успішно створена</StyledTitle>  
             <SubmitButtonQRCode onClick={()=> navigate('/qrcodegeneration')}>QR Code</SubmitButtonQRCode>   
         </ModalBody>
      </Overlay>
     )
 }
 
-export default ModalChangeProductCard
+export default ModalCreateProductCard

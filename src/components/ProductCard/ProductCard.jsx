@@ -14,7 +14,7 @@ import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import { removeProduct } from "../../redux/Product/productOperations.js";
 
 const ProductCard = ({
-  product: { productCoverURL, productName, productCode, productPrice, _id },
+  product: { productCoverURL, productName, productCode, productPrice,  _id }, onOpen
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
@@ -46,7 +46,9 @@ const ProductCard = ({
             >
               <RiPencilLine size={"1.5em"} />
             </StyledBtn>
-            <StyledBtn type="button" onClick={() => handleDeleteButton(_id)}>
+            <StyledBtn type="button"
+            onClick={()=> onOpen(productCode, _id)}>
+
               <RiDeleteBin6Line size={"1.5em"} />
             </StyledBtn>
           </StyledBtnWrp>

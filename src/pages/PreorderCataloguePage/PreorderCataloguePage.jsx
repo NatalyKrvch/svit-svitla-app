@@ -28,7 +28,7 @@ const PreorderCataloguePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [catalogName, setCatalogName] = useState("");
   const [catalogYear, setCatalogYear] = useState("");
-  const [catalogId, detCatalogId] = useState("");
+  const [catalogId, setCatalogId] = useState("");
   const [filter, setFilter] = useState("");
   
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -72,7 +72,7 @@ const PreorderCataloguePage = () => {
     setShowModal(true);
     setCatalogName(name);
     setCatalogYear(year);
-    detCatalogId(id);
+    setCatalogId(id);
   };
 
   const closeModal = () => {

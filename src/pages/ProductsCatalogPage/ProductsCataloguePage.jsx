@@ -14,11 +14,16 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalChangeCatalog/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
+import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalDeleteProduct/ModalDeleteProduct";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [showModalFilter, setShowModalFilter] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [productCode, setProductCode] = useState('');
+  const [productId, setProductId] = useState('');
+  const [updatedProductList, setUpdatedProductList] = useState([]);
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
@@ -45,6 +50,10 @@ const ProductsCataloguePage = () => {
   useEffect(() => {
     dispatch(getProducts({ page: pageNumber, per_page: perPage }));
   }, [pageNumber]);
+
+  useEffect(()=> {
+    setUpdatedProductList(products);
+  }, [products])
 
   // useEffect(() => {
   //   if (!query) {
@@ -87,29 +96,45 @@ const ProductsCataloguePage = () => {
     closeModal();
   };
 
+  const openModalDelete = (code, id) => {
+    setIsModalDeleteOpen(true);
+    setProductCode(code);
+    setProductId(id);
+  };
+
+  const closeModalDelete = () => {
+    setIsModalDeleteOpen(false);
+  }
+
+
   return (
     <StyledFragment>
-      {showModalFilter && (
-        <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
-      )}
+      {showModalFilter && <ModalFilter onCloseModal = {closeModal} onSubmit={handleSubmit}/>}
+      {isModalDeleteOpen && <ModalDeleteProduct 
+      onClose={closeModalDelete} 
+      code={productCode} 
+      id={productId} 
+      products={updatedProductList}
+      setUpdatedProductList={setUpdatedProductList}/>}
+
       <StyledTitle>Каталог товарів</StyledTitle>
       <StyledButton onClick={() => openModal()}>
         <FiFilter size={"1.5em"} />
         Фільтрувати
       </StyledButton>
-      {products.length !== 0 && <ProductList productsList={products} />}
-      {products.length !== 0 && (
-        <Pagination
-          pageNumber={pageNumber}
-          cardsPerPage={perPage}
-          totalCards={products.length} //исправить после исправления бекенда.
-          onClick={handlePaginationClick}
-          handleNextPageButton={handleNextPageButton}
-          handlePreviousPageButton={handlePreviousPageButton}
-          handleLastPageButton={handleLastPageButton}
-          handleFirstPageButton={handleFirstPageButton}
-        />
-      )}
+     {products.length !== 0 && <ProductList productsList={updatedProductList} onOpen={openModalDelete}/>}
+     {products.length !== 0 &&  
+      <Pagination
+        pageNumber={pageNumber}
+        cardsPerPage={perPage}
+        totalCards={updatedProductList.length}          //исправить после исправления бекенда.
+        onClick={handlePaginationClick}
+        handleNextPageButton={handleNextPageButton}
+        handlePreviousPageButton={handlePreviousPageButton}
+        handleLastPageButton={handleLastPageButton}
+        handleFirstPageButton={handleFirstPageButton}
+      />}
+
     </StyledFragment>
   );
 };
