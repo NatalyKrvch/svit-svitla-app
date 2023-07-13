@@ -99,15 +99,11 @@ const EditProductCard = () => {
   };
 
   const handleDeleteProductImgUrl = (url) => {
-    console.log(productImagesUrl);
     const newProductImagesUrl = productImagesUrl.filter((card) => card !== url);
-    console.log(newProductImagesUrl);
-    // newProductImagesUrl.splice(index, 1);
-    // URL.revokeObjectURL(productImages[index]);
     URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
   };
-  console.log(productImagesUrl);
+  
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);

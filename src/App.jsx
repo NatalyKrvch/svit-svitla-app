@@ -9,7 +9,7 @@ import EditCatalogueCard from "./pages/EditCatalogueCardPage/EditCatalogueCardPa
 import EditProductCard from "./pages/EditProductCardPage/EditProductCardPage";
 import PaymentDetails from "./pages/PaymentDetailsPage/PaymentDetailsPage";
 import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
-import QrCodeGeneration from "./pages/QrCodeGenerationPage";
+import QrCodeGeneration from "./pages/QrCodeGenerationPage/QrCodeGenerationPage";
 import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
 import NotFound from "./pages/NotFoundPage";
 import Feedback from "./pages/FeedbackPage/FeedbackPage";

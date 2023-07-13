@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { addProduct, changeProduct } from "../../redux/Product/productOperations";
-import { useDispatch} from "react-redux";
+import { addProduct} from "../../redux/Product/productOperations";
+import { useDispatch, useSelector} from "react-redux";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -21,10 +21,11 @@ import {
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
+import { getCurrentProduct } from "../../redux/Product/productSelectors";
 
 
 
-const ProductForm = () => {
+const ProductForm = ({openModal}) => {
   const [productName, setProductName] = useState("");
   const [productCode, setProductCode] = useState("");
   const [price, setPrice] = useState("");
@@ -35,9 +36,9 @@ const ProductForm = () => {
   const [coverImageUrl, setCoverImageUrl] = useState('');
   const [productImagesUrl, setProductImagesUrl] = useState([]);
 
-  const dispatch = useDispatch();
 
-  console.log(coverImage);
+  const dispatch = useDispatch();
+  const addedProduct = useSelector(getCurrentProduct);
 
 
   const handleProductNameChange = (event) => {
@@ -65,20 +66,11 @@ const ProductForm = () => {
   const handleProductImagesChange = (event) => {
     const files = event.target.files;
     const productImagesAdded = Array.from(files); 
-    setProductImages([...productImages, ...productImagesAdded]);
+    setProductImages((p)=> [...p, ...productImagesAdded]);
     const urlArray = [...files].map(file => URL.createObjectURL(file))
-    setProductImagesUrl([...productImagesUrl, ...urlArray]);
+    setProductImagesUrl((p)=> [...p, ...urlArray]);
   };
 
-
-  const handleDeleteCharacteristicButton = (id) => {
-    const index = characteristicArray.findIndex(item => item.characteristicId === id);
-    if (index !== -1) {
-      const updatedCharacteristics = [...characteristicArray];
-      updatedCharacteristics.splice(index, 1);
-      setCharacteristicArray(updatedCharacteristics);
-    }
-  };
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
@@ -86,13 +78,11 @@ const ProductForm = () => {
     URL.revokeObjectURL(coverImageUrl);
   };
 
-  const handleDeletePhotoImg = (index) => {
-    const newProductImages = [...productImages];
-    newProductImages.splice(index, 1);
+  const handleDeletePhotoImg = (url) => {
+    const newProductImages = productImages.filter(card=> card !== url)
     setProductImages(newProductImages);
-    const newProductImagesUrl = [...productImagesUrl];
-    newProductImagesUrl.splice(index, 1);
-    URL.revokeObjectURL(productImages[index]);
+    const newProductImagesUrl = productImagesUrl.filter((card) => card !== url);
+    URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
 
   };
@@ -100,7 +90,8 @@ const ProductForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();    
     const additionalAttributes = characteristicArray.map((obj) => {
-      return { name: obj.characteristicName, value: obj.characteristicValue };
+      console.log(obj);
+      return { name: obj.name, value: obj.value };
     });
     
     const formData = new FormData();
@@ -115,9 +106,8 @@ const ProductForm = () => {
       });
     }
     formData.append("additionalAttributes", JSON.stringify(additionalAttributes));
-    dispatch(addProduct(formData))
-    
-    console.log(formData);
+    dispatch(addProduct(formData));
+    openModal();
     setProductName("");
     setProductCode("");
     setPrice("");
@@ -179,15 +169,18 @@ const ProductForm = () => {
           onChange={handleManufacturerCountryChange}
         />
       </StyledInputWrapper>
-      {characteristicArray.map((item) => (
-        <AddCharacteristicInputs
-          key={item.characteristicId}
-          id={item.characteristicId}
-          onDelete={handleDeleteCharacteristicButton}
-          setCharacteristicArray={setCharacteristicArray}
+      {characteristicArray.map(({_id, name, value}) => {
+        console.log(_id, name, value)
+       return  <AddCharacteristicInputs
+          key={_id}
+          id={_id}
+          name={name}
+          value={value}
           characteristicArray={characteristicArray}
+          setCharacteristicArray={setCharacteristicArray}
+          
         />
-      ))}
+      })}
       <FakeInputWrp>
         <FakeInputText>Додати характеристику</FakeInputText>
         <FakeButton
@@ -195,7 +188,7 @@ const ProductForm = () => {
           onClick={() => {
             const id = nanoid();
             setCharacteristicArray((prevState) => {
-              return [...prevState, { characteristicId: id }];
+              return [...prevState, { _id: id, name: '', value: '' }];
             });
             return;
           }}
@@ -252,12 +245,12 @@ const ProductForm = () => {
        <>
         <ul>
       { productImagesUrl.map((photo, index) => 
-        (<StyledInputWrapperPhoto key={index}>
+        (<StyledInputWrapperPhoto key={photo}>
           <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
           <StyledImg src={photo} alt="photo" />
           <StyledInput type="text" value={`${index+1}.jpeg`} readOnly />
           <StyledButtonDelete 
-          onClick={()=> handleDeletePhotoImg(index)}>
+          onClick={()=> handleDeletePhotoImg(photo)}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
           </StyledButtonDelete>
         </StyledInputWrapperPhoto>

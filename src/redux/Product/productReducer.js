@@ -53,6 +53,7 @@ const productsSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.currentProduct = payload;
         state.products.push(payload);
       })
       .addCase(removeProduct.fulfilled, (state, { payload }) => {
