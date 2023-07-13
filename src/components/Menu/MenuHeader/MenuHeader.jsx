@@ -1,13 +1,9 @@
-import {
-  StyledUl,
-  StyledLink,
-  LogOutButton,
-  MenuWrapper,
-} from "./MenuHeaderStyled";
+import { StyledUl, StyledLink, MenuWrapper } from "./MenuHeaderStyled";
 import menuConfig from "../menuConfig.json";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/Auth/authOperations";
+import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
+// import { useDispatch } from "react-redux";
+// import { logout } from "../../../redux/Auth/authOperations";
 
 function MenuHeader(props) {
   MenuHeader.propTypes = {
@@ -17,11 +13,11 @@ function MenuHeader(props) {
   const { isLoggedIn } = props;
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleLogOut = () => {
-    dispatch(logout());
-  };
+  // const handleLogOut = () => {
+  //   dispatch(logout());
+  // };
 
   return (
     <>
@@ -34,9 +30,10 @@ function MenuHeader(props) {
           ))}
         </StyledUl>
         {isLoggedIn && (
-          <LogOutButton type="button" onClick={handleLogOut}>
-            Вийти
-          </LogOutButton>
+          // <LogOutButton type="button" onClick={handleLogOut}>
+          //   Вийти
+          // </LogOutButton>
+          <LogOutButton />
         )}
       </MenuWrapper>
     </>
