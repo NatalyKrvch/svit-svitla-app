@@ -56,10 +56,10 @@ function Feedback() {
       return;
     }
 
-    if (currentReview !== null) {
-      alert("Ви вже надіслали відгук, дякуємо");
-      return;
-    }
+    // if (currentReview !== null) {
+    //   alert("Ви вже надіслали відгук, дякуємо");
+    //   return;
+    // }
 
     dispatch(addReview(review));
 

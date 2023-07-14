@@ -8,8 +8,7 @@ export const MenuWrapper = styled.div`
 
 export const StyledUl = styled.ul`
     display: flex;
-    gap: 40px;
-    margin-right: 40px;
+    gap: 32px;
     color: var(--main-white);
     font-family: "Inter";
     font-weight: 500;

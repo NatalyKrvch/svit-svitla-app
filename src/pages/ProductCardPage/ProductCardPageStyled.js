@@ -5,3 +5,5 @@ export const SliderWrapper = styled.div`
     width: 328px;
 `
 
+
+
