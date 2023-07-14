@@ -5,28 +5,21 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../index.css";
 
 const Carousel = ({ images }) => {
-  const totalSlides = images.length > 4 ? 4 : images.length; // Максимальна кількість слайдів
-  const placeholderCount = Math.max(0, totalSlides - images.length);
-  const placeholders = Array.from({ length: placeholderCount });
-
   const settings = {
-    dots: images.length >= totalSlides,
+    dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: totalSlides,
-    slidesToScroll: totalSlides >= 2 ? 2 : 1, // slidesToScroll може бути 2, якщо кількість слайдів більше або дорівнює 2, інакше 1
+    speed: 600,
+    slidesToShow: 4,
+    slidesToScroll: 1,
   };
 
   return (
     <div className="slider-container">
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index} className="slider-slide">
-            <img src={image} alt={`Image ${index + 1}`} />
+          <div key={index}>
+            <img src={image} alt="Фото" />
           </div>
-        ))}
-        {placeholders.map((_, index) => (
-          <div key={`placeholder-${index}`} className="placeholder" />
         ))}
       </Slider>
     </div>
