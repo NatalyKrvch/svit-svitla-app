@@ -9,6 +9,7 @@ export const LogOutButtonStyled = styled.button`
     line-height: 24px;
     letter-spacing: -0.4px;
     padding: 12px 0;
+    margin-left: 32px;
     color: var(--main-white);
     background-color: var(--dark-blue);
     cursor: pointer;
