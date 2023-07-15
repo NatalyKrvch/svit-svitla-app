@@ -5,63 +5,14 @@ import { useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
 import { getCurrentProduct } from "../../redux/Product/productSelectors";
 import Carousel from "../../components/Carousel/Carousel";
-import styled from "styled-components";
-
-const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 16px 16px 32px;
-`;
-
-const ParentContainer = styled.div`
-  width: 328px;
-  height: 437px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const UpperContainer = styled.div`
-  width: 100%;
-  height: 70%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LowerContainer = styled.div`
-  width: 100%;
-  height: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-`;
-
-const LowerImageContainer = styled.div`
-  width: 70px;
-  height: 93px;
-  margin: 0 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LowerImagesWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const ImageWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
+import {
+  Image,
+  ImagesContainer,
+  LowerImagesWrapper,
+  MainImgContainer,
+  PageWrapper,
+  RestImgsContainer,
+} from "./ProductCardPageStyled";
 
 const ProductCardPage = () => {
   const { id } = useParams();
@@ -86,20 +37,14 @@ const ProductCardPage = () => {
   return (
     <>
       <PageWrapper>
-        {/* <Carousel images={images} />
-      <ProductCharacteristics
-        price={currentProduct.productPrice}
-        manufacturerCountry={currentProduct.productCountry}
-        characteristicArray={currentProduct.additionalAttributes}
-      /> */}
-        <ParentContainer>
-          <UpperContainer>
+        <ImagesContainer>
+          <MainImgContainer>
             <Image
               src="https://images.thdstatic.com/productImages/e55c039e-a269-4474-acea-17541bb224d5/svn/black-hampton-bay-floor-lamps-24122-000-e1_600.jpg"
               alt="Upper Image"
             />
-          </UpperContainer>
-          <LowerContainer>
+          </MainImgContainer>
+          <RestImgsContainer>
             <LowerImagesWrapper>
               <Carousel images={images} />
               {/* <LowerImageContainer>
@@ -135,8 +80,8 @@ const ProductCardPage = () => {
                 </ImageWrapper>
               </LowerImageContainer> */}
             </LowerImagesWrapper>
-          </LowerContainer>
-        </ParentContainer>
+          </RestImgsContainer>
+        </ImagesContainer>
         <ProductCharacteristics
           price={currentProduct.productPrice}
           manufacturerCountry={currentProduct.productCountry}
