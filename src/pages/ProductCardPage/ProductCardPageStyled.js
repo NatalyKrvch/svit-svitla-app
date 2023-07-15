@@ -1,13 +1,30 @@
 import styled from 'styled-components';
 
-export const SliderWrapper = styled.div`
-    margin-left: 40px;
-`
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 16px 16px 32px;
+  margin: 40px 16px 32px;
+
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+  }
 `;
+
+export const StyledH2 = styled.h2`
+  margin-bottom: 4px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: -0.4px;
+`;
+
+export const StyledP = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  margin-bottom: 16px;
+`
 
 export const ImagesContainer = styled.div`
   width: 328px;
@@ -58,6 +75,3 @@ export const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
-
-
-
