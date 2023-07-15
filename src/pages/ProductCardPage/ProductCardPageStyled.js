@@ -18,7 +18,7 @@ export const ImagesContainer = styled.div`
   justify-content: center;
 `;
 
-export const MainImgContainer = styled.div`
+export const CoverImgContainer = styled.div`
   width: 100%;
   height: 70%;
   display: flex;
