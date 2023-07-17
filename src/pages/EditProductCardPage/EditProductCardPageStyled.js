@@ -4,17 +4,17 @@ export const StyledFragment = styled.div`
 width: 328px;
 margin-left: auto;
 margin-right: auto;
-padding: 40px 16px;
+
 
   @media screen and (min-width: 768px) {
     width: 495px;
     margin-left: 0;
-    padding: 64px 40px 60px 40px;
+   
   }
 
   @media screen and (min-width: 1280px) {
     width: 609px;
-    padding: 72px 136px 60px 136px;
+    
   }
 
 `

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const STyledContainer = styled.div`
-  padding: 40px 16px;
 `;
 
 export const StyledDiv = styled.div`

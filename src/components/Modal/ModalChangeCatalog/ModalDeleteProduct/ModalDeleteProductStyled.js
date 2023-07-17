@@ -15,10 +15,12 @@ export const Overlay = styled.div`
 `
 
 export const ModalBody = styled.div`
-position: relative;
 width: 320px;
 padding: 8px 8px 16px 8px;
 position: fixed;
+display: flex;
+flex-direction: column;
+align-items: center;
   background-color: var(--main-white) ;
   z-index: 2;
   top: 50%;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  padding: 40px 16px 32px 16px;
   max-width: 360px;
   margin-left: auto;
   margin-right: auto;
@@ -73,10 +72,10 @@ export const StyledDiv = styled.div`
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  /* height: 56px; */
+  height: ${({isLoggedIn}) => isLoggedIn? 'auto' : '56px' };
   display: flex;
-  align-items: center;
-  justify-content: left;
+  align-items: ${({isLoggedIn}) => isLoggedIn? 'center' : 'flex-start' };
+  justify-content:${({isLoggedIn}) => isLoggedIn? 'left' : 'space-evenly' };
 
   @media screen and (min-width: 768px) {
     /* align-items: flex-start;
@@ -95,12 +94,13 @@ export const StyledInputWrapper = styled.div`
 `;
 
 export const StyledLabel = styled.label`
-  position: absolute;
-  height: 24px;
-  font-size: 12px;
-  line-height: 2;
-  color: var(--dark-grey);
-  background-color: var(--light-blue);
+  position: ${({isLoggedIn}) => isLoggedIn? 'absolute' : 'static' };
+  height: ${({isLoggedIn}) => isLoggedIn? '24px' : '48px' };
+  width: ${({isLoggedIn}) => isLoggedIn? 'auto' : '128px' };
+  font-size: ${({isLoggedIn}) => isLoggedIn? '12px' : '16px' };
+  line-height: ${({isLoggedIn}) => isLoggedIn? '2' : '1.5px' }2;
+  color: ${({isLoggedIn}) => isLoggedIn? 'var(--dark-grey)' : 'var(--main-black)' } ;
+  background-color: ${({isLoggedIn}) => isLoggedIn? 'var(--light-blue)' : 'var(--main-white)' } ;
   padding: 0 4px;
   left: 12px;
   top: -8px;
@@ -134,15 +134,14 @@ export const StyledCoverLabel = styled.label`
 
 export const StyledInput = styled.input`
   width: 328px;
-  /* height: 56px; */
-  padding: 16px;
-  border: 1px solid var(--light-blue);
+  padding: ${({isLoggedIn}) => isLoggedIn? '16px' : '4px' };
+  text-align:${({isLoggedIn}) => isLoggedIn? 'center' : 'start' };
+  border: ${({isLoggedIn}) => isLoggedIn? '1px solid var(--light-blue)' : 'none' };
   border-radius: 4px;
   outline: var(--dark-blue);
 
   @media screen and (min-width: 768px) {
     height: auto;
-    /* text-align: start; */
     width: 624px;
     outline: none;
     font-size: 20px;
