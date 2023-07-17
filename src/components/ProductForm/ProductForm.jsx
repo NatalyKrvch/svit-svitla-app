@@ -10,6 +10,7 @@ import {
   FakeInputWrp,
   FileInput,
   StyledButtonDelete,
+  StyledButtonSelect,
   StyledCoverLabel,
   StyledForm,
   StyledImg,
@@ -17,11 +18,15 @@ import {
   StyledInputWrapper,
   StyledInputWrapperPhoto,
   StyledLabel,
+  StyledList,
+  StyledOptions,
+  StyledWrpSelector,
   SubmitButton,
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 import { getCurrentProduct } from "../../redux/Product/productSelectors";
+import { GoTriangleUp,  GoTriangleDown } from "react-icons/go"
 
 
 
@@ -35,6 +40,9 @@ const ProductForm = ({openModal}) => {
   const [productImages, setProductImages] = useState("");
   const [coverImageUrl, setCoverImageUrl] = useState('');
   const [productImagesUrl, setProductImagesUrl] = useState([]);
+  const [category, setCategory] = useState ('');
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(category);
 
 
   const dispatch = useDispatch();
@@ -85,6 +93,17 @@ const ProductForm = ({openModal}) => {
     URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
 
+  };
+
+  // const handleCategoryChange = ev => {
+  //   setCategory(ev.target.value)
+  // }
+
+  const handleOptionClick = (selectedOption) => {
+    if (selectedOption !== category) {
+      setCategory(selectedOption);
+      setIsOpen(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -169,6 +188,24 @@ const ProductForm = ({openModal}) => {
           onChange={handleManufacturerCountryChange}
         />
       </StyledInputWrapper>
+      <StyledWrpSelector>
+      <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
+      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>{category} {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}</StyledButtonSelect>
+        {isOpen && (<StyledList>
+          <StyledOptions onClick={()=> handleOptionClick("Люстри")}>Люстри</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Підвісні світильники")}>Підвісні світильники</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Стельові світильники")}>Стельові світильники</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Точкові світильники")}>Точкові світильники</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Споти")}>Споти</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Настінні світильники")}>Настінні світильники</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Настільні лампи")}>Настільні лампи</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Торшери")}>Торшери</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Вуличне освітлення")}>Вуличне освітлення</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Трек-системи")}>Трек-системи</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Розетки та вимикачі")}>Розетки та вимикачі</StyledOptions>
+          <StyledOptions onClick={()=> handleOptionClick("Інше")}>Інше</StyledOptions>
+          </StyledList>)}
+      </StyledWrpSelector>
       {characteristicArray.map(({_id, name, value}) => {
         console.log(_id, name, value)
        return  <AddCharacteristicInputs
