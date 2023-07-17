@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addProduct} from "../../redux/Product/productOperations";
 import { useDispatch, useSelector} from "react-redux";
+import { categoryList } from './categoryList.json'
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -190,20 +191,11 @@ const ProductForm = ({openModal}) => {
       </StyledInputWrapper>
       <StyledWrpSelector>
       <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
-      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>{category} {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}</StyledButtonSelect>
+      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>{category || "---------"} {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}</StyledButtonSelect>
         {isOpen && (<StyledList>
-          <StyledOptions onClick={()=> handleOptionClick("Люстри")}>Люстри</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Підвісні світильники")}>Підвісні світильники</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Стельові світильники")}>Стельові світильники</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Точкові світильники")}>Точкові світильники</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Споти")}>Споти</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Настінні світильники")}>Настінні світильники</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Настільні лампи")}>Настільні лампи</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Торшери")}>Торшери</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Вуличне освітлення")}>Вуличне освітлення</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Трек-системи")}>Трек-системи</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Розетки та вимикачі")}>Розетки та вимикачі</StyledOptions>
-          <StyledOptions onClick={()=> handleOptionClick("Інше")}>Інше</StyledOptions>
+         { categoryList.map(el=> {
+          <StyledOptions onClick={()=> handleOptionClick(`${el}`)}>{el}</StyledOptions>
+         })}
           </StyledList>)}
       </StyledWrpSelector>
       {characteristicArray.map(({_id, name, value}) => {

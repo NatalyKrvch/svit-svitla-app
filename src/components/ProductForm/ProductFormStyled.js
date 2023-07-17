@@ -199,7 +199,7 @@ export const StyledSelect = styled.select`
 `
 
 export const StyledWrpSelector = styled.div`
-position: relative;
+  position: relative;
   width: 328px;
   background-color: transparent;
   border-radius: 4px 4px 0px 0px;
@@ -253,7 +253,7 @@ background-color: transparent;
 export const StyledOptions = styled.li`
   max-width: 328px;
   height: 30px;
-  padding: 5px 16px;
+  padding: 8px 16px;
   font-size: 16px;
   /* margin-left: auto; */
   line-height: 1,5;
