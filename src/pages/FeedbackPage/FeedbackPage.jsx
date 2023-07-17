@@ -25,7 +25,7 @@ function Feedback() {
   const currentReview = useSelector(getCurrentReviews);
   console.log(currentReview);
 
-  const currentReviewDate = currentReview.lastDate;
+  const currentReviewDate = currentReview?.lastDate;
   console.log(currentReviewDate);
 
   const maxChar = 500;
