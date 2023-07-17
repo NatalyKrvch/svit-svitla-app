@@ -61,15 +61,15 @@ const ProductCardPage = () => {
                       />
                     </ImageWrapper>
                   </LowerImageContainer>
-                  <LowerImageContainer>
+                  {/* <LowerImageContainer>
                     <ImageWrapper>
                       <Image
                         src="https://static.zara.net/photos///2021/I/4/1/p/1331/047/800/2/w/1920/1331047800_2_1_1.jpg?ts=1633072401074"
                         alt="Lower Image 2"
                       />
                     </ImageWrapper>
-                  </LowerImageContainer>
-                  <LowerImageContainer>
+                  </LowerImageContainer> */}
+                  {/* <LowerImageContainer>
                     <ImageWrapper>
                       <Image
                         src="https://www.ikea.com/in/en/images/products/lauters-table-lamp-ash-white__0879402_pe714879_s5.jpg"
@@ -84,7 +84,7 @@ const ProductCardPage = () => {
                         alt="Lower Image 3"
                       />
                     </ImageWrapper>
-                  </LowerImageContainer>
+                  </LowerImageContainer> */}
                 </>
               )}
             </LowerImagesWrapper>
