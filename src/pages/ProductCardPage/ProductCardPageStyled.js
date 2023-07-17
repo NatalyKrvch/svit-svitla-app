@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 16px 32px;
+  margin-bottom: 32px;
 
   @media screen and (min-width: 769px) {
     flex-direction: row;

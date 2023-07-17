@@ -4,14 +4,14 @@ export const PageWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  margin: 40px 16px 32px;
+  margin-bottom: 32px;
 
   @media screen and (min-width: 769px) and (max-width: 1280px){
-    margin: 64px 40px 227px;
+    margin-bottom: 227px;
   }
 
   @media screen and (min-width: 1281px){
-    margin: 72px 136px 56px;
+    margin-bottom: 56px;
   }
 `
 export const StyledH1 = styled.h1`
