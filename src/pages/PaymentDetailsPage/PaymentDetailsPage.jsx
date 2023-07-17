@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import {
   FakeButton,
-  FakeButtonDelete,
-  FakeInputText,
-  FakeInputWrp,
+  // FakeButtonDelete,
+  // FakeInputText,
+  // FakeInputWrp,
   StyledContainer,
   StyledDiv,
   StyledInput,
@@ -12,16 +12,16 @@ import {
   StyledTitle,
   StyledTitleWrp,
 } from "./PaymentDetailsPageStyled";
-import { BiPlusCircle } from "react-icons/bi";
+// import { BiPlusCircle } from "react-icons/bi";
 import { FiCopy } from "react-icons/fi";
-import { BiMinusCircle } from "react-icons/bi";
+// import { BiMinusCircle } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
-import { useState } from "react";
+// import { useState } from "react";
 
 const PaymentDetails = () => {
-  const [showInput, setShowInput] = useState(false);
-  const [additionalDetails, setAdditionalDetail] = useState("");
+  // const [showInput, setShowInput] = useState(false);
+  // const [additionalDetails, setAdditionalDetail] = useState("");
 
   const inputRef = useRef(null);
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -40,33 +40,34 @@ const PaymentDetails = () => {
     }
   };
 
-  const handleBtnAddDetail = () => {
-    setShowInput(true);
-  };
+  // const handleBtnAddDetail = () => {
+  //   setShowInput(true);
+  // };
 
-  const handleChangeAdditionalDetail = (evt) => {
-    setAdditionalDetail(evt.target.value);
-  };
+  // const handleChangeAdditionalDetail = (evt) => {
+  //   setAdditionalDetail(evt.target.value);
+  // };
 
-  const onDeleteAdditionalDetail = () => {
-    setAdditionalDetail("");
-    setShowInput(false);
-  };
+  // const onDeleteAdditionalDetail = () => {
+  //   // setAdditionalDetail("");
+  //   setShowInput(false);
+  // };
 
   return (
     <StyledContainer>
-      <StyledTitleWrp>
+      <StyledTitleWrp isLoggedIn={isLoggedIn}>
         <StyledTitle>Реквізити для оплати</StyledTitle>
       </StyledTitleWrp>
       <StyledDiv>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="name">IBAN</StyledLabel>
+        <StyledInputWrapper isLoggedIn={isLoggedIn}>
+          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>IBAN</StyledLabel>
           <StyledInput
             id="name"
             type="text"
             value={"UA393287040000026002054312944"}
             readOnly
             ref={inputRef}
+            isLoggedIn={isLoggedIn}
           />
           {!isLoggedIn && (
             <FakeButton onClick={copyText}>
@@ -74,14 +75,15 @@ const PaymentDetails = () => {
             </FakeButton>
           )}
         </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="name">Банк</StyledLabel>
+        <StyledInputWrapper isLoggedIn={isLoggedIn}>
+          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>Банк</StyledLabel>
           <StyledInput
             id="name"
             type="text"
             value={`АТ КБ "ПРИВАТБАНК" (МФО 328704)`}
             readOnly
             ref={inputRef}
+            isLoggedIn={isLoggedIn}
           />
           {!isLoggedIn && (
             <FakeButton onClick={copyText}>
@@ -89,14 +91,15 @@ const PaymentDetails = () => {
             </FakeButton>
           )}
         </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="name">ЕДРПОУ</StyledLabel>
+        <StyledInputWrapper isLoggedIn={isLoggedIn}>
+          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>ЕДРПОУ</StyledLabel>
           <StyledInput
             id="name"
             type="text"
             value={"38935167"}
             readOnly
             ref={inputRef}
+            isLoggedIn={isLoggedIn}
           />
           {!isLoggedIn && (
             <FakeButton onClick={copyText}>
@@ -104,14 +107,15 @@ const PaymentDetails = () => {
             </FakeButton>
           )}
         </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="name">ФОП</StyledLabel>
+        <StyledInputWrapper isLoggedIn={isLoggedIn}>
+          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>ФОП</StyledLabel>
           <StyledInput
             id="name"
             type="text"
             value={`Ім'я Прізвище`}
             readOnly
             ref={inputRef}
+            isLoggedIn={isLoggedIn}
           />
           {!isLoggedIn && (
             <FakeButton onClick={copyText}>
@@ -119,14 +123,15 @@ const PaymentDetails = () => {
             </FakeButton>
           )}
         </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="name">ІПН</StyledLabel>
+        <StyledInputWrapper isLoggedIn={isLoggedIn}>
+          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>ІПН</StyledLabel>
           <StyledInput
             id="name"
             type="text"
             value={"389351615535"}
             readOnly
             ref={inputRef}
+            isLoggedIn={isLoggedIn}
           />
           {!isLoggedIn && (
             <FakeButton onClick={copyText}>
@@ -134,7 +139,7 @@ const PaymentDetails = () => {
             </FakeButton>
           )}
         </StyledInputWrapper>
-        {showInput && (
+        {/* {showInput && (
           <StyledInputWrapper>
             <StyledLabel htmlFor="name">Додатково</StyledLabel>
             <StyledInput
@@ -153,15 +158,15 @@ const PaymentDetails = () => {
               </FakeButton>
             )}
           </StyledInputWrapper>
-        )}
+        )} */}
 
-        
+{/*         
         <FakeInputWrp>
           <FakeInputText>Додати інформацію</FakeInputText>
           <FakeButton onClick={handleBtnAddDetail}>
             <BiPlusCircle size={"1.5em"} />
           </FakeButton>
-        </FakeInputWrp>
+        </FakeInputWrp> */}
       </StyledDiv>
     </StyledContainer>
   );

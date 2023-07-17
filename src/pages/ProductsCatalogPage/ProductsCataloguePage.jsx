@@ -20,6 +20,7 @@ import { useSearchParams } from "react-router-dom";
 import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalDeleteProduct/ModalDeleteProduct";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
+import Notiflix from "notiflix";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -113,7 +114,15 @@ const ProductsCataloguePage = () => {
     setIsModalDeleteOpen(false);
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
-  const handleOnSearchButton = (code) => {};
+  const handleOnSearchButton = (code) => {
+    const allProducts = dispatch(getAllProducts());
+    const productByCode = allProducts.filter(el => el.productCode === code);
+    if(productByCode){
+      setUpdatedProductList(productByCode);
+    } else {
+      Notiflix.Notify.failure("Продукт з таким ім'ям не знайдено")
+    }
+  };
 
   return (
     <StyledFragment>
