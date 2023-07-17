@@ -11,6 +11,7 @@ const Carousel = ({ images }) => {
     speed: 600,
     slidesToShow: 4,
     slidesToScroll: 1,
+    arrows: false,
   };
 
   return (

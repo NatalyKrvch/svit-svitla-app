@@ -75,11 +75,12 @@ p {
 }
 
 .slider-container {
-  width: 365px;
-  height: 93px;
+  width: 328px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px 0;
 }
 
 .slick-slider {
