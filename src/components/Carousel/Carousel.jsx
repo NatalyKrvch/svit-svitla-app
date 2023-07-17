@@ -6,11 +6,12 @@ import "../../index.css";
 
 const Carousel = ({ images }) => {
   const settings = {
+    className: "slider",
     dots: true,
     infinite: true,
-    speed: 600,
-    slidesToShow: 4,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     arrows: false,
   };
 

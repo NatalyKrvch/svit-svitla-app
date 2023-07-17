@@ -73,3 +73,23 @@ p {
   padding: 0;
   margin: 0;
 }
+
+.slider-container {
+  max-width: 328px;
+  margin: 0 auto 40px;
+
+  @media screen and (min-width: 769px) {
+    max-width: 365px;
+    margin: 0 24px 0 0;
+  }
+
+  @media screen and (min-width: 1281px) {
+    width: 473;
+    margin: 0 124px 0 0;
+  }
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+}

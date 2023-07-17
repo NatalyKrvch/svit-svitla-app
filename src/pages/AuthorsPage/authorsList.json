@@ -1,5 +1,10 @@
 [
     {
+        "Position": "Fullstack",
+        "Name": "Mykyta Kresik",
+        "LinkedIn": "https://www.linkedin.com/in/mykyta-kresik/"
+    },
+    {
         "Position": "Frontend",
         "Name": "Nataliia Kravchenko",
         "LinkedIn": "https://www.linkedin.com/in/nataliiakravchenko"
@@ -10,19 +15,14 @@
         "LinkedIn": "https://www.linkedin.com/in/oksana-koss-it"
     },
     {
-        "Position": "Backend",
-        "Name": "Mykyta Kresik",
-        "LinkedIn": "https://www.linkedin.com/in/mykyta-kresik/"
-    },
-    {
         "Position": "UI/UX Design",
         "Name": "Maryna Borovikova",
         "LinkedIn": "https://www.linkedin.com/in/maryna-borovikova/"
     },
     {
         "Position": "QA",
-        "Name": "Yuriy Abramovych",
-        "LinkedIn": "https://www.linkedin.com/in/yuriy-abramovych/"
+        "Name": "Diana Kurylovska",
+        "LinkedIn": "https://www.linkedin.com/in/diana-kurylovska-031928232/"
     },
     {
         "Position": "PM",
