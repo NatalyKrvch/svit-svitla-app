@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
 import {
+  StyledBtnSearch,
   StyledButton,
   StyledFragment,
+  StyledInput,
+  StyledInputWrp,
   StyledTitle,
 } from "./ProductsCataloguePageStyled";
 import { FiFilter } from "react-icons/fi";
@@ -15,15 +18,18 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalChangeCatalog/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
 import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalDeleteProduct/ModalDeleteProduct";
+import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [showModalFilter, setShowModalFilter] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-  const [productCode, setProductCode] = useState('');
-  const [productId, setProductId] = useState('');
+  const [productCode, setProductCode] = useState("");
+  const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
+  const [filterByCode, setFilterByCode] = useState("");
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
@@ -31,6 +37,7 @@ const ProductsCataloguePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
 
+  const isLoggedIn = useSelector(getIsLoggedIn);
   // const lastProductIndex = pageNumber * perPage;
   // const firstProductIndex = lastProductIndex - perPage;
   // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
@@ -51,9 +58,9 @@ const ProductsCataloguePage = () => {
     dispatch(getProducts({ page: pageNumber, per_page: perPage }));
   }, [pageNumber]);
 
-  useEffect(()=> {
+  useEffect(() => {
     setUpdatedProductList(products);
-  }, [products])
+  }, [products]);
 
   // useEffect(() => {
   //   if (!query) {
@@ -104,37 +111,60 @@ const ProductsCataloguePage = () => {
 
   const closeModalDelete = () => {
     setIsModalDeleteOpen(false);
-  }
-
+  };
+  const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
+  const handleOnSearchButton = (code) => {};
 
   return (
     <StyledFragment>
-      {showModalFilter && <ModalFilter onCloseModal = {closeModal} onSubmit={handleSubmit}/>}
-      {isModalDeleteOpen && <ModalDeleteProduct 
-      onClose={closeModalDelete} 
-      code={productCode} 
-      id={productId} 
-      products={updatedProductList}
-      setUpdatedProductList={setUpdatedProductList}/>}
-
+      {showModalFilter && (
+        <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
+      )}
+      {isModalDeleteOpen && (
+        <ModalDeleteProduct
+          onClose={closeModalDelete}
+          code={productCode}
+          id={productId}
+          products={updatedProductList}
+          setUpdatedProductList={setUpdatedProductList}
+        />
+      )}
+      {isLoggedIn && (
+        <StyledInputWrp>
+          <StyledBtnSearch onClick={() => handleOnSearchButton(code)}>
+            <AiOutlineSearch size={"1.8em"} />
+          </StyledBtnSearch>
+          <StyledInput
+            type="text"
+            placeholder="Пошук"
+            value={filterByCode}
+            onChange={handleChangeFilterByCode}
+          />
+        </StyledInputWrp>
+      )}
       <StyledTitle>Каталог товарів</StyledTitle>
-      <StyledButton onClick={() => openModal()}>
+      {!isLoggedIn && <StyledButton onClick={() => openModal()}>
         <FiFilter size={"1.5em"} />
         Фільтрувати
-      </StyledButton>
-     {products.length !== 0 && <ProductList productsList={updatedProductList} onOpen={openModalDelete}/>}
-     {products.length !== 0 &&  
-      <Pagination
-        pageNumber={pageNumber}
-        cardsPerPage={perPage}
-        totalCards={updatedProductList.length}          //исправить после исправления бекенда.
-        onClick={handlePaginationClick}
-        handleNextPageButton={handleNextPageButton}
-        handlePreviousPageButton={handlePreviousPageButton}
-        handleLastPageButton={handleLastPageButton}
-        handleFirstPageButton={handleFirstPageButton}
-      />}
-
+      </StyledButton>}
+      {products.length !== 0 && (
+        <ProductList
+          productsList={updatedProductList}
+          onOpen={openModalDelete}
+        />
+      )}
+      {products.length !== 0 && (
+        <Pagination
+          pageNumber={pageNumber}
+          cardsPerPage={perPage}
+          totalCards={updatedProductList.length} //исправить после исправления бекенда.
+          onClick={handlePaginationClick}
+          handleNextPageButton={handleNextPageButton}
+          handlePreviousPageButton={handlePreviousPageButton}
+          handleLastPageButton={handleLastPageButton}
+          handleFirstPageButton={handleFirstPageButton}
+        />
+      )}
     </StyledFragment>
   );
 };
