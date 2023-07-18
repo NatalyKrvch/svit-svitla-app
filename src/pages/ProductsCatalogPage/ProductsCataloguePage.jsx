@@ -31,6 +31,7 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
+  // const [totalProducts, setTotalPoducts] = useState([]);
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
