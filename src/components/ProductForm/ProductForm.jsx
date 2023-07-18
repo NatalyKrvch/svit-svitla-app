@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addProduct} from "../../redux/Product/productOperations";
 import { useDispatch, useSelector} from "react-redux";
+import { categoryList } from './categoryList.json'
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
@@ -10,6 +11,7 @@ import {
   FakeInputWrp,
   FileInput,
   StyledButtonDelete,
+  StyledButtonSelect,
   StyledCoverLabel,
   StyledForm,
   StyledImg,
@@ -17,11 +19,15 @@ import {
   StyledInputWrapper,
   StyledInputWrapperPhoto,
   StyledLabel,
+  StyledList,
+  StyledOptions,
+  StyledWrpSelector,
   SubmitButton,
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 import { getCurrentProduct } from "../../redux/Product/productSelectors";
+import { GoTriangleUp,  GoTriangleDown } from "react-icons/go"
 
 
 
@@ -35,6 +41,9 @@ const ProductForm = ({openModal}) => {
   const [productImages, setProductImages] = useState("");
   const [coverImageUrl, setCoverImageUrl] = useState('');
   const [productImagesUrl, setProductImagesUrl] = useState([]);
+  const [category, setCategory] = useState ('');
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(category);
 
 
   const dispatch = useDispatch();
@@ -85,6 +94,17 @@ const ProductForm = ({openModal}) => {
     URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
 
+  };
+
+  // const handleCategoryChange = ev => {
+  //   setCategory(ev.target.value)
+  // }
+
+  const handleOptionClick = (selectedOption) => {
+    if (selectedOption !== category) {
+      setCategory(selectedOption);
+      setIsOpen(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -169,6 +189,15 @@ const ProductForm = ({openModal}) => {
           onChange={handleManufacturerCountryChange}
         />
       </StyledInputWrapper>
+      <StyledWrpSelector>
+      <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
+      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>{category || "---------"} {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}</StyledButtonSelect>
+        {isOpen && (<StyledList>
+         { categoryList.map(el=> {
+          <StyledOptions onClick={()=> handleOptionClick(`${el}`)}>{el}</StyledOptions>
+         })}
+          </StyledList>)}
+      </StyledWrpSelector>
       {characteristicArray.map(({_id, name, value}) => {
         console.log(_id, name, value)
        return  <AddCharacteristicInputs

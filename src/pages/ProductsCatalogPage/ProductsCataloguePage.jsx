@@ -31,10 +31,12 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
+  // const [totalProducts, setTotalPoducts] = useState([]);
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
+  console.log(products);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
 
@@ -114,6 +116,7 @@ const ProductsCataloguePage = () => {
     setIsModalDeleteOpen(false);
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
+
   const handleOnSearchButton = (code) => {
     const allProducts = dispatch(getAllProducts());
     const productByCode = allProducts.filter(el => el.productCode === code);
@@ -140,7 +143,7 @@ const ProductsCataloguePage = () => {
       )}
       {isLoggedIn && (
         <StyledInputWrp>
-          <StyledBtnSearch onClick={() => handleOnSearchButton(code)}>
+          <StyledBtnSearch onClick={() => handleOnSearchButton(filterByCode)}>
             <AiOutlineSearch size={"1.8em"} />
           </StyledBtnSearch>
           <StyledInput

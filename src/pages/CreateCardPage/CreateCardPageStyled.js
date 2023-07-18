@@ -3,9 +3,6 @@ import styled from "styled-components";
 export const StyledFragment = styled.div`
   position: relative;
   width: 328px;
-  padding-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
