@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
 import { getCurrentProduct } from "../../redux/Product/productSelectors";
-import { useMediaRules } from "../../hooks/useMediaRules";
 import Carousel from "../../components/Carousel/Carousel";
 import {
   PageWrapper,
@@ -18,7 +17,6 @@ import {
 } from "./ProductCardPageStyled";
 
 const ProductCardPage = () => {
-  const { isMobile } = useMediaRules();
   const { id } = useParams();
   const dispatch = useDispatch();
 

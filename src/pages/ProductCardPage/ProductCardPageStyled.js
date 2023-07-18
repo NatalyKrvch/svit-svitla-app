@@ -59,7 +59,6 @@ export const ContentWrapper = styled.div`
 
   @media screen and (min-width: 769px) {
     flex-direction: row;
-    width: 754px;
   }
 `
 export const CharacteristicsWrapper = styled.div`
@@ -67,10 +66,8 @@ export const CharacteristicsWrapper = styled.div`
 
   @media screen and (min-width: 769px){
     width: 365px;
-    margin-bottom: 300px;
   }
   @media screen and (min-width: 1281px){
     width: 473px;
-    margin-bottom: 99px;
   }
 `
