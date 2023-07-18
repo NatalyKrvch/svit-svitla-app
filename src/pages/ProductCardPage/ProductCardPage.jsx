@@ -4,24 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
 import { getCurrentProduct } from "../../redux/Product/productSelectors";
-import { useMediaRules } from "../../hooks/useMediaRules";
-// import { BiShareAlt } from 'react-icons/bi';
 import Carousel from "../../components/Carousel/Carousel";
 import {
-  CoverImgContainer,
-  Image,
-  ImageWrapper,
-  ImagesContainer,
-  LowerImageContainer,
-  LowerImagesWrapper,
   PageWrapper,
-  RestImgsContainer,
-  StyledH2,
   StyledP,
+  Title,
+  TitleWrapper,
+  ShareIcon,
+  ContentWrapper,
+  CharacteristicsWrapper,
+  StyledH1,
 } from "./ProductCardPageStyled";
 
 const ProductCardPage = () => {
-  const { isMobile } = useMediaRules();
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -30,26 +25,39 @@ const ProductCardPage = () => {
   }, []);
 
   const currentProduct = useSelector(getCurrentProduct);
-  console.log(currentProduct);
 
-  const coverImgURL = currentProduct.productCoverURL;
-  const restImgsURL = currentProduct.productPhotoURL;
-  const allImgsURL = [coverImgURL, ...restImgsURL];
+  const allImgsURL = [
+    currentProduct.productCoverURL,
+    ...currentProduct.productPhotoURL,
+  ];
+
   const productName = currentProduct.productName;
   const productCode = currentProduct.productCode;
+
+  const handleShare = () => {
+    console.log("share clicked");
+  };
 
   return (
     <>
       <PageWrapper>
-        {isMobile && <StyledH2>{productName}</StyledH2>}
-        <StyledP>Артикул: {productCode}</StyledP>
-        <div>
-          <ProductCharacteristics
-            price={currentProduct.productPrice}
-            manufacturerCountry={currentProduct.productCountry}
-            characteristicArray={currentProduct.additionalAttributes}
-          />
-        </div>
+        <TitleWrapper>
+          <Title>
+            <StyledH1>{productName}</StyledH1>
+            <StyledP>Артикул: {productCode}</StyledP>
+          </Title>
+          <ShareIcon onClick={handleShare} />
+        </TitleWrapper>
+        <ContentWrapper>
+          <Carousel images={allImgsURL} />
+          <CharacteristicsWrapper>
+            <ProductCharacteristics
+              price={currentProduct.productPrice}
+              manufacturerCountry={currentProduct.productCountry}
+              characteristicArray={currentProduct.additionalAttributes}
+            />
+          </CharacteristicsWrapper>
+        </ContentWrapper>
       </PageWrapper>
     </>
   );

@@ -1,21 +1,38 @@
 import styled from 'styled-components';
+import { BiShareAlt } from "react-icons/bi";
 
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 32px;
-
-  @media screen and (min-width: 769px) {
-    flex-direction: row;
-  }
+  align-items: flex-start;
+  position: relative;
 `;
 
-export const StyledH2 = styled.h2`
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledH1 = styled.h1`
   margin-bottom: 4px;
   font-weight: 400;
   font-size: 24px;
   line-height: 28.8px;
   letter-spacing: -0.4px;
+
+  @media screen and (min-width: 769px){
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
 `;
 
 export const StyledP = styled.p`
@@ -24,55 +41,33 @@ export const StyledP = styled.p`
   line-height: 24px;
   letter-spacing: -0.4px;
   margin-bottom: 16px;
+
+  @media screen and (min-width: 769px){
+    font-size: 24px;
+  }
 `
 
-export const ImagesContainer = styled.div`
-  width: 328px;
-  height: 437px;
+export const ShareIcon = styled(BiShareAlt)`
+  width: 24px;
+  height: 24px;
+  margin: 12px;
+`
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-`;
-
-export const CoverImgContainer = styled.div`
   width: 100%;
-  height: 70%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
-export const RestImgsContainer = styled.div`
-  width: 100%;
-  height: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+  }
+`
+export const CharacteristicsWrapper = styled.div`
+  width: 328px;
 
-export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-`;
-
-export const LowerImageContainer = styled.div`
-  width: 70px;
-  height: 93px;
-  margin: 0 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const LowerImagesWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const ImageWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
+  @media screen and (min-width: 769px){
+    width: 365px;
+  }
+  @media screen and (min-width: 1281px){
+    width: 473px;
+  }
+`
