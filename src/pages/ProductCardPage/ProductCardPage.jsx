@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -17,25 +17,38 @@ import {
 } from "./ProductCardPageStyled";
 
 const ProductCardPage = () => {
+  const [currentURL, setCurrentURL] = useState("");
   const { id } = useParams();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProductById(id));
-  }, []);
-
   const currentProduct = useSelector(getCurrentProduct);
-
   const allImgsURL = [
     currentProduct.productCoverURL,
     ...currentProduct.productPhotoURL,
   ];
-
   const productName = currentProduct.productName;
   const productCode = currentProduct.productCode;
 
-  const handleShare = () => {
-    console.log("share clicked");
+  useEffect(() => {
+    dispatch(getProductById(id));
+    setCurrentURL(window.location.href);
+  }, []);
+
+  const handleShare = async () => {
+    console.log(currentURL);
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: productName,
+          text: "Текст",
+          url: currentURL,
+        });
+        console.log("Успішно надіслано");
+      } else {
+        console.log("Web Share API не підтримується в цьому браузері");
+      }
+    } catch (error) {
+      console.error("Помилка при спробі поділитися вмістом:", error);
+    }
   };
 
   return (

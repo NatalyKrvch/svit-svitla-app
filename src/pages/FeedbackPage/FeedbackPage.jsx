@@ -23,10 +23,10 @@ function Feedback() {
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
 
   const currentReview = useSelector(getCurrentReviews);
-  console.log(currentReview);
+  console.log("currentReview", currentReview);
 
   const currentReviewDate = currentReview?.lastDate;
-  console.log(currentReviewDate);
+  console.log("currentReviewDate", currentReviewDate);
 
   const maxChar = 500;
 
