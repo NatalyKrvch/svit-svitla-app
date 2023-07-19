@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { BiShareAlt } from "react-icons/bi";
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -47,11 +46,6 @@ export const StyledP = styled.p`
   }
 `
 
-export const ShareIcon = styled(BiShareAlt)`
-  width: 24px;
-  height: 24px;
-  margin: 12px;
-`
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
