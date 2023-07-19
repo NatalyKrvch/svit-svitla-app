@@ -21,7 +21,7 @@ import { addCatalog } from "../../redux/Catalog/catalogOperations";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const CatalogForm = () => {
+const CatalogForm = ({openModal}) => {
   const [catalogName, setCatalogName] = useState("");
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
@@ -60,6 +60,7 @@ const CatalogForm = () => {
     setCoverImageUrl("")
     URL.revokeObjectURL(coverImageUrl);
     setCatalogFile("");
+    openModal();
   };
 
   const handleDeleteCoverImg = () => {
@@ -70,7 +71,7 @@ const CatalogForm = () => {
 
   const handleCatalogImagesDownload = (event) => {
     console.log(event.target.files);
-    const files = event.target.files;
+    const files = event.target.files[0];
     setCatalogFile(files);
   };
 
