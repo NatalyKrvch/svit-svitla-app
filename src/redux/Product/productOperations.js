@@ -18,7 +18,7 @@ export const getProducts = createAsyncThunk(
       const data = await getProductsAPI(
         page ?? null,
         per_page ?? null,
-        article ?? null,
+        article || null,
         filter ?? null
       );
       return data;

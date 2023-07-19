@@ -11,7 +11,7 @@ import {
 import { FiFilter } from "react-icons/fi";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getAllProducts } from "../../redux/Product/productSelectors";
+import { getAllProducts, getTotalItems } from "../../redux/Product/productSelectors";
 import { getProducts } from "../../redux/Product/productOperations";
 import Pagination from "../../components/Pagination/Pagination";
 import { useMediaRules } from "../../hooks/useMediaRules";
@@ -34,11 +34,13 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  // const [pageQty, setPageQty] = useState(0);
+  
+
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
+  const pageQty = useSelector(getTotalItems)
   console.log(products);
   const [searchParams, setSearchParams] = useSearchParams();
   console.log(searchParams);
@@ -46,9 +48,7 @@ const ProductsCataloguePage = () => {
   const article = searchParams.get("article");
 
   const isLoggedIn = useSelector(getIsLoggedIn);
-  // const lastProductIndex = pageNumber * perPage;
-  // const firstProductIndex = lastProductIndex - perPage;
-  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+ 
 
   useEffect(() => {
     let newPerPage = 8;
@@ -63,11 +63,12 @@ const ProductsCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   useEffect(() => {
-    console.log(pageNumber);
-    console.log(perPage);
-    console.log(filterByCode);
-    console.log(query);
-    dispatch(getProducts({ page: pageNumber, per_page: perPage, article, filter: query}));
+    dispatch(getProducts({ 
+      page: pageNumber,
+      per_page: perPage, 
+      article, 
+      filter: query}));
+    setFilterByCode('');
   }, [pageNumber, perPage, article, query]);
 
   useEffect(() => {
@@ -167,7 +168,8 @@ const ProductsCataloguePage = () => {
         <StyledInputWrp>
           <StyledBtnSearch onClick={()=> {
             setSearchParams({article: filterByCode });
-            setFilterByCode('')}}>
+            setFilterByCode('');
+        }}>
             <AiOutlineSearch size={"1.8em"} />
           </StyledBtnSearch>
           <StyledInput
