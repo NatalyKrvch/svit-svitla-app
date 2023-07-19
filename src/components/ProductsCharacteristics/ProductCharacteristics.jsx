@@ -29,7 +29,7 @@ const ProductCharacteristics = ({
         <StyledSpanCountry>{manufacturerCountry}</StyledSpanCountry>
       </StyledPCountry>
       <StyledP>
-        Категорія: <StyledPriceCurrency>{productCategory}</StyledPriceCurrency>
+        Категорія: <StyledSpanCountry>{productCategory}</StyledSpanCountry>
       </StyledP>
       {characteristicArray.length !== 0 && (
         <StyledUl>
