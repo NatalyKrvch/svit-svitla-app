@@ -22,6 +22,7 @@ import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Notiflix from "notiflix";
 import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
+import { Portal } from "../../components/Modal/Portal/Portal";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -145,19 +146,22 @@ const ProductsCataloguePage = () => {
         <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
       )}
       {isModalDeleteOpen && (
-        <ModalDeleteProduct
-          onClose={closeModalDelete}
-          code={productCode}
-          id={productId}
-          products={updatedProductList}
-          setUpdatedProductList={setUpdatedProductList}
-          onOpenDeleteSuccessModal={handleDeleteSuccessModal}
-        />
+        <Portal>
+          <ModalDeleteProduct
+            onClose={closeModalDelete}
+            code={productCode}
+            id={productId}
+            products={updatedProductList}
+            setUpdatedProductList={setUpdatedProductList}
+            onOpenDeleteSuccessModal={handleDeleteSuccessModal}
+          />
+        </Portal>
       )}
       {modalDeleteSuccessOpen && (
-        <ModalDeleteSuccess 
-        onClose={handleDeleteSuccessModal}
-        title={"Картка успішно видалена"}/>
+        <ModalDeleteSuccess
+          onClose={handleDeleteSuccessModal}
+          title={"Картка успішно видалена"}
+        />
       )}
       {isLoggedIn && (
         <StyledInputWrp>
@@ -175,10 +179,12 @@ const ProductsCataloguePage = () => {
         </StyledInputWrp>
       )}
       <StyledTitle>Каталог товарів</StyledTitle>
-      {!isLoggedIn && <StyledButton onClick={() => openModal()}>
-        <FiFilter size={"1.5em"} />
-        Фільтрувати
-      </StyledButton>}
+      {!isLoggedIn && (
+        <StyledButton onClick={() => openModal()}>
+          <FiFilter size={"1.5em"} />
+          Фільтрувати
+        </StyledButton>
+      )}
       {products.length !== 0 && (
         <ProductList
           productsList={updatedProductList}
