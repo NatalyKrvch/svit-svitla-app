@@ -60,7 +60,7 @@ const ProductsCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   useEffect(() => {
-    dispatch(getProducts({ page: pageNumber, per_page: perPage }));
+    dispatch(getProducts({ page: pageNumber, per_page: perPage}));
   }, [pageNumber]);
 
   useEffect(() => {

@@ -190,9 +190,8 @@ const EditProductCard = () => {
       "additionalAttributes",
       JSON.stringify(additionalAttributes)
     );
-
+    formData.append("productCategory", category)
     dispatch(changeProduct({ id: currentProduct._id, body: formData }));
-
     onOpenModal();
     setProductName("");
     setProductCode("");
@@ -201,6 +200,7 @@ const EditProductCard = () => {
     setCoverImage(null);
     setProductImages([]);
     setCharacteristicArray([]);
+    setCategory('');
   };
 
   return (
@@ -294,6 +294,7 @@ const EditProductCard = () => {
           price={price}
           manufacturerCountry={manufacturerCountry}
           characteristicArray={characteristicArray}
+          productCategory={category}
         />
 
         <StyledInputWrapper>
@@ -348,10 +349,15 @@ const EditProductCard = () => {
         </StyledInputWrapper>
         <StyledWrpSelector>
       <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
-      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>{category || "---------"} {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}</StyledButtonSelect>
+      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>
+        {category || "---------"} 
+        {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}
+        </StyledButtonSelect>
         {isOpen && (<StyledList>
          { categoryList.map(el=> {
-          <StyledOptions onClick={()=> handleOptionClick(`${el}`)}>{el}</StyledOptions>
+          return <StyledOptions key={el} onClick={()=> handleOptionClick(`${el}`)}>
+            {el}
+            </StyledOptions>
          })}
           </StyledList>)}
       </StyledWrpSelector>
