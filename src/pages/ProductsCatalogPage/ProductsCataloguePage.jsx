@@ -40,7 +40,9 @@ const ProductsCataloguePage = () => {
   const products = useSelector(getAllProducts);
   console.log(products);
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
   const query = searchParams.get("query");
+  const article = searchParams.get("article");
 
   const isLoggedIn = useSelector(getIsLoggedIn);
   // const lastProductIndex = pageNumber * perPage;
@@ -60,8 +62,12 @@ const ProductsCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   useEffect(() => {
-    dispatch(getProducts({ page: pageNumber, per_page: perPage}));
-  }, [pageNumber]);
+    console.log(pageNumber);
+    console.log(perPage);
+    console.log(filterByCode);
+    console.log(query);
+    dispatch(getProducts({ page: pageNumber, per_page: perPage, article, filter: query}));
+  }, [pageNumber, perPage, article, query]);
 
   useEffect(() => {
     setUpdatedProductList(products);
@@ -123,15 +129,15 @@ const ProductsCataloguePage = () => {
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
 
-  const handleOnSearchButton = (code) => {
-    const allProducts = dispatch(getAllProducts());
-    const productByCode = allProducts.filter(el => el.productCode === code);
-    if(productByCode){
-      setUpdatedProductList(productByCode);
-    } else {
-      Notiflix.Notify.failure("Продукт з таким ім'ям не знайдено")
-    }
-  };
+  // const handleOnSearchButton = (code) => {
+  //   const allProducts = dispatch(getAllProducts());
+  //   const productByCode = allProducts.filter(el => el.productCode === code);
+  //   if(productByCode){
+  //     setUpdatedProductList(productByCode);
+  //   } else {
+  //     Notiflix.Notify.failure("Продукт з таким ім'ям не знайдено")
+  //   }
+  // };
 
   return (
     <StyledFragment>
@@ -155,7 +161,9 @@ const ProductsCataloguePage = () => {
       )}
       {isLoggedIn && (
         <StyledInputWrp>
-          <StyledBtnSearch onClick={() => handleOnSearchButton(filterByCode)}>
+          <StyledBtnSearch onClick={()=> {
+            setSearchParams({article: filterByCode });
+            setFilterByCode('')}}>
             <AiOutlineSearch size={"1.8em"} />
           </StyledBtnSearch>
           <StyledInput
