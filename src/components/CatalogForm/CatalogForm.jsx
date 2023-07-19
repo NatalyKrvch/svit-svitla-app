@@ -70,7 +70,7 @@ const CatalogForm = () => {
 
   const handleCatalogImagesDownload = (event) => {
     console.log(event.target.files);
-    const files = event.target.files;
+    const files = event.target.files[0];
     setCatalogFile(files);
   };
 
