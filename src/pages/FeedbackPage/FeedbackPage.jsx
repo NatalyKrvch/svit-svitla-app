@@ -4,13 +4,14 @@ import {
   PageWrapper,
   StyledP,
   StyledTextarea,
-  StyledButton,
+  // StyledButton,
   StyledForm,
 } from "./FeedbackPageStyled";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../redux/Review/reviewOperations";
 import { getCurrentReviews } from "../../redux/Review/reviewSelectors";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
 // import emailjs from "emailjs-com";
 
 function Feedback() {
@@ -21,15 +22,9 @@ function Feedback() {
   const [feedback, setFeedback] = useState("");
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
-
   const currentReview = useSelector(getCurrentReviews);
-  console.log("currentReview", currentReview);
-
   const currentReviewDate = currentReview?.lastDate;
-  console.log("currentReviewDate", currentReviewDate);
-
   const maxChar = 500;
-
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -42,7 +37,6 @@ function Feedback() {
   };
 
   const mark = selectedStars[selectedStars.length - 1];
-
   const review = {
     reviewMark: mark,
     reviewText: feedback,
@@ -115,13 +109,21 @@ function Feedback() {
               Будь ласка, заповніть поле відгуку
             </p>
           )}
-          <StyledButton
+          {/* <StyledButton
             type="submit"
             onSubmit={handleSubmit}
             disabled={isButtonDisabled}
           >
             Надіслати
-          </StyledButton>
+          </StyledButton> */}
+          <MainButton
+            buttonType={"primary"}
+            width={"328px"}
+            text={"Надіслати"}
+            type="submit"
+            onSubmit={handleSubmit}
+            disabled={isButtonDisabled}
+          ></MainButton>
         </StyledForm>
       </PageWrapper>
     </>
