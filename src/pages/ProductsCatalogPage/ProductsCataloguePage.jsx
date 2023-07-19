@@ -15,7 +15,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getAllProducts, getTotalItems } from "../../redux/Product/productSelectors";
 import { getProducts } from "../../redux/Product/productOperations";
-import Pagination from "../../components/Pagination/Pagination";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalChangeCatalog/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
@@ -23,6 +22,7 @@ import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalD
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Notiflix from "notiflix";
+import { Pagination } from "@mui/material";
 import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import { Portal } from "../../components/Modal/Portal/Portal";
 
@@ -36,18 +36,16 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  
 
-
-  const { isMobile, isTablet } = useMediaRules();
+  const { isMobile, isTablet, isDesktop } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
-  const pageQty = useSelector(getTotalItems)
-  console.log(products);
+  const totalProducts = useSelector(getTotalItems)
   const [searchParams, setSearchParams] = useSearchParams();
   console.log(searchParams);
   const query = searchParams.get("query");
   const article = searchParams.get("article");
+  const pageQty = Math.ceil(totalProducts / perPage);
 
   const isLoggedIn = useSelector(getIsLoggedIn);
  
@@ -76,34 +74,6 @@ const ProductsCataloguePage = () => {
     setUpdatedProductList(products);
   }, [products]);
 
-  // useEffect(() => {
-  //   if (!query) {
-  //     return;
-  //   }
-  //   getProductsByQuery(query);
-  // }, [query]);
-
-  const handlePaginationClick = (i) => {
-    setPageNumber(i);
-  };
-
-  const handleNextPageButton = () => {
-    setPageNumber(pageNumber + 1);
-  };
-
-  const handlePreviousPageButton = () => {
-    setPageNumber(pageNumber - 1);
-  };
-
-  //Необходимо исправить функцию после исправления бекенда.
-  const handleLastPageButton = () => {
-    const lastPage = Math.ceil(products.length / perPage);
-    setPageNumber(lastPage);
-  };
-
-  const handleFirstPageButton = () => {
-    setPageNumber(1);
-  };
   const openModal = () => {
     setShowModalFilter(true);
   };
@@ -132,15 +102,6 @@ const ProductsCataloguePage = () => {
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
 
-  // const handleOnSearchButton = (code) => {
-  //   const allProducts = dispatch(getAllProducts());
-  //   const productByCode = allProducts.filter(el => el.productCode === code);
-  //   if(productByCode){
-  //     setUpdatedProductList(productByCode);
-  //   } else {
-  //     Notiflix.Notify.failure("Продукт з таким ім'ям не знайдено")
-  //   }
-  // };
 
   return (
     <StyledFragment>
@@ -200,18 +161,23 @@ const ProductsCataloguePage = () => {
           onOpen={openModalDelete}
         />
       )}
-      {products.length !== 0 && (
-        <Pagination
-          pageNumber={pageNumber}
-          cardsPerPage={perPage}
-          totalCards={updatedProductList.length} //исправить после исправления бекенда.
-          onClick={handlePaginationClick}
-          handleNextPageButton={handleNextPageButton}
-          handlePreviousPageButton={handlePreviousPageButton}
-          handleLastPageButton={handleLastPageButton}
-          handleFirstPageButton={handleFirstPageButton}
-        />
-      )}
+      <Pagination
+      count={pageQty}
+      page={pageNumber}
+      showFirstButton
+      showLastButton
+      onChange={(_, number) => setPageNumber(number)}
+      sx={{
+        maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
+        marginLeft: "auto",
+        "& .MuiPagination-ul": {
+          justifyContent: isMobile? "center" : "flex-end",
+        "MuiPaginationItem-root": {
+          fontSize: isDesktop? "20px" : "14px",
+        }
+        }
+      }}
+    />
     </StyledFragment>
   );
 };

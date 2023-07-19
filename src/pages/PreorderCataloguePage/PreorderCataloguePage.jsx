@@ -36,11 +36,9 @@ const PreorderCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
+  console.log(catalogsList);
   const { isMobile, isTablet} = useMediaRules();
-//   const lastCatalogIndex = pageNumber * perPage;
-//   const firstCatalogIndex = lastCatalogIndex - perPage;
-//   const currentCatalogs = fetchedCatalogsList.slice(firstCatalogIndex, firstCatalogIndex);
-//  console.log(fetchedCatalogsList);
+
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage }));
