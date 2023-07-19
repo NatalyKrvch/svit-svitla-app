@@ -50,6 +50,7 @@ export const StyledTextarea = styled.textarea`
   height: 169px;
   width: 327px;
   padding: 12px;
+  margin-bottom: 24px;
   border-radius: 8px;
   border: 2px solid var(--light-blue);
 
