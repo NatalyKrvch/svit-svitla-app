@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeProduct } from "../../redux/Product/productOperations";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { categoryList } from '../../components/ProductForm/categoryList.json'
 import { BiPlusCircle } from "react-icons/bi";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllProducts } from "../../redux/Product/productSelectors";
@@ -23,12 +24,19 @@ import {
   SubmitButton,
   StyledForm,
   StyledLabel,
+  LabelFileInput,
+  StyledWrpSelector,
+  StyledButtonSelect,
+  StyledList,
+  StyledOptions,
 } from "./EditProductCardPageStyled";
 
 import { nanoid } from "nanoid";
 import AddCharacteristicInputs from "../../components/AddCharacteristicInputs/AddCharacteristicInputs";
 import ModalChangeProductCard from "../../components/Modal/ModalChangeCatalog/ModalChangeProductCard/ModalChangeProductCard";
 import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
+import { GoTriangleUp,  GoTriangleDown } from "react-icons/go"
+
 
 const EditProductCard = () => {
   const { id } = useParams();
@@ -61,8 +69,9 @@ const EditProductCard = () => {
     currentProduct?.productCoverURL
   );
   const [productImagesUrl, setProductImagesUrl] = useState([]);
+  const [category, setCategory] = useState ('');
+  const [isOpen, setIsOpen] = useState(false);
 
-  console.log(characteristicArray);
 
   const navigate = useNavigate();
 
@@ -74,6 +83,7 @@ const EditProductCard = () => {
     setCharacteristicArray(currentProduct?.additionalAttributes || []);
     setCoverImage(currentProduct?.productCoverURL || null);
     setProductImages(currentProduct?.productPhotoURL || "");
+    setCategory(currentProduct?.productCategory || "")
   }, [currentProduct]);
 
   const dispatch = useDispatch();
@@ -150,14 +160,20 @@ const EditProductCard = () => {
     navigate("/");
   };
 
+  const handleOptionClick = (selectedOption) => {
+    if (selectedOption !== category) {
+      setCategory(selectedOption);
+      setIsOpen(false);
+    }
+  };
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.name, value: obj.value };
     });
-    console.log(additionalAttributes);
-    console.log(characteristicArray);
-
+ 
     const formData = new FormData();
     formData.append("productName", productName);
     formData.append("productCode", productCode);
@@ -187,7 +203,6 @@ const EditProductCard = () => {
     setCharacteristicArray([]);
   };
 
-  console.log('render');
   return (
     <StyledFragment>
       <StyledForm onSubmit={handleSubmit}>
@@ -260,7 +275,7 @@ const EditProductCard = () => {
             ))}
           </ul>
         )}
-        <label>
+        <LabelFileInput>
           <FileInput
             type="file"
             multiple
@@ -273,7 +288,7 @@ const EditProductCard = () => {
               <BiPlusCircle size={"1.5em"} />
             </FakeButton>
           </FakeInputWrp>
-        </label>
+        </LabelFileInput>
 
         <ProductCharacteristics
           price={price}
@@ -331,6 +346,15 @@ const EditProductCard = () => {
             onChange={handleManufacturerCountryChange}
           />
         </StyledInputWrapper>
+        <StyledWrpSelector>
+      <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
+      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>{category || "---------"} {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}</StyledButtonSelect>
+        {isOpen && (<StyledList>
+         { categoryList.map(el=> {
+          <StyledOptions onClick={()=> handleOptionClick(`${el}`)}>{el}</StyledOptions>
+         })}
+          </StyledList>)}
+      </StyledWrpSelector>
         {characteristicArray.map((item) => (
           <AddCharacteristicInputs
             key={item._id}
@@ -347,7 +371,6 @@ const EditProductCard = () => {
             onClick={() => {
               const id = nanoid();
               setCharacteristicArray((prevState) => {
-                console.log(prevState);
                 return [...prevState, { _id: id }];
               });
               return;
