@@ -21,7 +21,7 @@ const ModalFilter = ({onCloseModal, onSubmit}) => {
   const [filter, setFilter] = useState('');
 
 const handleChooseFilterButton = (value) => {
-  setFilter(value.toLowerCase());
+  setFilter(value);
 }
 
   return (
@@ -37,7 +37,7 @@ const handleChooseFilterButton = (value) => {
               {el}
              <IconBtn>
               <StyledIconCircle /> 
-              {(filter === `${el.toLowerCase()}`) && <StyledIconCircleFill />}
+              {(filter === `${el}`) && <StyledIconCircleFill />}
             </IconBtn>
             </FilterBtn>
             })}
