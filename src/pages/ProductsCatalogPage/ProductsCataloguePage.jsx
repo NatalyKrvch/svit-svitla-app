@@ -173,8 +173,8 @@ const ProductsCataloguePage = () => {
       <StyledTitle>Каталог товарів</StyledTitle>
       {!isLoggedIn && (
         <StyledButton onClick={() => openModal()}>
-          <FiFilter size={"1.5em"} />
-          Фільтрувати
+         {!query && <FiFilter size={"1.5em"} />}
+         {query? `${query}` : 'Фільтрувати'}
         </StyledButton>
       )}
       {products.length !== 0 && (
