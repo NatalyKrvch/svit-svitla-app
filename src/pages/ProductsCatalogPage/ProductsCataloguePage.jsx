@@ -11,7 +11,7 @@ import {
 import { FiFilter } from "react-icons/fi";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getAllProducts } from "../../redux/Product/productSelectors";
+import { getAllProducts, getTotalItems } from "../../redux/Product/productSelectors";
 import { getProducts } from "../../redux/Product/productOperations";
 import Pagination from "../../components/Pagination/Pagination";
 import { useMediaRules } from "../../hooks/useMediaRules";
@@ -34,19 +34,21 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  // const [pageQty, setPageQty] = useState(0);
+  
+
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
+  const pageQty = useSelector(getTotalItems)
   console.log(products);
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
   const query = searchParams.get("query");
+  const article = searchParams.get("article");
 
   const isLoggedIn = useSelector(getIsLoggedIn);
-  // const lastProductIndex = pageNumber * perPage;
-  // const firstProductIndex = lastProductIndex - perPage;
-  // const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+ 
 
   useEffect(() => {
     let newPerPage = 8;
@@ -61,8 +63,13 @@ const ProductsCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   useEffect(() => {
-    dispatch(getProducts({ page: pageNumber, per_page: perPage }));
-  }, [pageNumber]);
+    dispatch(getProducts({ 
+      page: pageNumber,
+      per_page: perPage, 
+      article, 
+      filter: query}));
+    setFilterByCode('');
+  }, [pageNumber, perPage, article, query]);
 
   useEffect(() => {
     setUpdatedProductList(products);
@@ -124,15 +131,15 @@ const ProductsCataloguePage = () => {
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
 
-  const handleOnSearchButton = (code) => {
-    const allProducts = dispatch(getAllProducts());
-    const productByCode = allProducts.filter(el => el.productCode === code);
-    if(productByCode){
-      setUpdatedProductList(productByCode);
-    } else {
-      Notiflix.Notify.failure("Продукт з таким ім'ям не знайдено")
-    }
-  };
+  // const handleOnSearchButton = (code) => {
+  //   const allProducts = dispatch(getAllProducts());
+  //   const productByCode = allProducts.filter(el => el.productCode === code);
+  //   if(productByCode){
+  //     setUpdatedProductList(productByCode);
+  //   } else {
+  //     Notiflix.Notify.failure("Продукт з таким ім'ям не знайдено")
+  //   }
+  // };
 
   return (
     <StyledFragment>
@@ -159,7 +166,10 @@ const ProductsCataloguePage = () => {
       )}
       {isLoggedIn && (
         <StyledInputWrp>
-          <StyledBtnSearch onClick={() => handleOnSearchButton(filterByCode)}>
+          <StyledBtnSearch onClick={()=> {
+            setSearchParams({article: filterByCode });
+            setFilterByCode('');
+        }}>
             <AiOutlineSearch size={"1.8em"} />
           </StyledBtnSearch>
           <StyledInput
