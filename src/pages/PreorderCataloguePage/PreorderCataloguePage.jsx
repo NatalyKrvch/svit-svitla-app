@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import CatalogsList from "../../components/CatalogsList/CatalogsList";
 import { useEffect, useState } from "react";
+import { Pagination} from "@mui/material";
 import {
   getCatalogs,
   removeCatalog,
@@ -18,7 +19,6 @@ import {
 import { AiOutlineSearch } from "react-icons/ai";
 import ModalDeleteCatalog from "../../components/Modal/ModalChangeCatalog/ModalDeleteCatalog/ModalDeleteCatalog";
 import Notiflix from 'notiflix';
-import Pagination from "../../components/Pagination/Pagination";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 
@@ -107,28 +107,6 @@ const PreorderCataloguePage = () => {
     return;
   };
 
-  const handlePaginationClick = (i) => {
-    setPageNumber(i);
-  };
-
-  const handleNextPageButton = () => {
-    setPageNumber(pageNumber + 1)
-  };
-
-  const handlePreviousPageButton = () => {
-    setPageNumber(pageNumber - 1)
-  };
-
-  
-  //Необходимо заменит функцию после исправления бекенда  на запрос всех каталогов, без пагинации
-  const handleLastPageButton = () => {
-    const lastPage = Math.ceil(fetchedCatalogsList.length / perPage);
-    setPageNumber(lastPage);
-  };
-
-  const handleFirstPageButton = () => {
-    setPageNumber(1);
-  }
 
   return (
     <STyledContainer>
@@ -170,16 +148,6 @@ const PreorderCataloguePage = () => {
         onClose={handleDeleteSuccessModal}
         title={"Картка каталогу успішно видалена"}/>
       )}
-      {catalogsList !== 0  && 
-      <Pagination 
-      pageNumber={pageNumber}
-      cardsPerPage={perPage}
-      totalCards={fetchedCatalogsList.length} 
-      onClick={handlePaginationClick}
-      handleNextPageButton={handleNextPageButton}
-      handlePreviousPageButton={handlePreviousPageButton}
-      handleLastPageButton={handleLastPageButton}
-      handleFirstPageButton={handleFirstPageButton}/> }  
     </STyledContainer>
   );
 };

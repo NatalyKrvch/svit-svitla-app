@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { categoryList } from "./categoryList.json";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -26,7 +26,6 @@ import {
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
-import { getCurrentProduct } from "../../redux/Product/productSelectors";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 
 const ProductForm = ({ openModal }) => {
@@ -41,14 +40,8 @@ const ProductForm = ({ openModal }) => {
   const [productImagesUrl, setProductImagesUrl] = useState([]);
   const [category, setCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
 
   const dispatch = useDispatch();
-  // const addedProduct = useSelector(getCurrentProduct);
-
-  // const handleOpenOptionsCategory = () => {
-  //   setIsOpen(true);
-  // }
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -94,9 +87,6 @@ const ProductForm = ({ openModal }) => {
     setProductImagesUrl(newProductImagesUrl);
   };
 
-  // const handleCategoryChange = ev => {
-  //   setCategory(ev.target.value)
-  // }
 
   const handleOptionClick = (selectedOption) => {
     if (selectedOption !== category) {
@@ -108,7 +98,6 @@ const ProductForm = ({ openModal }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(category);
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.name, value: obj.value };
     });
@@ -210,7 +199,6 @@ const ProductForm = ({ openModal }) => {
         )}
       </StyledWrpSelector>
       {characteristicArray.map(({ _id, name, value }) => {
-        console.log(_id, name, value);
         return (
           <AddCharacteristicInputs
             key={_id}

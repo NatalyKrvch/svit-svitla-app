@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
+import { Pagination} from "@mui/material";
 import {
   StyledBtnDeleteSearch,
   StyledBtnSearch,
@@ -22,9 +23,10 @@ import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalD
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Notiflix from "notiflix";
-import { Pagination } from "@mui/material";
 import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import { Portal } from "../../components/Modal/Portal/Portal";
+
+
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -42,12 +44,12 @@ const ProductsCataloguePage = () => {
   const products = useSelector(getAllProducts);
   const totalProducts = useSelector(getTotalItems)
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
   const query = searchParams.get("query");
   const article = searchParams.get("article");
-  const pageQty = Math.ceil(totalProducts / perPage);
 
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const pageQty = Math.ceil(totalProducts / perPage );
+  
  
 
   useEffect(() => {
