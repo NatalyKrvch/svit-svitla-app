@@ -21,17 +21,19 @@ import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalD
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Notiflix from "notiflix";
+import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [showModalFilter, setShowModalFilter] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [modalDeleteSuccessOpen, setModalDeleteSuccessOpen] = useState(false);
   const [productCode, setProductCode] = useState("");
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  // const [totalProducts, setTotalPoducts] = useState([]);
+  // const [pageQty, setPageQty] = useState(0);
 
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
@@ -112,6 +114,10 @@ const ProductsCataloguePage = () => {
     setProductId(id);
   };
 
+  const handleDeleteSuccessModal = () => {
+     setModalDeleteSuccessOpen(!modalDeleteSuccessOpen);
+  };
+
   const closeModalDelete = () => {
     setIsModalDeleteOpen(false);
   };
@@ -139,7 +145,13 @@ const ProductsCataloguePage = () => {
           id={productId}
           products={updatedProductList}
           setUpdatedProductList={setUpdatedProductList}
+          onOpenDeleteSuccessModal={handleDeleteSuccessModal}
         />
+      )}
+      {modalDeleteSuccessOpen && (
+        <ModalDeleteSuccess 
+        onClose={handleDeleteSuccessModal}
+        title={"Картка успішно видалена"}/>
       )}
       {isLoggedIn && (
         <StyledInputWrp>
