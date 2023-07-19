@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
 import {
+  StyledBtnDeleteSearch,
   StyledBtnSearch,
   StyledButton,
   StyledFragment,
@@ -9,6 +10,7 @@ import {
   StyledTitle,
 } from "./ProductsCataloguePageStyled";
 import { FiFilter } from "react-icons/fi";
+import { RxCrossCircled } from "react-icons/rx"
 import { useEffect } from "react";
 import { useState } from "react";
 import { getAllProducts, getTotalItems } from "../../redux/Product/productSelectors";
@@ -68,7 +70,6 @@ const ProductsCataloguePage = () => {
       per_page: perPage, 
       article, 
       filter: query}));
-    setFilterByCode('');
   }, [pageNumber, perPage, article, query]);
 
   useEffect(() => {
@@ -168,7 +169,6 @@ const ProductsCataloguePage = () => {
         <StyledInputWrp>
           <StyledBtnSearch onClick={()=> {
             setSearchParams({article: filterByCode });
-            setFilterByCode('');
         }}>
             <AiOutlineSearch size={"1.8em"} />
           </StyledBtnSearch>
@@ -178,13 +178,20 @@ const ProductsCataloguePage = () => {
             value={filterByCode}
             onChange={handleChangeFilterByCode}
           />
+          { filterByCode && 
+          <StyledBtnDeleteSearch onClick={() => {
+            setSearchParams({});
+            setFilterByCode('')}}>
+            <RxCrossCircled size={'1.5em'}/>
+          </StyledBtnDeleteSearch> }
         </StyledInputWrp>
       )}
       <StyledTitle>Каталог товарів</StyledTitle>
       {!isLoggedIn && (
-        <StyledButton onClick={() => openModal()}>
-          <FiFilter size={"1.5em"} />
-          Фільтрувати
+        <StyledButton onClick={!query? () => openModal() : () => setSearchParams({})}>
+         {!query && <FiFilter size={"1.5em"} />}
+         {query? `${query}` : 'Фільтрувати'}
+         {query && <RxCrossCircled/> }
         </StyledButton>
       )}
       {products.length !== 0 && (
