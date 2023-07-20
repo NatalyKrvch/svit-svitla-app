@@ -11,10 +11,6 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async ({ page, per_page, article, filter }, { rejectWithValue }) => {
     try {
-      console.log(page);
-      console.log(per_page);
-      console.log(article);
-      console.log(filter);
       const data = await getProductsAPI(
         page ?? null,
         per_page ?? null,
@@ -32,7 +28,6 @@ export const addProduct = createAsyncThunk(
   "products/addProduct",
   async (product, thunkAPI) => {
     try {
-      console.log(product);
       const data = await addProductAPI(product);
       return data;
     } catch (error) {

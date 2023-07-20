@@ -6,14 +6,12 @@ import { StyledFragment, StyledTitle, TitleWrp } from "./CreateCardPageStyled";
 import DropdownCardSelector from "../../components/DropdownCardSelect/DropdownCardSelect";
 import ModalCreateProductCard from "../../components/Modal/ModalChangeCatalog/ModalCreateProductCard/ModalCreateProductCard";
 import { useState } from "react";
-import { getCurrentProduct } from "../../redux/Product/productSelectors";
 import { useNavigate } from "react-router-dom";
 
 
 const CreateCardPage = () => {
 
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
 
   const navigate = useNavigate();
 
