@@ -1,69 +1,72 @@
 import styled from 'styled-components';
 
-export const PrimaryButton = styled.button`
-  background-color: var(--dark-blue);
+const font = `
+font-family: Inter;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.4px;
+`
+const ButtonStyled = styled.button`
   height: 48px;
-  width: ${(props) => props.width};
+  width: 100%;
   padding: 12px auto;
   border-radius: 8px;
-  border: none;
-  color: var(--main-white);
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.4px;
   cursor: pointer;
+  ${font}
+  border: ${props =>
+    props.buttonType === "primary" || props.buttonType === "warning"
+      ? "none"
+      : "1px solid var(--dark-blue)"
+  };
+  background-color: ${props =>
+    props.buttonType === "primary"
+      ? "var(--dark-blue)"
+      : props.buttonType === "warning"
+        ? "var(--warning)"
+        : "transparent"
+  };
+  color: ${props =>
+    props.buttonType === "primary" || props.buttonType === "warning"
+      ? "var(--main-white)"
+      : " var(--black)"
+  };
 
   &[disabled] {
-    background-color: var(--middle-grey);
-    cursor: not-allowed; 
+    cursor: not-allowed;
+    background-color: ${props =>
+    props.buttonType === "primary" || props.buttonType === "warning"
+      ? "var(--middle-grey)"
+      : "transparent"
+  };
+    border:  ${props =>
+    props.buttonType === "secondary" || props.buttonType === "filter"
+      ? "1px solid var(--middle-grey)"
+      : "none"
+  };
+    color: ${props =>
+    props.buttonType === "secondary" || props.buttonType === "filter"
+      ? "var(--middle-grey)"
+      : "var(--main-white)"
+  };
   }
 
   &:active:not(:disabled) {
-    background-color: var(--pressed-blue);
     border: 2px solid var(--dark-blue);
+    background-color: ${props =>
+    props.buttonType === "primary"
+      ? "var(--pressed-blue)"
+      : props.buttonType === "warning"
+        ? "var(--warning-pressed)"
+        : props.buttonType === "secondary"
+          ? "var(--light-blue)"
+          : "var(--pressed-outlined)"
+  };
   }
 
   @media screen and (min-width: 769px) {
     height: 56px;
-    /* width: ; */
     font-size: 20px;
   }
-
-  @media screen and (min-width: 1281px) {
-    /* width: ; */
-  }
 `
-
-export const SecondaryButton = styled(PrimaryButton)`
-  background-color: transparent;
-  border: 1px solid var(--dark-blue);
-  color: var(--black);
-
-  &[disabled] {
-    background-color: transparent;
-  }
-
-  &:active:not(:disabled) {
-    background-color: var(--light-blue);
-    color: var(--middle-grey);
-    border: var(--middle-grey);
-  }
-`
-
-export const FilterButton = styled(SecondaryButton)`
-  font-weight: 400;
-   
-  &:active:not(:disabled) {
-    background-color: var(--pressed-outlined);
-  }
-`
-
-export const WarningButton = styled(PrimaryButton)`
-  background-color: var(--warning);
-
-  &:active:not(:disabled) {
-    background-color: var(--warning-pressed);
-  }
-`
+export default ButtonStyled;

@@ -50,7 +50,6 @@ export const StyledTextarea = styled.textarea`
   height: 169px;
   width: 327px;
   padding: 12px;
-  margin-bottom: 24px;
   border-radius: 8px;
   border: 2px solid var(--light-blue);
 
@@ -95,38 +94,22 @@ export const StyledForm = styled.form`
   align-items: flex-start;
   flex-direction: column;
 `
-export const StyledButton = styled.button`
-  background-color: var(--dark-blue);
-  height: 48px;
+export const ButtonWrapper = styled.div`
   width: 328px;
   margin-top: 24px;
-  border-radius: 8px;
-  border: none;
-  color: var(--main-white);
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.4px;
-  cursor: pointer;
-
-  &[disabled] {
-    background-color: var(--middle-grey);
-    cursor: not-allowed; 
-  }
-
-  &:active:not(:disabled) {
-    background-color: var(--pressed-blue);
-    border: 2px solid var(--dark-blue);
-  }
 
   @media screen and (min-width: 769px) {
-    height: 56px;
     width: 365px;
-    font-size: 20px;
-  }
+    margin-top: 32px;
+  } 
 
   @media screen and (min-width: 1281px) {
     width: 371px;
+    margin-top: 48px;
   }
+
 `
+export const Warning = styled.p`
+  color: var(--warning);
+`
+

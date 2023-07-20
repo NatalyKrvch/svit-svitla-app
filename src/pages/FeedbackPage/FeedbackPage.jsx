@@ -4,8 +4,9 @@ import {
   PageWrapper,
   StyledP,
   StyledTextarea,
-  // StyledButton,
+  ButtonWrapper,
   StyledForm,
+  Warning,
 } from "./FeedbackPageStyled";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -105,25 +106,18 @@ function Feedback() {
             isTextareaEmpty={isTextareaEmpty}
           />
           {isTextareaEmpty && (
-            <p style={{ color: "#B3261E" }}>
-              Будь ласка, заповніть поле відгуку
-            </p>
+            <Warning>Будь ласка, заповніть поле відгуку</Warning>
           )}
-          {/* <StyledButton
-            type="submit"
-            onSubmit={handleSubmit}
-            disabled={isButtonDisabled}
-          >
-            Надіслати
-          </StyledButton> */}
-          <MainButton
-            buttonType={"primary"}
-            width={"328px"}
-            text={"Надіслати"}
-            type="submit"
-            onSubmit={handleSubmit}
-            disabled={isButtonDisabled}
-          ></MainButton>
+          <ButtonWrapper>
+            <MainButton
+              buttonType={"primary"}
+              type="submit"
+              onSubmit={handleSubmit}
+              disabled={isButtonDisabled}
+            >
+              Надіслати
+            </MainButton>
+          </ButtonWrapper>
         </StyledForm>
       </PageWrapper>
     </>
