@@ -17,7 +17,7 @@ import {
   StyledInputWrp,
 } from "./PreoderCataloguePageStyled";
 import { AiOutlineSearch } from "react-icons/ai";
-import ModalDeleteCatalog from "../../components/Modal/ModalChangeCatalog/ModalDeleteCatalog/ModalDeleteCatalog";
+import ModalDeleteCatalog from "../../components/Modal/ModalDeleteCatalog/ModalDeleteCatalog";
 import Notiflix from 'notiflix';
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";

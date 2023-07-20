@@ -33,7 +33,7 @@ import {
 
 import { nanoid } from "nanoid";
 import AddCharacteristicInputs from "../../components/AddCharacteristicInputs/AddCharacteristicInputs";
-import ModalChangeProductCard from "../../components/Modal/ModalChangeCatalog/ModalChangeProductCard/ModalChangeProductCard";
+import ModalChangeProductCard from "../../components/Modal/ModalChangeProductCard/ModalChangeProductCard";
 import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
 import { GoTriangleUp,  GoTriangleDown } from "react-icons/go"
 

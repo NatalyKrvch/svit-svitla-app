@@ -14,12 +14,12 @@ import { FiFilter } from "react-icons/fi";
 import { RxCrossCircled } from "react-icons/rx"
 import { useEffect } from "react";
 import { useState } from "react";
-import { getAllProducts, getTotalItems } from "../../redux/Product/productSelectors";
+import { getAllProducts, getTotalItemsProduct } from "../../redux/Product/productSelectors";
 import { getProducts } from "../../redux/Product/productOperations";
 import { useMediaRules } from "../../hooks/useMediaRules";
-import ModalFilter from "../../components/Modal/ModalChangeCatalog/ModalFilter/ModalFilter";
+import ModalFilter from "../../components/Modal/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
-import ModalDeleteProduct from "../../components/Modal/ModalChangeCatalog/ModalDeleteProduct/ModalDeleteProduct";
+import ModalDeleteProduct from "../../components/Modal/ModalDeleteProduct/ModalDeleteProduct";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Notiflix from "notiflix";
@@ -42,7 +42,7 @@ const ProductsCataloguePage = () => {
   const { isMobile, isTablet, isDesktop } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
-  const totalProducts = useSelector(getTotalItems)
+  const totalProducts = useSelector(getTotalItemsProduct)
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
   const article = searchParams.get("article");
