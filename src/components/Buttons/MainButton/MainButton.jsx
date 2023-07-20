@@ -1,36 +1,14 @@
-import {
-  PrimaryButton,
-  SecondaryButton,
-  WarningButton,
-  FilterButton,
-} from "./MainButtonStyled";
 import PropTypes from "prop-types";
+import ButtonStyled from "./MainButtonStyled";
 
-function MainButton({ buttonType, width, text, ...props }) {
+function MainButton({ buttonType = "primary", children, ...props }) {
   //buttonType: primary(blue), secondary(rtansparent), warning(red), filter
-
+  console.log(buttonType);
   return (
     <>
-      {buttonType === "primary" && (
-        <PrimaryButton width={width} {...props}>
-          {text}
-        </PrimaryButton>
-      )}
-      {buttonType === "secondary" && (
-        <SecondaryButton width={width} {...props}>
-          {text}
-        </SecondaryButton>
-      )}
-      {buttonType === "warning" && (
-        <WarningButton width={width} {...props}>
-          {text}
-        </WarningButton>
-      )}
-      {buttonType === "filter" && (
-        <FilterButton width={width} {...props}>
-          {text}
-        </FilterButton>
-      )}
+      <ButtonStyled buttonType={buttonType} {...props}>
+        {children}
+      </ButtonStyled>
     </>
   );
 }
@@ -38,8 +16,7 @@ function MainButton({ buttonType, width, text, ...props }) {
 MainButton.propTypes = {
   buttonType: PropTypes.oneOf(["primary", "secondary", "warning", "filter"])
     .isRequired,
-  width: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  children: PropTypes.string,
 };
 
 export default MainButton;
