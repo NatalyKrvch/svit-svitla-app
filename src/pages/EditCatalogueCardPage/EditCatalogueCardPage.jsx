@@ -8,7 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { HiArrowUpTray } from "react-icons/hi2";
 import { changeCatalog } from "../../redux/Catalog/catalogOperations";
 import { useEffect, useState } from "react";
-import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog/ModalChangeCatalog";
+import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog";
 
 const  EditCatalogueCard = () =>  {
   const { id } = useParams();

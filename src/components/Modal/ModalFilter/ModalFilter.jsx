@@ -14,7 +14,7 @@ import {
   StyledTitle,
 } from "./ModalFilterStyled";
 import { useState } from "react";
-import { categoryList } from "../../../ProductForm/categoryList.json";
+import { categoryList } from "../../ProductForm/categoryList.json";
 
 const ModalFilter = ({onCloseModal, onSubmit}) => {
 

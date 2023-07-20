@@ -2,8 +2,8 @@ import { GrClose } from "react-icons/gr";
 import { CloseButton, ModalBody, Overlay, StyledBtnBack, StyledDiv, StyledImg, StyledP, StyledTitle} from "./ModalDeleteProductStyled";
 import { useDispatch } from "react-redux";
 
-import lampRed from "../../../../images/Popup/lamp-red@1x.png"
-import { removeProduct } from "../../../../redux/Product/productOperations";
+import lampRed from "../../../images/Popup/lamp-red@1x.png"
+import { removeProduct } from "../../../redux/Product/productOperations";
 
 
 const ModalDeleteProduct = ({onClose, code, id, products, setUpdatedProductList, onOpenDeleteSuccessModal}) => {
