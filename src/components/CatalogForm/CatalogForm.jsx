@@ -37,7 +37,7 @@ const CatalogForm = ({openModal}) => {
   };
 
   const handleCatalogNameChange = (event) => {
-    setCatalogName(event.target.value);
+    setCatalogName(event.target.value.toLowerCase());
   };
 
   const handleYearChange = (event) => {
