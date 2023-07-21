@@ -8,9 +8,13 @@ import {
 
 export const getCatalogs = createAsyncThunk(
   "catalogs/getCatalogs",
-  async ({ page, per_page }, { rejectWithValue }) => {
+  async ({ page, per_page, catalogName }, { rejectWithValue }) => {
     try {
-      const data = await getCatalogsAPI(page ?? null, per_page ?? null);
+      const data = await getCatalogsAPI(
+        page ?? null,
+        per_page ?? null,
+        catalogName ?? null,
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

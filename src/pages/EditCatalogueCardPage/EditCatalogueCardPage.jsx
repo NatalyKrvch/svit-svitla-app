@@ -8,7 +8,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { HiArrowUpTray } from "react-icons/hi2";
 import { changeCatalog } from "../../redux/Catalog/catalogOperations";
 import { useEffect, useState } from "react";
-import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog";
+// import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog";
+import Modal from "../../components/Modal/Modal/Modal";
 
 const  EditCatalogueCard = () =>  {
   const { id } = useParams();
@@ -87,84 +88,89 @@ const  EditCatalogueCard = () =>  {
 
 
   return (
-   <StyledDiv>
-     <StyledTitle>Редагувати картку товару</StyledTitle>
-     <StyledP>{name}</StyledP>
-     <StyledP>{year}</StyledP>
-     <StyledForm action="" onSubmit={handleSubmit}>
-     {!coverImageUrl ? (
+    <StyledDiv>
+      <StyledTitle>Редагувати картку товару</StyledTitle>
+      <StyledP>{name}</StyledP>
+      <StyledP>{year}</StyledP>
+      <StyledForm action="" onSubmit={handleSubmit}>
+        {!coverImageUrl ? (
+          <label>
+            <FileInput
+              type="file"
+              required
+              onChange={handleCoverImageChange}
+              accept=".jpeg, .jpg"
+              value={coverImageUrl}
+            />
+            <FakeInputWrp>
+              <FakeInputText>Додати обкладинку</FakeInputText>
+              <FakeButton type="button">
+                <BiPlusCircle size={"1.5em"} />
+              </FakeButton>
+            </FakeInputWrp>
+          </label>
+        ) : (
+          <StyledInputWrapper>
+            <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
+            <StyledImg src={coverImageUrl} alt="cover" />
+            <StyledInput
+              id="name"
+              type="text"
+              onChange={handleCoverImageChange}
+              value={`Cover_${name}.jpeg`}
+              readOnly
+            />
+            <StyledButtonDelete type="button ">
+              <RiDeleteBin6Line
+                size={"1.8em"}
+                color="white"
+                onClick={handleDeleteCoverImg}
+              />
+            </StyledButtonDelete>
+          </StyledInputWrapper>
+        )}
+        <StyledInputWrapper>
+          <StyledLabel htmlFor="catalogName">Назва каталогу</StyledLabel>
+          <StyledInput
+            type="text"
+            name="catalogName"
+            required
+            pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
+            title="Name may contain only letters, apostrophe, dash and spaces."
+            onChange={handleCatalogNameChange}
+            value={name}
+          />
+        </StyledInputWrapper>
+        <StyledInputWrapper>
+          <StyledLabel htmlFor="year">Рік</StyledLabel>
+          <StyledInput
+            type="text"
+            name="year"
+            onChange={handleYearChange}
+            value={year}
+          />
+        </StyledInputWrapper>
         <label>
           <FileInput
             type="file"
-            required
-            onChange={handleCoverImageChange}
-            accept=".jpeg, .jpg"
-            value={coverImageUrl}
+            onChange={handleCatalogImagesDownload}
+            accept=".pdf"
           />
-          <FakeInputWrp>
-            <FakeInputText>Додати обкладинку</FakeInputText>
-            <FakeButton type="button">
-              <BiPlusCircle size={"1.5em"} />
-            </FakeButton>
-          </FakeInputWrp>
+          <FakeInputWrpDownload>
+            <FakeButtonDownload>
+              <HiArrowUpTray size={"1.5em"} />
+            </FakeButtonDownload>
+            <FakeInputText>Завантажити каталог</FakeInputText>
+          </FakeInputWrpDownload>
         </label>
-      ) : (
-        <StyledInputWrapper>
-          <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImageUrl}  alt="cover" />
-          <StyledInput
-            id="name"
-            type="text"
-            onChange={handleCoverImageChange}
-            value={`Cover_${name}.jpeg`}
-            readOnly
-          />
-          <StyledButtonDelete type="button " >
-            <RiDeleteBin6Line size={"1.8em"} color="white" onClick={handleDeleteCoverImg} />
-          </StyledButtonDelete>
-        </StyledInputWrapper>
-      )}
-       <StyledInputWrapper>
-        <StyledLabel htmlFor="catalogName">Назва каталогу</StyledLabel>
-        <StyledInput
-          type="text"
-          name="catalogName"
-          required
-          pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
-          title="Name may contain only letters, apostrophe, dash and spaces."
-          onChange={handleCatalogNameChange}
-          value={name}
-        />
-      </StyledInputWrapper>
-      <StyledInputWrapper>
-        <StyledLabel htmlFor="year">Рік</StyledLabel>
-        <StyledInput type="text" name="year" onChange={handleYearChange}  value={year}/>
-      </StyledInputWrapper>
-      <label>
-        <FileInput
-          type="file"
-          onChange={handleCatalogImagesDownload}
-          accept=".pdf"
-        />
-        <FakeInputWrpDownload>
-          <FakeButtonDownload>
-            <HiArrowUpTray size={"1.5em"} />
-          </FakeButtonDownload>
-          <FakeInputText>Завантажити каталог</FakeInputText>
-        </FakeInputWrpDownload>
-      </label>
-      <SubmitButton
-        type="submit"
-        disabled={
-          !name || !year || !coverImageUrl 
-        }
-      >
-        Зберегти
-      </SubmitButton>
+        <SubmitButton type="submit" disabled={!name || !year || !coverImageUrl}>
+          Зберегти
+        </SubmitButton>
       </StyledForm>
-      {showModal && <ModalChangeCatalog  onCloseModal={closeModal}/>}
-   </StyledDiv>
-  )
+      {/* {showModal && <ModalChangeCatalog onCloseModal={closeModal} />} */}
+      {showModal && <Modal onCloseModal={closeModal} title="Картка каталогу успішно змінена!"/>}
+    </StyledDiv>
+  );
 }
 
 export default EditCatalogueCard;

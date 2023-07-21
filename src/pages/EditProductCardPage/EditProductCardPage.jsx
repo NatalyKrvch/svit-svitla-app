@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeProduct } from "../../redux/Product/productOperations";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { categoryList } from '../../components/ProductForm/categoryList.json'
+import { categoryList } from "../../components/ProductForm/categoryList.json";
 import { BiPlusCircle } from "react-icons/bi";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllProducts } from "../../redux/Product/productSelectors";
@@ -33,16 +33,16 @@ import {
 
 import { nanoid } from "nanoid";
 import AddCharacteristicInputs from "../../components/AddCharacteristicInputs/AddCharacteristicInputs";
-import ModalChangeProductCard from "../../components/Modal/ModalChangeProductCard/ModalChangeProductCard";
+// import ModalChangeProductCard from "../../components/Modal/ModalChangeProductCard/ModalChangeProductCard";
 import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
-import { GoTriangleUp,  GoTriangleDown } from "react-icons/go"
-
+import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
+import Modal from "../../components/Modal/Modal/Modal";
+import { setModalOpen } from "../../redux/Product/productReducer";
 
 const EditProductCard = () => {
   const { id } = useParams();
   const productsList = useSelector(getAllProducts);
   const currentProduct = productsList.find((product) => product._id === id);
-  
 
   const [productName, setProductName] = useState(
     currentProduct?.productName || ""
@@ -69,9 +69,8 @@ const EditProductCard = () => {
     currentProduct?.productCoverURL
   );
   const [productImagesUrl, setProductImagesUrl] = useState([]);
-  const [category, setCategory] = useState ('');
+  const [category, setCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
 
   const navigate = useNavigate();
 
@@ -83,7 +82,7 @@ const EditProductCard = () => {
     setCharacteristicArray(currentProduct?.additionalAttributes || []);
     setCoverImage(currentProduct?.productCoverURL || null);
     setProductImages(currentProduct?.productPhotoURL || "");
-    setCategory(currentProduct?.productCategory || "")
+    setCategory(currentProduct?.productCategory || "");
   }, [currentProduct]);
 
   const dispatch = useDispatch();
@@ -113,7 +112,6 @@ const EditProductCard = () => {
     URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
   };
-  
 
   const handleProductNameChange = (event) => {
     setProductName(event.target.value);
@@ -145,9 +143,7 @@ const EditProductCard = () => {
 
   const handleDeleteCharacteristicButton = (id, evt) => {
     evt.preventDefault();
-    const newArray = characteristicArray.filter(
-      (item) => item._id !== id
-    );
+    const newArray = characteristicArray.filter((item) => item._id !== id);
     setCharacteristicArray(newArray);
   };
 
@@ -167,13 +163,17 @@ const EditProductCard = () => {
     }
   };
 
+  const onNavigation = () => {
+    dispatch(setModalOpen(false));
+    navigate("/qrcodegeneration");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.name, value: obj.value };
     });
- 
+
     const formData = new FormData();
     formData.append("productName", productName);
     formData.append("productCode", productCode);
@@ -190,7 +190,7 @@ const EditProductCard = () => {
       "additionalAttributes",
       JSON.stringify(additionalAttributes)
     );
-    formData.append("productCategory", category)
+    formData.append("productCategory", category);
     dispatch(changeProduct({ id: currentProduct._id, body: formData }));
     onOpenModal();
     setProductName("");
@@ -200,7 +200,7 @@ const EditProductCard = () => {
     setCoverImage(null);
     setProductImages([]);
     setCharacteristicArray([]);
-    setCategory('');
+    setCategory("");
   };
 
   return (
@@ -348,19 +348,26 @@ const EditProductCard = () => {
           />
         </StyledInputWrapper>
         <StyledWrpSelector>
-      <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
-      <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>
-        {category || "---------"} 
-        {isOpen ? <GoTriangleUp/> : <GoTriangleDown/>}
-        </StyledButtonSelect>
-        {isOpen && (<StyledList>
-         { categoryList.map(el=> {
-          return <StyledOptions key={el} onClick={()=> handleOptionClick(`${el}`)}>
-            {el}
-            </StyledOptions>
-         })}
-          </StyledList>)}
-      </StyledWrpSelector>
+          <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
+          <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>
+            {category || "---------"}
+            {isOpen ? <GoTriangleUp /> : <GoTriangleDown />}
+          </StyledButtonSelect>
+          {isOpen && (
+            <StyledList>
+              {categoryList.map((el) => {
+                return (
+                  <StyledOptions
+                    key={el}
+                    onClick={() => handleOptionClick(`${el}`)}
+                  >
+                    {el}
+                  </StyledOptions>
+                );
+              })}
+            </StyledList>
+          )}
+        </StyledWrpSelector>
         {characteristicArray.map((item) => (
           <AddCharacteristicInputs
             key={item._id}
@@ -394,7 +401,15 @@ const EditProductCard = () => {
           Зберегти зміни
         </SubmitButton>
       </StyledForm>
-      {showModal && <ModalChangeProductCard onCloseModal={onCloseModal} />}
+      {/* {showModal && <ModalChangeProductCard onCloseModal={onCloseModal} />} */}
+      {showModal && (
+        <Modal
+          onCloseModal={onCloseModal}
+          title="Картка успішно змінена!"
+          numberOfButtons={1}
+          onConfirmation={onNavigation}
+        />
+      )}
     </StyledFragment>
   );
 };

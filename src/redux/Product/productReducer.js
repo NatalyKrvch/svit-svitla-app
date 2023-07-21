@@ -21,6 +21,7 @@ const initialState = {
   totalItems: 0,
   currentProduct: null,
   isLoading: false,
+  isModalOpen:false,
   error: null,
 };
 
@@ -30,6 +31,9 @@ const productsSlice = createSlice({
   reducers: {
     setNewDate: (state, { payload }) => {
       state.date = payload;
+    },
+    setModalOpen: (state, { payload }) => {
+      state.isModalOpen = payload;
     },
   },
   extraReducers: (builder) =>
@@ -54,11 +58,13 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.currentProduct = payload;
+        state.isModalOpen = true;
         state.products.push(payload);
       })
       .addCase(removeProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.isModalOpen = true;
         state.products = state.products.filter(
           (product) => product._id !== payload._doc._id
         );
@@ -66,6 +72,7 @@ const productsSlice = createSlice({
       .addCase(changeProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.isModalOpen = true;
         state.products = state.products.map((obj) => {
           if (obj._id !== payload._id) return payload;
           return obj;
@@ -80,4 +87,4 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 
-export const { setNewDate } = productsSlice.actions;
+export const { setNewDate, setModalOpen } = productsSlice.actions;
