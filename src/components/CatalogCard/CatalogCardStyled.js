@@ -52,6 +52,7 @@ export const StyledBtnWrp = styled.div`
   width: 156px;
   display: flex;
   align-items: flex-start;
+ 
 
   @media screen and (min-width: 768px) {
     width: 235px;
@@ -67,7 +68,7 @@ export const StyledBtn = styled.button`
   width: 48px;
   height: 48px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   border: none;
   background-color: transparent;
   outline: none;
