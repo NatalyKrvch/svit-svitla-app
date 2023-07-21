@@ -170,6 +170,9 @@ const ProductsCataloguePage = () => {
       page={pageNumber}
       showFirstButton
       showLastButton
+      onClick={() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      }}
       onChange={(_, number) => setPageNumber(number)}
       sx={{
         maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
