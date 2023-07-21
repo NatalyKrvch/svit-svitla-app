@@ -10,15 +10,20 @@ import menuConfig from "../menuConfig.json";
 import crossImg from "../../../images/Menu/close_24px.svg";
 import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
 
-function MenuBurger({ onClose, ...props }) {
+function MenuBurger({ onClose,setLogoutModalOpen, ...props }) {
   MenuBurger.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
   };
-
   const { isLoggedIn } = props;
 
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
+
+  const openModal = () => {
+    console.log("OPEN Modal Burger");
+    onClose();
+    setLogoutModalOpen(true);
+  };
 
   return (
     <>
@@ -35,7 +40,7 @@ function MenuBurger({ onClose, ...props }) {
             </StyledLi>
           ))}
         </StyledUl>
-        <LogOutButton />
+        {isLoggedIn && <LogOutButton openModal={openModal} />}
       </MenuBurgerContainer>
     </>
   );

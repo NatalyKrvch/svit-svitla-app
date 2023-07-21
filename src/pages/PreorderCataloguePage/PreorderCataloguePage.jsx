@@ -98,7 +98,9 @@ const PreorderCataloguePage = () => {
   };
 
   const handleFilterCatalog = (ev) => {
+
     setFilter(ev.target.value);
+
   };
 
   // added________________________________________________________

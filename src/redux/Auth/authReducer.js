@@ -26,6 +26,9 @@ export const authSlice = createSlice({
     addAccessToken: (state, { payload }) => {
       state.accessToken = payload;
     },
+    setModalOpen: (state, { payload }) => {
+      state.isModalOpen = payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -40,6 +43,7 @@ export const authSlice = createSlice({
         };
         state.accessToken = payload.accessToken;
         state.isLoggedIn = true;
+        state.isModalOpen = true;
         state.isUserFetching = false;
       })
       .addCase(logout.fulfilled, () => ({ ...initialState })),
@@ -47,4 +51,4 @@ export const authSlice = createSlice({
 
 export default authSlice.reducer;
 
-export const { addAccessToken } = authSlice.actions;
+export const { addAccessToken, setModalOpen} = authSlice.actions;

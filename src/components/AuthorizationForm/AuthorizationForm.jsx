@@ -22,8 +22,8 @@ const AuthorizationForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getIsLoggedIn); 
-  const navigate = useNavigate();
+  // const isLoggedIn = useSelector(getIsLoggedIn); 
+  // const navigate = useNavigate();
 
   const handleChangeLogin = (evt) => {
     setLogin(evt.target.value);
@@ -46,9 +46,9 @@ const AuthorizationForm = () => {
      }))
      setLogin('');
      setPassword('');
-     if(isLoggedIn) {
-      navigate('/');
-     }
+    //  if(isLoggedIn) {
+    //   navigate('/');
+    //  }
   }
 
   return (

@@ -7,9 +7,14 @@ function MenuHeader(props) {
   MenuHeader.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
   };
-
-  const { isLoggedIn } = props;
+  
+  const { isLoggedIn, setLogoutModalOpen } = props;
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
+
+  const openModal = () => {
+    console.log("OPEN Modal desck");
+    setLogoutModalOpen(true);
+  };
 
   return (
     <>
@@ -21,7 +26,7 @@ function MenuHeader(props) {
             </li>
           ))}
         </StyledUl>
-        {isLoggedIn && <LogOutButton />}
+        {isLoggedIn && <LogOutButton openModal={openModal} />}
       </MenuWrapper>
     </>
   );
