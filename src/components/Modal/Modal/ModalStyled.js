@@ -15,7 +15,8 @@ export const Overlay = styled.div`
 export const ModalBody = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 320px;
   /* padding: 40px 20px 32px 20px; */
   padding-top: 40px;
@@ -38,6 +39,15 @@ export const ModalBody = styled.div`
   }
 `;
 
+export const BtnWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+`;
+
 export const CloseButton = styled.button`
   position: absolute;
   top: 0;
@@ -57,6 +67,9 @@ export const StyledImg = styled.img`
   width: 158px;
   /* height: 117px; */
   margin-bottom: 16px;
+  @media screen and (min-width: 768px) {
+    width: 320px;
+  }
 `;
 
 export const StyledTitle = styled.h2`
@@ -71,29 +84,45 @@ export const StyledTitle = styled.h2`
   margin-right: auto;
 `;
 
-export const SubmitButtonQRCode = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  width: 232px;
-  height: 48px;
-  margin-top: 24px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: var(--dark-blue);
-  color: white;
-  border-radius: 8px;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  &:hover {
-    background-color: var(--pressed-blue);
-  }
-
-  @media screen and (min-width: 768px) {
-    /* max-width: 373px; */
-  }
-
-  @media screen and (min-width: 1280px) {
-  }
+export const StyledText = styled.p`
+  width: 280px;
+  color: var(--dark-grey);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1, 5;
+  letter-spacing: -0.4px;
+  margin-top: 4px;
 `;
+
+export const StyledEmpTitle = styled.span`
+  color: var(--main-black);
+  font-weight: 600;
+`;
+
+// export const SubmitButtonQRCode = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 12px 24px;
+//   width: 232px;
+//   height: 48px;
+//   margin-top: 24px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   background-color: var(--dark-blue);
+//   color: white;
+//   border-radius: 8px;
+//   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+//   &:hover {
+//     background-color: var(--pressed-blue);
+//   }
+
+//   @media screen and (min-width: 768px) {
+//     /* max-width: 373px; */
+//   }
+
+//   @media screen and (min-width: 1280px) {
+//   }
+// `;

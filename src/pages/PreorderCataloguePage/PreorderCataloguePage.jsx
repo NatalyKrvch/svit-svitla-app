@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import CatalogsList from "../../components/CatalogsList/CatalogsList";
 import { useEffect, useState } from "react";
-import { Pagination} from "@mui/material";
+import { Pagination } from "@mui/material";
 import {
   getCatalogs,
   removeCatalog,
@@ -17,10 +17,11 @@ import {
   StyledInputWrp,
 } from "./PreoderCataloguePageStyled";
 import { AiOutlineSearch } from "react-icons/ai";
-import ModalDeleteCatalog from "../../components/Modal/ModalDeleteCatalog/ModalDeleteCatalog";
-import Notiflix from 'notiflix';
+// import ModalDeleteCatalog from "../../components/Modal/ModalDeleteCatalog/ModalDeleteCatalog";
+import Notiflix from "notiflix";
 import { useMediaRules } from "../../hooks/useMediaRules";
-import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
+// import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
+import Modal from "../../components/Modal/Modal/Modal";
 
 const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
@@ -32,13 +33,12 @@ const PreorderCataloguePage = () => {
   const [catalogYear, setCatalogYear] = useState("");
   const [catalogId, setCatalogId] = useState("");
   const [filter, setFilter] = useState("");
-  
+
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
   console.log(catalogsList);
-  const { isMobile, isTablet} = useMediaRules();
-
+  const { isMobile, isTablet } = useMediaRules();
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage }));
@@ -56,7 +56,7 @@ const PreorderCataloguePage = () => {
   console.log(fetchedCatalogsList);
 
   useEffect(() => {
-    let newPerPage = 8; 
+    let newPerPage = 8;
 
     if (isMobile) {
       newPerPage = 4;
@@ -66,7 +66,6 @@ const PreorderCataloguePage = () => {
 
     setPerPage(newPerPage);
   }, [isMobile, isTablet]);
-
 
   const openModal = (name, year, id) => {
     setShowModal(true);
@@ -81,7 +80,7 @@ const PreorderCataloguePage = () => {
 
   const handleDeleteSuccessModal = () => {
     setModalDeleteSuccessOpen(!modalDeleteSuccessOpen);
- };
+  };
 
   const handleDeleteCatalog = (id) => {
     dispatch(removeCatalog(id));
@@ -98,15 +97,24 @@ const PreorderCataloguePage = () => {
     );
     if (filteredCatalog) {
       setFetchedCatalogsList([filteredCatalog]);
-      setFilter('');
-    }
-    else {
-      Notiflix.Notify.failure("Каталог з таким ім'ям не знайдено")
-      setFilter(''); 
+      setFilter("");
+    } else {
+      Notiflix.Notify.failure("Каталог з таким ім'ям не знайдено");
+      setFilter("");
     }
     return;
   };
-
+  // added________________________________________________________
+  const handleDelete = () => {
+    const updatedList = fetchedCatalogsList.filter(
+      (catalog) => catalog._id !== catalogId
+    );
+    dispatch(removeCatalog(catalogId));
+    updateCatalogsList(updatedList);
+    closeModal();
+    handleDeleteSuccessModal();
+  };
+  //____________________________________________________________
 
   return (
     <STyledContainer>
@@ -133,20 +141,34 @@ const PreorderCataloguePage = () => {
         />
       </StyledDiv>
       {showModal && (
-        <ModalDeleteCatalog
-          catalogName={catalogName}
-          catalogYear={catalogYear}
-          catalogId={catalogId}
+        // <ModalDeleteCatalog
+        //   catalogName={catalogName} +
+        //   catalogYear={catalogYear} +
+        //   catalogId={catalogId}+
+        //   onCloseModal={closeModal}+
+        //   catalogsList={fetchedCatalogsList}+
+        //   updateCatalogsList={updateCatalogsList}+
+        //   onOpenDeleteSuccessModal={handleDeleteSuccessModal}+
+        // />
+        <Modal
+          color="red"
+          numberOfButtons={2}
+          title="Ви певні, що хочете видалити каталог?"
+          empTitle={`${catalogName}+" "+${catalogYear}`}
           onCloseModal={closeModal}
-          catalogsList={fetchedCatalogsList}
-          updateCatalogsList={updateCatalogsList}
-          onOpenDeleteSuccessModal={handleDeleteSuccessModal}
+          onConfirmation={handleDelete}
         />
       )}
-       {modalDeleteSuccessOpen && (
-        <ModalDeleteSuccess 
-        onClose={handleDeleteSuccessModal}
-        title={"Картка каталогу успішно видалена"}/>
+      {modalDeleteSuccessOpen && (
+        // <ModalDeleteSuccess
+        //   onClose={handleDeleteSuccessModal}
+        //   title={"Картка каталогу успішно видалена"}
+        // />
+        <Modal
+          color="red"
+          title="Картка каталогу успішно видалена!"
+          onCloseModal={closeModal}
+        />
       )}
     </STyledContainer>
   );
