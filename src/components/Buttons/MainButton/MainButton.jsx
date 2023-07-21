@@ -14,7 +14,6 @@ function MainButton({ buttonType = "primary", children, ...props }) {
 }
 
 MainButton.propTypes = {
-    .isRequired,
   buttonType: PropTypes.oneOf(["primary", "secondary", "warning", "filter"]),
   children: PropTypes.string,
 };
