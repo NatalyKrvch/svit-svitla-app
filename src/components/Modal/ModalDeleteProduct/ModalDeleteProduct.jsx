@@ -23,7 +23,7 @@ const ModalDeleteProduct = ({onClose, code, id, products, setUpdatedProductList,
         <ModalBody>
             <CloseButton onClick={()=> onClose()}> <GrClose/></CloseButton>
             <StyledImg src={lampRed} alt="lamp" />
-            <StyledTitle>Ви певні що хочете видалити каталог</StyledTitle>
+            <StyledTitle>Ви певні що хочете видалити картку</StyledTitle>
             <StyledP>{`${code}?`}</StyledP>
             <StyledDiv>
             <StyledBtnBack onClick={()=> onClose()} >Повернутися</StyledBtnBack>
