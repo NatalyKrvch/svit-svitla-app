@@ -52,7 +52,7 @@ const ButtonStyled = styled.button`
   }
 
   &:active:not(:disabled) {
-    border: 2px solid var(--dark-blue);
+    outline: 2px solid var(--dark-blue);
     background-color: ${props =>
     props.buttonType === "primary"
       ? "var(--pressed-blue)"

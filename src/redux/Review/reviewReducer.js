@@ -14,6 +14,7 @@ const initialState = {
   review: null,
   isLoading: false,
   error: null,
+  isModalOpen: false,
 };
 
 const reviewsSlice = createSlice({
@@ -22,6 +23,9 @@ const reviewsSlice = createSlice({
   reducers: {
     setNewDate: (state, { payload }) => {
       state.date = payload;
+    },
+    setModalOpen: (state, { payload }) => {
+      state.isModalOpen = payload;
     },
   },
   extraReducers: (builder) =>
@@ -32,9 +36,12 @@ const reviewsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.review = payload;
+        state.isModalOpen = true;
       }),
 });
 
+
+
 export default reviewsSlice.reducer;
 
-export const { setNewDate } = reviewsSlice.actions;
+export const { setNewDate, setModalOpen } = reviewsSlice.actions;
