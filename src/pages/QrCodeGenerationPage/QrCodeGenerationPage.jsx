@@ -19,6 +19,7 @@ import * as htmlToImage from 'html-to-image';
 
 const QrCodeGeneration = () => {
   const {productName, productCode, _id} = useSelector(getCurrentProduct);
+  console.log(productName, productCode, _id);
   
   const { isMobile } = useMediaRules();
 

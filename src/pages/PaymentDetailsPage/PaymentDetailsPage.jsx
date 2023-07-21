@@ -67,7 +67,7 @@ const PaymentDetails = () => {
           <StyledInput
             id="name"
             type="text"
-            value={`АТ КБ "ПРИВАТБАНК" (МФО 328704)`}
+            value={`АТ КБ "ПРИВАТБАНК"\n(МФО 328704)`}
             readOnly
             ref={bankRef}
             isLoggedIn={isLoggedIn}

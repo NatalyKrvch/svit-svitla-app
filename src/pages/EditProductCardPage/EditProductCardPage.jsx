@@ -43,6 +43,7 @@ const EditProductCard = () => {
   const { id } = useParams();
   const productsList = useSelector(getAllProducts);
   const currentProduct = productsList.find((product) => product._id === id);
+  console.log(currentProduct);
 
   const [productName, setProductName] = useState(
     currentProduct?.productName || ""

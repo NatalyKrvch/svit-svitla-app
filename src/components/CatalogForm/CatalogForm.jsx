@@ -37,7 +37,7 @@ const CatalogForm = ({openModal}) => {
   };
 
   const handleCatalogNameChange = (event) => {
-    setCatalogName(event.target.value.toLowerCase());
+    setCatalogName(event.target.value);
   };
 
   const handleYearChange = (event) => {
@@ -47,7 +47,7 @@ const CatalogForm = ({openModal}) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData();
-    formData.append("catalogName", catalogName);
+    formData.append("catalogName", catalogName.toLowerCase());
     formData.append("catalogYear", year);
     formData.append("catalogCoverURL", coverImage || "");
     formData.append("catalogFileURL", catalogFile);
