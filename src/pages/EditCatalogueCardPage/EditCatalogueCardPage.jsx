@@ -38,7 +38,7 @@ const  EditCatalogueCard = () =>  {
 
 
   const handleCatalogNameChange = (event) => {
-    setCatalogName(event.target.value);
+    setCatalogName(event.target.value.toLowerCase());
   };
 
   const handleYearChange = (event) => {
