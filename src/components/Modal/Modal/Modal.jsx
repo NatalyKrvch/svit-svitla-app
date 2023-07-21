@@ -11,7 +11,6 @@ import {
   StyledImg,
   StyledText,
   StyledTitle,
-  // SubmitButtonQRCode,
 } from "./ModalStyled";
 import MainButton from "../../Buttons/MainButton/MainButton";
 import { createPortal } from "react-dom";
