@@ -10,6 +10,7 @@ import {
 import { getAllCatalogs, getTotalItemsCatalogs } from "../../redux/Catalog/catalogSelectors";
 import {
   STyledContainer,
+  StyledBtnDeleteSearch,
   StyledBtnSearch,
   StyledDiv,
   StyledH2,
@@ -17,6 +18,7 @@ import {
   StyledInputWrp,
 } from "./PreoderCataloguePageStyled";
 import { AiOutlineSearch } from "react-icons/ai";
+import { RxCrossCircled } from "react-icons/rx";
 // import ModalDeleteCatalog from "../../components/Modal/ModalDeleteCatalog/ModalDeleteCatalog";
 import Notiflix from "notiflix";
 import { useMediaRules } from "../../hooks/useMediaRules";
@@ -26,7 +28,7 @@ import { useSearchParams } from "react-router-dom";
 
 
 const PreorderCataloguePage = () => {
-  // const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
+  const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [showModal, setShowModal] = useState(false);
@@ -46,25 +48,21 @@ const PreorderCataloguePage = () => {
   const { isMobile, isTablet, isDesktop} = useMediaRules();
   const totalItems = useSelector(getTotalItemsCatalogs);
   const pageQty = Math.ceil(totalItems/perPage);
-  console.log(totalItems);
-  console.log(catalogsList)
  
-
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage , catalogName: catalogNameSearch}));
-  }, [pageNumber, perPage, filter]);
+  }, [pageNumber, perPage, catalogNameSearch]);
 
-  // useEffect(() => {
-  //   setFetchedCatalogsList(catalogsList);
-  // }, [catalogsList]);
+  useEffect(() => {
+    setFetchedCatalogsList(catalogsList);
+  }, [catalogsList]);
 
-  // const updateCatalogsList = (updatedList) => {
-  //   setFetchedCatalogsList(updatedList);
-  // };
+  const updateCatalogsList = (updatedList) => {
+    setFetchedCatalogsList(updatedList);
+  };
 
-  console.log(catalogsList);
-  // console.log(fetchedCatalogsList);
+  console.log(fetchedCatalogsList);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -79,7 +77,7 @@ const PreorderCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   const openModal = (name, year, id) => {
-    setShowModal(true);
+    // setShowModal(true);
     setCatalogName(name);
     setCatalogYear(year);
     setCatalogId(id);
@@ -87,6 +85,7 @@ const PreorderCataloguePage = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    dispatch(setShowModal(false));
   };
 
   const handleDeleteSuccessModal = () => {
@@ -99,12 +98,14 @@ const PreorderCataloguePage = () => {
   };
 
   const handleFilterCatalog = (ev) => {
-    setFilter(ev.target.value); //.toLowerCase()
+
+    setFilter(ev.target.value);
+
   };
 
   // added________________________________________________________
   const handleDelete = () => {
-    const updatedList = fetchedCatalogsList.filter(
+    const updatedList = catalogsList.filter(
       (catalog) => catalog._id !== catalogId
     );
     dispatch(removeCatalog(catalogId));
@@ -128,11 +129,21 @@ const PreorderCataloguePage = () => {
               value={filter}
               onChange={handleFilterCatalog}
             />
+              {filter && (
+            <StyledBtnDeleteSearch
+              onClick={() => {
+                setSearchParams({});
+                setFilter("");
+              }}
+            >
+              <RxCrossCircled size={"1.5em"} />
+            </StyledBtnDeleteSearch>
+          )}
           </StyledInputWrp>
         )}
         <StyledH2>Каталоги для передзамовлення</StyledH2>
         <CatalogsList
-          catalogsList={catalogsList}
+          catalogsList={fetchedCatalogsList}
           onDelete={handleDeleteCatalog}
           onOpenModal={openModal}
           closeModal={closeModal}
