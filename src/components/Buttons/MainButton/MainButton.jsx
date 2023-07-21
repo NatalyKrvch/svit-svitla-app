@@ -3,7 +3,6 @@ import ButtonStyled from "./MainButtonStyled";
 
 function MainButton({ buttonType = "primary", children, ...props }) {
   //buttonType: primary(blue), secondary(rtansparent), warning(red), filter
-  console.log(buttonType);
   return (
     <>
       <ButtonStyled buttonType={buttonType} {...props}>

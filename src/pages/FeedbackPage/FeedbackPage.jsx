@@ -11,8 +11,13 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../redux/Review/reviewOperations";
-import { getCurrentReviews } from "../../redux/Review/reviewSelectors";
+import {
+  getCurrentReviews,
+  isModalOpen,
+} from "../../redux/Review/reviewSelectors";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
+import Modal from "../../components/Modal/Modal/Modal";
+import { setModalOpen } from "../../redux/Review/reviewReducer";
 // import emailjs from "emailjs-com";
 
 function Feedback() {
@@ -24,9 +29,17 @@ function Feedback() {
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
   const currentReview = useSelector(getCurrentReviews);
+  const modalOpen = useSelector(isModalOpen);
   const currentReviewDate = currentReview?.lastDate;
   const maxChar = 500;
   const dispatch = useDispatch();
+  const currentDate = new Date().getTime();
+  console.log(currentDate);
+  const dateDifference = currentDate - currentReviewDate;
+  console.log("difference", currentDate - currentReviewDate);
+  const oneDay = 86400000;
+
+  console.log(currentReviewDate);
 
   const handleChange = (e) => {
     setFeedback(e.target.value);
@@ -51,41 +64,43 @@ function Feedback() {
       return;
     }
 
-    // if (currentReview !== null) {
-    //   alert("Ви вже надіслали відгук, дякуємо");
-    //   return;
-    // }
+    if (typeof currentReviewDate === "undefined" || dateDifference > oneDay) {
+      dispatch(addReview(review));
 
-    dispatch(addReview(review));
-
-    // emailjs
-    //   .send(
-    //     serviceID,
-    //     templateID,
-    //     {
-    //       from_name: "Svit Svitla Web-service",
-    //       from_email: "nataly.krvch@gmail.com",
-    //       message: JSON.stringify(review),
-    //     },
-    //     keyID
-    //   )
-    //   .then((response) => {
-    //     console.log(
-    //       "Повідомлення успішно надіслано!",
-    //       response.status,
-    //       response.text
-    //     );
-    //   })
-    //   .catch((error) => {
-    //     console.error("Помилка під час відправки повідомлення:", error);
-    //   });
-    setFeedback("");
-    setSelectedStars([]);
+      // emailjs
+      //   .send(
+      //     serviceID,
+      //     templateID,
+      //     {
+      //       from_name: "Svit Svitla Web-service",
+      //       from_email: "nataly.krvch@gmail.com",
+      //       message: JSON.stringify(review),
+      //     },
+      //     keyID
+      //   )
+      //   .then((response) => {
+      //     console.log(
+      //       "Повідомлення успішно надіслано!",
+      //       response.status,
+      //       response.text
+      //     );
+      //   })
+      //   .catch((error) => {
+      //     console.error("Помилка під час відправки повідомлення:", error);
+      //   });
+      setFeedback("");
+      setSelectedStars([]);
+    } else {
+      return;
+    }
   };
 
   const isButtonDisabled =
     typeof selectedStars === "undefined" || selectedStars < 1;
 
+  const closeModal = () => {
+    dispatch(setModalOpen(false));
+  };
   return (
     <>
       <PageWrapper>
@@ -120,6 +135,13 @@ function Feedback() {
           </ButtonWrapper>
         </StyledForm>
       </PageWrapper>
+      {modalOpen && (
+        <Modal
+          title="Дякуємо!"
+          text="Стаємо краще завдяки вам"
+          onCloseModal={closeModal}
+        />
+      )}
     </>
   );
 }
