@@ -11,7 +11,7 @@ export const logInUserAPI = user => {
 
 export const logOutUserAPI = () => {
   axios.defaults.baseURL = `${baseURL}`;
-  return axios.post("/api/users/logout").then(({ data }) => {
+  return axios.get("/api/users/logout").then(({ data }) => {
     return data;
   });
 };

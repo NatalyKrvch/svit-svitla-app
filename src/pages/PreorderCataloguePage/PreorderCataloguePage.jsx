@@ -99,7 +99,7 @@ const PreorderCataloguePage = () => {
   };
 
   const handleFilterCatalog = (ev) => {
-    setFilter(ev.target.value.toLowerCase());
+    setFilter(ev.target.value); //.toLowerCase()
   };
 
   // added________________________________________________________

@@ -37,7 +37,7 @@ const ProductsCataloguePage = () => {
   const [perPage, setPerPage] = useState(4);
   const [showModalFilter, setShowModalFilter] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-  const [modalDeleteSuccessOpen, setModalDeleteSuccessOpen] = useState(false);
+  // const [modalDeleteSuccessOpen, setModalDeleteSuccessOpen] = useState(false);
   const [productCode, setProductCode] = useState("");
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
@@ -116,7 +116,7 @@ const ProductsCataloguePage = () => {
     dispatch(removeProduct(productId));
     setUpdatedProductList(updatedList);
     closeModalDelete();
-    handleDeleteSuccessModal();
+    // handleDeleteSuccessModal();
   };
   //______________________________________________________
 
