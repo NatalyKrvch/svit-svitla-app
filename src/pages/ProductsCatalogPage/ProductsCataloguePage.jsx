@@ -1,3 +1,4 @@
+
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
 import { Pagination} from "@mui/material";
@@ -163,6 +164,7 @@ const ProductsCataloguePage = () => {
           onOpen={openModalDelete}
         />
       )}
+      {pageQty > 1 && 
       <Pagination
       count={pageQty}
       page={pageNumber}
@@ -172,14 +174,15 @@ const ProductsCataloguePage = () => {
       sx={{
         maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
         marginLeft: "auto",
+        marginTop: isMobile ? "16px" : isTablet? "32px" : "64px",
         "& .MuiPagination-ul": {
           justifyContent: isMobile? "center" : "flex-end",
-        "MuiPaginationItem-root": {
+        "& .MuiPaginationItem-root": {
           fontSize: isDesktop? "20px" : "14px",
         }
         }
       }}
-    />
+    />}
     </StyledFragment>
   );
 };
