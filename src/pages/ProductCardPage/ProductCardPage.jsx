@@ -27,6 +27,8 @@ const ProductCardPage = () => {
   ];
   const productName = currentProduct.productName;
   const productCode = currentProduct.productCode;
+  console.log("productName", productName);
+  console.log(typeof currentURL);
 
   useEffect(() => {
     dispatch(getProductById(id));

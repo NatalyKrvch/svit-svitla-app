@@ -1,4 +1,5 @@
 import { ShareIcon } from "./ShareButtonStyled";
+import PropTypes from "prop-types";
 
 const ShareButton = ({ title, text, url }) => {
   const handleShare = async () => {
@@ -22,11 +23,17 @@ const ShareButton = ({ title, text, url }) => {
     <>
       <ShareIcon
         onClick={() => {
-          handleShare;
+          handleShare();
         }}
       />
     </>
   );
+};
+
+ShareButton.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string,
+  url: PropTypes.string,
 };
 
 export default ShareButton;
