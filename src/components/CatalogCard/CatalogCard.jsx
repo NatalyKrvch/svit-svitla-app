@@ -31,6 +31,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
   }, []);
 
   const handleClick = (name, year, id) => {
+    console.log(name);
     onOpenModal(name, year, id);
   };
 

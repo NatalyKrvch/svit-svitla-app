@@ -1,7 +1,6 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
-import { Pagination } from "@mui/material";
+import Paginator  from "../../components/Pagination/Pagination";
 import {
   StyledBtnDeleteSearch,
   StyledBtnSearch,
@@ -32,6 +31,7 @@ import Notiflix from "notiflix";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
 
+
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
@@ -43,7 +43,7 @@ const ProductsCataloguePage = () => {
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
 
-  const { isMobile, isTablet, isDesktop } = useMediaRules();
+  const { isMobile, isTablet} = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const totalProducts = useSelector(getTotalItemsProduct);
@@ -97,6 +97,7 @@ const ProductsCataloguePage = () => {
 
   const openModalDelete = (code, id) => {
     setIsModalDeleteOpen(true);
+    console.log(isModalDeleteOpen);
     setProductCode(code);
     setProductId(id);
   };
@@ -194,28 +195,11 @@ const ProductsCataloguePage = () => {
         />
       )}
       {pageQty > 1 && 
-      <Pagination
-
-      count={pageQty}
-      page={pageNumber}
-      showFirstButton
-      showLastButton
-      onClick={() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      }}
-      onChange={(_, number) => setPageNumber(number)}
-      sx={{
-        maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
-        marginLeft: "auto",
-        marginTop: isMobile ? "16px" : isTablet? "32px" : "64px",
-        "& .MuiPagination-ul": {
-          justifyContent: isMobile? "center" : "flex-end",
-        "& .MuiPaginationItem-root": {
-          fontSize: isDesktop? "20px" : "14px",
-        }
-        }
-      }}
-    />}
+        <Paginator
+        pageQty={pageQty}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+      />}
 
     </StyledFragment>
   );
