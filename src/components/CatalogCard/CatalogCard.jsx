@@ -19,16 +19,12 @@ import { useState } from "react";
 
 const CatalogCard = ({ catalog, onOpenModal }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const [currentURL, setCurrentURL] = useState("");
   const { catalogName, catalogYear, catalogCoverURL, _id, catalogFileURL } =
     catalog;
-  const navigate = useNavigate();
-  const catalogNameFirstLetterUppercase = catalogName.charAt(0).toUpperCase() + catalogName.slice(1)
-  
 
-  useEffect(() => {
-    setCurrentURL(window.location.href);
-  }, []);
+  const navigate = useNavigate();
+  const catalogNameFirstLetterUppercase =
+    catalogName.charAt(0).toUpperCase() + catalogName.slice(1);
 
   const handleClick = (name, year, id) => {
     onOpenModal(name, year, id);
@@ -37,13 +33,14 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
   const handleDownload = (fileURL) => {
     {
       // Создаем ссылку на файл
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = fileURL;
-      link.setAttribute('download', 'file.pdf'); // Указываем имя файла для сохранения
+      link.setAttribute("download", "file.pdf"); // Указываем имя файла для сохранения
       document.body.appendChild(link);
       link.click();
+
       document.body.removeChild(link); // Удаляем ссылку после загрузки файла
-    };
+    }
   };
 
   return (
@@ -55,16 +52,16 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
       </StyledTextWRP>
       <StyledBtnWrp>
         {isLoggedIn ? (
-          <StyledBtn 
-          type="button"
-          onClick={() => navigate(`/editcatauloguecard/${_id}`)}
+          <StyledBtn
+            type="button"
+            onClick={() => navigate(`/editcatauloguecard/${_id}`)}
           >
             <RiPencilLine size={"1.5em"} />
           </StyledBtn>
         ) : (
           <StyledBtn
             type="button"
-            onClick={()=> handleDownload(catalogFileURL)}
+            onClick={() => handleDownload(catalogFileURL)}
           >
             <TbDownload size={"1.5em"} />
           </StyledBtn>
@@ -78,9 +75,10 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
           </StyledBtn>
         ) : (
           <ShareButton
-           title={catalogNameFirstLetterUppercase} 
-           text="Поділитися"
-           url={currentURL}/>
+            title={catalogNameFirstLetterUppercase}
+            text="Поділитися"
+            url={catalogFileURL}
+          />
         )}
       </StyledBtnWrp>
     </StyledDiv>
