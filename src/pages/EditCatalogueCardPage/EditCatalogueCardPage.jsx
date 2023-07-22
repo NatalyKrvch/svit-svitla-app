@@ -38,7 +38,7 @@ const  EditCatalogueCard = () =>  {
 
 
   const handleCatalogNameChange = (event) => {
-    setCatalogName(event.target.value.toLowerCase());
+    setCatalogName(event.target.value);
   };
 
   const handleYearChange = (event) => {
@@ -70,13 +70,13 @@ const  EditCatalogueCard = () =>  {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData();
-    formData.append("catalogName", name);
+    formData.append("catalogName", name.toLowerCase());
     formData.append("catalogYear", year);
     formData.append("catalogCoverURL", coverImageUrl || "");
     formData.append("catalogFileURL", catalogFile);
     console.log(formData);
 
-    dispatch(changeCatalog(formData));
+    dispatch(changeCatalog({id: currentCatalog._id, catalog: formData}));
 
     setCatalogName("");
     setYear("");

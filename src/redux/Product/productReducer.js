@@ -72,6 +72,7 @@ const productsSlice = createSlice({
       .addCase(changeProduct.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.currentProduct = payload;
         state.isModalOpen = true;
         state.products = state.products.map((obj) => {
           if (obj._id !== payload._id) return payload;

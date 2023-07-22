@@ -49,9 +49,9 @@ export const removeCatalog = createAsyncThunk(
 
 export const changeCatalog = createAsyncThunk(
   "catalogs/changeCatalog",
-  async (catalog, thunkAPI) => {
+  async ({id, catalog}, thunkAPI) => {
     try {
-      const data = await changeCatalogAPI(catalog);
+      const data = await changeCatalogAPI(id, catalog);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

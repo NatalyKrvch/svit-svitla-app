@@ -96,9 +96,9 @@ export const StyledInputWrapper = styled.div`
 export const StyledLabel = styled.label`
   position: ${({isLoggedIn}) => isLoggedIn? 'absolute' : 'static' };
   height: ${({isLoggedIn}) => isLoggedIn? '24px' : '48px' };
-  width: ${({isLoggedIn}) => isLoggedIn? 'auto' : '128px' };
+  width: ${({isLoggedIn, isMobile}) => isLoggedIn? 'auto' : isMobile? "105px" : '128px' };
   font-size: ${({isLoggedIn}) => isLoggedIn? '12px' : '16px' };
-  line-height: ${({isLoggedIn}) => isLoggedIn? '2' : '1.5px' };
+  line-height: ${({isLoggedIn}) => isLoggedIn? '2' : 'none' };
   color: ${({isLoggedIn}) => isLoggedIn? 'var(--dark-grey)' : 'var(--main-black)' } ;
   background-color: ${({isLoggedIn}) => isLoggedIn? 'var(--light-blue)' : 'var(--main-white)' } ;
   padding: 0 4px;
@@ -133,6 +133,7 @@ export const StyledCoverLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
+display: block;
   width: 328px;
   padding: ${({isLoggedIn}) => isLoggedIn? '16px' : '4px' };
   text-align:${({isLoggedIn}) => isLoggedIn? 'left' : 'start' };
@@ -149,6 +150,8 @@ export const StyledInput = styled.input`
 
   @media screen and (min-width: 1280px) {
     width: 572px;
+    
+    
   }
 `;
 
@@ -253,3 +256,20 @@ right: 0;
    
   }
   `
+
+export const StyledSpan = styled.span`
+display: block;
+  width: 328px;
+  height: 56px;
+  padding: ${({isLoggedIn}) => isLoggedIn? '8px 16px' : '4px' };
+  text-align:${({isLoggedIn}) => isLoggedIn? 'left' : 'start' };
+  border: ${({isLoggedIn}) => isLoggedIn? '1px solid var(--light-blue)' : 'none' };
+  border-radius: 4px;
+  outline: var(--dark-blue);
+  white-space: pre-wrap; /* Отключаем обработку пробелов и переносов строки */
+  &::after {
+    content: ''; /* Вставляем перенос строки */
+    white-space: pre; /* Отключаем обработку пробелов и переносов строки */
+  }
+
+`;
