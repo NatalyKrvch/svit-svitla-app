@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-export const STyledContainer = styled.div`
-`;
+export const STyledContainer = styled.div``;
 
 export const StyledDiv = styled.div`
   max-width: 328px;
@@ -45,10 +44,11 @@ export const StyledBtnSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition: scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  &:hover {
-    scale: 1.2;
+  &:hover svg {
+    scale: 1.5;
+    fill: var(--pressed-blue); /* Начинаем анимацию с цвета свечения */
   }
 `;
 
@@ -70,7 +70,7 @@ export const StyledBtnDeleteSearch = styled.button`
 `;
 
 export const StyledInput = styled.input`
-width: 232px;
+  width: 232px;
   outline: none;
   border: none;
   font-weight: 400;
@@ -91,7 +91,7 @@ width: 232px;
 export const StyledH2 = styled.h2`
   font-size: 24px;
   font-weight: 400;
-  line-height: 1,2;
+  line-height: 1, 2;
   letter-spacing: -0.4px;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -102,7 +102,7 @@ export const StyledH2 = styled.h2`
   @media screen and (min-width: 1280px) {
     width: 572px;
     font-size: 48px;
-    line-height: 0,5;
+    line-height: 0, 5;
     margin-top: 48px;
     margin-bottom: 32px;
   }
