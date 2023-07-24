@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 export const Main = styled.main`
     flex: 1;  
     padding: 40px 16px;
+    position: relative;
 
     @media screen and (min-width: 768px) {
         padding: 64px 44px;

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 export const StyledFooter = styled.footer`
     background-color: var(--dark-blue);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
 
     @media screen and (max-width: 767px) {
         height: 152px;
@@ -13,9 +16,9 @@ export const StyledFooter = styled.footer`
     }
 `
 export const FooterWrapper = styled.div`
-    position: relative;
+    /* position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 `
 export const LogoWrapper = styled.div`
     position: absolute;
