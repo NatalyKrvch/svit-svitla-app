@@ -1,7 +1,7 @@
 import { useMediaRules } from "../../hooks/useMediaRules";
 import {
   StyledFooter,
-  FooterWrapper,
+  // FooterWrapper,
   LogoWrapper,
   InformationContainer,
   TextWrapper,
@@ -47,37 +47,37 @@ function Footer() {
   return (
     <>
       <StyledFooter>
-        <FooterWrapper>
-          <LogoWrapper>
-            {isMobile && <img src={mobileLogo} alt="logo" />}
-            {isTablet && <img src={tabletLogo} alt="logo" />}
-            {isDesktop && <img src={desktopLogo} alt="logo" />}
-          </LogoWrapper>
-          <InformationContainer>
-            {isMobile && (
-              <>
-                <TextWrapper>{adress}</TextWrapper>
-                <TextWrapper>{telephone}</TextWrapper>
-                <TextWrapper>{workingHours}</TextWrapper>
-              </>
-            )}
-            {!isMobile && (
-              <>
-                <TextWrapper>
-                  {adress}
-                  {telephone}
-                </TextWrapper>
-                <TextWrapper>{workingHours}</TextWrapper>
-              </>
-            )}
-            <TextWrapper>
-              <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
-            </TextWrapper>
-          </InformationContainer>
-          <StyledInstaA href="https://www.instagram.com/" target="_blank">
-            <img src={instagramLogo} alt="Instagram" />
-          </StyledInstaA>
-        </FooterWrapper>
+        {/* <FooterWrapper> */}
+        <LogoWrapper>
+          {isMobile && <img src={mobileLogo} alt="logo" />}
+          {isTablet && <img src={tabletLogo} alt="logo" />}
+          {isDesktop && <img src={desktopLogo} alt="logo" />}
+        </LogoWrapper>
+        <InformationContainer>
+          {isMobile && (
+            <>
+              <TextWrapper>{adress}</TextWrapper>
+              <TextWrapper>{telephone}</TextWrapper>
+              <TextWrapper>{workingHours}</TextWrapper>
+            </>
+          )}
+          {!isMobile && (
+            <>
+              <TextWrapper>
+                {adress}
+                {telephone}
+              </TextWrapper>
+              <TextWrapper>{workingHours}</TextWrapper>
+            </>
+          )}
+          <TextWrapper>
+            <StyledLink to="/authors">Автори веб-сервісу</StyledLink>
+          </TextWrapper>
+        </InformationContainer>
+        <StyledInstaA href="https://www.instagram.com/" target="_blank">
+          <img src={instagramLogo} alt="Instagram" />
+        </StyledInstaA>
+        {/* </FooterWrapper> */}
       </StyledFooter>
     </>
   );
