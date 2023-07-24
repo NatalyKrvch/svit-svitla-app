@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
-import Paginator  from "../../components/Pagination/Pagination";
+import Paginator from "../../components/Pagination/Pagination";
 import {
   StyledBtnDeleteSearch,
   StyledBtnSearch,
@@ -19,7 +19,10 @@ import {
   getTotalItemsProduct,
   isModalOpen,
 } from "../../redux/Product/productSelectors";
-import { getProducts, removeProduct } from "../../redux/Product/productOperations";
+import {
+  getProducts,
+  removeProduct,
+} from "../../redux/Product/productOperations";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
@@ -30,8 +33,7 @@ import Notiflix from "notiflix";
 // import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import { Container } from "../../components/Container/Container";
-
+import Container from "../../components/Container/Container";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -44,7 +46,7 @@ const ProductsCataloguePage = () => {
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
 
-  const { isMobile, isTablet} = useMediaRules();
+  const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const totalProducts = useSelector(getTotalItemsProduct);

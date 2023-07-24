@@ -4,6 +4,7 @@ import Modal from "../components/Modal/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { isModalOpen } from "../redux/Auth/authSelectors";
 import { setModalOpen } from "../redux/Auth/authReducer";
+import Container from "../components/Container/Container";
 
 function Authorization() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Authorization() {
     navigate("/");
   };
   return (
-    <>
+    <Container>
       <AuthorizationForm />
       {modalOpen && (
         <Modal
@@ -24,7 +25,7 @@ function Authorization() {
           onCloseModal={closeModal}
         />
       )}
-    </>
+    </Container>
   );
 }
 
