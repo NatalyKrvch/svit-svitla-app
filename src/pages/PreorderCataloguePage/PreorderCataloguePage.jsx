@@ -47,8 +47,6 @@ const PreorderCataloguePage = () => {
   const { isMobile, isTablet} = useMediaRules();
   const totalItems = useSelector(getTotalItemsCatalogs);
   const pageQty = Math.floor(totalItems/perPage);
- console.log(catalogsList);
- console.log(fetchedCatalogsList);
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage , catalogName: catalogNameSearch}));
@@ -57,6 +55,7 @@ const PreorderCataloguePage = () => {
   useEffect(() => {
     setFetchedCatalogsList(catalogsList);
   }, [catalogsList]);
+
 
   const updateCatalogsList = (updatedList) => {
     setFetchedCatalogsList(updatedList);
