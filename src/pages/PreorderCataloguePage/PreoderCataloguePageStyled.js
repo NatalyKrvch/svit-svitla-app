@@ -44,10 +44,10 @@ export const StyledBtnSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition: 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.7s ease, fill 0.7s ease;
 
   &:hover svg {
-    scale: 1.5;
+    transform: scale(1.5);
     fill: var(--pressed-blue); /* Начинаем анимацию с цвета свечения */
   }
 `;

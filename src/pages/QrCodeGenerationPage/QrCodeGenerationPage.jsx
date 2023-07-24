@@ -17,6 +17,7 @@ import { getCurrentProduct } from "../../redux/Product/productSelectors";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import * as htmlToImage from 'html-to-image';
 
+
 const QrCodeGeneration = () => {
   const {productName, productCode, _id} = useSelector(getCurrentProduct);
   
@@ -61,7 +62,7 @@ const QrCodeGeneration = () => {
         <StyledQrCodeWrp id="qrCodeWrapper">
           <QRCode
             id="qrCode"
-            value={`http://localhost:5173/editproductcard/${_id}`}
+            value={`http://localhost:5173/productcard/${_id}`}
             size={isMobile ? 128 : 624}
             fgColor="#000000"
             bgColor="#ffffff"
