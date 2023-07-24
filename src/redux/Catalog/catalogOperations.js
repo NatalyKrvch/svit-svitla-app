@@ -5,6 +5,7 @@ import {
   removeCatalogAPI,
   changeCatalogAPI,
 } from "../../service/API/catalogsApi";
+import Notiflix from "notiflix";
 
 export const getCatalogs = createAsyncThunk(
   "catalogs/getCatalogs",
@@ -13,8 +14,10 @@ export const getCatalogs = createAsyncThunk(
       const data = await getCatalogsAPI(
         page ?? null,
         per_page ?? null,
-        catalogName ?? null,
+        catalogName || null,
       );
+      if(data.length === 0){Notiflix.Notify("Каталог з таким ім'ям не знайдено")}
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -27,6 +30,7 @@ export const addCatalog = createAsyncThunk(
   async (catalog, thunkAPI) => {
     try {
       const data = await addCatalogAPI(catalog);
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -27,6 +27,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
     catalogName.charAt(0).toUpperCase() + catalogName.slice(1);
 
   const handleClick = (name, year, id) => {
+    console.log(name);
     onOpenModal(name, year, id);
   };
 

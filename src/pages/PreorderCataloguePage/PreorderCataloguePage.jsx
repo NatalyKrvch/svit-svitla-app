@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import CatalogsList from "../../components/CatalogsList/CatalogsList";
 import { useEffect, useState } from "react";
-import { Pagination } from "@mui/material";
 import {
   getCatalogs,
   removeCatalog,
@@ -20,11 +19,12 @@ import {
 import { AiOutlineSearch } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
 // import ModalDeleteCatalog from "../../components/Modal/ModalDeleteCatalog/ModalDeleteCatalog";
-import Notiflix from "notiflix";
+
 import { useMediaRules } from "../../hooks/useMediaRules";
 // import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import Modal from "../../components/Modal/Modal/Modal";
 import { useSearchParams } from "react-router-dom";
+import Paginator from "../../components/Pagination/Pagination";
 
 
 const PreorderCataloguePage = () => {
@@ -43,12 +43,12 @@ const PreorderCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
-  console.log(catalogsList);
 
-  const { isMobile, isTablet, isDesktop} = useMediaRules();
+  const { isMobile, isTablet} = useMediaRules();
   const totalItems = useSelector(getTotalItemsCatalogs);
-  const pageQty = Math.ceil(totalItems/perPage);
- 
+  const pageQty = Math.floor(totalItems/perPage);
+ console.log(catalogsList);
+ console.log(fetchedCatalogsList);
 
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage , catalogName: catalogNameSearch}));
@@ -61,8 +61,6 @@ const PreorderCataloguePage = () => {
   const updateCatalogsList = (updatedList) => {
     setFetchedCatalogsList(updatedList);
   };
-
-  console.log(fetchedCatalogsList);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -77,8 +75,9 @@ const PreorderCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   const openModal = (name, year, id) => {
-    // setShowModal(true);
-    setCatalogName(name);
+    const catalogNameFirstLetterUppercase = name.charAt(0).toUpperCase() + name.slice(1)
+    setShowModal(true);
+    setCatalogName(catalogNameFirstLetterUppercase);
     setCatalogYear(year);
     setCatalogId(id);
   };
@@ -99,7 +98,7 @@ const PreorderCataloguePage = () => {
 
   const handleFilterCatalog = (ev) => {
 
-    setFilter(ev.target.value);
+    setFilter(ev.target.value.toLowerCase());
 
   };
 
@@ -163,7 +162,7 @@ const PreorderCataloguePage = () => {
           color="red"
           numberOfButtons={2}
           title="Ви певні, що хочете видалити каталог?"
-          empTitle={`${catalogName}+" "+${catalogYear}`}
+          empTitle={`${catalogName}   ${catalogYear}`}
           onCloseModal={closeModal}
           onConfirmation={handleDelete}
         />
@@ -180,25 +179,10 @@ const PreorderCataloguePage = () => {
         />
       )}
       {pageQty > 1 && 
-      <Pagination
-      count={pageQty}
-      page={pageNumber}
-      showFirstButton
-      showLastButton
-      onClick={() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      }}
-      onChange={(_, number) => setPageNumber(number)}
-      sx={{
-        maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
-        marginLeft: "auto",
-        "& .MuiPagination-ul": {
-          justifyContent: isMobile? "center" : "flex-end",
-        "& .MuiPaginationItem-root": {
-          fontSize: isDesktop? "20px" : "14px",
-        }
-        }
-      }}
+      <Paginator
+      pageQty={pageQty}
+      pageNumber={pageNumber}
+      setPageNumber={setPageNumber}
     />}
     </STyledContainer>
   );

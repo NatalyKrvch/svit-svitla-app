@@ -129,6 +129,7 @@ const CatalogForm = ({openModal}) => {
           type="file"
           onChange={handleCatalogImagesDownload}
           accept=".pdf"
+          required
         />
         <FakeInputWrpDownload>
           <FakeButtonDownload>
