@@ -39,6 +39,7 @@ export const changeProductAPI = (id, product) => {
 };
 
 export const getProductByIdAPI = (id) => {
+  console.log("APIbyID");
   axios.defaults.baseURL = `${baseURL}`;
   return axios.get(`/api/products/${id}`).then(({ data }) => {
     return data;
