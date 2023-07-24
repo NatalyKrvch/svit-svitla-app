@@ -21,6 +21,12 @@ const ProductCardPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentProduct = useSelector(getCurrentProduct);
+  useEffect(() => {
+    console.log("USEEFFECT");
+    dispatch(getProductById(id));
+    setCurrentURL(window.location.href);
+  }, []);
+  if (currentProduct === null) return;
   const allImgsURL = [
     currentProduct.productCoverURL,
     ...currentProduct.productPhotoURL,
@@ -29,11 +35,6 @@ const ProductCardPage = () => {
   const productCode = currentProduct.productCode;
   console.log("productName", productName);
   console.log(typeof currentURL);
-
-  useEffect(() => {
-    dispatch(getProductById(id));
-    setCurrentURL(window.location.href);
-  }, []);
 
   return (
     <>

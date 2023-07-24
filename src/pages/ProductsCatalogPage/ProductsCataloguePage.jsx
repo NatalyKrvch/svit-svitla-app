@@ -30,6 +30,7 @@ import Notiflix from "notiflix";
 // import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
+import { Container } from "../../components/Container/Container";
 
 
 const ProductsCataloguePage = () => {
@@ -122,86 +123,88 @@ const ProductsCataloguePage = () => {
   //______________________________________________________
 
   return (
-    <StyledFragment>
-      {showModalFilter && (
-        <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
-      )}
-      {isModalDeleteOpen && (
-        //   <ModalDeleteProduct
-        //     onClose={closeModalDelete}+
-        //     code={productCode}+
-        //     id={productId}+
-        //     products={updatedProductList}+
-        //     setUpdatedProductList={setUpdatedProductList}+
-        //     onOpenDeleteSuccessModal={handleDeleteSuccessModal}
-        // />
-        <Modal
-          color="red"
-          numberOfButtons={2}
-          title="Ви певні, що хочете видалити картку?"
-          empTitle={productCode}
-          onCloseModal={closeModalDelete}
-          onConfirmation={handleDelete}
-        />
-      )}
-      {modalOpen && (
-        <Modal
-          color="red"
-          onCloseModal={handleDeleteSuccessModal}
-          title={"Картка успішно видалена!"}
-        />
-      )}
-      {isLoggedIn && (
-        <StyledInputWrp>
-          <StyledBtnSearch
-            onClick={() => {
-              setSearchParams({ article: filterByCode });
-            }}
-          >
-            <AiOutlineSearch size={"1.8em"} />
-          </StyledBtnSearch>
-          <StyledInput
-            type="text"
-            placeholder="Пошук"
-            value={filterByCode}
-            onChange={handleChangeFilterByCode}
+    <Container>
+      <StyledFragment>
+        {showModalFilter && (
+          <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
+        )}
+        {isModalDeleteOpen && (
+          //   <ModalDeleteProduct
+          //     onClose={closeModalDelete}+
+          //     code={productCode}+
+          //     id={productId}+
+          //     products={updatedProductList}+
+          //     setUpdatedProductList={setUpdatedProductList}+
+          //     onOpenDeleteSuccessModal={handleDeleteSuccessModal}
+          // />
+          <Modal
+            color="red"
+            numberOfButtons={2}
+            title="Ви певні, що хочете видалити картку?"
+            empTitle={productCode}
+            onCloseModal={closeModalDelete}
+            onConfirmation={handleDelete}
           />
-          {filterByCode && (
-            <StyledBtnDeleteSearch
+        )}
+        {modalOpen && (
+          <Modal
+            color="red"
+            onCloseModal={handleDeleteSuccessModal}
+            title={"Картка успішно видалена!"}
+          />
+        )}
+        {isLoggedIn && (
+          <StyledInputWrp>
+            <StyledBtnSearch
               onClick={() => {
-                setSearchParams({});
-                setFilterByCode("");
+                setSearchParams({ article: filterByCode });
               }}
             >
-              <RxCrossCircled size={"1.5em"} />
-            </StyledBtnDeleteSearch>
-          )}
-        </StyledInputWrp>
-      )}
-      <StyledTitle>Каталог товарів</StyledTitle>
-      {!isLoggedIn && (
-        <StyledButton
-          onClick={!query ? () => openModal() : () => setSearchParams({})}
-        >
-          {!query && <FiFilter size={"1.5em"} />}
-          {query ? `${query}` : "Фільтрувати"}
-          {query && <RxCrossCircled />}
-        </StyledButton>
-      )}
-      {products.length !== 0 && (
-        <ProductList
-          productsList={updatedProductList}
-          onOpen={openModalDelete}
-        />
-      )}
-      {pageQty > 1 && 
-        <Paginator
-        pageQty={pageQty}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-      />}
-
-    </StyledFragment>
+              <AiOutlineSearch size={"1.8em"} />
+            </StyledBtnSearch>
+            <StyledInput
+              type="text"
+              placeholder="Пошук"
+              value={filterByCode}
+              onChange={handleChangeFilterByCode}
+            />
+            {filterByCode && (
+              <StyledBtnDeleteSearch
+                onClick={() => {
+                  setSearchParams({});
+                  setFilterByCode("");
+                }}
+              >
+                <RxCrossCircled size={"1.5em"} />
+              </StyledBtnDeleteSearch>
+            )}
+          </StyledInputWrp>
+        )}
+        <StyledTitle>Каталог товарів</StyledTitle>
+        {!isLoggedIn && (
+          <StyledButton
+            onClick={!query ? () => openModal() : () => setSearchParams({})}
+          >
+            {!query && <FiFilter size={"1.5em"} />}
+            {query ? `${query}` : "Фільтрувати"}
+            {query && <RxCrossCircled />}
+          </StyledButton>
+        )}
+        {products.length !== 0 && (
+          <ProductList
+            productsList={updatedProductList}
+            onOpen={openModalDelete}
+          />
+        )}
+        {pageQty > 1 && (
+          <Paginator
+            pageQty={pageQty}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+          />
+        )}
+      </StyledFragment>
+    </Container>
   );
 };
 

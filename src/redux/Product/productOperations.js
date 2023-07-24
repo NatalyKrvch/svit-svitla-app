@@ -65,6 +65,7 @@ export const changeProduct = createAsyncThunk(
 export const getProductById = createAsyncThunk(
   'products/getProductById',
   async (id, { rejectWithValue }) => { 
+    console.log("OPERATION by ID");
     try {
       const data = await getProductByIdAPI(id);
       return data;

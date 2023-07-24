@@ -9,16 +9,17 @@ color: var(--black);
 `
 
 export const PageWrapper = styled.div`
-  position: absolute;
-  inset: 0;
+  /* position: absolute; */
+  /* inset: 0; */
   display: flex;
   flex-direction: column;
-  background-color: var(--main-black);
+  /* background-color: var(--main-black); */
 `
 export const ImgWrapper = styled.div`
-  margin-top: 80px;
+  padding-top: 80px;
   width: 100%;
-`
+  background-color: var(--main-black);
+`;
 export const ImgStyled = styled.img`
   width: 100%;
 `
@@ -43,5 +44,6 @@ export const SubheadP = styled.p`
 `
 export const ButtonWrapper = styled.div`
   width: 328px;
-  margin: 0 16px 35px;
+  /* margin: 0 16px 35px; */
+  padding-bottom: 35px;
 `
