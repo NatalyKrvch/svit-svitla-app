@@ -28,6 +28,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
 import { Container } from "../../components/Container/Container";
+import NotFound from "../../components/NotFound/NotFound";
 
 
 const ProductsCataloguePage = () => {
@@ -187,12 +188,12 @@ const ProductsCataloguePage = () => {
             {query && <RxCrossCircled />}
           </StyledButton>
         )}
-        {products.length !== 0 && (
+        {products.length !== 0 ? (
           <ProductList
             productsList={updatedProductList}
             onOpen={openModalDelete}
           />
-        )}
+        ) : <NotFound message={article? "Продукт з таким артиклем не знайдено" : "Відсутні продукти у вказаній категорії"}/>}
         {pageQty > 1 && (
           <Paginator
             pageQty={pageQty}

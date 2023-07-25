@@ -22,6 +22,7 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 import Modal from "../../components/Modal/Modal/Modal";
 import { useSearchParams } from "react-router-dom";
 import Paginator from "../../components/Pagination/Pagination";
+import NotFound from "../../components/NotFound/NotFound";
 
 
 const PreorderCataloguePage = () => {
@@ -144,12 +145,13 @@ const PreorderCataloguePage = () => {
           </StyledInputWrp>
         )}
         <StyledH2>Каталоги для передзамовлення</StyledH2>
+       {fetchedCatalogsList.length !== 0 ?  
         <CatalogsList
-          catalogsList={fetchedCatalogsList}
-          onDelete={handleDeleteCatalog}
-          onOpenModal={openModal}
-          closeModal={closeModal}
-        />
+        catalogsList={fetchedCatalogsList}
+        onDelete={handleDeleteCatalog}
+        onOpenModal={openModal}
+        closeModal={closeModal}
+      /> : <NotFound  message="Каталог з таким ім'ям не знайдено"/>}
       </StyledDiv>
       {showModal && (
         <Modal
