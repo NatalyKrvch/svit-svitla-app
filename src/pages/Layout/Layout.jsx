@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import { Main, Wrapper } from "./LayoutStyled";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Layout = () => {
   return (
@@ -12,7 +13,7 @@ const Layout = () => {
       <Wrapper>
         <Header />
         <Main>
-          <Suspense>
+          <Suspense fallback={<Spinner />}>
             <Outlet />
           </Suspense>
         </Main>

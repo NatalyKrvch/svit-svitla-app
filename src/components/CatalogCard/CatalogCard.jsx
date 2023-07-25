@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import axios from "axios";
 import {
+  ImgWrp,
   StyledBtn,
   StyledBtnWrp,
   StyledDiv,
@@ -46,7 +47,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
 
   return (
     <StyledDiv>
-      <StyledImg src={catalogCoverURL} alt="cover" />
+     <ImgWrp><StyledImg src={catalogCoverURL} alt="cover" /></ImgWrp>
       <StyledTextWRP>
         <StyledP>{catalogNameFirstLetterUppercase}</StyledP>
         <StyledP>{catalogYear}</StyledP>
