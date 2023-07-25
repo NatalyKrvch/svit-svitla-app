@@ -17,6 +17,7 @@ const Paginator = ({pageQty, pageNumber, setPageNumber}) => {
     }}
     onChange={(_, number) => setPageNumber(number)}
     sx={{
+      marginTop: isMobile? "16px" : isTablet? "32px" : "64px",
       maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
       marginLeft: "auto",
       "& .MuiPagination-ul": {

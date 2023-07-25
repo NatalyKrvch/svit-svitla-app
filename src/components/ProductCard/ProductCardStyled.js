@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const ImgWrp = styled.div`
+cursor: pointer;
+overflow: hidden;
+border-radius: 1px;
+transition:  400ms ease;
+  &:hover,
+  &:focus {
+    border-radius: 15px;
+    transform: scale(1.05);
+    /* scale: 1.02; */
+    box-shadow: var(--box-shadow);
+  }
+`
+
 export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
@@ -99,7 +113,13 @@ export const StyledBtn = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  transition: 400ms ease;
 
+  &:hover svg {
+    transform: scale(1.2);
+    fill: var(--dark-blue);
+  }
+  
   @media screen and (min-width: 768px) {
   }
 

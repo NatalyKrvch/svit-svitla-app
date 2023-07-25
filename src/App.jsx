@@ -1,20 +1,21 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-
+import { lazy } from "react";
 import Layout from "./pages/Layout/Layout";
-import ProductsCataloguePage from "./pages/ProductsCatalogPage/ProductsCataloguePage";
-import Authorization from "./pages/AuthorizationPage";
-import Authors from "./pages/AuthorsPage/AuthorsPage";
-import EditCatalogueCard from "./pages/EditCatalogueCardPage/EditCatalogueCardPage";
-import EditProductCard from "./pages/EditProductCardPage/EditProductCardPage";
-import PaymentDetails from "./pages/PaymentDetailsPage/PaymentDetailsPage";
-import ProductCardPage from "./pages/ProductCardPage/ProductCardPage";
-import QrCodeGeneration from "./pages/QrCodeGenerationPage/QrCodeGenerationPage";
-import SelectCardPage from "./pages/SelectCardPage/SelectCardPage";
-import NotFound from "./pages/NotFoundPage/NotFoundPage";
-import Feedback from "./pages/FeedbackPage/FeedbackPage";
-import PreorderCataloguePage from "./pages/PreorderCataloguePage/PreorderCataloguePage";
-import CreateCardPage from "./pages/CreateCardPage/CreateCardPage";
+const ProductsCataloguePage = lazy(()=> import ("./pages/ProductsCatalogPage/ProductsCataloguePage"));
+const  Authorization = lazy(()=> import ("./pages/AuthorizationPage")) ;
+const  Authors = lazy(()=> import ( "./pages/AuthorsPage/AuthorsPage"));
+const  EditCatalogueCard = lazy(()=> import ("./pages/EditCatalogueCardPage/EditCatalogueCardPage")) ;
+const  EditProductCard = lazy(()=> import ("./pages/EditProductCardPage/EditProductCardPage")) ;
+const  PaymentDetails = lazy(()=> import ("./pages/PaymentDetailsPage/PaymentDetailsPage")) ;
+const  ProductCardPage = lazy(()=> import ("./pages/ProductCardPage/ProductCardPage")) ;
+const  QrCodeGeneration = lazy(()=> import ("./pages/QrCodeGenerationPage/QrCodeGenerationPage"));
+const  SelectCardPage = lazy(()=> import ("./pages/SelectCardPage/SelectCardPage")) ;
+const  NotFound = lazy(()=> import ("./pages/NotFoundPage/NotFoundPage")) ;
+const  Feedback = lazy(()=> import ("./pages/FeedbackPage/FeedbackPage")) ;
+const  PreorderCataloguePage = lazy(()=> import ("./pages/PreorderCataloguePage/PreorderCataloguePage")) ;
+const  CreateCardPage = lazy(()=> import ("./pages/CreateCardPage/CreateCardPage") );
+
 
 function App() {
   return (
