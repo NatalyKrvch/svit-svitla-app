@@ -30,7 +30,7 @@ import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import { Container } from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
 
 const ProductsCataloguePage = () => {

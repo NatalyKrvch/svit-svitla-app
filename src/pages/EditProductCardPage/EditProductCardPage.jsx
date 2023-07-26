@@ -38,6 +38,7 @@ import ProductCharacteristics from "../../components/ProductsCharacteristics/Pro
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
+import Container from "../../components/Container/Container";
 
 const EditProductCard = () => {
   const { id } = useParams();
@@ -204,213 +205,225 @@ const EditProductCard = () => {
   };
 
   return (
-    <StyledFragment>
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledH>Редагувати картку товару</StyledH>
-        <StyledTitleProduct>{productName}</StyledTitleProduct>
-        <StyledP>{`Артикул: ${productCode}`}</StyledP>
-        {coverImage === null ? (
-          <label>
+    <Container>
+      <StyledFragment>
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledH>Редагувати картку товару</StyledH>
+          <StyledTitleProduct>{productName}</StyledTitleProduct>
+          <StyledP>{`Артикул: ${productCode}`}</StyledP>
+          {coverImage === null ? (
+            <label>
+              <FileInput
+                type="file"
+                onChange={handleCoverImageChange}
+                accept=".jpg, .jpeg"
+              />
+              <FakeInputWrp>
+                <FakeInputText>Додати обкладинку</FakeInputText>
+                <FakeButton type="button">
+                  <BiPlusCircle size={"1.5em"} />
+                </FakeButton>
+              </FakeInputWrp>
+            </label>
+          ) : (
+            <StyledInputWrapper>
+              <StyledCoverLabel htmlFor="name">
+                Назва обкладинки
+              </StyledCoverLabel>
+              <StyledImg src={coverImageUrl} alt="cover" />
+              <StyledInput
+                id="name"
+                type="text"
+                onChange={handleCoverImageChange}
+                value={`Cover_${productName}.jpeg`}
+                readOnly
+              />
+              <StyledButtonDelete type="button " onClick={handleDeleteCoverImg}>
+                <RiDeleteBin6Line size={"1.8em"} color="white" />
+              </StyledButtonDelete>
+            </StyledInputWrapper>
+          )}
+          {productImages.length !== 0 && (
+            <ul>
+              {productImages.map((photo, index) => (
+                <StyledInputWrapperPhoto key={photo}>
+                  <StyledCoverLabel htmlFor="">
+                    Назва зображення
+                  </StyledCoverLabel>
+                  <StyledImg src={`${photo}`} alt="photo" />
+                  <StyledInput
+                    type="text"
+                    value={`${index + 1}.jpeg`}
+                    readOnly
+                  />
+                  <StyledButtonDelete
+                    onClick={() => handleDeleteProductImg(index)}
+                  >
+                    <RiDeleteBin6Line size={"1.8em"} color="white" />
+                  </StyledButtonDelete>
+                </StyledInputWrapperPhoto>
+              ))}
+            </ul>
+          )}
+          {productImagesUrl.length !== 0 && (
+            <ul>
+              {productImagesUrl.map((photo, index) => (
+                <StyledInputWrapperPhoto key={photo}>
+                  <StyledCoverLabel htmlFor="">
+                    Назва зображення
+                  </StyledCoverLabel>
+                  <StyledImg src={`${photo}`} alt="photo" />
+                  <StyledInput
+                    type="text"
+                    value={`New Photo ${index + 1}.jpeg`}
+                    readOnly
+                  />
+                  <StyledButtonDelete
+                    onClick={() => handleDeleteProductImgUrl(photo)}
+                  >
+                    <RiDeleteBin6Line size={"1.8em"} color="white" />
+                  </StyledButtonDelete>
+                </StyledInputWrapperPhoto>
+              ))}
+            </ul>
+          )}
+          <LabelFileInput>
             <FileInput
               type="file"
-              onChange={handleCoverImageChange}
+              multiple
+              onChange={handleProductImagesChangeUrl}
               accept=".jpg, .jpeg"
             />
             <FakeInputWrp>
-              <FakeInputText>Додати обкладинку</FakeInputText>
-              <FakeButton type="button">
+              <FakeInputText>Додати зображення</FakeInputText>
+              <FakeButton>
                 <BiPlusCircle size={"1.5em"} />
               </FakeButton>
             </FakeInputWrp>
-          </label>
-        ) : (
+          </LabelFileInput>
+
+          <ProductCharacteristics
+            price={price}
+            manufacturerCountry={manufacturerCountry}
+            characteristicArray={characteristicArray}
+            productCategory={category}
+          />
+
           <StyledInputWrapper>
-            <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-            <StyledImg src={coverImageUrl} alt="cover" />
+            <StyledLabel htmlFor="name">Назва товару</StyledLabel>
             <StyledInput
               id="name"
               type="text"
-              onChange={handleCoverImageChange}
-              value={`Cover_${productName}.jpeg`}
-              readOnly
+              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+              title="Будь-ласка вводьте літери англійського алфавіту"
+              minLength={3}
+              maxLength={16}
+              required
+              value={productName}
+              onChange={handleProductNameChange}
             />
-            <StyledButtonDelete type="button " onClick={handleDeleteCoverImg}>
-              <RiDeleteBin6Line size={"1.8em"} color="white" />
-            </StyledButtonDelete>
           </StyledInputWrapper>
-        )}
-        {productImages.length !== 0 && (
-          <ul>
-            {productImages.map((photo, index) => (
-              <StyledInputWrapperPhoto key={photo}>
-                <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
-                <StyledImg src={`${photo}`} alt="photo" />
-                <StyledInput type="text" value={`${index + 1}.jpeg`} readOnly />
-                <StyledButtonDelete
-                  onClick={() => handleDeleteProductImg(index)}
-                >
-                  <RiDeleteBin6Line size={"1.8em"} color="white" />
-                </StyledButtonDelete>
-              </StyledInputWrapperPhoto>
-            ))}
-          </ul>
-        )}
-        {productImagesUrl.length !== 0 && (
-          <ul>
-            {productImagesUrl.map((photo, index) => (
-              <StyledInputWrapperPhoto key={photo}>
-                <StyledCoverLabel htmlFor="">Назва зображення</StyledCoverLabel>
-                <StyledImg src={`${photo}`} alt="photo" />
-                <StyledInput
-                  type="text"
-                  value={`New Photo ${index + 1}.jpeg`}
-                  readOnly
-                />
-                <StyledButtonDelete
-                  onClick={() => handleDeleteProductImgUrl(photo)}
-                >
-                  <RiDeleteBin6Line size={"1.8em"} color="white" />
-                </StyledButtonDelete>
-              </StyledInputWrapperPhoto>
-            ))}
-          </ul>
-        )}
-        <LabelFileInput>
-          <FileInput
-            type="file"
-            multiple
-            onChange={handleProductImagesChangeUrl}
-            accept=".jpg, .jpeg"
-          />
+          <StyledInputWrapper>
+            <StyledLabel htmlFor="article">Артикул</StyledLabel>
+            <StyledInput
+              id="article"
+              type="text"
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Будь-ласка введіть числовий формат (наприклад, 100 або 1099)"
+              required
+              value={productCode}
+              onChange={handleProductCodeChange}
+            />
+          </StyledInputWrapper>
+          <StyledInputWrapper>
+            <StyledLabel htmlFor="price">Ціна</StyledLabel>
+            <StyledInput
+              id="price"
+              type="text"
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
+              required
+              value={price}
+              onChange={handlePriceChange}
+            />
+          </StyledInputWrapper>
+          <StyledInputWrapper>
+            <StyledLabel htmlFor="country">Країна походження</StyledLabel>
+            <StyledInput
+              id="country"
+              type="text"
+              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+              title="Будь-ласка введіть тільки літери кирилиці"
+              required
+              value={manufacturerCountry}
+              onChange={handleManufacturerCountryChange}
+            />
+          </StyledInputWrapper>
+          <StyledWrpSelector>
+            <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
+            <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>
+              {category || "---------"}
+              {isOpen ? <GoTriangleUp /> : <GoTriangleDown />}
+            </StyledButtonSelect>
+            {isOpen && (
+              <StyledList>
+                {categoryList.map((el) => {
+                  return (
+                    <StyledOptions
+                      key={el}
+                      onClick={() => handleOptionClick(`${el}`)}
+                    >
+                      {el}
+                    </StyledOptions>
+                  );
+                })}
+              </StyledList>
+            )}
+          </StyledWrpSelector>
+          {characteristicArray.map((item) => (
+            <AddCharacteristicInputs
+              key={item._id}
+              id={item._id}
+              onDelete={handleDeleteCharacteristicButton}
+              setCharacteristicArray={setCharacteristicArray}
+              characteristic={item}
+            />
+          ))}
           <FakeInputWrp>
-            <FakeInputText>Додати зображення</FakeInputText>
-            <FakeButton>
+            <FakeInputText>Додати характеристику</FakeInputText>
+            <FakeButton
+              type="button"
+              onClick={() => {
+                const id = nanoid();
+                setCharacteristicArray((prevState) => {
+                  return [...prevState, { _id: id }];
+                });
+                return;
+              }}
+            >
               <BiPlusCircle size={"1.5em"} />
             </FakeButton>
           </FakeInputWrp>
-        </LabelFileInput>
-
-        <ProductCharacteristics
-          price={price}
-          manufacturerCountry={manufacturerCountry}
-          characteristicArray={characteristicArray}
-          productCategory={category}
-        />
-
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="name">Назва товару</StyledLabel>
-          <StyledInput
-            id="name"
-            type="text"
-            pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
-            title="Будь-ласка вводьте літери англійського алфавіту"
-            minLength={3}
-            maxLength={16}
-            required
-            value={productName}
-            onChange={handleProductNameChange}
-          />
-        </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="article">Артикул</StyledLabel>
-          <StyledInput
-            id="article"
-            type="text"
-            pattern="^\d+(\.\d{1,2})?$"
-            title="Будь-ласка введіть числовий формат (наприклад, 100 або 1099)"
-            required
-            value={productCode}
-            onChange={handleProductCodeChange}
-          />
-        </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="price">Ціна</StyledLabel>
-          <StyledInput
-            id="price"
-            type="text"
-            pattern="^\d+(\.\d{1,2})?$"
-            title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
-            required
-            value={price}
-            onChange={handlePriceChange}
-          />
-        </StyledInputWrapper>
-        <StyledInputWrapper>
-          <StyledLabel htmlFor="country">Країна походження</StyledLabel>
-          <StyledInput
-            id="country"
-            type="text"
-            pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
-            title="Будь-ласка введіть тільки літери кирилиці"
-            required
-            value={manufacturerCountry}
-            onChange={handleManufacturerCountryChange}
-          />
-        </StyledInputWrapper>
-        <StyledWrpSelector>
-          <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
-          <StyledButtonSelect onClick={() => setIsOpen(!isOpen)}>
-            {category || "---------"}
-            {isOpen ? <GoTriangleUp /> : <GoTriangleDown />}
-          </StyledButtonSelect>
-          {isOpen && (
-            <StyledList>
-              {categoryList.map((el) => {
-                return (
-                  <StyledOptions
-                    key={el}
-                    onClick={() => handleOptionClick(`${el}`)}
-                  >
-                    {el}
-                  </StyledOptions>
-                );
-              })}
-            </StyledList>
-          )}
-        </StyledWrpSelector>
-        {characteristicArray.map((item) => (
-          <AddCharacteristicInputs
-            key={item._id}
-            id={item._id}
-            onDelete={handleDeleteCharacteristicButton}
-            setCharacteristicArray={setCharacteristicArray}
-            characteristic={item}
-          />
-        ))}
-        <FakeInputWrp>
-          <FakeInputText>Додати характеристику</FakeInputText>
-          <FakeButton
-            type="button"
-            onClick={() => {
-              const id = nanoid();
-              setCharacteristicArray((prevState) => {
-                return [...prevState, { _id: id }];
-              });
-              return;
-            }}
+          <SubmitButton
+            type="submit"
+            disabled={
+              !productName || !productCode || !price || !manufacturerCountry
+            }
           >
-            <BiPlusCircle size={"1.5em"} />
-          </FakeButton>
-        </FakeInputWrp>
-        <SubmitButton
-          type="submit"
-          disabled={
-            !productName || !productCode || !price || !manufacturerCountry
-          }
-        >
-          Зберегти зміни
-        </SubmitButton>
-      </StyledForm>
-      {/* {showModal && <ModalChangeProductCard onCloseModal={onCloseModal} />} */}
-      {showModal && (
-        <Modal
-          onCloseModal={onCloseModal}
-          title="Картка успішно змінена!"
-          numberOfButtons={1}
-          onConfirmation={onNavigation}
-        />
-      )}
-    </StyledFragment>
+            Зберегти зміни
+          </SubmitButton>
+        </StyledForm>
+        {/* {showModal && <ModalChangeProductCard onCloseModal={onCloseModal} />} */}
+        {showModal && (
+          <Modal
+            onCloseModal={onCloseModal}
+            title="Картка успішно змінена!"
+            numberOfButtons={1}
+            onConfirmation={onNavigation}
+          />
+        )}
+      </StyledFragment>
+    </Container>
   );
 };
 
