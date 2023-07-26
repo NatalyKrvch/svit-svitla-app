@@ -5,7 +5,6 @@ export const MenuWrapper = styled.div`
     display: flex;
     align-items: center; 
 `
-
 export const StyledUl = styled.ul`
     display: flex;
     gap: 32px;
@@ -20,15 +19,13 @@ export const StyledUl = styled.ul`
         font-size: 24px;
     }
 `
-
 export const StyledLink = styled(NavLink)`
     text-decoration: none;
     color: var(--main-white); 
     padding: 12px 0;
 
     &:visited {color: var(--main-white);}
-    &:hover {color: var(--middle-grey);}
-    &.active {
-        color: var(--middle-grey);
+    &:hover, &.active  {
+        color: var(--brand-blue);
     }
 `

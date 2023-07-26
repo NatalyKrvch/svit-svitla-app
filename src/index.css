@@ -78,8 +78,7 @@ p {
 input,
 textarea,
 button,
-select,
-a {
+select {
   -webkit-tap-highlight-color: transparent;
 }
 

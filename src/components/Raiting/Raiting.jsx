@@ -40,7 +40,9 @@ function Raiting(props) {
               <use
                 id={key}
                 href={`${Sprite}#icon-star`}
-                style={{ fill: isSelected ? "#FFE34E" : "#DBE4E8" }}
+                style={{
+                  fill: isSelected ? "#FFE34E" : "#DBE4E8",
+                }}
               />
             </svg>
           );
