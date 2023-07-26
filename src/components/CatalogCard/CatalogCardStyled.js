@@ -91,6 +91,7 @@ export const StyledBtn = styled.button`
   &:hover svg {
     transform: scale(1.2);
     fill: var(--dark-blue);
+    stroke: var(--dark-blue);
   }
 
   @media screen and (min-width: 768px) {
