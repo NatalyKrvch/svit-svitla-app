@@ -9,6 +9,6 @@ export const ShareIcon = styled(BiShareAlt)`
   -webkit-tap-highlight-color: transparent;
   &:hover, &:active {
     color: var(--brand-blue);
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 `
