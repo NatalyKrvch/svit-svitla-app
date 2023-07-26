@@ -26,14 +26,12 @@ import {
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
-// import ModalDeleteProduct from "../../components/Modal/ModalDeleteProduct/ModalDeleteProduct";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
-import Notiflix from "notiflix";
-// import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import Container from "../../components/Container/Container";
+import { Container } from "../../components/Container/Container";
+import NotFound from "../../components/NotFound/NotFound";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -56,7 +54,7 @@ const ProductsCataloguePage = () => {
   const article = searchParams.get("article");
 
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const pageQty = Math.ceil(totalProducts / perPage);
+  const pageQty = Math.floor(totalProducts / perPage);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -80,6 +78,12 @@ const ProductsCataloguePage = () => {
       })
     );
   }, [pageNumber, perPage, article, query]);
+
+  const handleEnterPress = (event) => {
+    if (event.key === "Enter") {
+      setSearchParams({ article: filterByCode });
+    }
+  };
 
   useEffect(() => {
     setUpdatedProductList(products);
@@ -131,14 +135,6 @@ const ProductsCataloguePage = () => {
           <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
         )}
         {isModalDeleteOpen && (
-          //   <ModalDeleteProduct
-          //     onClose={closeModalDelete}+
-          //     code={productCode}+
-          //     id={productId}+
-          //     products={updatedProductList}+
-          //     setUpdatedProductList={setUpdatedProductList}+
-          //     onOpenDeleteSuccessModal={handleDeleteSuccessModal}
-          // />
           <Modal
             color="red"
             numberOfButtons={2}
@@ -169,6 +165,7 @@ const ProductsCataloguePage = () => {
               placeholder="Пошук"
               value={filterByCode}
               onChange={handleChangeFilterByCode}
+              onKeyDown={handleEnterPress}
             />
             {filterByCode && (
               <StyledBtnDeleteSearch
@@ -192,10 +189,18 @@ const ProductsCataloguePage = () => {
             {query && <RxCrossCircled />}
           </StyledButton>
         )}
-        {products.length !== 0 && (
+        {products.length !== 0 ? (
           <ProductList
             productsList={updatedProductList}
             onOpen={openModalDelete}
+          />
+        ) : (
+          <NotFound
+            message={
+              query
+                ? "Відстутні товари у вибраній категорії"
+                : "Відсутній товар із вказаним артиклем"
+            }
           />
         )}
         {pageQty > 1 && (

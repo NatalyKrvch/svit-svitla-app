@@ -11,11 +11,24 @@ export const StyledDiv = styled.div`
     width: 274px;
   }
 `;
+
+export const ImgWrp = styled.div`
+cursor: pointer;
+overflow: hidden;
+border-radius: 1px;
+transition:  400ms ease;
+  &:hover,
+  &:focus {
+    border-radius: 15px;
+    transform: scale(1.05);
+    /* scale: 1.02; */
+    box-shadow: var(--box-shadow);
+  }
+`
 export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
-  object-fit: cover;
-  margin-bottom: 8px;
+ 
 
   @media screen and (min-width: 768px) {
     width: 235px;
@@ -52,7 +65,6 @@ export const StyledBtnWrp = styled.div`
   width: 156px;
   display: flex;
   align-items: flex-start;
- 
 
   @media screen and (min-width: 768px) {
     width: 235px;
@@ -73,6 +85,14 @@ export const StyledBtn = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  transition: 1s ease;
+  
+
+  &:hover svg {
+    transform: scale(1.2);
+    fill: var(--dark-blue);
+    stroke: var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
   }

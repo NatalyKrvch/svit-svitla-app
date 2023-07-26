@@ -17,8 +17,6 @@ export const getCatalogs = createAsyncThunk(
         catalogName || null,
       );
       if(data.length === 0){Notiflix.Notify("Каталог з таким ім'ям не знайдено")}
-      console.log(data);
-      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

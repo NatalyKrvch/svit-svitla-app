@@ -56,6 +56,15 @@ export const StyledButton = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  transition:  400ms ease;
+
+  &:hover {
+    background-color: var(--dark-blue);
+    color: var(--main-white);
+    & svg{
+      fill: var(--main-white);
+    }
+  }
 
   @media screen and (min-width: 768px) {
     /* width: 235px; */
@@ -73,6 +82,12 @@ export const StyledInputWrp = styled.div`
   border: 2px solid var(--middle-grey);
   border-radius: 4px 4px 0px 0px;
   margin-bottom: 16px;
+
+    &:focus {
+    border-color: var(--dark-blue);
+  }
+
+
 
   @media screen and (min-width: 768px) {
     width: 491px;
@@ -96,10 +111,11 @@ export const StyledBtnSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition: scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  &:hover {
-    scale: 1.2;
+  &:hover svg {
+    transform: scale(1.5);
+    fill: var(--pressed-blue); 
   }
 `;
 

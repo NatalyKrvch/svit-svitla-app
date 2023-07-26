@@ -18,10 +18,7 @@ import {
 } from "./PreoderCataloguePageStyled";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RxCrossCircled } from "react-icons/rx";
-// import ModalDeleteCatalog from "../../components/Modal/ModalDeleteCatalog/ModalDeleteCatalog";
-
 import { useMediaRules } from "../../hooks/useMediaRules";
-// import ModalDeleteSuccess from "../../components/Modal/ModalDeleteSuccess/ModalDeleteSuccess";
 import Modal from "../../components/Modal/Modal/Modal";
 import { useSearchParams } from "react-router-dom";
 import Paginator from "../../components/Pagination/Pagination";
@@ -51,6 +48,12 @@ const PreorderCataloguePage = () => {
   useEffect(() => {
     dispatch(getCatalogs({ page: pageNumber, per_page: perPage , catalogName: catalogNameSearch}));
   }, [pageNumber, perPage, catalogNameSearch]);
+
+  const handleEnterPress = (event) => {
+    if(event.key === 'Enter'){
+      setSearchParams({catalogName: filter});
+    }
+  }
 
   useEffect(() => {
     setFetchedCatalogsList(catalogsList);
@@ -126,6 +129,7 @@ const PreorderCataloguePage = () => {
               placeholder="Пошук"
               value={filter}
               onChange={handleFilterCatalog}
+              onKeyDown={handleEnterPress}
             />
               {filter && (
             <StyledBtnDeleteSearch
@@ -148,15 +152,6 @@ const PreorderCataloguePage = () => {
         />
       </StyledDiv>
       {showModal && (
-        // <ModalDeleteCatalog
-        //   catalogName={catalogName} +
-        //   catalogYear={catalogYear} +
-        //   catalogId={catalogId}+
-        //   onCloseModal={closeModal}+
-        //   catalogsList={fetchedCatalogsList}+
-        //   updateCatalogsList={updateCatalogsList}+
-        //   onOpenDeleteSuccessModal={handleDeleteSuccessModal}+
-        // />
         <Modal
           color="red"
           numberOfButtons={2}
@@ -167,10 +162,6 @@ const PreorderCataloguePage = () => {
         />
       )}
       {modalDeleteSuccessOpen && (
-        // <ModalDeleteSuccess
-        //   onClose={handleDeleteSuccessModal}
-        //   title={"Картка каталогу успішно видалена"}
-        // />
         <Modal
           color="red"
           title="Картка каталогу успішно видалена!"

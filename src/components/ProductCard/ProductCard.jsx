@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  ImgWrp,
   StyledBtn,
   StyledBtnWrp,
   StyledButton,
@@ -18,15 +19,13 @@ const ProductCard = ({
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const handleDeleteButton = (_id) => {
-    console.log(_id);
-    dispatch(removeProduct(_id));
-  };
   return (
     <div>
+      <ImgWrp>
       <StyledImg src={productCoverURL} alt="Picture" />
+      </ImgWrp>
+      
       <StyledTextWrapper>
         <StyledProductName>{productName}</StyledProductName>
         <StyledP>{`Артикул: ${productCode}`}</StyledP>

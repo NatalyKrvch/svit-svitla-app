@@ -44,11 +44,11 @@ export const StyledBtnSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition: transform 0.7s ease, fill 0.7s ease;
+  transition:  0.7s ease;
 
   &:hover svg {
     transform: scale(1.5);
-    fill: var(--pressed-blue); /* Начинаем анимацию с цвета свечения */
+    fill: var(--pressed-blue);
   }
 `;
 
