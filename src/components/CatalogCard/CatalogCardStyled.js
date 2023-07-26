@@ -19,7 +19,7 @@ border-radius: 1px;
 transition:  400ms ease;
   &:hover,
   &:focus {
-    border-radius: 15px;
+    /* border-radius: 15px; */
     transform: scale(1.05);
     /* scale: 1.02; */
     box-shadow: var(--box-shadow);
