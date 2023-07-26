@@ -97,7 +97,6 @@ export const StyledSpan = styled.span`
     min-width: 70px;
 
     @media screen and  (min-width: 769px) {
-        /* margin-left: 40px; */
         height: 29px;
         min-width: 86px;
         margin-right: 10px;
@@ -118,4 +117,5 @@ export const StyledLink = styled(Link)`
 export const StyledA = styled.a`
     color: var(--light-blue); 
     &:visited {color: var(--light-blue);}
+    &:hover {text-decoration: underline;}
 `
