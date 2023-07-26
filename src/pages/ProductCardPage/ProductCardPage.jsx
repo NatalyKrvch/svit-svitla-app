@@ -15,6 +15,7 @@ import {
   StyledH1,
 } from "./ProductCardPageStyled";
 import ShareButton from "../../components/Buttons/ShareButton/ShareButton";
+import Container from "../../components/Container/Container";
 
 const ProductCardPage = () => {
   const [currentURL, setCurrentURL] = useState("");
@@ -37,7 +38,7 @@ const ProductCardPage = () => {
   console.log(typeof currentURL);
 
   return (
-    <>
+    <Container>
       <PageWrapper>
         <TitleWrapper>
           <Title>
@@ -57,7 +58,7 @@ const ProductCardPage = () => {
           </CharacteristicsWrapper>
         </ContentWrapper>
       </PageWrapper>
-    </>
+    </Container>
   );
 };
 

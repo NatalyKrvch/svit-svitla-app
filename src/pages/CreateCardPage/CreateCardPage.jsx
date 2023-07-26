@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
+import Container from "../../components/Container/Container";
 
 const CreateCardPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -28,36 +29,40 @@ const CreateCardPage = () => {
   const onNavigation = () => {
     dispatch(setModalOpen(false));
     navigate("/qrcodegeneration");
-  }
+  };
 
   const filter = useSelector(selectFilter);
 
   return (
-    <StyledFragment>
-      <TitleWrp>
-        <StyledTitle>Створити картку</StyledTitle>
-      </TitleWrp>
-      <DropdownCardSelector />
-      {filter === "Картка товару" && <ProductForm openModal={onOpenModal} />}
-      {filter === "Картка каталогу" && <CatalogForm openModal={onOpenModal} />}
-      {showModal && (
-        // <ModalCreateProductCard
-        // onCloseModal={onCloseModal}
-        // title={(filter === "Картка товару") ? "Картка успішно створена" : "Картка каталогу успішно створена"}
-        //       filter={filter} />
-        <Modal
-          onCloseModal={onCloseModal}
-          title={
-            filter === "Картка товару"
-              ? "Картка успішно створена!"
-              : "Картка каталогу успішно створена!"
-          }
-          numberOfButtons={filter === "Картка товару" ? 1 : 0}
-          onConfirmation={filter === "Картка товару" ? onNavigation : null}
-          filter={filter}
-        />
-      )}
-    </StyledFragment>
+    <Container>
+      <StyledFragment>
+        <TitleWrp>
+          <StyledTitle>Створити картку</StyledTitle>
+        </TitleWrp>
+        <DropdownCardSelector />
+        {filter === "Картка товару" && <ProductForm openModal={onOpenModal} />}
+        {filter === "Картка каталогу" && (
+          <CatalogForm openModal={onOpenModal} />
+        )}
+        {showModal && (
+          // <ModalCreateProductCard
+          // onCloseModal={onCloseModal}
+          // title={(filter === "Картка товару") ? "Картка успішно створена" : "Картка каталогу успішно створена"}
+          //       filter={filter} />
+          <Modal
+            onCloseModal={onCloseModal}
+            title={
+              filter === "Картка товару"
+                ? "Картка успішно створена!"
+                : "Картка каталогу успішно створена!"
+            }
+            numberOfButtons={filter === "Картка товару" ? 1 : 0}
+            onConfirmation={filter === "Картка товару" ? onNavigation : null}
+            filter={filter}
+          />
+        )}
+      </StyledFragment>
+    </Container>
   );
 };
 
