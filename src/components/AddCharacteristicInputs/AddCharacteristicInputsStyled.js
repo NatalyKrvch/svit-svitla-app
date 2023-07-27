@@ -33,9 +33,15 @@ export const StyledInput = styled.input`
 width: 328px;
 /* height: 56px; */
 padding: 20px 16px;
-border: 1px solid var(--light-blue);
+border: 2px solid var(--light-blue);
 border-radius: 4px;
-outline: var(--dark-blue);
+transition: 200ms ease;
+
+&:hover,
+&:focus {
+  border: 2px solid var(--dark-blue);
+}
+
 
 @media screen and (min-width: 768px) {
     width: 495px;
@@ -47,15 +53,15 @@ outline: var(--dark-blue);
 
 `
 export const StyledButton = styled.button`
-/* position: absolute;
-top: 0;
-right: 0; */
+position: absolute;
+top: 2px;
+right: 2px;
 display: flex;
 align-items: center;
 justify-content: center;
 width: 48px;
-height: 56px;
-border: 1px solid var(--light-blue);
+height: 58px;
+border: 2px solid var(--light-blue);
 border-radius: 4px;
 background-color: transparent;
 cursor: pointer;

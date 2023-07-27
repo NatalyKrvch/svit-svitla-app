@@ -73,7 +73,7 @@ const AddCharacteristicInputs = ({
                     handleDeleteCharacteristic(id);
                   }}
                 >
-                  <BiMinusCircle size={"1.8em"} />
+                  <BiMinusCircle size={"1.5em"} />
                 </StyledButton>
               </StyledInputWrapper>
         </StyledUlCharacteristics>

@@ -67,12 +67,18 @@ export const StyledInput = styled.input`
   width: 328px;
   height: 56px;
   padding-left: 16px;
-  border: 1px solid var(--light-blue);
+  border: 2px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
-  
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--dark-blue);
+  }
+
   @media screen and (min-width: 768px) {
-   width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -89,10 +95,15 @@ export const FakeInputWrp = styled.div`
   align-items: center;
   max-width: 328px;
   height: 56px;
-  border: 1px solid var(--light-blue);
+  border: 2px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
- 
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 495px;
@@ -110,10 +121,8 @@ export const FakeInputText = styled.p`
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
-  line-height: 1;
+    line-height: 1;
   }
-
- 
 `;
 export const FakeButton = styled.span`
   display: block;
@@ -121,17 +130,17 @@ export const FakeButton = styled.span`
   align-items: center;
   justify-content: center;
   width: 48px;
-  height: 56px;
-  border: 1px solid var(--light-blue);
+  height: 53px;
+  border: 2px solid var(--light-blue);
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
   outline: none;
   transition: 400ms ease;
 
-&:hover{
-  background-color: var(--pressed-outlined);
-}
+  &:hover {
+    background-color: var(--pressed-outlined);
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -141,10 +150,18 @@ export const SubmitButton = styled.button`
   padding: 12px 24px;
   max-width: 328px;
   height: 48px;
-  background: ${props => props.disabled? "var(--middle-grey)" : "var(--dark-blue)"};;
+  background: ${(props) =>
+    props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
   color: white;
   border-radius: 8px;
   cursor: pointer;
+  transition: 400ms ease;
+
+  &:active:not(:disabled) {
+    outline: 2px solid var(--dark-blue);
+    box-shadow: none;
+    background-color: var(--pressed-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 373px;
@@ -201,6 +218,11 @@ export const StyledButtonDelete = styled.button`
   background-color: var(--warning);
   cursor: pointer;
   outline: none;
+  transition: 400ms ease;
+
+  &:hover {
+    background-color: var(--warning-pressed);
+  }
 `;
 
 export const FakeInputWrpDownload = styled.div`
@@ -216,9 +238,9 @@ export const FakeInputWrpDownload = styled.div`
 
   transition: border-color 400ms ease, border-width 100ms ease;
 
-&:hover{
-  border: 2px solid var(--dark-blue);
-}
+  &:hover {
+    border: 2px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 495px;

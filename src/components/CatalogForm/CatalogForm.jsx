@@ -118,6 +118,7 @@ const CatalogForm = ({openModal}) => {
             id="name"
             type="text"
             onChange={handleCoverImageChange}
+            value={`${catalogName}.jpeg`}
           />
           <StyledButtonDelete type="button " onClick={handleDeleteCoverImg}>
             <RiDeleteBin6Line size={"1.8em"} color="white" />
