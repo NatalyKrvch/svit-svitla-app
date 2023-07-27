@@ -7,7 +7,7 @@ border-radius: 1px;
 transition:  400ms ease;
   &:hover,
   &:focus {
-    border-radius: 15px;
+    /* border-radius: 15px; */
     transform: scale(1.05);
     /* scale: 1.02; */
     box-shadow: var(--box-shadow);
@@ -18,12 +18,12 @@ export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
     height: 208px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     width: 274px;
     height: 256px;
   }
@@ -37,11 +37,11 @@ export const StyledTextWrapper = styled.div`
   gap: 4px;
   margin-top: 4px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     width: 274px;
   }
 `;
@@ -57,10 +57,10 @@ export const StyledP = styled.p`
   line-height: 1, 5;
   letter-spacing: -0.4px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     font-size: 20px;
     line-height: 1.5;
   }
@@ -84,13 +84,13 @@ export const StyledButton = styled.button`
   letter-spacing: -0.4px;
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
     font-size: 20px;
     line-height: 1.2;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     width: 274px;
   }
 `;
@@ -99,7 +99,7 @@ export const StyledBtnWrp = styled.div`
   width: 156px;
   display: flex;
   align-items: flex-start;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     gap: 42px;
   }
 `;
@@ -116,14 +116,14 @@ export const StyledBtn = styled.button`
   transition: 400ms ease;
 
   &:hover svg {
-    transform: scale(1.2);
-    fill: var(--dark-blue);
+    /* transform: scale(1.2); */
+    fill: var(--brand-blue);
   }
   
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     align-items: center;
   }
 `;

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
 import Paginator from "../../components/Pagination/Pagination";
 import {
+  BtnWrp,
   StyledBtnDeleteSearch,
   StyledBtnSearch,
   StyledButton,
@@ -32,6 +33,7 @@ import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
 import Container from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -181,13 +183,15 @@ const ProductsCataloguePage = () => {
         )}
         <StyledTitle>Каталог товарів</StyledTitle>
         {!isLoggedIn && (
-          <StyledButton
+         <BtnWrp>
+           <MainButton buttonType="filter"
             onClick={!query ? () => openModal() : () => setSearchParams({})}
           >
             {!query && <FiFilter size={"1.5em"} />}
             {query ? `${query}` : "Фільтрувати"}
             {query && <RxCrossCircled />}
-          </StyledButton>
+          </MainButton>
+         </BtnWrp>
         )}
         {products.length !== 0 ? (
           <ProductList

@@ -25,4 +25,5 @@ export const WrapperDiv = styled.div`
     margin: 0;
     padding: 12px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 `;

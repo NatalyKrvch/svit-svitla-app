@@ -17,23 +17,20 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledTitleWrp = styled.div`
-max-width: 328px;
-margin-left: auto;
-margin-right: auto;
+  max-width: 328px;
+  margin-left: auto;
+  margin-right: auto;
 
-
-@media screen and (min-width: 768px) {
-  max-width: 754px;
-  margin: 0;
-  border-bottom: 1px solid var(--middle-grey);
+  @media screen and (min-width: 768px) {
+    max-width: 754px;
+    margin: 0;
+    border-bottom: 1px solid var(--middle-grey);
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 1168px;
-
   }
-
-`
+`;
 
 export const StyledTitle = styled.h2`
   font-weight: 400;
@@ -72,10 +69,11 @@ export const StyledDiv = styled.div`
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  height: ${({isLoggedIn}) => isLoggedIn? 'auto' : '56px' };
+  height: ${({ isLoggedIn }) => (isLoggedIn ? "auto" : "56px")};
   display: flex;
-  align-items: ${({isLoggedIn}) => isLoggedIn? 'center' : 'flex-start' };
-  justify-content:${({isLoggedIn}) => isLoggedIn? 'left' : 'space-evenly' };
+  align-items: ${({ isLoggedIn }) => (isLoggedIn ? "center" : "flex-start")};
+  justify-content: ${({ isLoggedIn }) =>
+    isLoggedIn ? "left" : "space-evenly"};
 
   @media screen and (min-width: 768px) {
     /* align-items: flex-start;
@@ -83,7 +81,6 @@ export const StyledInputWrapper = styled.div`
     width: 624px;
     gap: 18px;
   }
-  
 
   @media screen and (min-width: 1280px) {
     width: 572px;
@@ -94,13 +91,16 @@ export const StyledInputWrapper = styled.div`
 `;
 
 export const StyledLabel = styled.label`
-  position: ${({isLoggedIn}) => isLoggedIn? 'absolute' : 'static' };
-  height: ${({isLoggedIn}) => isLoggedIn? '24px' : '48px' };
-  width: ${({isLoggedIn, isMobile}) => isLoggedIn? 'auto' : isMobile? "105px" : '128px' };
-  font-size: ${({isLoggedIn}) => isLoggedIn? '12px' : '16px' };
-  line-height: ${({isLoggedIn}) => isLoggedIn? '2' : 'none' };
-  color: ${({isLoggedIn}) => isLoggedIn? 'var(--dark-grey)' : 'var(--main-black)' } ;
-  background-color: ${({isLoggedIn}) => isLoggedIn? 'var(--light-blue)' : 'var(--main-white)' } ;
+  position: ${({ isLoggedIn }) => (isLoggedIn ? "absolute" : "static")};
+  height: ${({ isLoggedIn }) => (isLoggedIn ? "24px" : "48px")};
+  width: ${({ isLoggedIn, isMobile }) =>
+    isLoggedIn ? "auto" : isMobile ? "105px" : "128px"};
+  font-size: ${({ isLoggedIn }) => (isLoggedIn ? "12px" : "16px")};
+  line-height: ${({ isLoggedIn }) => (isLoggedIn ? "2" : "none")};
+  color: ${({ isLoggedIn }) =>
+    isLoggedIn ? "var(--dark-grey)" : "var(--main-black)"};
+  background-color: ${({ isLoggedIn }) =>
+    isLoggedIn ? "var(--light-blue)" : "var(--main-white)"};
   padding: 0 4px;
   left: 12px;
   top: -8px;
@@ -133,11 +133,12 @@ export const StyledCoverLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-display: block;
+  display: block;
   width: 328px;
-  padding: ${({isLoggedIn}) => isLoggedIn? '16px' : '4px' };
-  text-align:${({isLoggedIn}) => isLoggedIn? 'left' : 'start' };
-  border: ${({isLoggedIn}) => isLoggedIn? '1px solid var(--light-blue)' : 'none' };
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? "16px" : "4px")};
+  text-align: ${({ isLoggedIn }) => (isLoggedIn ? "left" : "start")};
+  border: ${({ isLoggedIn }) =>
+    isLoggedIn ? "1px solid var(--light-blue)" : "none"};
   border-radius: 4px;
   outline: var(--dark-blue);
 
@@ -150,8 +151,6 @@ display: block;
 
   @media screen and (min-width: 1280px) {
     width: 572px;
-    
-    
   }
 `;
 
@@ -171,15 +170,13 @@ export const FakeInputWrp = styled.div`
 
   @media screen and (min-width: 1280px) {
     max-width: 572px;
-   
-  
   }
 `;
 export const FakeInputText = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: -0.4px; 
+  letter-spacing: -0.4px;
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -193,16 +190,26 @@ export const FakeInputText = styled.p`
   }
 `;
 export const FakeButton = styled.button`
+  width: 48px;
+  height: 35px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
   border: none;
-  border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  transition: 400ms ease;
+
+  &:hover {
+    background-color: var(--dark-blue);
+
+    svg {
+      fill: var(--dark-blue);
+      stroke: white;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     outline: none;
@@ -210,31 +217,29 @@ export const FakeButton = styled.button`
   }
 
   @media screen and (min-width: 1280px) {
-  
-   
   }
 `;
 
 export const StyledButton = styled.button`
-/* position: absolute;
+  /* position: absolute;
 top: 0;
 right: 0; */
-display: flex;
-align-items: center;
-justify-content: center;
-width: 48px;
-height: 49px;
-border: none;
-border-radius: 4px;
-background-color: transparent;
-cursor: pointer;
-outline: none;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 49px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+`;
 
 export const FakeButtonDelete = styled.button`
-position: absolute;
-top: 0;
-right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,24 +257,22 @@ right: 0;
   }
 
   @media screen and (min-width: 1280px) {
-  
-   
   }
-  `
+`;
 
 export const StyledSpan = styled.span`
-display: block;
+  display: block;
   width: 328px;
   height: 56px;
-  padding: ${({isLoggedIn}) => isLoggedIn? '8px 16px' : '4px' };
-  text-align:${({isLoggedIn}) => isLoggedIn? 'left' : 'start' };
-  border: ${({isLoggedIn}) => isLoggedIn? '1px solid var(--light-blue)' : 'none' };
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? "8px 16px" : "4px")};
+  text-align: ${({ isLoggedIn }) => (isLoggedIn ? "left" : "start")};
+  border: ${({ isLoggedIn }) =>
+    isLoggedIn ? "1px solid var(--light-blue)" : "none"};
   border-radius: 4px;
   outline: var(--dark-blue);
   white-space: pre-wrap; /* Отключаем обработку пробелов и переносов строки */
   &::after {
-    content: ''; /* Вставляем перенос строки */
+    content: ""; /* Вставляем перенос строки */
     white-space: pre; /* Отключаем обработку пробелов и переносов строки */
   }
-
 `;

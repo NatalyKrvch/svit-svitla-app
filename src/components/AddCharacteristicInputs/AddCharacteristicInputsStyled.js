@@ -60,6 +60,11 @@ border-radius: 4px;
 background-color: transparent;
 cursor: pointer;
 outline: none;
+transition: 400ms ease;
+
+&:hover {
+  background-color: var(--pressed-outlined);
+}
 `
 
 export const StyledUlCharacteristics = styled.ul`

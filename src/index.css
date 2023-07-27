@@ -75,6 +75,13 @@ p {
   margin: 0;
 }
 
+input,
+textarea,
+button,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .slider-container {
   max-width: 328px;
   margin: 0 auto 40px;
