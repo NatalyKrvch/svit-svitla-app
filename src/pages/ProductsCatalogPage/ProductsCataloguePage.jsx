@@ -31,7 +31,7 @@ import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
 
@@ -131,7 +131,7 @@ const ProductsCataloguePage = () => {
   //______________________________________________________
 
   return (
-    <Container>
+    <Wrapper>
       <StyledFragment>
         {showModalFilter && (
           <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
@@ -183,15 +183,16 @@ const ProductsCataloguePage = () => {
         )}
         <StyledTitle>Каталог товарів</StyledTitle>
         {!isLoggedIn && (
-         <BtnWrp>
-           <MainButton buttonType="filter"
-            onClick={!query ? () => openModal() : () => setSearchParams({})}
-          >
-            {!query && <FiFilter size={"1.5em"} />}
-            {query ? `${query}` : "Фільтрувати"}
-            {query && <RxCrossCircled />}
-          </MainButton>
-         </BtnWrp>
+          <BtnWrp>
+            <MainButton
+              buttonType="filter"
+              onClick={!query ? () => openModal() : () => setSearchParams({})}
+            >
+              {!query && <FiFilter size={"1.5em"} />}
+              {query ? `${query}` : "Фільтрувати"}
+              {query && <RxCrossCircled />}
+            </MainButton>
+          </BtnWrp>
         )}
         {products.length !== 0 ? (
           <ProductList
@@ -215,7 +216,7 @@ const ProductsCataloguePage = () => {
           />
         )}
       </StyledFragment>
-    </Container>
+    </Wrapper>
   );
 };
 

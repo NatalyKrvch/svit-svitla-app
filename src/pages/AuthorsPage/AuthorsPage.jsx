@@ -9,13 +9,13 @@ import {
 import { StyledH1 } from "../../pages/FeedbackPage/FeedbackPageStyled";
 import authorsList from "./authorsList.json";
 import linkedInIcon from "../../images/linkedin.svg";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 import { nanoid } from "nanoid";
 
 function Authors() {
   return (
     <>
-      <Container>
+      <Wrapper>
         <PageWrapper>
           <StyledH1>Автори веб-сервісу</StyledH1>
           <GridWrapper>
@@ -32,7 +32,7 @@ function Authors() {
             ))}
           </GridWrapper>
         </PageWrapper>
-      </Container>
+      </Wrapper>
     </>
   );
 }

@@ -38,7 +38,7 @@ import ProductCharacteristics from "../../components/ProductsCharacteristics/Pro
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 
 const EditProductCard = () => {
   const { id } = useParams();
@@ -205,7 +205,7 @@ const EditProductCard = () => {
   };
 
   return (
-    <Container>
+    <Wrapper>
       <StyledFragment>
         <StyledForm onSubmit={handleSubmit}>
           <StyledH>Редагувати картку товару</StyledH>
@@ -423,7 +423,7 @@ const EditProductCard = () => {
           />
         )}
       </StyledFragment>
-    </Container>
+    </Wrapper>
   );
 };
 

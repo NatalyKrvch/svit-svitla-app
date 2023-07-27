@@ -28,7 +28,7 @@ import { changeCatalog } from "../../redux/Catalog/catalogOperations";
 import { useEffect, useState } from "react";
 // import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog";
 import Modal from "../../components/Modal/Modal/Modal";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 
 const EditCatalogueCard = () => {
   const { id } = useParams();
@@ -105,7 +105,7 @@ const EditCatalogueCard = () => {
   };
 
   return (
-    <Container>
+    <Wrapper>
       <StyledDiv>
         <StyledTitle>Редагувати картку товару</StyledTitle>
         <StyledP>{name}</StyledP>
@@ -198,7 +198,7 @@ const EditCatalogueCard = () => {
           />
         )}
       </StyledDiv>
-    </Container>
+    </Wrapper>
   );
 };
 

@@ -9,14 +9,14 @@ import {
 } from "./SelectCardPageStyled";
 import { useSelector } from "react-redux";
 import { selectFilter } from "../../redux/Filter/selectors";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 
 const SelectCardPage = () => {
   const navigate = useNavigate();
   const filter = useSelector(selectFilter);
 
   return (
-    <Container>
+    <Wrapper>
       <StyledFragment>
         <TitleWrp>
           <StyledTitle>Створити картку</StyledTitle>
@@ -32,7 +32,7 @@ const SelectCardPage = () => {
           Далі
         </NextButton>
       </StyledFragment>
-    </Container>
+    </Wrapper>
   );
 };
 

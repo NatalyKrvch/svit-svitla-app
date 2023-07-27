@@ -27,7 +27,7 @@ import { useSearchParams } from "react-router-dom";
 import Paginator from "../../components/Pagination/Pagination";
 import NotFound from "../../components/NotFound/NotFound";
 import { Container } from "@mui/material";
-
+import Wrapper from "../../components/Container/Container";
 
 const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
@@ -126,7 +126,7 @@ const PreorderCataloguePage = () => {
   //____________________________________________________________
 
   return (
-    <Container>
+    <Wrapper>
       <STyledContainer>
         <StyledDiv>
           {isLoggedIn && (
@@ -155,40 +155,44 @@ const PreorderCataloguePage = () => {
               )}
             </StyledInputWrp>
           )}
-          </StyledDiv>
+        </StyledDiv>
         <StyledH2>Каталоги для передзамовлення</StyledH2>
-       {fetchedCatalogsList.length !== 0 ?  
-        <CatalogsList
-        catalogsList={fetchedCatalogsList}
-        onDelete={handleDeleteCatalog}
-        onOpenModal={openModal}
-        closeModal={closeModal}
-      /> : <NotFound  message="Каталог з таким ім'ям не знайдено"/>}
-      {showModal && (
-        <Modal
-          color="red"
-          numberOfButtons={2}
-          title="Ви певні, що хочете видалити каталог?"
-          empTitle={`${catalogName}   ${catalogYear}`}
-          onCloseModal={closeModal}
-          onConfirmation={handleDelete}
-        />
-      )}
-      {modalDeleteSuccessOpen && (
-        <Modal
-          color="red"
-          title="Картка каталогу успішно видалена!"
-          onCloseModal={closeModal}
-        />
-      )}
-      {pageQty > 1 && 
-      <Paginator
-      pageQty={pageQty}
-      pageNumber={pageNumber}
-      setPageNumber={setPageNumber}
-    />}
-    </STyledContainer>
-    </Container>
+        {fetchedCatalogsList.length !== 0 ? (
+          <CatalogsList
+            catalogsList={fetchedCatalogsList}
+            onDelete={handleDeleteCatalog}
+            onOpenModal={openModal}
+            closeModal={closeModal}
+          />
+        ) : (
+          <NotFound message="Каталог з таким ім'ям не знайдено" />
+        )}
+        {showModal && (
+          <Modal
+            color="red"
+            numberOfButtons={2}
+            title="Ви певні, що хочете видалити каталог?"
+            empTitle={`${catalogName}   ${catalogYear}`}
+            onCloseModal={closeModal}
+            onConfirmation={handleDelete}
+          />
+        )}
+        {modalDeleteSuccessOpen && (
+          <Modal
+            color="red"
+            title="Картка каталогу успішно видалена!"
+            onCloseModal={closeModal}
+          />
+        )}
+        {pageQty > 1 && (
+          <Paginator
+            pageQty={pageQty}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+          />
+        )}
+      </STyledContainer>
+    </Wrapper>
   );
 };
 

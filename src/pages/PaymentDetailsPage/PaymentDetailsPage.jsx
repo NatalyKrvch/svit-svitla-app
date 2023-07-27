@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import Notiflix from "notiflix";
 import { useMediaRules } from "../../hooks/useMediaRules";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 
 const PaymentDetails = () => {
   const ibanRef = useRef(null);
@@ -43,7 +43,7 @@ const PaymentDetails = () => {
   };
 
   return (
-    <Container>
+    <Wrapper>
       <StyledContainer>
         <StyledTitleWrp isLoggedIn={isLoggedIn}>
           <StyledTitle>Реквізити для оплати</StyledTitle>
@@ -161,7 +161,7 @@ const PaymentDetails = () => {
           </StyledInputWrapper>
         </StyledDiv>
       </StyledContainer>
-    </Container>
+    </Wrapper>
   );
 };
 

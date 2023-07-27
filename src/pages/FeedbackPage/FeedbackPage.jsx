@@ -18,7 +18,7 @@ import {
 import MainButton from "../../components/Buttons/MainButton/MainButton";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Review/reviewReducer";
-import Container from "../../components/Container/Container";
+import Wrapper from "../../components/Container/Container";
 // import emailjs from "emailjs-com";
 
 function Feedback() {
@@ -103,7 +103,7 @@ function Feedback() {
     dispatch(setModalOpen(false));
   };
   return (
-    <Container>
+    <Wrapper>
       <PageWrapper>
         <StyledH1>Залиште відгук тут</StyledH1>
         <StyledP>Як вам було у Світі світла?</StyledP>
@@ -143,7 +143,7 @@ function Feedback() {
           onCloseModal={closeModal}
         />
       )}
-    </Container>
+    </Wrapper>
   );
 }
 
