@@ -15,7 +15,7 @@ export const LogOutButtonStyled = styled.button`
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 
-    &:hover {color: var(--middle-grey);}
+    &:hover {color: var(--brand-blue);}
 
     @media screen and (min-width: 1280px){
         font-size: 24px;
