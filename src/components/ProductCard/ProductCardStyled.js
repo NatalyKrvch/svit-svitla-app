@@ -116,7 +116,7 @@ export const StyledBtn = styled.button`
   transition: 400ms ease;
 
   &:hover svg {
-    transform: scale(1.2);
+    /* transform: scale(1.2); */
     fill: var(--brand-blue);
   }
   

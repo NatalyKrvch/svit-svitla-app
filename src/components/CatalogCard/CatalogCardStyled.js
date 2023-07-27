@@ -21,7 +21,6 @@ transition:  400ms ease;
   &:focus {
     /* border-radius: 15px; */
     transform: scale(1.05);
-    /* scale: 1.02; */
     box-shadow: var(--box-shadow);
   }
 `
@@ -88,7 +87,6 @@ export const StyledBtn = styled.button`
   transition: 1s ease;
   
   &:hover svg {
-    transform: scale(1.2);
     stroke: var(--brand-blue);
   }
 

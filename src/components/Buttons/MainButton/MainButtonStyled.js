@@ -10,8 +10,12 @@ letter-spacing: -0.4px;
 const ButtonStyled = styled.button`
   height: 48px;
   width: 100%;
-  padding: 12px auto;
+  padding: 12px 16px;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   cursor: pointer;
   ${font}
   border: ${props =>
@@ -68,6 +72,7 @@ const ButtonStyled = styled.button`
   @media screen and (min-width: 769px) {
     height: 56px;
     font-size: 20px;
+    gap: 16px;
   }
 `
 export default ButtonStyled;
