@@ -10,11 +10,7 @@ import menuConfig from "../menuConfig.json";
 import crossImg from "../../../images/Menu/close_24px.svg";
 import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
 
-function MenuBurger({ onClose,setLogoutModalOpen, ...props }) {
-  MenuBurger.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-  };
+function MenuBurger({ onClose, setLogoutModalOpen, ...props }) {
   const { isLoggedIn } = props;
 
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
@@ -45,4 +41,11 @@ function MenuBurger({ onClose,setLogoutModalOpen, ...props }) {
     </>
   );
 }
+
+MenuBurger.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  setLogoutModalOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
 export default MenuBurger;

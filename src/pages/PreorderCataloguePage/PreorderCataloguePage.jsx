@@ -6,7 +6,10 @@ import {
   getCatalogs,
   removeCatalog,
 } from "../../redux/Catalog/catalogOperations";
-import { getAllCatalogs, getTotalItemsCatalogs } from "../../redux/Catalog/catalogSelectors";
+import {
+  getAllCatalogs,
+  getTotalItemsCatalogs,
+} from "../../redux/Catalog/catalogSelectors";
 import {
   STyledContainer,
   StyledBtnDeleteSearch,
@@ -42,24 +45,29 @@ const PreorderCataloguePage = () => {
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
 
-  const { isMobile, isTablet} = useMediaRules();
+  const { isMobile, isTablet } = useMediaRules();
   const totalItems = useSelector(getTotalItemsCatalogs);
-  const pageQty = Math.floor(totalItems/perPage);
+  const pageQty = Math.floor(totalItems / perPage);
 
   useEffect(() => {
-    dispatch(getCatalogs({ page: pageNumber, per_page: perPage , catalogName: catalogNameSearch}));
+    dispatch(
+      getCatalogs({
+        page: pageNumber,
+        per_page: perPage,
+        catalogName: catalogNameSearch,
+      })
+    );
   }, [pageNumber, perPage, catalogNameSearch]);
 
   const handleEnterPress = (event) => {
-    if(event.key === 'Enter'){
-      setSearchParams({catalogName: filter});
+    if (event.key === "Enter") {
+      setSearchParams({ catalogName: filter });
     }
-  }
+  };
 
   useEffect(() => {
     setFetchedCatalogsList(catalogsList);
   }, [catalogsList]);
-
 
   const updateCatalogsList = (updatedList) => {
     setFetchedCatalogsList(updatedList);
@@ -78,7 +86,8 @@ const PreorderCataloguePage = () => {
   }, [isMobile, isTablet]);
 
   const openModal = (name, year, id) => {
-    const catalogNameFirstLetterUppercase = name.charAt(0).toUpperCase() + name.slice(1)
+    const catalogNameFirstLetterUppercase =
+      name.charAt(0).toUpperCase() + name.slice(1);
     setShowModal(true);
     setCatalogName(catalogNameFirstLetterUppercase);
     setCatalogYear(year);
@@ -100,9 +109,7 @@ const PreorderCataloguePage = () => {
   };
 
   const handleFilterCatalog = (ev) => {
-
     setFilter(ev.target.value.toLowerCase());
-
   };
 
   // added________________________________________________________
@@ -118,31 +125,52 @@ const PreorderCataloguePage = () => {
   //____________________________________________________________
 
   return (
-    <STyledContainer>
-      <StyledDiv>
-        {isLoggedIn && (
-          <StyledInputWrp>
-            <StyledBtnSearch onClick={() => setSearchParams({catalogName: filter})}>
-              <AiOutlineSearch size={"1.8em"} />
-            </StyledBtnSearch>
-            <StyledInput
-              type="text"
-              placeholder="Пошук"
-              value={filter}
-              onChange={handleFilterCatalog}
-              onKeyDown={handleEnterPress}
-            />
+    <Container>
+      <STyledContainer>
+        <StyledDiv>
+          {isLoggedIn && (
+            <StyledInputWrp>
+              <StyledBtnSearch
+                onClick={() => setSearchParams({ catalogName: filter })}
+              >
+                <AiOutlineSearch size={"1.8em"} />
+              </StyledBtnSearch>
+              <StyledInput
+                type="text"
+                placeholder="Пошук"
+                value={filter}
+                onChange={handleFilterCatalog}
+                onKeyDown={handleEnterPress}
+              />
               {filter && (
-            <StyledBtnDeleteSearch
-              onClick={() => {
-                setSearchParams({});
-                setFilter("");
-              }}
-            >
-              <RxCrossCircled size={"1.5em"} />
-            </StyledBtnDeleteSearch>
+                <StyledBtnDeleteSearch
+                  onClick={() => {
+                    setSearchParams({});
+                    setFilter("");
+                  }}
+                >
+                  <RxCrossCircled size={"1.5em"} />
+                </StyledBtnDeleteSearch>
+              )}
+            </StyledInputWrp>
           )}
-          </StyledInputWrp>
+          <StyledH2>Каталоги для передзамовлення</StyledH2>
+          <CatalogsList
+            catalogsList={fetchedCatalogsList}
+            onDelete={handleDeleteCatalog}
+            onOpenModal={openModal}
+            closeModal={closeModal}
+          />
+        </StyledDiv>
+        {showModal && (
+          <Modal
+            color="red"
+            numberOfButtons={2}
+            title="Ви певні, що хочете видалити каталог?"
+            empTitle={`${catalogName}   ${catalogYear}`}
+            onCloseModal={closeModal}
+            onConfirmation={handleDelete}
+          />
         )}
         <StyledH2>Каталоги для передзамовлення</StyledH2>
        {fetchedCatalogsList.length !== 0 ?  
@@ -152,7 +180,6 @@ const PreorderCataloguePage = () => {
         onOpenModal={openModal}
         closeModal={closeModal}
       /> : <NotFound  message="Каталог з таким ім'ям не знайдено"/>}
-      </StyledDiv>
       {showModal && (
         <Modal
           color="red"
@@ -177,6 +204,7 @@ const PreorderCataloguePage = () => {
       setPageNumber={setPageNumber}
     />}
     </STyledContainer>
+    </Container>
   );
 };
 

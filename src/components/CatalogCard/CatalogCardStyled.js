@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   width: 156px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     width: 274px;
   }
 `;
@@ -19,7 +19,7 @@ border-radius: 1px;
 transition:  400ms ease;
   &:hover,
   &:focus {
-    border-radius: 15px;
+    /* border-radius: 15px; */
     transform: scale(1.05);
     /* scale: 1.02; */
     box-shadow: var(--box-shadow);
@@ -30,12 +30,12 @@ export const StyledImg = styled.img`
   height: 208px;
  
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
     height: 298px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     width: 274px;
     height: 319px;
   }
@@ -51,11 +51,11 @@ export const StyledP = styled.p`
   line-height: 1.5;
   letter-spacing: -0.4px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     font-size: 20px;
     letter-spacing: 0.25px;
   }
@@ -66,12 +66,12 @@ export const StyledBtnWrp = styled.div`
   display: flex;
   align-items: flex-start;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     width: 235px;
     justify-content: space-between;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     width: 274px;
   }
 `;
@@ -87,16 +87,15 @@ export const StyledBtn = styled.button`
   cursor: pointer;
   transition: 1s ease;
   
-
   &:hover svg {
     transform: scale(1.2);
-    fill: var(--dark-blue);
+    stroke: var(--brand-blue);
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1281px) {
     align-items: center;
   }
 `;

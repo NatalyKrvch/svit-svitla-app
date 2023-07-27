@@ -53,6 +53,7 @@ const ButtonStyled = styled.button`
 
   &:active:not(:disabled) {
     outline: 2px solid var(--dark-blue);
+    box-shadow: none;
     background-color: ${props =>
     props.buttonType === "primary"
       ? "var(--pressed-blue)"

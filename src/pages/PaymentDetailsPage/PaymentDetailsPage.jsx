@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import Notiflix from "notiflix";
 import { useMediaRules } from "../../hooks/useMediaRules";
+import Container from "../../components/Container/Container";
 
 const PaymentDetails = () => {
   const ibanRef = useRef(null);
@@ -42,115 +43,125 @@ const PaymentDetails = () => {
   };
 
   return (
-    <StyledContainer>
-      <StyledTitleWrp isLoggedIn={isLoggedIn}>
-        <StyledTitle>Реквізити для оплати</StyledTitle>
-      </StyledTitleWrp>
-      <StyledDiv>
-        <StyledInputWrapper isLoggedIn={isLoggedIn}>
-          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn} isMobile={isMobile}>
-            IBAN
-          </StyledLabel>
-          {!isLoggedIn && isMobile ? (
-            <StyledSpan ref={ibanRef} isLoggedIn={isLoggedIn}>
-              {ibanText}
-            </StyledSpan>
-          ) : (
+    <Container>
+      <StyledContainer>
+        <StyledTitleWrp isLoggedIn={isLoggedIn}>
+          <StyledTitle>Реквізити для оплати</StyledTitle>
+        </StyledTitleWrp>
+        <StyledDiv>
+          <StyledInputWrapper isLoggedIn={isLoggedIn}>
+            <StyledLabel
+              htmlFor="name"
+              isLoggedIn={isLoggedIn}
+              isMobile={isMobile}
+            >
+              IBAN
+            </StyledLabel>
+            {!isLoggedIn && isMobile ? (
+              <StyledSpan ref={ibanRef} isLoggedIn={isLoggedIn}>
+                {ibanText}
+              </StyledSpan>
+            ) : (
+              <StyledInput
+                id="name"
+                type="text"
+                value={"UA393287040000026002054312944"}
+                readOnly
+                ref={ibanRef}
+                isLoggedIn={isLoggedIn}
+              />
+            )}
+            {!isLoggedIn && (
+              <FakeButton onClick={() => copyText(ibanRef)}>
+                <FiCopy size={"1.5em"} />
+              </FakeButton>
+            )}
+          </StyledInputWrapper>
+          <StyledInputWrapper isLoggedIn={isLoggedIn}>
+            <StyledLabel
+              htmlFor="name"
+              isLoggedIn={isLoggedIn}
+              isMobile={isMobile}
+            >
+              Банк
+            </StyledLabel>
+            {isMobile ? (
+              <StyledSpan ref={bankRef} isLoggedIn={isLoggedIn}>
+                {bankText}
+              </StyledSpan>
+            ) : (
+              <StyledInput
+                id="name"
+                type="text"
+                value={`АТ КБ "ПРИВАТБАНК"(МФО 328704)`}
+                readOnly
+                ref={bankRef}
+                isLoggedIn={isLoggedIn}
+              />
+            )}
+            {!isLoggedIn && (
+              <FakeButton onClick={() => copyText(bankRef)}>
+                <FiCopy size={"1.5em"} />
+              </FakeButton>
+            )}
+          </StyledInputWrapper>
+          <StyledInputWrapper isLoggedIn={isLoggedIn}>
+            <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>
+              ЕДРПОУ
+            </StyledLabel>
             <StyledInput
               id="name"
               type="text"
-              value={"UA393287040000026002054312944"}
+              value={"38935167"}
               readOnly
-              ref={ibanRef}
+              ref={edrpouRef}
               isLoggedIn={isLoggedIn}
             />
-          )}
-          {!isLoggedIn && (
-            <FakeButton onClick={() => copyText(ibanRef)}>
-              <FiCopy size={"1.5em"} />
-            </FakeButton>
-          )}
-        </StyledInputWrapper>
-        <StyledInputWrapper isLoggedIn={isLoggedIn}>
-          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn} isMobile={isMobile}>
-            Банк
-          </StyledLabel>
-          {isMobile ? (
-            <StyledSpan ref={bankRef} isLoggedIn={isLoggedIn}>
-              {bankText}
-            </StyledSpan>
-          ) : (
+            {!isLoggedIn && (
+              <FakeButton onClick={() => copyText(edrpouRef)}>
+                <FiCopy size={"1.5em"} />
+              </FakeButton>
+            )}
+          </StyledInputWrapper>
+          <StyledInputWrapper isLoggedIn={isLoggedIn}>
+            <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>
+              ФОП
+            </StyledLabel>
             <StyledInput
               id="name"
               type="text"
-              value={`АТ КБ "ПРИВАТБАНК"(МФО 328704)`}
+              value={`Ім'я Прізвище`}
               readOnly
-              ref={bankRef}
+              ref={fopRef}
               isLoggedIn={isLoggedIn}
             />
-          )}
-          {!isLoggedIn && (
-            <FakeButton onClick={() => copyText(bankRef)}>
-              <FiCopy size={"1.5em"} />
-            </FakeButton>
-          )}
-        </StyledInputWrapper>
-        <StyledInputWrapper isLoggedIn={isLoggedIn}>
-          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>
-            ЕДРПОУ
-          </StyledLabel>
-          <StyledInput
-            id="name"
-            type="text"
-            value={"38935167"}
-            readOnly
-            ref={edrpouRef}
-            isLoggedIn={isLoggedIn}
-          />
-          {!isLoggedIn && (
-            <FakeButton onClick={() => copyText(edrpouRef)}>
-              <FiCopy size={"1.5em"} />
-            </FakeButton>
-          )}
-        </StyledInputWrapper>
-        <StyledInputWrapper isLoggedIn={isLoggedIn}>
-          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>
-            ФОП
-          </StyledLabel>
-          <StyledInput
-            id="name"
-            type="text"
-            value={`Ім'я Прізвище`}
-            readOnly
-            ref={fopRef}
-            isLoggedIn={isLoggedIn}
-          />
-          {!isLoggedIn && (
-            <FakeButton onClick={() => copyText(fopRef)}>
-              <FiCopy size={"1.5em"} />
-            </FakeButton>
-          )}
-        </StyledInputWrapper>
-        <StyledInputWrapper isLoggedIn={isLoggedIn}>
-          <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>
-            ІПН
-          </StyledLabel>
-          <StyledInput
-            id="name"
-            type="text"
-            value={"389351615535"}
-            readOnly
-            ref={ipnRef}
-            isLoggedIn={isLoggedIn}
-          />
-          {!isLoggedIn && (
-            <FakeButton onClick={() => copyText(ipnRef)}>
-              <FiCopy size={"1.5em"} />
-            </FakeButton>
-          )}
-        </StyledInputWrapper>
-      </StyledDiv>
-    </StyledContainer>
+            {!isLoggedIn && (
+              <FakeButton onClick={() => copyText(fopRef)}>
+                <FiCopy size={"1.5em"} />
+              </FakeButton>
+            )}
+          </StyledInputWrapper>
+          <StyledInputWrapper isLoggedIn={isLoggedIn}>
+            <StyledLabel htmlFor="name" isLoggedIn={isLoggedIn}>
+              ІПН
+            </StyledLabel>
+            <StyledInput
+              id="name"
+              type="text"
+              value={"389351615535"}
+              readOnly
+              ref={ipnRef}
+              isLoggedIn={isLoggedIn}
+            />
+            {!isLoggedIn && (
+              <FakeButton onClick={() => copyText(ipnRef)}>
+                <FiCopy size={"1.5em"} />
+              </FakeButton>
+            )}
+          </StyledInputWrapper>
+        </StyledDiv>
+      </StyledContainer>
+    </Container>
   );
 };
 

@@ -7,4 +7,5 @@ export const StarsContainer = styled.div`
   margin: 22px 0;
   width: 327px;
   gap: 23px;
+  -webkit-tap-highlight-color: transparent;
 `

@@ -60,6 +60,6 @@ export const StyledLink = styled(NavLink)`
     color: var(--main-white); 
     &:visited {color: var(--main-white);} 
     &.active {
-        color: var(--middle-grey);
+        color: var(--brand-blue);
     }
 `

@@ -13,6 +13,7 @@ export const LogOutButtonStyled = styled.button`
     color: var(--main-white);
     background-color: var(--dark-blue);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {color: var(--middle-grey);}
 

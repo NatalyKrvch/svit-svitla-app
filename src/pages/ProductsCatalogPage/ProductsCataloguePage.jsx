@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/ProductList/ProductList";
-import Paginator  from "../../components/Pagination/Pagination";
+import Paginator from "../../components/Pagination/Pagination";
 import {
   StyledBtnDeleteSearch,
   StyledBtnSearch,
@@ -19,7 +19,10 @@ import {
   getTotalItemsProduct,
   isModalOpen,
 } from "../../redux/Product/productSelectors";
-import { getProducts, removeProduct } from "../../redux/Product/productOperations";
+import {
+  getProducts,
+  removeProduct,
+} from "../../redux/Product/productOperations";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
@@ -27,9 +30,8 @@ import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import { Container } from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
-
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -42,7 +44,7 @@ const ProductsCataloguePage = () => {
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
 
-  const { isMobile, isTablet} = useMediaRules();
+  const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const totalProducts = useSelector(getTotalItemsProduct);
@@ -78,11 +80,10 @@ const ProductsCataloguePage = () => {
   }, [pageNumber, perPage, article, query]);
 
   const handleEnterPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       setSearchParams({ article: filterByCode });
     }
   };
-
 
   useEffect(() => {
     setUpdatedProductList(products);
@@ -193,7 +194,15 @@ const ProductsCataloguePage = () => {
             productsList={updatedProductList}
             onOpen={openModalDelete}
           />
-        ) : <NotFound message={article? "Продукт з таким артиклем не знайдено" : "Відсутні продукти у вказаній категорії"}/>}
+        ) : (
+          <NotFound
+            message={
+              query
+                ? "Відстутні товари у вибраній категорії"
+                : "Відсутній товар із вказаним артиклем"
+            }
+          />
+        )}
         {pageQty > 1 && (
           <Paginator
             pageQty={pageQty}
