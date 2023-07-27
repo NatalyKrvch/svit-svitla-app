@@ -92,6 +92,7 @@ export const FakeInputWrp = styled.div`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
+ 
 
   @media screen and (min-width: 768px) {
     max-width: 495px;
@@ -126,6 +127,11 @@ export const FakeButton = styled.span`
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  transition: 400ms ease;
+
+&:hover{
+  background-color: var(--pressed-outlined);
+}
 `;
 
 export const SubmitButton = styled.button`
@@ -207,6 +213,12 @@ export const FakeInputWrpDownload = styled.div`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
+
+  transition: border-color 400ms ease, border-width 100ms ease;
+
+&:hover{
+  border: 2px solid var(--dark-blue);
+}
 
   @media screen and (min-width: 768px) {
     max-width: 495px;

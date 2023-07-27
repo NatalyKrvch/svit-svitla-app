@@ -74,6 +74,20 @@ export const StyledButton = styled.button`
   }
 `;
 
+export const BtnWrp = styled.div`
+min-width: 165px;
+  height: 48px;
+  margin-top: 16px;
+  margin-bottom: 16px; 
+
+  @media screen and (min-width: 768px){
+    min-width: 235px;
+    max-width: 300px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+  }
+`
+
 export const StyledInputWrp = styled.div`
   display: flex;
   padding: 4px 16px;

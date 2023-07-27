@@ -26,6 +26,7 @@ import Modal from "../../components/Modal/Modal/Modal";
 import { useSearchParams } from "react-router-dom";
 import Paginator from "../../components/Pagination/Pagination";
 import NotFound from "../../components/NotFound/NotFound";
+import { Container } from "@mui/material";
 
 
 const PreorderCataloguePage = () => {
@@ -154,24 +155,7 @@ const PreorderCataloguePage = () => {
               )}
             </StyledInputWrp>
           )}
-          <StyledH2>Каталоги для передзамовлення</StyledH2>
-          <CatalogsList
-            catalogsList={fetchedCatalogsList}
-            onDelete={handleDeleteCatalog}
-            onOpenModal={openModal}
-            closeModal={closeModal}
-          />
-        </StyledDiv>
-        {showModal && (
-          <Modal
-            color="red"
-            numberOfButtons={2}
-            title="Ви певні, що хочете видалити каталог?"
-            empTitle={`${catalogName}   ${catalogYear}`}
-            onCloseModal={closeModal}
-            onConfirmation={handleDelete}
-          />
-        )}
+          </StyledDiv>
         <StyledH2>Каталоги для передзамовлення</StyledH2>
        {fetchedCatalogsList.length !== 0 ?  
         <CatalogsList

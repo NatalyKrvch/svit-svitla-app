@@ -62,11 +62,17 @@ export const StyledInput = styled.input`
   width: 328px;
   /* height: 56px; */
   padding: 16px;
-  border: 1px solid var(--light-blue);
+  border: 2px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
+  transition: 200ms ease;
+
+  &:hover, &:focus {
+    border: 2px solid var(--dark-blue);
+  }
+
   @media screen and (min-width: 768px) {
-   width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -83,9 +89,15 @@ export const FakeInputWrp = styled.div`
   align-items: center;
   width: 328px;
   /* height: 56px; */
-  border: 1px solid var(--light-blue);
+  border: 2px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     width: 495px;
@@ -103,9 +115,9 @@ export const FakeInputText = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 24px;
     line-height: 1;
-     width: 495px;
+    width: 495px;
   }
-  
+
   @media screen and (min-width: 1280px) {
     width: 572px;
   }
@@ -122,6 +134,11 @@ export const FakeButton = styled.span`
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  transition: 400ms ease;
+
+  &:hover {
+    background-color: var(--pressed-outlined);
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -131,9 +148,17 @@ export const SubmitButton = styled.button`
   padding: 12px 24px;
   max-width: 328px;
   height: 48px;
-  background-color: ${props => props.disabled? "var(--middle-grey)" : "var(--dark-blue)"};;
+  background-color: ${(props) =>
+    props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
   color: white;
   border-radius: 8px;
+  transition: ;
+
+  &:active:not(:disabled) {
+    outline: 2px solid var(--dark-blue);
+    box-shadow: none;
+    background-color: var(--pressed-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 373px;
@@ -163,6 +188,11 @@ export const StyledButtonDelete = styled.button`
   background-color: var(--warning);
   cursor: pointer;
   outline: none;
+  transition: 400ms ease;
+
+  &:hover {
+    background-color: var(--warning-pressed);
+  }
 `;
 
 export const StyledInputWrapperPhoto = styled.li`
@@ -183,20 +213,20 @@ export const StyledInputWrapperPhoto = styled.li`
 `;
 
 export const StyledSelect = styled.select`
- width: 328px;
+  width: 328px;
   height: 56px;
   padding: 16px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
   @media screen and (min-width: 768px) {
-   width: 495px;
+    width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 572px;
   }
-`
+`;
 
 export const StyledWrpSelector = styled.div`
   position: relative;
@@ -204,15 +234,20 @@ export const StyledWrpSelector = styled.div`
   background-color: transparent;
   border-radius: 4px 4px 0px 0px;
   margin-left: auto;
-  border: 1px solid var(--light-blue);
+  border: 2px solid var(--light-blue);
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     width: 495px;
     margin-left: 0;
-    
   }
 
   @media screen and (min-width: 1280px) {
@@ -221,35 +256,33 @@ export const StyledWrpSelector = styled.div`
 `;
 
 export const StyledList = styled.ul`
-margin-top: -15px;
-`
-
+  margin-top: -15px;
+`;
 
 export const StyledButtonSelect = styled.span`
-display: block;
-width: 328px;
-height: 56px;
-font-size: 16px;
-line-height: 1,5;
-letter-spacing: -0.4px;
-padding: 16px;
-display: flex;
-border: none;
-align-items: center;
-justify-content: space-between;
-outline: none;
-cursor: pointer;
-background-color: transparent;
+  display: block;
+  width: 328px;
+  height: 56px;
+  font-size: 16px;
+  line-height: 1, 5;
+  letter-spacing: -0.4px;
+  padding: 16px;
+  display: flex;
+  border: none;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
 
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 495px;
-    
   }
 
   @media screen and (min-width: 1280px) {
     width: 572px;
   }
-`
+`;
 
 export const StyledOptions = styled.li`
   max-width: 328px;
@@ -257,7 +290,7 @@ export const StyledOptions = styled.li`
   padding: 8px 16px;
   font-size: 16px;
   /* margin-left: auto; */
-  line-height: 1,5;
+  line-height: 1, 5;
   text-align: right;
   letter-spacing: -0.4px;
   background: var(--light-blue);
@@ -266,7 +299,6 @@ export const StyledOptions = styled.li`
 
   @media screen and (min-width: 768px) {
     max-width: 495px;
-    
   }
 
   @media screen and (min-width: 1280px) {

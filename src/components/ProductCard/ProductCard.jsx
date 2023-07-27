@@ -12,7 +12,6 @@ import {
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
-import { removeProduct } from "../../redux/Product/productOperations.js";
 
 const ProductCard = ({
   product: { productCoverURL, productName, productCode, productPrice,  _id }, onOpen
