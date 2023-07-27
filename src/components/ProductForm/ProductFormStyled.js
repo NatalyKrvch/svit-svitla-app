@@ -152,7 +152,7 @@ export const SubmitButton = styled.button`
     props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
   color: white;
   border-radius: 8px;
-  transition: ;
+  transition: 400ms ease;
 
   &:active:not(:disabled) {
     outline: 2px solid var(--dark-blue);
@@ -203,6 +203,7 @@ export const StyledInputWrapperPhoto = styled.li`
   align-items: center;
   justify-content: left;
   margin-bottom: 16px;
+
   @media screen and (min-width: 768px) {
     width: 495px;
   }

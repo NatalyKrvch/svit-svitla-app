@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import axios from "axios";
+import CatalogPlug from "../../images/CatalogPlug/catalog-plug.jpg";
 import {
   ImgWrp,
   StyledBtn,
@@ -12,11 +12,10 @@ import {
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import { TbDownload } from "react-icons/tb";
 // import { BiShareAlt } from "react-icons/bi";
-import { getAccessToken, getIsLoggedIn } from "../../redux/Auth/authSelectors";
+import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useNavigate } from "react-router";
 import ShareButton from "../Buttons/ShareButton/ShareButton";
-import { useEffect } from "react";
-import { useState } from "react";
+
 
 const CatalogCard = ({ catalog, onOpenModal }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -47,7 +46,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
 
   return (
     <StyledDiv>
-     <ImgWrp><StyledImg src={catalogCoverURL} alt="cover" /></ImgWrp>
+     <ImgWrp><StyledImg src={catalogCoverURL || CatalogPlug} alt="cover" /></ImgWrp>
       <StyledTextWRP>
         <StyledP>{catalogNameFirstLetterUppercase}</StyledP>
         <StyledP>{catalogYear}</StyledP>
