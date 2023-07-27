@@ -87,7 +87,7 @@ export const StyledBtn = styled.button`
   transition: 1s ease;
   
   &:hover svg {
-    stroke: var(--brand-blue);
+    fill: var(--brand-blue);
   }
 
   @media screen and (min-width: 769px) {

@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const StyledWrpSelector = styled.div`
   width: 328px;
-  background-color: var(--light-blue);
+  background-color: transparent;
+  border: 2px solid var(--light-blue);
   border-radius: 4px 4px 0px 0px;
-  /* padding: 16px; */
   margin-left: auto;
   margin-right: auto;
-  /* margin-bottom: 16px; */
   margin-top: 32px;
   display: flex;
   flex-direction: column;
@@ -43,6 +42,13 @@ justify-content: space-between;
 outline: none;
 cursor: pointer;
 background-color: transparent;
+transition: 400ms ease;
+
+&:active {
+  outline: 2px solid var(--dark-blue);
+  box-shadow: none;
+  background-color: var(--pressed-blue);
+}
 
 @media screen and (min-width: 768px) {
     width: 495px;
@@ -56,7 +62,6 @@ background-color: transparent;
 
 export const StyledOptions = styled.li`
   max-width: 328px;
-  /* height: 72.5px; */
   padding: 20px 16px;
   font-size: 16px;
   line-height: 1,5;
@@ -65,6 +70,15 @@ export const StyledOptions = styled.li`
   background: var(--light-blue);
   box-shadow: var(--box-shadow);
   border-radius: 4px;
+  border: 2px solid transparent;
+  transition: 200ms ease;
+  
+
+&:hover,
+&:focus {
+  border: 2px solid var(--dark-blue);
+}
+
 
   @media screen and (min-width: 768px) {
     max-width: 495px;
@@ -75,3 +89,9 @@ export const StyledOptions = styled.li`
     max-width: 572px;
   }
 `;
+
+// transition: 200ms ease;
+
+// &:hover {
+//   border: 2px solid var(--dark-blue);
+// }
