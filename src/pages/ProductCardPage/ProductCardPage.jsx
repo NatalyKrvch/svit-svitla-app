@@ -15,37 +15,47 @@ import {
   StyledH1,
 } from "./ProductCardPageStyled";
 import ShareButton from "../../components/Buttons/ShareButton/ShareButton";
-import Wrapper from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
+import { useMediaRules } from "../../hooks/useMediaRules";
 
 const ProductCardPage = () => {
   const [currentURL, setCurrentURL] = useState("");
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentProduct = useSelector(getCurrentProduct);
+  const { isDesktop } = useMediaRules();
+
   useEffect(() => {
-    console.log("USEEFFECT");
     dispatch(getProductById(id));
     setCurrentURL(window.location.href);
   }, []);
+
   if (currentProduct === null) return;
+
   const allImgsURL = [
     currentProduct.productCoverURL,
     ...currentProduct.productPhotoURL,
   ];
+
   const productName = currentProduct.productName;
   const productCode = currentProduct.productCode;
-  console.log("productName", productName);
-  console.log(typeof currentURL);
+  const textForShare = `${productName} у магазині Світ світла`;
 
   return (
-    <Wrapper>
+    <Container>
       <PageWrapper>
         <TitleWrapper>
           <Title>
             <StyledH1>{productName}</StyledH1>
             <StyledP>Артикул: {productCode}</StyledP>
           </Title>
-          <ShareButton title={productName} text="Поділитися" url={currentURL} />
+          {!isDesktop && (
+            <ShareButton
+              title={productName}
+              text={textForShare}
+              url={currentURL}
+            />
+          )}
         </TitleWrapper>
         <ContentWrapper>
           <Carousel images={allImgsURL} />
@@ -58,7 +68,7 @@ const ProductCardPage = () => {
           </CharacteristicsWrapper>
         </ContentWrapper>
       </PageWrapper>
-    </Wrapper>
+    </Container>
   );
 };
 

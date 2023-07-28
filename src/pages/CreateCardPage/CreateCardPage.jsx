@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import Wrapper from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
 
 const CreateCardPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +34,7 @@ const CreateCardPage = () => {
   const filter = useSelector(selectFilter);
 
   return (
-    <Wrapper>
+    <Container>
       <StyledFragment>
         <TitleWrp>
           <StyledTitle>Створити картку</StyledTitle>
@@ -62,7 +62,7 @@ const CreateCardPage = () => {
           />
         )}
       </StyledFragment>
-    </Wrapper>
+    </Container>
   );
 };
 

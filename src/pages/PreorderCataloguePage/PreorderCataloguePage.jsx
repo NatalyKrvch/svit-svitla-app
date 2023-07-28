@@ -26,8 +26,7 @@ import Modal from "../../components/Modal/Modal/Modal";
 import { useSearchParams } from "react-router-dom";
 import Paginator from "../../components/Pagination/Pagination";
 import NotFound from "../../components/NotFound/NotFound";
-import { Container } from "@mui/material";
-import Wrapper from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
 
 const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
@@ -126,7 +125,7 @@ const PreorderCataloguePage = () => {
   //____________________________________________________________
 
   return (
-    <Wrapper>
+    <Container>
       <STyledContainer>
         <StyledDiv>
           {isLoggedIn && (
@@ -192,7 +191,7 @@ const PreorderCataloguePage = () => {
           />
         )}
       </STyledContainer>
-    </Wrapper>
+    </Container>
   );
 };
 

@@ -31,7 +31,7 @@ import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
-import Wrapper from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
 
@@ -131,7 +131,7 @@ const ProductsCataloguePage = () => {
   //______________________________________________________
 
   return (
-    <Wrapper>
+    <Container>
       <StyledFragment>
         {showModalFilter && (
           <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
@@ -216,7 +216,7 @@ const ProductsCataloguePage = () => {
           />
         )}
       </StyledFragment>
-    </Wrapper>
+    </Container>
   );
 };
 

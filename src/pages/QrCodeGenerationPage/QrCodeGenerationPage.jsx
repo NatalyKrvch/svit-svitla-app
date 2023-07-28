@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import { getCurrentProduct } from "../../redux/Product/productSelectors";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import * as htmlToImage from "html-to-image";
-import Wrapper from "../../components/Container/Container";
+import Container from "../../components/Container/Container";
 
 const QrCodeGeneration = () => {
   const { productName, productCode, _id } = useSelector(getCurrentProduct);
@@ -43,7 +43,7 @@ const QrCodeGeneration = () => {
   };
 
   return (
-    <Wrapper>
+    <Container>
       <StyledContainer>
         <StyledTitleWrp>
           <StyledTitle>QR code товару</StyledTitle>
@@ -72,7 +72,7 @@ const QrCodeGeneration = () => {
           </StyledQrCodeWrp>
         </StyledWrpUpQrCode>
       </StyledContainer>
-    </Wrapper>
+    </Container>
   );
 };
 

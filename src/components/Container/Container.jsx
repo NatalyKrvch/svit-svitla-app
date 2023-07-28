@@ -1,7 +1,7 @@
 import { ContainerWrapper } from "./Container.styled";
 
-const Wrapper = ({ children }) => {
+const Container = ({ children }) => {
   return <ContainerWrapper>{children}</ContainerWrapper>;
 };
 
-export default Wrapper;
+export default Container;
