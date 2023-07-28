@@ -46,9 +46,9 @@ function App() {
         <Route path="/selectcreatecard" element={<SelectCardPage />} />
         <Route path="/createcard" element={<CreateCardPage />} />
         <Route path="/editcatauloguecard/:id" element={<EditCatalogueCard />} />
-        <Route path="/editproductcard/:id(\w+)" element={<EditProductCard />} />
+        <Route path="/editproductcard/:id" element={<EditProductCard />} />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
-        <Route path="/productcard/:id(\w+)" element={<ProductCardPage />} />
+        <Route path="/productcard/:id" element={<ProductCardPage />} />
         <Route path="/qrcodegeneration" element={<QrCodeGeneration />} />
         <Route path="*" element={<NotFound />} />
       </Route>
