@@ -83,11 +83,11 @@ select {
 }
 
 .slider-container {
-  max-width: 328px;
+  width: 328px;
   margin: 0 auto 40px;
 
   @media screen and (min-width: 769px) {
-    max-width: 365px;
+    width: 365px;
     margin: 0 24px 0 0;
   }
 

@@ -183,15 +183,16 @@ const ProductsCataloguePage = () => {
         )}
         <StyledTitle>Каталог товарів</StyledTitle>
         {!isLoggedIn && (
-         <BtnWrp>
-           <MainButton buttonType="filter"
-            onClick={!query ? () => openModal() : () => setSearchParams({})}
-          >
-            {!query && <FiFilter size={"1.5em"} />}
-            {query ? `${query}` : "Фільтрувати"}
-            {query && <RxCrossCircled />}
-          </MainButton>
-         </BtnWrp>
+          <BtnWrp>
+            <MainButton
+              buttonType="filter"
+              onClick={!query ? () => openModal() : () => setSearchParams({})}
+            >
+              {!query && <FiFilter size={"1.5em"} />}
+              {query ? `${query}` : "Фільтрувати"}
+              {query && <RxCrossCircled />}
+            </MainButton>
+          </BtnWrp>
         )}
         {products.length !== 0 ? (
           <ProductList
