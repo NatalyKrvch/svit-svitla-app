@@ -27,6 +27,7 @@ transition:  400ms ease;
 export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
+  object-fit: cover;
  
 
   @media screen and (min-width: 769px) {
@@ -88,6 +89,7 @@ export const StyledBtn = styled.button`
   
   &:hover svg {
     fill: var(--brand-blue);
+    stroke: var(--brand-blue);
   }
 
   @media screen and (min-width: 769px) {
@@ -97,3 +99,5 @@ export const StyledBtn = styled.button`
     align-items: center;
   }
 `;
+
+

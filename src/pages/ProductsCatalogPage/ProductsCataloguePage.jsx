@@ -56,7 +56,7 @@ const ProductsCataloguePage = () => {
   const article = searchParams.get("article");
 
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const pageQty = Math.floor(totalProducts / perPage);
+  const pageQty = Math.ceil(totalProducts / perPage);
 
   useEffect(() => {
     let newPerPage = 8;

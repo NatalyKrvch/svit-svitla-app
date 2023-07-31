@@ -7,14 +7,14 @@ import {
   StyledDiv,
   StyledImg,
   StyledP,
-  StyledTextWRP,
+  StyledTextWRP
 } from "./CatalogCardStyled";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import { TbDownload } from "react-icons/tb";
-// import { BiShareAlt } from "react-icons/bi";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useNavigate } from "react-router";
 import ShareButton from "../Buttons/ShareButton/ShareButton";
+
 
 
 const CatalogCard = ({ catalog, onOpenModal }) => {

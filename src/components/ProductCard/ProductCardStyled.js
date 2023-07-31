@@ -4,6 +4,7 @@ export const ImgWrp = styled.div`
 cursor: pointer;
 overflow: hidden;
 border-radius: 1px;
+overflow: hidden;
 transition:  400ms ease;
   &:hover,
   &:focus {
@@ -17,6 +18,7 @@ transition:  400ms ease;
 export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
+  object-fit: cover;
 
   @media screen and (min-width: 769px) {
     width: 235px;

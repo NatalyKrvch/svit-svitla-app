@@ -48,7 +48,7 @@ const PreorderCataloguePage = () => {
 
   const { isMobile, isTablet } = useMediaRules();
   const totalItems = useSelector(getTotalItemsCatalogs);
-  const pageQty = Math.floor(totalItems / perPage);
+  const pageQty = Math.ceil(totalItems / perPage);
 
   useEffect(() => {
     dispatch(

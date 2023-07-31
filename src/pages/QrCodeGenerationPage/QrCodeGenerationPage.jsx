@@ -62,7 +62,7 @@ const QrCodeGeneration = () => {
           <StyledQrCodeWrp id="qrCodeWrapper">
             <QRCode
               id="qrCode"
-              value={`http://localhost:5173/productcard/${_id}`}
+              value={`https://green-coast-060de9f03.3.azurestaticapps.net/productcard/${_id}`}
               size={isMobile ? 128 : 624}
               fgColor="#000000"
               bgColor="#ffffff"
