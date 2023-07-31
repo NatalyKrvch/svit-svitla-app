@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addReview } from "./reviewOperations";
+import { addReview, getAllReviews } from "./reviewOperations";
 
 const pending = (state) => {
   state.isLoading = true;
@@ -11,6 +11,7 @@ const rejected = (state, { payload }) => {
 };
 
 const initialState = {
+  allReviews: [],
   review: null,
   isLoading: false,
   error: null,
@@ -37,10 +38,15 @@ const reviewsSlice = createSlice({
         state.error = null;
         state.review = payload;
         state.isModalOpen = true;
+      })
+      .addCase(getAllReviews.pending, pending)
+      .addCase(getAllReviews.rejected, rejected)
+      .addCase(getAllReviews.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.allReviews = payload;
       }),
 });
-
-
 
 export default reviewsSlice.reducer;
 

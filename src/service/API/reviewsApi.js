@@ -7,3 +7,10 @@ export const addReviewAPI = (review) => {
     return data;
   });
 };
+
+export const getAllReviewsAPI = () => {
+  axios.defaults.baseURL = `${baseURL}`;
+  return axios.get("/api/reviews/").then(({ data }) => {
+    return data;
+  });
+};
