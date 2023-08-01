@@ -7,15 +7,13 @@ import {
   StyledDiv,
   StyledImg,
   StyledP,
-  StyledTextWRP
+  StyledTextWRP,
 } from "./CatalogCardStyled";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import { TbDownload } from "react-icons/tb";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useNavigate } from "react-router";
 import ShareButton from "../Buttons/ShareButton/ShareButton";
-
-
 
 const CatalogCard = ({ catalog, onOpenModal }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -33,20 +31,21 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
 
   const handleDownload = (fileURL) => {
     {
-      // Создаем ссылку на файл
       const link = document.createElement("a");
       link.href = fileURL;
-      link.setAttribute("download", "file.pdf"); // Указываем имя файла для сохранения
+      link.setAttribute("download", "file.pdf"); 
       document.body.appendChild(link);
       link.click();
 
-      document.body.removeChild(link); // Удаляем ссылку после загрузки файла
-    }
-  };
+      document.body.removeChild(link); 
+  }
+  }
 
   return (
     <StyledDiv>
-     <ImgWrp><StyledImg src={catalogCoverURL || CatalogPlug} alt="cover" /></ImgWrp>
+      <ImgWrp>
+        <StyledImg src={catalogCoverURL || CatalogPlug} alt="cover" />
+      </ImgWrp>
       <StyledTextWRP>
         <StyledP>{catalogNameFirstLetterUppercase}</StyledP>
         <StyledP>{catalogYear}</StyledP>

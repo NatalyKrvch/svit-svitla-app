@@ -144,7 +144,7 @@ const ProductForm = ({ openModal }) => {
           pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s]*"
           title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           minLength={3}
-          maxLength={16}
+          maxLength={25}
           required
           value={productName}
           onChange={handleProductNameChange}
