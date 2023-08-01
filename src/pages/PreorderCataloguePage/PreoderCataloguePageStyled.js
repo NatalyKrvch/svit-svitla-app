@@ -42,7 +42,7 @@ export const StyledBtnSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition:  0.7s ease;
+  transition: 0.7s ease;
 
   &:hover svg {
     transform: scale(1.5);
@@ -95,6 +95,11 @@ export const StyledH2 = styled.h2`
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
+    width: 490px;
+    font-size: 32px;
+    line-height: 1; 
+    margin-top: 32px;
+    margin-bottom: 24px;
   }
 
   @media screen and (min-width: 1280px) {

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  CardWrp,
   ImgWrp,
   StyledBtn,
   StyledBtnWrp,
@@ -20,7 +21,7 @@ const ProductCard = ({
   const navigate = useNavigate();
 
   return (
-    <div>
+    <CardWrp>
       <ImgWrp>
       <StyledImg src={productCoverURL} alt="Picture" />
       </ImgWrp>
@@ -52,7 +53,7 @@ const ProductCard = ({
           </StyledBtnWrp>
         )}
       </StyledTextWrapper>
-    </div>
+    </CardWrp>
   );
 };
 

@@ -96,6 +96,10 @@ const ProductForm = ({ openModal }) => {
     return;
   };
 
+  const handleChooseCategoryClick = () => {
+    setIsOpen(!isOpen);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const additionalAttributes = characteristicArray.map((obj) => {
@@ -137,7 +141,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="name"
           type="text"
-          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s]*"
           title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           minLength={3}
           maxLength={16}
@@ -163,7 +167,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="price"
           type="text"
-          pattern="^\d+(\.\d{1,2})?$"
+          pattern="^\d{1,3}( \d{3})*(\.\d{1,2})?"
           title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
           required
           value={price}
@@ -171,7 +175,7 @@ const ProductForm = ({ openModal }) => {
         />
       </StyledInputWrapper>
       <StyledInputWrapper>
-        <StyledLabel htmlFor="country">Країна походження</StyledLabel>
+        <StyledLabel htmlFor="country">Виробник</StyledLabel>
         <StyledInput
           id="country"
           type="text"
@@ -184,7 +188,7 @@ const ProductForm = ({ openModal }) => {
       </StyledInputWrapper>
       <StyledWrpSelector>
         <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
-        <StyledButtonSelect onClick={() => setIsOpen(true)}>
+        <StyledButtonSelect onClick={handleChooseCategoryClick}>
           {category || "---------"}
           {isOpen ? <GoTriangleUp /> : <GoTriangleDown />}
         </StyledButtonSelect>

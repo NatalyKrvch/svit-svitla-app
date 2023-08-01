@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  max-width: 360px;
-  margin-left: auto;
-  margin-right: auto;
+  /* max-width: 360px;
+
 
   @media screen and (min-width: 768px) {
-    padding: 64px 40px auto 40px;
     max-width: 834px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 72px 136px auto 136px;
     max-width: 1440px;
-  }
+  } */
 `;
 
 export const StyledTitleWrp = styled.div`

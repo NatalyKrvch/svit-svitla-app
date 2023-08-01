@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
+
 export const StyledDiv = styled.div`
   width: 156px;
+  height: 381px;
+  display: flex;
+  flex-direction: column;
 
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -13,35 +17,35 @@ export const StyledDiv = styled.div`
 `;
 
 export const ImgWrp = styled.div`
-cursor: pointer;
-overflow: hidden;
-border-radius: 1px;
-transition:  400ms ease;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 1px;
+  transition: 400ms ease;
   &:hover,
   &:focus {
     /* border-radius: 15px; */
     transform: scale(1.05);
     box-shadow: var(--box-shadow);
   }
-`
+`;
 export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
   object-fit: cover;
- 
 
   @media screen and (min-width: 769px) {
     width: 235px;
-    height: 298px;
+    height: 314px;
   }
 
   @media screen and (min-width: 1281px) {
     width: 274px;
-    height: 319px;
+    height: 367px;
   }
 `;
 
 export const StyledTextWRP = styled.div`
+  flex-grow: 1;
   width: 100%;
   margin-bottom: 8px;
 `;
@@ -86,7 +90,7 @@ export const StyledBtn = styled.button`
   outline: none;
   cursor: pointer;
   transition: 1s ease;
-  
+
   &:hover svg {
     fill: var(--brand-blue);
     stroke: var(--brand-blue);
@@ -99,5 +103,3 @@ export const StyledBtn = styled.button`
     align-items: center;
   }
 `;
-
-
