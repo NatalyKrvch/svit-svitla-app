@@ -163,9 +163,9 @@ const PreorderCataloguePage = () => {
             onOpenModal={openModal}
             closeModal={closeModal}
           />
-        ) : (
-          <NotFound message="Каталог з таким ім'ям не знайдено" />
-        )}
+        )  : filter?  (
+            <NotFound message="Каталог з таким ім'ям не знайдено" />
+          ) : <NotFound message="Відсутні каталоги для передзамовлення"/>}
         {showModal && (
           <Modal
             color="red"

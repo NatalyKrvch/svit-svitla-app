@@ -91,7 +91,7 @@ const CatalogForm = ({openModal}) => {
       </StyledInputWrapper>
       <StyledInputWrapper>
         <StyledLabel htmlFor="year" >Рік</StyledLabel>
-        <StyledInput type="text" name="year"  pattern="^\d{4}-\d{4}$"
+        <StyledInput type="text" name="year"  pattern="^\d{4}(?:-\d{4})?"
         value={year} onChange={handleYearChange} />
       </StyledInputWrapper>
       {coverImage === null ? (

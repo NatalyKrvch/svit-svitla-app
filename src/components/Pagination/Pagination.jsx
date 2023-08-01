@@ -4,6 +4,15 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 
 const Paginator = ({pageQty, pageNumber, setPageNumber}) => {
     const { isMobile, isTablet, isDesktop} = useMediaRules();
+
+    const handlePageChange = (_, number) => {
+      if (number > pageQty) {
+        setPageNumber(pageNumber - 1);
+      } else {
+        setPageNumber(number);
+      }
+    };
+  
     
  return (
     <>
@@ -15,7 +24,7 @@ const Paginator = ({pageQty, pageNumber, setPageNumber}) => {
     onClick={() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }}
-    onChange={(_, number) => setPageNumber(number)}
+    onChange={handlePageChange}
     sx={{
       marginTop: isMobile? "16px" : isTablet? "32px" : "64px",
       maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
