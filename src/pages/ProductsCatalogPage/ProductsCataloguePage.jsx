@@ -5,7 +5,6 @@ import {
   BtnWrp,
   StyledBtnDeleteSearch,
   StyledBtnSearch,
-  StyledButton,
   StyledFragment,
   StyledInput,
   StyledInputWrp,
@@ -45,7 +44,6 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  console.log(updatedProductList);
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
@@ -54,7 +52,6 @@ const ProductsCataloguePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
   const article = searchParams.get("article");
-
   const isLoggedIn = useSelector(getIsLoggedIn);
   const pageQty = Math.ceil(totalProducts / perPage);
 
@@ -113,22 +110,18 @@ const ProductsCataloguePage = () => {
 
   const handleDeleteSuccessModal = () => {
     dispatch(setModalOpen(false));
-    // setModalDeleteSuccessOpen(!modalDeleteSuccessOpen);
   };
 
   const closeModalDelete = () => {
     setIsModalDeleteOpen(false);
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
-  // added__________________________________________________
   const handleDelete = () => {
     const updatedList = updatedProductList.filter((el) => el._id !== productId);
     dispatch(removeProduct(productId));
     setUpdatedProductList(updatedList);
     closeModalDelete();
-    // handleDeleteSuccessModal();
   };
-  //______________________________________________________
 
   return (
     <Container>
