@@ -21,7 +21,7 @@ const Paginator = ({pageQty, pageNumber, setPageNumber}) => {
       maxWidth: isMobile ? "328px" : isTablet ? "512px" : "568px",
       marginLeft: "auto",
       "& .MuiPagination-ul": {
-        justifyContent: isMobile? "center" : "flex-end",
+        justifyContent: "center",
       "& .MuiPaginationItem-root": {
         fontSize: isDesktop? "20px" : "14px",
       }

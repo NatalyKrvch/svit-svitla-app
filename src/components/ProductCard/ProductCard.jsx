@@ -21,7 +21,7 @@ const ProductCard = ({
 
   return (
     <div>
-      <ImgWrp>
+      <ImgWrp onClick={()=> navigate(`/productcard/:${_id}`)}>
       <StyledImg src={productCoverURL} alt="Picture" />
       </ImgWrp>
       
