@@ -167,7 +167,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="price"
           type="text"
-          pattern="^\d{1,3}( \d{3})*(\.\d{1,2})?"
+          pattern="^\d{1,3}( \d{3})*(\.\d{1,2})?|\d{1,3}(,\d{3})*(\.\d{1,2})?"
           title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
           required
           value={price}
