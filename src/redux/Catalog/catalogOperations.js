@@ -30,7 +30,6 @@ export const addCatalog = createAsyncThunk(
   async (catalog, thunkAPI) => {
     try {
       const data = await addCatalogAPI(catalog);
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

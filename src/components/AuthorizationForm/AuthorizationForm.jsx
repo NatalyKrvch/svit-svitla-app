@@ -11,10 +11,9 @@ import {
   TitleWrp,
 } from "./AuthorizatioonFormStyled";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/Auth/authOperations";
-import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
-import { useNavigate } from "react-router";
+
 
 const AuthorizationForm = () => {
   const [login, setLogin] = useState("");
@@ -22,9 +21,7 @@ const AuthorizationForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const dispatch = useDispatch();
-  // const isLoggedIn = useSelector(getIsLoggedIn); 
-  // const navigate = useNavigate();
-
+ 
   const handleChangeLogin = (evt) => {
     setLogin(evt.target.value);
   }
@@ -46,9 +43,7 @@ const AuthorizationForm = () => {
      }))
      setLogin('');
      setPassword('');
-    //  if(isLoggedIn) {
-    //   navigate('/');
-    //  }
+   
   }
 
   return (

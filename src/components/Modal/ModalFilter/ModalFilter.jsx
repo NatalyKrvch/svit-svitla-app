@@ -13,7 +13,7 @@ import {
   StyledIconCircleFill,
   StyledTitle,
 } from "./ModalFilterStyled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { categoryList } from "../../ProductForm/categoryList.json";
 
 const ModalFilter = ({onCloseModal, onSubmit}) => {
@@ -24,14 +24,30 @@ const handleChooseFilterButton = (value) => {
   setFilter(value);
 }
 
+useEffect(() => {
+  const handleEscapeKeyPress = (event) => {
+    if (event.keyCode === 27) {
+      onCloseModal();
+    }
+  };
+  document.addEventListener('keydown', handleEscapeKeyPress);
+  return () => {
+    document.removeEventListener('keydown', handleEscapeKeyPress);
+  };
+}, [onCloseModal]);
+
+const handleInnerClick = (event) => {
+  event.stopPropagation(); 
+}
+
   return (
-    <Overlay>
+    <Overlay onClick={()=> onCloseModal()}>
       <ModalBody>
         <CloseButton onClick={()=>onCloseModal()}>
           <GrClose />
         </CloseButton>
         <StyledTitle>Фільтри</StyledTitle>
-        <StyledFiltersWrp >
+        <StyledFiltersWrp onClick={handleInnerClick}>
           {categoryList.map((el) => {
             return   <FilterBtn key={el}  onClick={() => handleChooseFilterButton(el)}>
               {el}
@@ -50,4 +66,4 @@ const handleChooseFilterButton = (value) => {
   );
 };
 
-export default ModalFilter;
+export default ModalFilter

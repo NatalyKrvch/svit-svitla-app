@@ -1,19 +1,35 @@
 import styled from "styled-components";
 
+export const CardWrp = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 156px;
+  height: 381px;
+
+
+  @media screen and (min-width: 769px) {
+    width: 235px;
+    height: 490px;
+  }
+
+  @media screen and (min-width: 1281px) {
+    width: 274px;
+    height: 530px;
+  }
+`;
+
 export const ImgWrp = styled.div`
-cursor: pointer;
-overflow: hidden;
-border-radius: 1px;
-overflow: hidden;
-transition:  400ms ease;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 1px;
+  overflow: hidden;
+  transition: 400ms ease;
   &:hover,
   &:focus {
-    /* border-radius: 15px; */
     transform: scale(1.05);
-    /* scale: 1.02; */
     box-shadow: var(--box-shadow);
   }
-`
+`;
 
 export const StyledImg = styled.img`
   width: 156px;
@@ -22,12 +38,12 @@ export const StyledImg = styled.img`
 
   @media screen and (min-width: 769px) {
     width: 235px;
-    height: 208px;
+    height: 314px;
   }
 
   @media screen and (min-width: 1281px) {
     width: 274px;
-    height: 256px;
+    height: 367px;
   }
 `;
 
@@ -38,6 +54,7 @@ export const StyledTextWrapper = styled.div`
   align-items: flex-start;
   gap: 4px;
   margin-top: 4px;
+  flex-grow: 1;
 
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -52,6 +69,7 @@ export const StyledProductName = styled.div`
   font-size: 24px;
   line-height: 1.2;
   letter-spacing: -0.4px;
+  flex-grow: 1;
 `;
 
 export const StyledP = styled.p`
@@ -121,7 +139,7 @@ export const StyledBtn = styled.button`
     /* transform: scale(1.2); */
     fill: var(--brand-blue);
   }
-  
+
   @media screen and (min-width: 769px) {
   }
 

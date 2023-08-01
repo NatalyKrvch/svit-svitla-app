@@ -25,7 +25,7 @@ const ProductCharacteristics = ({
         Ціна: <StyledPriceCurrency>{`${price} грн.`}</StyledPriceCurrency>
       </StyledP>
       <StyledPCountry>
-        Країна <br /> походження:{" "}
+        Виробник:{" "}
         <StyledSpanCountry>{manufacturerCountry}</StyledSpanCountry>
       </StyledPCountry>
       <StyledP>

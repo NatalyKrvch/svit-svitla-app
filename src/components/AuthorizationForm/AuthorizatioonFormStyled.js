@@ -2,24 +2,20 @@ import styled from "styled-components";
 
 export const StyledFragment = styled.div`
   position: relative;
-  max-width: 328px;
-  padding: 40px 16px;
-  margin-left: auto;
-  margin-right: auto;
-
+ 
   @media screen and (min-width: 768px) {
-    padding: 64px 40px;
-    margin: 0;
+   
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 72px, 136px;
   }
 `;
 
 export const StyledTitle = styled.h1`
   font-size: 32px;
   line-height: 1;
+  font-style: normal;
+  font-weight: 400;
   letter-spacing: -0.4px;
   text-align: left;
 
@@ -30,11 +26,13 @@ export const StyledTitle = styled.h1`
 `;
 
 export const TitleWrp = styled.div`
-  width: 328px;
+  max-width: 328px;
   position: relative;
+  margin: 0 auto;
 
   @media screen and (min-width: 768px) {
     width: 754px;
+    margin-left: 0;
   }
 
   @media screen and (min-width: 1280px) {
@@ -53,14 +51,11 @@ export const TitleWrp = styled.div`
 
     @media screen and (min-width: 768px) {
       width: 754px;
-     
     }
     @media screen and (min-width: 1280px) {
       width: 1168px;
-     
     }
   }
-
 `;
 
 export const StyledForm = styled.form`
@@ -84,14 +79,14 @@ export const StyledForm = styled.form`
 
 export const StyledInputWrapper = styled.div`
   position: relative;
-  width: 328px;
+  max-width: 328px;
   /* height: 56px; */
   display: flex;
   align-items: center;
   justify-content: left;
 
   &:focus {
-   border: 0px solid var(--dark-blue);
+    border: 0px solid var(--dark-blue);
   }
 
   @media screen and (min-width: 768px) {
@@ -141,7 +136,7 @@ export const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 12px 24px;
-  width: 328px;
+  max-width: 328px;
   height: 48px;
   font-size: 16px;
   background: var(--dark-blue);
@@ -173,8 +168,6 @@ export const ButtonEye = styled.button`
   outline: none;
   background-color: transparent;
   cursor: pointer;
-
- 
 `;
 export const PasswordWrp = styled.div`
   position: relative;

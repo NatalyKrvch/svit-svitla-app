@@ -76,16 +76,15 @@ export const StyledTitle = styled.h3`
   @media screen and (min-width: 1280px) {
     font-size: 48px;
     font-weight: 400;
-    line-height: 1,2;
-   
+    line-height: 1, 2;
   }
 `;
 export const StyledFiltersWrp = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  
-  
+ 
+
   @media screen and (min-width: 768px) {
     width: 462px;
   }
@@ -108,6 +107,12 @@ export const FilterBtn = styled.button`
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  transition: 200ms ease;
+
+&:hover,
+&:focus {
+  border: 2px solid var(--dark-blue);
+}
 
   @media screen and (min-width: 768px) {
     width: 444px;
@@ -122,7 +127,7 @@ export const FilterBtn = styled.button`
 `;
 
 export const IconBtn = styled.span`
-display: block;
+  display: block;
   width: 18px;
   height: 18px;
   position: relative;
@@ -162,6 +167,13 @@ export const StyledButtonChoose = styled.button`
   line-height: 1.5;
   letter-spacing: -0.4px;
   cursor: pointer;
+  transition: 400ms ease;
+
+&:active:not(:disabled) {
+  outline: 2px solid var(--dark-blue);
+  box-shadow: none;
+  background-color: var(--pressed-blue);
+}
 
   @media screen and (min-width: 768px) {
     width: 444px;

@@ -83,7 +83,7 @@ const CatalogForm = ({openModal}) => {
           type="text"
           name="catalogName"
           required
-          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s]*"
           title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           value={catalogName}
           onChange={handleCatalogNameChange}
@@ -91,7 +91,7 @@ const CatalogForm = ({openModal}) => {
       </StyledInputWrapper>
       <StyledInputWrapper>
         <StyledLabel htmlFor="year" >Рік</StyledLabel>
-        <StyledInput type="text" name="year"  pattern="^\d{4}$"
+        <StyledInput type="text" name="year"  pattern="^\d{4}-\d{4}$"
         value={year} onChange={handleYearChange} />
       </StyledInputWrapper>
       {coverImage === null ? (
