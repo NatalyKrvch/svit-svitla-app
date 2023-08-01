@@ -5,7 +5,7 @@ export const CardWrp = styled.div`
   flex-direction: column;
   width: 156px;
   height: 381px;
-  
+
 
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -26,9 +26,7 @@ export const ImgWrp = styled.div`
   transition: 400ms ease;
   &:hover,
   &:focus {
-    /* border-radius: 15px; */
     transform: scale(1.05);
-    /* scale: 1.02; */
     box-shadow: var(--box-shadow);
   }
 `;

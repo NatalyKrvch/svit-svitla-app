@@ -348,7 +348,7 @@ const EditProductCard = () => {
             />
           </StyledInputWrapper>
           <StyledInputWrapper>
-            <StyledLabel htmlFor="country">Країна походження</StyledLabel>
+            <StyledLabel htmlFor="country">Виробник</StyledLabel>
             <StyledInput
               id="country"
               type="text"
@@ -413,7 +413,6 @@ const EditProductCard = () => {
             Зберегти зміни
           </SubmitButton>
         </StyledForm>
-        {/* {showModal && <ModalChangeProductCard onCloseModal={onCloseModal} />} */}
         {showModal && (
           <Modal
             onCloseModal={onCloseModal}
