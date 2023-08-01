@@ -5,6 +5,7 @@ export const CardWrp = styled.div`
   flex-direction: column;
   width: 156px;
   height: 381px;
+  
 
   @media screen and (min-width: 769px) {
     width: 235px;
