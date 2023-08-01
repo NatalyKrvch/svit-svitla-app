@@ -3,16 +3,18 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   width: 156px;
-  height: 381px;
+  height: 315px;
   display: flex;
   flex-direction: column;
 
   @media screen and (min-width: 769px) {
     width: 235px;
+    height: 425px;
   }
 
   @media screen and (min-width: 1281px) {
     width: 274px;
+    height: 485px;
   }
 `;
 
@@ -47,12 +49,15 @@ export const StyledTextWRP = styled.div`
   flex-grow: 1;
   width: 100%;
   margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
 `;
 export const StyledP = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.4px;
+  flex-grow: 1;
 
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -83,7 +88,7 @@ export const StyledBtn = styled.button`
   width: 48px;
   height: 48px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   border: none;
   background-color: transparent;
   outline: none;
