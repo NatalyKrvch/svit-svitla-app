@@ -21,11 +21,13 @@ const ShareButton = ({ title, text, url }) => {
 
   return (
     <>
-      <ShareIcon
-        onClick={() => {
-          handleShare();
-        }}
-      />
+      <button>
+        <ShareIcon
+          onClick={() => {
+            handleShare();
+          }}
+        />
+      </button>
     </>
   );
 };

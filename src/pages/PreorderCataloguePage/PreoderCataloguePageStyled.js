@@ -20,9 +20,11 @@ export const StyledInputWrp = styled.div`
   height: 56px;
   border: 2px solid var(--middle-grey);
   border-radius: 4px 4px 0px 0px;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     width: 491px;
+    margin-bottom: 32px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -30,6 +32,7 @@ export const StyledInputWrp = styled.div`
     height: 64px;
     font-weight: 500;
     line-height: 29px;
+    margin-bottom: 48px;
   }
 `;
 export const StyledBtnSearch = styled.button`
