@@ -18,7 +18,7 @@ export const Overlay = styled.div`
 export const ModalBody = styled.div`
   position: relative;
   max-width: 320px;
-  height: 509px;
+  max-height: 80vh;
   overflow-y: auto;
   padding: 64px 20px 16px 20px;
   position: fixed;
@@ -34,7 +34,6 @@ export const ModalBody = styled.div`
   @media screen and (min-width: 768px) {
     max-width: 494px;
     padding: 80px 16px 16px 16px;
-    height: 698px;
   }
 `;
 
@@ -83,6 +82,7 @@ export const StyledFiltersWrp = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex-grow: 1;
  
 
   @media screen and (min-width: 768px) {
@@ -102,7 +102,7 @@ export const FilterBtn = styled.button`
   line-height: 2, 7;
   letter-spacing: -0.4px;
   color: var(--main-black);
-  border-color: var(--middle-grey);
+  border: 1px solid var(--middle-grey);
   border-radius: 8px;
   background-color: transparent;
   outline: none;
@@ -111,7 +111,7 @@ export const FilterBtn = styled.button`
 
 &:hover,
 &:focus {
-  border: 2px solid var(--dark-blue);
+  border: 1px solid var(--dark-blue);
 }
 
   @media screen and (min-width: 768px) {
@@ -122,7 +122,7 @@ export const FilterBtn = styled.button`
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 274px; */
+    
   }
 `;
 
@@ -170,7 +170,7 @@ export const StyledButtonChoose = styled.button`
   transition: 400ms ease;
 
 &:active:not(:disabled) {
-  outline: 2px solid var(--dark-blue);
+  outline: 1px solid var(--dark-blue);
   box-shadow: none;
   background-color: var(--pressed-blue);
 }

@@ -67,7 +67,8 @@ export const StyledInput = styled.input`
   outline: var(--dark-blue);
   transition: 200ms ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border: 2px solid var(--dark-blue);
   }
 
@@ -297,6 +298,11 @@ export const StyledOptions = styled.li`
   background: var(--light-blue);
   box-shadow: var(--box-shadow);
   border-radius: 4px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    border: 1px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 495px;

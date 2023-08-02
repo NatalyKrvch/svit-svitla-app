@@ -3,6 +3,7 @@ import CatalogPlug from "../../images/CatalogPlug/catalog-plug.jpg";
 import {
   ImgWrp,
   StyledBtn,
+  StyledBtnDownload,
   StyledBtnWrp,
   StyledDiv,
   StyledImg,
@@ -11,6 +12,7 @@ import {
 } from "./CatalogCardStyled";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import { TbDownload } from "react-icons/tb";
+
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useNavigate } from "react-router";
 import ShareButton from "../Buttons/ShareButton/ShareButton";
@@ -25,7 +27,6 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
     catalogName.charAt(0).toUpperCase() + catalogName.slice(1);
 
   const handleClick = (name, year, id) => {
-    console.log(name);
     onOpenModal(name, year, id);
   };
 
@@ -59,12 +60,12 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
             <RiPencilLine size={"1.5em"} />
           </StyledBtn>
         ) : (
-          <StyledBtn
+          <StyledBtnDownload
             type="button"
             onClick={() => handleDownload(catalogFileURL)}
           >
             <TbDownload size={"1.5em"} />
-          </StyledBtn>
+          </StyledBtnDownload>
         )}
         {isLoggedIn ? (
           <StyledBtn

@@ -32,6 +32,7 @@ const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
+  const [pageQty, setPageQty] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [modalDeleteSuccessOpen, setModalDeleteSuccessOpen] = useState(false);
   const [catalogName, setCatalogName] = useState("");
@@ -44,34 +45,7 @@ const PreorderCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
-
   const { isMobile, isTablet } = useMediaRules();
-  const totalItems = useSelector(getTotalItemsCatalogs);
-  const pageQty = Math.ceil(totalItems / perPage);
-
-  useEffect(() => {
-    dispatch(
-      getCatalogs({
-        page: pageNumber,
-        per_page: perPage,
-        catalogName: catalogNameSearch,
-      })
-    );
-  }, [pageNumber, perPage, catalogNameSearch]);
-
-  const handleEnterPress = (event) => {
-    if (event.key === "Enter") {
-      setSearchParams({ catalogName: filter });
-    }
-  };
-
-  useEffect(() => {
-    setFetchedCatalogsList(catalogsList);
-  }, [catalogsList]);
-
-  const updateCatalogsList = (updatedList) => {
-    setFetchedCatalogsList(updatedList);
-  };
 
   useEffect(() => {
     let newPerPage = 8;
@@ -84,6 +58,34 @@ const PreorderCataloguePage = () => {
 
     setPerPage(newPerPage);
   }, [isMobile, isTablet]);
+
+  useEffect(() => {
+    dispatch(
+      getCatalogs({
+        page: pageNumber,
+        per_page: perPage,
+        catalogName: catalogNameSearch,
+      })
+    );
+  }, [pageNumber, perPage, catalogNameSearch, catalogsList.length]);
+
+  const totalItems = useSelector(getTotalItemsCatalogs);
+
+  const handleEnterPress = (event) => {
+    if (event.key === "Enter") {
+      setSearchParams({ catalogName: filter });
+    }
+  };
+
+  useEffect(() => {
+    const calculatedPageQty = Math.ceil(totalItems / perPage);
+    setPageQty(calculatedPageQty);
+    setFetchedCatalogsList(catalogsList);
+  }, [catalogsList, totalItems, perPage]);
+
+  const updateCatalogsList = (updatedList) => {
+    setFetchedCatalogsList(updatedList);
+  };
 
   const openModal = (name, year, id) => {
     const catalogNameFirstLetterUppercase =
@@ -163,9 +165,15 @@ const PreorderCataloguePage = () => {
             onOpenModal={openModal}
             closeModal={closeModal}
           />
-        )  : filter?  (
-            <NotFound message="Каталог з таким ім'ям не знайдено" />
-          ) : <NotFound message="Відсутні каталоги для передзамовлення"/>}
+        ) : (
+          <NotFound
+            message={
+              filter
+                ? "Каталог з таким ім'ям не знайдено"
+                : "Відсутні каталоги для передзамовлення"
+            }
+          />
+        )}
         {showModal && (
           <Modal
             color="red"
@@ -188,6 +196,7 @@ const PreorderCataloguePage = () => {
             pageQty={pageQty}
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
+            array={fetchedCatalogsList}
           />
         )}
       </STyledContainer>
