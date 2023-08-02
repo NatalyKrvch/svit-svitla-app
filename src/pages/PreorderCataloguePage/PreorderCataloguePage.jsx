@@ -70,7 +70,6 @@ const PreorderCataloguePage = () => {
   }, [pageNumber, perPage, catalogNameSearch, catalogsList.length]);
 
   const totalItems = useSelector(getTotalItemsCatalogs);
-  console.log(totalItems);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
