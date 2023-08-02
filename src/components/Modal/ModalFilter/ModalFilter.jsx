@@ -1,5 +1,3 @@
-// import { StyledIconCircle } from "react-icons/tb";
-// import { StyledIconCircleFill } from "react-icons/vsc";
 import { GrClose } from "react-icons/gr";
 import {
   CloseButton,
