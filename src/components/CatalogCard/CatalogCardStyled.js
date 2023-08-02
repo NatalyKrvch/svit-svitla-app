@@ -94,6 +94,7 @@ export const StyledBtn = styled.button`
   outline: none;
   cursor: pointer;
   transition: 1s ease;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover svg {
     fill: var(--brand-blue);
