@@ -91,14 +91,12 @@ export const StyledH2 = styled.h2`
   font-weight: 400;
   line-height: 1, 2;
   letter-spacing: -0.4px;
-  margin-top: 16px;
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     width: 490px;
     font-size: 32px;
     line-height: 1; 
-    margin-top: 32px;
     margin-bottom: 24px;
   }
 
@@ -106,7 +104,6 @@ export const StyledH2 = styled.h2`
     width: 572px;
     font-size: 48px;
     line-height: 0, 5;
-    margin-top: 48px;
     margin-bottom: 32px;
   }
 `;
