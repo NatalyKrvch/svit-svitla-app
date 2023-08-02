@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logout } from './authOperations';
+import { createSlice } from "@reduxjs/toolkit";
+import { logIn, logout, getCurrentUser } from "./authOperations";
 
-const pending = state => {
+const pending = (state) => {
   state.isUserFetching = true;
 };
-const rejected = state => {
+const rejected = (state) => {
   state.isUserFetching = false;
   state.isLoggedIn = false;
 };
@@ -36,6 +36,8 @@ export const authSlice = createSlice({
       .addCase(logIn.rejected, rejected)
       .addCase(logout.pending, pending)
       .addCase(logout.rejected, rejected)
+      .addCase(getCurrentUser.pending, pending)
+      .addCase(getCurrentUser.rejected, rejected)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.userData = {
           login: payload.login,
@@ -46,9 +48,10 @@ export const authSlice = createSlice({
         state.isModalOpen = true;
         state.isUserFetching = false;
       })
-      .addCase(logout.fulfilled, () => ({ ...initialState })),
+      .addCase(logout.fulfilled, () => ({ ...initialState }))
+      .addCase(getCurrentUser.fulfilled, () => ({ ...initialState })),
 });
 
 export default authSlice.reducer;
 
-export const { addAccessToken, setModalOpen} = authSlice.actions;
+export const { addAccessToken, setModalOpen } = authSlice.actions;

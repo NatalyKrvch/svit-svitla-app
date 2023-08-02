@@ -2,8 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { logInUserAPI, logOutUserAPI } from "../../service/API/Auth&UserAPI";
-import { useSelector } from "react-redux";
+import {
+  getCurrentUserAPI,
+  logInUserAPI,
+  logOutUserAPI,
+} from "../../service/API/Auth&UserAPI";
 
 export const token = {
   set(token) {
@@ -17,17 +20,9 @@ export const token = {
 export const logIn = createAsyncThunk(
   "auth/login",
   async (user, { rejectWithValue }) => {
-    console.log(
-      "TOKENNN LOGIN Start",
-      axios.defaults.headers.common.Authorization
-    );
     try {
       const data = await logInUserAPI(user);
       token.set(data.accessToken);
-      console.log(
-        "TOKENNN LOGIN finish",
-        axios.defaults.headers.common.Authorization
-      );
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -45,28 +40,35 @@ export const logIn = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   "auth/logout",
-  async (_, { rejectWithValue }) => {
-    console.log(
-      "TOKENNN LOgOUT start",
-      axios.defaults.headers.common.Authorization
-    );
-    console.log("--", useSelector(getAccessToken));
-    token.set(useSelector(getAccessToken));
-    console.log(
-      "TOKENNN LOgOUT start2",
-      axios.defaults.headers.common.Authorization
-    );
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedAccessToken = state.auth.accessToken;
+    token.set(persistedAccessToken);
     try {
       const data = await logOutUserAPI();
       token.unset();
-      console.log(
-        "TOKENNN LOgOUT Finish",
-        axios.defaults.headers.common.Authorization
-      );
       return data;
     } catch (error) {
       toast.error("Щось пішло не так. Будь ласка спробуйте ще раз!");
       return rejectWithValue(error.response.status);
+    }
+  }
+);
+
+export const getCurrentUser = createAsyncThunk(
+  "auth/current",
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const persistedAccessToken = state.auth.accessToken;
+    if (!persistedAccessToken) {
+      return rejectWithValue();
+    }
+    token.set(persistedAccessToken);
+    try {
+      const data = await getCurrentUserAPI();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );

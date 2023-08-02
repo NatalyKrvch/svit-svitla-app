@@ -10,8 +10,15 @@ export const logInUserAPI = user => {
 };
 
 export const logOutUserAPI = () => {
+  console.log("API OUT");
   axios.defaults.baseURL = `${baseURL}`;
   return axios.get("/api/users/logout").then(({ data }) => {
+    return data;
+  });
+};
+
+export const getCurrentUserAPI = () => {
+  return axios.get("/api/users/current").then(({ data }) => {
     return data;
   });
 };
