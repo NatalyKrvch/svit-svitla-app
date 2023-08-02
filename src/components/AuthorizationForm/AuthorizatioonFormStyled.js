@@ -131,28 +131,28 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const SubmitButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  max-width: 328px;
-  height: 48px;
-  font-size: 16px;
-  background: var(--dark-blue);
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+// export const SubmitButton = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 12px 24px;
+//   max-width: 328px;
+//   height: 48px;
+//   font-size: 16px;
+//   background: var(--dark-blue);
+//   color: white;
+//   border-radius: 8px;
+//   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
-    width: 365px;
-    font-size: 20px;
-  }
+//   @media screen and (min-width: 768px) {
+//     width: 365px;
+//     font-size: 20px;
+//   }
 
-  @media screen and (min-width: 1280px) {
-    width: 371px;
-  }
-`;
+//   @media screen and (min-width: 1280px) {
+//     width: 371px;
+//   }
+// `;
 
 export const ButtonEye = styled.button`
   position: absolute;
@@ -172,3 +172,15 @@ export const ButtonEye = styled.button`
 export const PasswordWrp = styled.div`
   position: relative;
 `;
+
+export const ButtonWrapper = styled.div`
+  width: 328px;
+
+  @media screen and (min-width: 768px) {
+    width: 365px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 371px;
+  }
+`

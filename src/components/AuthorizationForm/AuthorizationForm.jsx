@@ -7,13 +7,14 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
-  SubmitButton,
+  ButtonWrapper,
   TitleWrp,
 } from "./AuthorizatioonFormStyled";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/Auth/authOperations";
-
+import MainButton from "../Buttons/MainButton/MainButton";
+import { Button } from "@mui/material";
 
 const AuthorizationForm = () => {
   const [login, setLogin] = useState("");
@@ -21,14 +22,14 @@ const AuthorizationForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const dispatch = useDispatch();
- 
+
   const handleChangeLogin = (evt) => {
     setLogin(evt.target.value);
-  }
+  };
 
   const handleChangePassword = (evt) => {
     setPassword(evt.target.value);
-  }
+  };
 
   const handleTogglePassword = (evt) => {
     evt.preventDefault();
@@ -37,14 +38,15 @@ const AuthorizationForm = () => {
 
   const onSubmitForm = (evt) => {
     evt.preventDefault();
-     dispatch(logIn({
+    dispatch(
+      logIn({
         login,
         password,
-     }))
-     setLogin('');
-     setPassword('');
-   
-  }
+      })
+    );
+    setLogin("");
+    setPassword("");
+  };
 
   return (
     <StyledFragment>
@@ -84,7 +86,9 @@ const AuthorizationForm = () => {
             {passwordVisible && <BsEye size={"1.5em"} />}
           </ButtonEye>
         </StyledInputWrapper>
-        <SubmitButton type="submit">Увійти</SubmitButton>
+        <ButtonWrapper>
+          <MainButton type="submit">Увійти</MainButton>
+        </ButtonWrapper>
       </StyledForm>
     </StyledFragment>
   );

@@ -5,7 +5,7 @@ import {
   ImgWrp,
   StyledBtn,
   StyledBtnWrp,
-  StyledButton,
+  ButtonWrapper,
   StyledImg,
   StyledP,
   StyledProductName,
@@ -13,30 +13,34 @@ import {
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+import MainButton from "../Buttons/MainButton/MainButton";
 
 const ProductCard = ({
-  product: { productCoverURL, productName, productCode, productPrice,  _id }, onOpen
+  product: { productCoverURL, productName, productCode, productPrice, _id },
+  onOpen,
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
 
   return (
     <CardWrp>
-      <ImgWrp onClick={()=> navigate(`/productcard/${_id}`)}>
-      <StyledImg src={productCoverURL} alt="Picture" />
+      <ImgWrp onClick={() => navigate(`/productcard/${_id}`)}>
+        <StyledImg src={productCoverURL} alt="Picture" />
       </ImgWrp>
-      
+
       <StyledTextWrapper>
         <StyledProductName>{productName}</StyledProductName>
         <StyledP>{`Артикул: ${productCode}`}</StyledP>
         <StyledP>{`Ціна: ${productPrice} грн`}</StyledP>
         {!isLoggedIn ? (
-          <StyledButton
-            type="button"
-            onClick={() => navigate(`/productcard/${_id}`)}
-          >
-            Деталі
-          </StyledButton>
+          <ButtonWrapper>
+            <MainButton
+              type="button"
+              onClick={() => navigate(`/productcard/${_id}`)}
+            >
+              Деталі
+            </MainButton>
+          </ButtonWrapper>
         ) : (
           <StyledBtnWrp>
             <StyledBtn
@@ -45,9 +49,7 @@ const ProductCard = ({
             >
               <RiPencilLine size={"1.5em"} />
             </StyledBtn>
-            <StyledBtn type="button"
-            onClick={()=> onOpen(productCode, _id)}>
-
+            <StyledBtn type="button" onClick={() => onOpen(productCode, _id)}>
               <RiDeleteBin6Line size={"1.5em"} />
             </StyledBtn>
           </StyledBtnWrp>
