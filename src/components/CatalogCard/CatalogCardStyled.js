@@ -97,6 +97,30 @@ export const StyledBtn = styled.button`
 
   &:hover svg {
     fill: var(--brand-blue);
+    /* stroke: var(--brand-blue); */
+  }
+
+  @media screen and (min-width: 769px) {
+  }
+
+  @media screen and (min-width: 1281px) {
+    align-items: center;
+  }
+`;
+
+
+export const StyledBtnDownload = styled.button`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: flex-start;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: 1s ease;
+
+  &:hover svg {
     stroke: var(--brand-blue);
   }
 
