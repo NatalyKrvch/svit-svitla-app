@@ -6,13 +6,10 @@ export const StyledFragment = styled.div`
  
   
   @media screen and (min-width: 768px) {
-    padding-left: 136px;
-  
     
   }
 
   @media screen and (min-width: 1280px) {
-   padding-top: 72px;
    width: 1168px;
   }
 `

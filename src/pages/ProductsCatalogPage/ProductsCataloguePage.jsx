@@ -37,9 +37,9 @@ import MainButton from "../../components/Buttons/MainButton/MainButton";
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
+  const [pageQty, setPageQty] = useState(0);
   const [showModalFilter, setShowModalFilter] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
-  // const [modalDeleteSuccessOpen, setModalDeleteSuccessOpen] = useState(false);
   const [productCode, setProductCode] = useState("");
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
@@ -53,7 +53,6 @@ const ProductsCataloguePage = () => {
   const query = searchParams.get("query");
   const article = searchParams.get("article");
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const pageQty = Math.ceil(totalProducts / perPage);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -85,8 +84,10 @@ const ProductsCataloguePage = () => {
   };
 
   useEffect(() => {
+    const calculatedPageQty = Math.ceil(totalProducts / perPage);
+    setPageQty(calculatedPageQty);
     setUpdatedProductList(products);
-  }, [products]);
+  }, [products, totalProducts, perPage]);
 
   const openModal = () => {
     setShowModalFilter(true);
@@ -187,7 +188,7 @@ const ProductsCataloguePage = () => {
             </MainButton>
           </BtnWrp>
         )}
-        {products.length !== 0 ? (
+        {updatedProductList.length !== 0 ? (
           <ProductList
             productsList={updatedProductList}
             onOpen={openModalDelete}
@@ -197,7 +198,9 @@ const ProductsCataloguePage = () => {
             message={
               query
                 ? "Відстутні товари у вибраній категорії"
-                : "Відсутній товар із вказаним артиклем"
+                : article
+                ? "Відсутній товар із вказаним артиклем"
+                : "Товари відсутні"
             }
           />
         )}
@@ -206,6 +209,7 @@ const ProductsCataloguePage = () => {
             pageQty={pageQty}
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
+            array={updatedProductList}
           />
         )}
       </StyledFragment>
