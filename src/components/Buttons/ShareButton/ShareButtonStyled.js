@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 import { BiShareAlt } from "react-icons/bi";
 
-export const ShareIcon = styled(BiShareAlt)`
-  width: 24px;
-  height: 24px;
-  margin: 12px;
+export const ButtonStyled = styled.button`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: flex-start;
+  border: none;
+  background-color: transparent;
+  outline: none;
   cursor: pointer;
+`
+
+export const ShareIcon = styled(BiShareAlt)`
   -webkit-tap-highlight-color: transparent;
-  &:hover, &:active {
+  &:hover {
+    opacity: 60%;
+  }
+  &:active {
     color: var(--brand-blue);
-    transform: scale(1.2);
+    opacity: 100%;
   }
 `
