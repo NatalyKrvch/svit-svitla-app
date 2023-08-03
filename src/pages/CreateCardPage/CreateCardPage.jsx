@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilter } from "../../redux/Filter/selectors";
 import { StyledFragment, StyledTitle, TitleWrp } from "./CreateCardPageStyled";
 import DropdownCardSelector from "../../components/DropdownCardSelect/DropdownCardSelect";
-// import ModalCreateProductCard from "../../components/Modal/ModalCreateProductCard/ModalCreateProductCard";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal/Modal";

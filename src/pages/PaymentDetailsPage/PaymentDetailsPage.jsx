@@ -4,9 +4,11 @@ import {
   StyledContainer,
   StyledDiv,
   StyledInput,
+  StyledInputIban,
   StyledInputWrapper,
   StyledLabel,
   StyledSpan,
+  StyledSpanIban,
   StyledTitle,
   StyledTitleWrp,
 } from "./PaymentDetailsPageStyled";
@@ -58,11 +60,11 @@ const PaymentDetails = () => {
               IBAN
             </StyledLabel>
             {!isLoggedIn && isMobile ? (
-              <StyledSpan ref={ibanRef} isLoggedIn={isLoggedIn}>
+              <StyledSpanIban ref={ibanRef} isLoggedIn={isLoggedIn}>
                 {ibanText}
-              </StyledSpan>
+              </StyledSpanIban>
             ) : (
-              <StyledInput
+              <StyledInputIban
                 id="name"
                 type="text"
                 value={"UA393287040000026002054312944"}

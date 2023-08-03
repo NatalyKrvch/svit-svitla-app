@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   max-width: 328px;
-  margin-left: auto;
+  /* margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 40px; */
 
   @media screen and (min-width: 768px) {
     max-width: 753px;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 1168px;
-    margin-top: 72px;
+    /* margin-top: 72px; */
   }
 `;
 

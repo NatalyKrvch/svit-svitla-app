@@ -73,8 +73,6 @@ export const StyledInputWrapper = styled.div`
     isLoggedIn ? "left" : "space-evenly"};
 
   @media screen and (min-width: 768px) {
-    /* align-items: flex-start;
-    justify-content: space-evenly; */
     width: 624px;
     gap: 18px;
   }
@@ -98,16 +96,11 @@ export const StyledLabel = styled.label`
     isLoggedIn ? "var(--dark-grey)" : "var(--main-black)"};
   background-color: ${({ isLoggedIn }) =>
     isLoggedIn ? "var(--light-blue)" : "var(--main-white)"};
-  padding: 0 4px;
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? "0 4px" : "4px 4px")};
   left: 12px;
   top: -8px;
 
   @media screen and (min-width: 768px) {
-    /* position: static;
-    width: 128px;
-    height: 48px; */
-    /* color: var(--main-black);
-    background-color: var(--main-white); */
     text-align: start;
     font-size: 16px;
     line-height: 1, 5;
@@ -117,6 +110,7 @@ export const StyledLabel = styled.label`
   @media screen and (min-width: 1280px) {
   }
 `;
+
 export const StyledCoverLabel = styled.label`
   position: absolute;
   height: 24px;
@@ -133,6 +127,30 @@ export const StyledInput = styled.input`
   display: block;
   width: 328px;
   padding: ${({ isLoggedIn }) => (isLoggedIn ? "16px" : "4px")};
+  text-align: ${({ isLoggedIn }) => (isLoggedIn ? "left" : "start")};
+  border: ${({ isLoggedIn }) =>
+    isLoggedIn ? "1px solid var(--light-blue)" : "none"};
+  border-radius: 4px;
+  outline: var(--dark-blue);
+
+  @media screen and (min-width: 768px) {
+    height: auto;
+    width: 624px;
+    outline: none;
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 572px;
+  }
+`;
+
+export const StyledInputIban = styled.input`
+  font-weight: 600;
+  display: block;
+  width: 328px;
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? "16px" : "4px")};
+  padding-right: ${({isLoggedIn}) => (isLoggedIn ? "0" : "4px") };
   text-align: ${({ isLoggedIn }) => (isLoggedIn ? "left" : "start")};
   border: ${({ isLoggedIn }) =>
     isLoggedIn ? "1px solid var(--light-blue)" : "none"};
@@ -199,7 +217,11 @@ export const FakeButton = styled.button`
   outline: none;
   transition: 400ms ease;
 
-  &:hover {
+  &:hover svg {
+    stroke: rgba(0, 0, 0, 0.6);
+  }
+
+  &:active {
     background-color: var(--dark-blue);
 
     svg {
@@ -218,9 +240,6 @@ export const FakeButton = styled.button`
 `;
 
 export const StyledButton = styled.button`
-  /* position: absolute;
-top: 0;
-right: 0; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,9 +286,26 @@ export const StyledSpan = styled.span`
     isLoggedIn ? "1px solid var(--light-blue)" : "none"};
   border-radius: 4px;
   outline: var(--dark-blue);
-  white-space: pre-wrap; /* Отключаем обработку пробелов и переносов строки */
+  white-space: pre-wrap;
   &::after {
-    content: ""; /* Вставляем перенос строки */
-    white-space: pre; /* Отключаем обработку пробелов и переносов строки */
+    content: "";
+    white-space: pre;
+  }
+`;
+export const StyledSpanIban = styled.span`
+  font-weight: 600;
+  display: block;
+  width: 328px;
+  height: 56px;
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? "8px 16px" : "4px")};
+  text-align: ${({ isLoggedIn }) => (isLoggedIn ? "left" : "start")};
+  border: ${({ isLoggedIn }) =>
+    isLoggedIn ? "1px solid var(--light-blue)" : "none"};
+  border-radius: 4px;
+  outline: var(--dark-blue);
+  white-space: pre-wrap;
+  &::after {
+    content: "";
+    white-space: pre;
   }
 `;

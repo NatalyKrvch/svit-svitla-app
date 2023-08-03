@@ -20,14 +20,15 @@ import { HiArrowUpTray } from "react-icons/hi2";
 import { addCatalog } from "../../redux/Catalog/catalogOperations";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdDownloadDone } from "react-icons/md";
 
-const CatalogForm = ({openModal}) => {
+const CatalogForm = ({ openModal }) => {
   const [catalogName, setCatalogName] = useState("");
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
-  const [coverImageUrl, setCoverImageUrl] = useState('');
+  const [coverImageUrl, setCoverImageUrl] = useState("");
   const [catalogFile, setCatalogFile] = useState("");
- 
+
   const dispatch = useDispatch();
 
   const handleCoverImageChange = (event) => {
@@ -57,7 +58,7 @@ const CatalogForm = ({openModal}) => {
     setCatalogName("");
     setYear("");
     setCoverImage(null);
-    setCoverImageUrl("")
+    setCoverImageUrl("");
     URL.revokeObjectURL(coverImageUrl);
     setCatalogFile("");
     openModal();
@@ -65,12 +66,16 @@ const CatalogForm = ({openModal}) => {
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
-    setCoverImageUrl('');
+    setCoverImageUrl("");
     URL.revokeObjectURL(coverImageUrl);
   };
 
   const handleCatalogImagesDownload = (event) => {
     const files = event.target.files[0];
+    if (!files) {
+      alert("Будь-ласка завантажте файл каталогу."); 
+      return;
+    }
     setCatalogFile(files);
   };
 
@@ -89,9 +94,14 @@ const CatalogForm = ({openModal}) => {
         />
       </StyledInputWrapper>
       <StyledInputWrapper>
-        <StyledLabel htmlFor="year" >Рік</StyledLabel>
-        <StyledInput type="text" name="year"  pattern="^\d{4}(?:-\d{4})?"
-        value={year} onChange={handleYearChange} />
+        <StyledLabel htmlFor="year">Рік</StyledLabel>
+        <StyledInput
+          type="text"
+          name="year"
+          pattern="^\d{4}(?:-\d{4})?"
+          value={year}
+          onChange={handleYearChange}
+        />
       </StyledInputWrapper>
       {coverImage === null ? (
         <label>
@@ -100,7 +110,6 @@ const CatalogForm = ({openModal}) => {
             required
             onChange={handleCoverImageChange}
             accept=".jpeg, .jpg"
-
           />
           <FakeInputWrp>
             <FakeInputText>Додати обкладинку</FakeInputText>
@@ -112,7 +121,7 @@ const CatalogForm = ({openModal}) => {
       ) : (
         <StyledInputWrapper>
           <StyledCoverLabel htmlFor="name">Назва обкладинки</StyledCoverLabel>
-          <StyledImg src={coverImageUrl}  alt="cover" />
+          <StyledImg src={coverImageUrl} alt="cover" />
           <StyledInput
             id="name"
             type="text"
@@ -133,16 +142,18 @@ const CatalogForm = ({openModal}) => {
         />
         <FakeInputWrpDownload>
           <FakeButtonDownload>
-            <HiArrowUpTray size={"1.5em"} />
+            {catalogFile ? (
+              <MdDownloadDone size={"1.5em"} />
+            ) : (
+              <HiArrowUpTray size={"1.5em"} />
+            )}
           </FakeButtonDownload>
-          <FakeInputText>Завантажити каталог</FakeInputText>
+          <FakeInputText>{catalogFile? "Завантажено" : "Завантажити каталог"}</FakeInputText>
         </FakeInputWrpDownload>
       </label>
       <SubmitButton
         type="submit"
-        disabled={
-          !catalogName || !year || !coverImage 
-        }
+        disabled={!catalogName || !year || !coverImage || !catalogFile}
       >
         Зберегти
       </SubmitButton>
