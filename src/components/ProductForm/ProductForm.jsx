@@ -6,6 +6,7 @@ import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { nanoid } from "nanoid";
 import {
+  ButtonWrapper,
   FakeButton,
   FakeInputText,
   FakeInputWrp,
@@ -22,11 +23,11 @@ import {
   StyledList,
   StyledOptions,
   StyledWrpSelector,
-  SubmitButton,
 } from "./ProductFormStyled";
 
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
 
 const ProductForm = ({ openModal }) => {
   const [productName, setProductName] = useState("");
@@ -87,7 +88,6 @@ const ProductForm = ({ openModal }) => {
     setProductImagesUrl(newProductImagesUrl);
   };
 
-
   const handleOptionClick = (selectedOption) => {
     if (selectedOption !== category) {
       setCategory(selectedOption);
@@ -98,7 +98,7 @@ const ProductForm = ({ openModal }) => {
 
   const handleChooseCategoryClick = () => {
     setIsOpen(!isOpen);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -121,7 +121,7 @@ const ProductForm = ({ openModal }) => {
       "additionalAttributes",
       JSON.stringify(additionalAttributes)
     );
-    formData.append("productCategory", category)
+    formData.append("productCategory", category);
     dispatch(addProduct(formData));
     openModal();
     setProductName("");
@@ -131,7 +131,7 @@ const ProductForm = ({ openModal }) => {
     setCoverImage(null);
     setProductImages([]);
     setCharacteristicArray([]);
-    setCategory('');
+    setCategory("");
   };
 
   return (
@@ -195,9 +195,11 @@ const ProductForm = ({ openModal }) => {
         {isOpen && (
           <StyledList>
             {categoryList.map((el) => {
-              return  <StyledOptions key={el} onClick={() => handleOptionClick(el)}>
-              {el}
-            </StyledOptions>
+              return (
+                <StyledOptions key={el} onClick={() => handleOptionClick(el)}>
+                  {el}
+                </StyledOptions>
+              );
             })}
           </StyledList>
         )}
@@ -304,14 +306,16 @@ const ProductForm = ({ openModal }) => {
           </label>
         </>
       )}
-      <SubmitButton
-        type="submit"
-        disabled={
-          !productName || !productCode || !price || !manufacturerCountry
-        }
-      >
-        Зберегти
-      </SubmitButton>
+      <ButtonWrapper>
+        <MainButton
+          type="submit"
+          disabled={
+            !productName || !productCode || !price || !manufacturerCountry
+          }
+        >
+          Зберегти
+        </MainButton>
+      </ButtonWrapper>
     </StyledForm>
   );
 };

@@ -30,17 +30,19 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
     onOpenModal(name, year, id);
   };
 
+  const textForShare = `Каталог ${catalogNameFirstLetterUppercase} для передзамовлення в магазині "Світ світла"`;
+
   const handleDownload = (fileURL) => {
     {
       const link = document.createElement("a");
       link.href = fileURL;
-      link.setAttribute("download", "file.pdf"); 
+      link.setAttribute("download", "file.pdf");
       document.body.appendChild(link);
       link.click();
 
-      document.body.removeChild(link); 
-  }
-  }
+      document.body.removeChild(link);
+    }
+  };
 
   return (
     <StyledDiv>
@@ -77,7 +79,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
         ) : (
           <ShareButton
             title={catalogNameFirstLetterUppercase}
-            text="Поділитися"
+            text={textForShare}
             url={catalogFileURL}
           />
         )}

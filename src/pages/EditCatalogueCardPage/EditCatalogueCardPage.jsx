@@ -3,6 +3,7 @@ import { getAllCatalogs } from "../../redux/Catalog/catalogSelectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  ButtonWrapper,
   FakeButton,
   FakeButtonDownload,
   FakeInputText,
@@ -19,7 +20,6 @@ import {
   StyledLabel,
   StyledP,
   StyledTitle,
-  SubmitButton,
 } from "./EditCatalogueCardPageStyled";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -29,6 +29,7 @@ import { useEffect, useState } from "react";
 // import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog";
 import Modal from "../../components/Modal/Modal/Modal";
 import Container from "../../components/Container/Container";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
 
 const EditCatalogueCard = () => {
   const { id } = useParams();
@@ -183,12 +184,14 @@ const EditCatalogueCard = () => {
               <FakeInputText>Завантажити каталог</FakeInputText>
             </FakeInputWrpDownload>
           </label>
-          <SubmitButton
-            type="submit"
-            disabled={!name || !year || !coverImageUrl}
-          >
-            Зберегти
-          </SubmitButton>
+          <ButtonWrapper>
+            <MainButton
+              type="submit"
+              disabled={!name || !year || !coverImageUrl}
+            >
+              Зберегти
+            </MainButton>
+          </ButtonWrapper>
         </StyledForm>
         {/* {showModal && <ModalChangeCatalog onCloseModal={closeModal} />} */}
         {showModal && (

@@ -13,7 +13,7 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
-  SubmitButton,
+  ButtonWrapper,
 } from "./CatalogFormStyled";
 import { useDispatch } from "react-redux";
 import { HiArrowUpTray } from "react-icons/hi2";
@@ -21,6 +21,7 @@ import { addCatalog } from "../../redux/Catalog/catalogOperations";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdDownloadDone } from "react-icons/md";
+import MainButton from "../Buttons/MainButton/MainButton";
 
 const CatalogForm = ({ openModal }) => {
   const [catalogName, setCatalogName] = useState("");
@@ -73,7 +74,7 @@ const CatalogForm = ({ openModal }) => {
   const handleCatalogImagesDownload = (event) => {
     const files = event.target.files[0];
     if (!files) {
-      alert("Будь-ласка завантажте файл каталогу."); 
+      alert("Будь-ласка завантажте файл каталогу.");
       return;
     }
     setCatalogFile(files);
@@ -148,15 +149,19 @@ const CatalogForm = ({ openModal }) => {
               <HiArrowUpTray size={"1.5em"} />
             )}
           </FakeButtonDownload>
-          <FakeInputText>{catalogFile? "Завантажено" : "Завантажити каталог"}</FakeInputText>
+          <FakeInputText>
+            {catalogFile ? "Завантажено" : "Завантажити каталог"}
+          </FakeInputText>
         </FakeInputWrpDownload>
       </label>
-      <SubmitButton
-        type="submit"
-        disabled={!catalogName || !year || !coverImage || !catalogFile}
-      >
-        Зберегти
-      </SubmitButton>
+      <ButtonWrapper>
+        <MainButton
+          type="submit"
+          disabled={!catalogName || !year || !coverImage || !catalogFile}
+        >
+          Зберегти
+        </MainButton>
+      </ButtonWrapper>
     </StyledForm>
   );
 };
