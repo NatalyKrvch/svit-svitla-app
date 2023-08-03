@@ -96,12 +96,13 @@ export const StyledBtn = styled.button`
   -webkit-tap-highlight-color: transparent;
 
   &:hover svg {
-    stroke: rgba(0, 0, 0, 0.6);
+    fill: rgba(0, 0, 0, 0.6);
   }
 
   &:active svg {
-    stroke: var(--brand-blue);
+    fill: var(--brand-blue);
   }
+
   @media screen and (min-width: 769px) {
   }
 

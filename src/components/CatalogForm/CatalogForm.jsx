@@ -72,6 +72,10 @@ const CatalogForm = ({ openModal }) => {
 
   const handleCatalogImagesDownload = (event) => {
     const files = event.target.files[0];
+    if (!files) {
+      alert("Будь-ласка завантажте файл каталогу."); 
+      return;
+    }
     setCatalogFile(files);
   };
 
@@ -149,7 +153,7 @@ const CatalogForm = ({ openModal }) => {
       </label>
       <SubmitButton
         type="submit"
-        disabled={!catalogName || !year || !coverImage}
+        disabled={!catalogName || !year || !coverImage || !catalogFile}
       >
         Зберегти
       </SubmitButton>
