@@ -12,7 +12,7 @@ import {
 } from "./ProductsCataloguePageStyled";
 import { FiFilter } from "react-icons/fi";
 import { RxCrossCircled } from "react-icons/rx";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useState } from "react";
 import {
   getAllProducts,
@@ -44,7 +44,7 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  const { isMobile, isTablet } = useMediaRules();
+  const { isDesktop, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const totalProducts = useSelector(getTotalItemsProduct);
@@ -54,17 +54,22 @@ const ProductsCataloguePage = () => {
   const article = searchParams.get("article");
   const isLoggedIn = useSelector(getIsLoggedIn);
 
-  useEffect(() => {
-    let newPerPage = 8;
-
-    if (isMobile) {
-      newPerPage = 4;
-    } else if (isTablet) {
+  console.log(isDesktop);
+  console.log(isTablet);
+  console.log(products);
+  console.log(totalProducts);
+  console.log(updatedProductList);
+  
+  useLayoutEffect(() => {
+    let newPerPage = 4;
+    if (isTablet) {
       newPerPage = 6;
+    } else if (isDesktop) {
+      newPerPage = 8;
     }
 
     setPerPage(newPerPage);
-  }, [isMobile, isTablet]);
+  }, [isDesktop, isTablet]);
 
   useEffect(() => {
     dispatch(
@@ -104,7 +109,6 @@ const ProductsCataloguePage = () => {
 
   const openModalDelete = (code, id) => {
     setIsModalDeleteOpen(true);
-    console.log(isModalDeleteOpen);
     setProductCode(code);
     setProductId(id);
   };
@@ -199,7 +203,7 @@ const ProductsCataloguePage = () => {
               query
                 ? "Відстутні товари у вибраній категорії"
                 : article
-                ? "Відсутній товар із вказаним артиклем"
+                ? "Упс... Такого товару в нас немає"
                 : "Товари відсутні"
             }
           />
