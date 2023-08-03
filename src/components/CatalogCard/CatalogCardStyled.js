@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const StyledDiv = styled.div`
   width: 156px;
   height: 315px;
@@ -97,10 +96,12 @@ export const StyledBtn = styled.button`
   -webkit-tap-highlight-color: transparent;
 
   &:hover svg {
-    fill: var(--brand-blue);
-    /* stroke: var(--brand-blue); */
+    stroke: rgba(0, 0, 0, 0.6);
   }
 
+  &:active svg {
+    stroke: var(--brand-blue);
+  }
   @media screen and (min-width: 769px) {
   }
 
@@ -108,7 +109,6 @@ export const StyledBtn = styled.button`
     align-items: center;
   }
 `;
-
 
 export const StyledBtnDownload = styled.button`
   width: 48px;
@@ -122,6 +122,10 @@ export const StyledBtnDownload = styled.button`
   transition: 1s ease;
 
   &:hover svg {
+    stroke: rgba(0, 0, 0, 0.6);
+  }
+
+  &:active svg {
     stroke: var(--brand-blue);
   }
 
@@ -129,6 +133,5 @@ export const StyledBtnDownload = styled.button`
   }
 
   @media screen and (min-width: 1281px) {
-    align-items: center;
   }
 `;

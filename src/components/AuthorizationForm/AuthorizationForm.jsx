@@ -46,6 +46,13 @@ const AuthorizationForm = () => {
    
   }
 
+  const handleKeyPress = (evt) => {
+    if (evt.key === 'Enter') {
+      onSubmitForm(evt);
+    }
+  };
+
+
   return (
     <StyledFragment>
       <TitleWrp>
@@ -59,6 +66,7 @@ const AuthorizationForm = () => {
             type="text"
             placeholder="e.g.lampalampa"
             required
+            title="Мінімальна довжина 8 символів"
             minLength={8}
             maxLength={16}
             value={login}
@@ -78,6 +86,7 @@ const AuthorizationForm = () => {
             placeholder="eXaMple-Password"
             value={password}
             onChange={handleChangePassword}
+            onKeyDown={handleKeyPress}
           />
           <ButtonEye onClick={handleTogglePassword}>
             {!passwordVisible && <BsEyeSlash size={"1.5em"} />}
