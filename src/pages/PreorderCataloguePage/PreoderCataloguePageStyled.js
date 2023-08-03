@@ -90,6 +90,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledH2 = styled.h2`
+  width: 328px;
   font-size: 24px;
   font-weight: 400;
   line-height: 1, 2;

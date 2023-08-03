@@ -5,6 +5,7 @@ export const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin: 0 auto;
 
   @media screen and (min-width: 768px) {
     width: 753px;

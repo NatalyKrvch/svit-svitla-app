@@ -13,18 +13,19 @@ export const StyledFragment = styled.div`
 `;
 
 export const TitleWrp = styled.div`
-  width: 328px;
+  max-width: 328px;
   position: relative;
+  border-bottom: 1px solid var(--middle-grey);
 
   @media screen and (min-width: 768px) {
-    width: 754px;
+    max-width: 754px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 1168px;
+    max-width: 1168px;
   }
 
-  &::after {
+  /* &::after {
     content: " ";
     position: absolute;
     width: 328px;
@@ -32,16 +33,16 @@ export const TitleWrp = styled.div`
     left: 0;
     border: 1px solid var(--middle-grey);
     margin-bottom: 32px;
-  
-
+   */
+/* 
   @media screen and (min-width: 768px) {
     width: 754px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 1168px;
-  }
-}
+  } */
+/* } */
 `;
 
 export const StyledTitle = styled.h2`
@@ -54,5 +55,6 @@ export const StyledTitle = styled.h2`
 
   @media screen and (min-width: 768px) {
     font-size: 48px;
+    margin-bottom: 16px;
   }
 `;
