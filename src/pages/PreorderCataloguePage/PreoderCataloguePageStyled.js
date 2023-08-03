@@ -20,9 +20,11 @@ export const StyledInputWrp = styled.div`
   height: 56px;
   border: 2px solid var(--middle-grey);
   border-radius: 4px 4px 0px 0px;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     width: 491px;
+    margin-bottom: 32px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -30,6 +32,7 @@ export const StyledInputWrp = styled.div`
     height: 64px;
     font-weight: 500;
     line-height: 29px;
+    margin-bottom: 48px;
   }
 `;
 export const StyledBtnSearch = styled.button`
@@ -92,14 +95,12 @@ export const StyledH2 = styled.h2`
   font-weight: 400;
   line-height: 1, 2;
   letter-spacing: -0.4px;
-  margin-top: 16px;
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     width: 490px;
     font-size: 32px;
     line-height: 1; 
-    margin-top: 32px;
     margin-bottom: 24px;
   }
 
@@ -107,7 +108,6 @@ export const StyledH2 = styled.h2`
     width: 572px;
     font-size: 48px;
     line-height: 0, 5;
-    margin-top: 48px;
     margin-bottom: 32px;
   }
 `;

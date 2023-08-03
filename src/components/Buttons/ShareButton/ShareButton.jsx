@@ -1,4 +1,4 @@
-import { ShareIcon } from "./ShareButtonStyled";
+import { ShareIcon, ButtonStyled } from "./ShareButtonStyled";
 import PropTypes from "prop-types";
 
 const ShareButton = ({ title, text, url }) => {
@@ -21,11 +21,14 @@ const ShareButton = ({ title, text, url }) => {
 
   return (
     <>
-      <ShareIcon
+      <ButtonStyled
+        type="button"
         onClick={() => {
           handleShare();
         }}
-      />
+      >
+        <ShareIcon size={"1.5em"} />
+      </ButtonStyled>
     </>
   );
 };
