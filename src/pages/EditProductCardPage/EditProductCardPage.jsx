@@ -21,7 +21,6 @@ import {
   FakeInputText,
   FakeButton,
   StyledInputWrapperPhoto,
-  SubmitButton,
   StyledForm,
   StyledLabel,
   LabelFileInput,
@@ -29,6 +28,7 @@ import {
   StyledButtonSelect,
   StyledList,
   StyledOptions,
+  ButtonWrapper,
 } from "./EditProductCardPageStyled";
 
 import { nanoid } from "nanoid";
@@ -39,6 +39,7 @@ import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
 import Container from "../../components/Container/Container";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
 
 const EditProductCard = () => {
   const { id } = useParams();
@@ -404,14 +405,16 @@ const EditProductCard = () => {
               <BiPlusCircle size={"1.5em"} />
             </FakeButton>
           </FakeInputWrp>
-          <SubmitButton
-            type="submit"
-            disabled={
-              !productName || !productCode || !price || !manufacturerCountry
-            }
-          >
-            Зберегти зміни
-          </SubmitButton>
+          <ButtonWrapper>
+            <MainButton
+              type="submit"
+              disabled={
+                !productName || !productCode || !price || !manufacturerCountry
+              }
+            >
+              Зберегти зміни
+            </MainButton>
+          </ButtonWrapper>
         </StyledForm>
         {showModal && (
           <Modal

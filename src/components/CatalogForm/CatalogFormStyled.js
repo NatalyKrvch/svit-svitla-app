@@ -143,33 +143,33 @@ export const FakeButton = styled.span`
   }
 `;
 
-export const SubmitButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  max-width: 328px;
-  height: 48px;
-  background: ${(props) =>
-    props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 400ms ease;
+// export const SubmitButton = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 12px 24px;
+//   max-width: 328px;
+//   height: 48px;
+//   background: ${(props) =>
+//     props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
+//   color: white;
+//   border-radius: 8px;
+//   cursor: pointer;
+//   transition: 400ms ease;
 
-  &:active:not(:disabled) {
-    outline: 2px solid var(--dark-blue);
-    box-shadow: none;
-    background-color: var(--pressed-blue);
-  }
+//   &:active:not(:disabled) {
+//     outline: 2px solid var(--dark-blue);
+//     box-shadow: none;
+//     background-color: var(--pressed-blue);
+//   }
 
-  @media screen and (min-width: 768px) {
-    max-width: 373px;
-  }
+//   @media screen and (min-width: 768px) {
+//     max-width: 373px;
+//   }
 
-  @media screen and (min-width: 1280px) {
-  }
-`;
+//   @media screen and (min-width: 1280px) {
+//   }
+// `;
 export const DownloadCatalogButton = styled.button`
   display: flex;
   gap: 24px;
@@ -262,3 +262,15 @@ export const FakeButtonDownload = styled.span`
   cursor: pointer;
   outline: none;
 `;
+
+export const ButtonWrapper = styled.div`
+  width: 328px;
+
+  @media screen and (min-width: 768px) {
+    width: 365px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 373px;
+  }
+`

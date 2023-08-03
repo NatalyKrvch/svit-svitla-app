@@ -65,28 +65,28 @@ export const StyledTitle = styled.h2`
 
 
 
-export const NextButton = styled.button`
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 12px 24px;
-width: 328px;
-height: 48px;
-background-color: ${props => props.disabled? "var(--middle-grey)" : "var(--dark-blue)"};
-color: white;
-border-radius: 8px;
-margin: 32px auto 20px auto;
+// export const NextButton = styled.button`
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// padding: 12px 24px;
+// width: 328px;
+// height: 48px;
+// background-color: ${props => props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
+// color: white;
+// border-radius: 8px;
+// margin: 32px auto 20px auto;
 
-@media screen and (min-width: 768px) {
-    width: 365px;
-    margin-left: 0;
-    
-  }
+// @media screen and (min-width: 768px) {
+//     width: 365px;
+//     margin-left: 0;
 
-  @media screen and (min-width: 1280px) {
-    width: 373px;
-  }
-`
+// }
+
+//   @media screen and (min-width: 1280px) {
+//     width: 373px;
+//   }
+// `
 
 export const StyledWrp = styled.div`
 width: 100%;
@@ -104,4 +104,19 @@ margin-right: auto;
     margin-right: auto;
   } */
 
+`
+
+export const ButtonWrapper = styled.div`
+  width: 328px;
+  margin-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    width: 365px;
+    margin-top: 48px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 373px;
+    margin-top: 48px;
+  }
 `
