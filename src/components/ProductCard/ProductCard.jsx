@@ -14,6 +14,7 @@ import {
   StyledTextWrapper,
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
+import MainButton from "../Buttons/MainButton/MainButton";
 
 const ProductCard = ({
   product: { productCoverURL, productName, productCode, productPrice, _id },
