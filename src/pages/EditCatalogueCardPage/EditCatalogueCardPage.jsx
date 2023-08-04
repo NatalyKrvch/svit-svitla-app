@@ -23,6 +23,7 @@ import {
 } from "./EditCatalogueCardPageStyled";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdDownloadDone } from "react-icons/md";
 import { HiArrowUpTray } from "react-icons/hi2";
 import { changeCatalog } from "../../redux/Catalog/catalogOperations";
 import { useEffect, useState } from "react";
@@ -46,6 +47,7 @@ const EditCatalogueCard = () => {
     currentCatalog?.catalogFileURL || ""
   );
   const [showModal, setShowModal] = useState(false);
+  console.log(catalogFile);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ const EditCatalogueCard = () => {
     setCatalogName(currentCatalog?.catalogName || "");
     setYear(currentCatalog?.catalogYear || "");
     setCoverImageUrl(currentCatalog?.catalogCoverURL || null);
-    setCatalogFile("");
+    setCatalogFile(currentCatalog?.catalogFileURL || "");
   }, [currentCatalog]);
 
   const handleCatalogNameChange = (event) => {
@@ -178,9 +180,13 @@ const EditCatalogueCard = () => {
             />
             <FakeInputWrpDownload>
               <FakeButtonDownload>
-                <HiArrowUpTray size={"1.5em"} />
+              {catalogFile ? (
+              <MdDownloadDone size={"1.5em"} />
+            ) : (
+              <HiArrowUpTray size={"1.5em"} />
+            )}
               </FakeButtonDownload>
-              <FakeInputText>Завантажити каталог</FakeInputText>
+              <FakeInputText>{catalogFile? "Завантажено" : "Завантажити каталог"}</FakeInputText>
             </FakeInputWrpDownload>
           </label>
           <SubmitButton

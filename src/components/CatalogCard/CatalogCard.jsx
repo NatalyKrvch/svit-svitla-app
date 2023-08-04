@@ -2,17 +2,15 @@ import { useSelector } from "react-redux";
 import CatalogPlug from "../../images/CatalogPlug/catalog-plug.jpg";
 import {
   ImgWrp,
-  StyledBtn,
+  StyledBtnDelete,
   StyledBtnDownload,
+  StyledBtnEdit,
   StyledBtnWrp,
   StyledDiv,
   StyledImg,
   StyledP,
   StyledTextWRP,
 } from "./CatalogCardStyled";
-import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
-import { TbDownload } from "react-icons/tb";
-
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useNavigate } from "react-router";
 import ShareButton from "../Buttons/ShareButton/ShareButton";
@@ -34,13 +32,13 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
     {
       const link = document.createElement("a");
       link.href = fileURL;
-      link.setAttribute("download", "file.pdf"); 
+      link.setAttribute("download", "file.pdf");
       document.body.appendChild(link);
       link.click();
 
-      document.body.removeChild(link); 
-  }
-  }
+      document.body.removeChild(link);
+    }
+  };
 
   return (
     <StyledDiv>
@@ -53,27 +51,16 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
       </StyledTextWRP>
       <StyledBtnWrp>
         {isLoggedIn ? (
-          <StyledBtn
-            type="button"
+          <StyledBtnEdit
             onClick={() => navigate(`/editcatauloguecard/${_id}`)}
-          >
-            <RiPencilLine size={"1.5em"} />
-          </StyledBtn>
+          />
         ) : (
-          <StyledBtnDownload
-            type="button"
-            onClick={() => handleDownload(catalogFileURL)}
-          >
-            <TbDownload size={"1.5em"} />
-          </StyledBtnDownload>
+          <StyledBtnDownload onClick={() => handleDownload(catalogFileURL)} />
         )}
         {isLoggedIn ? (
-          <StyledBtn
-            type="button"
+          <StyledBtnDelete
             onClick={() => handleClick(catalogName, catalogYear, _id)}
-          >
-            <RiDeleteBin6Line size={"1.5em"} />
-          </StyledBtn>
+          />
         ) : (
           <ShareButton
             title={catalogNameFirstLetterUppercase}

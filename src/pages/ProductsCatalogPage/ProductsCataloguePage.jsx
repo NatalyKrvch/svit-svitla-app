@@ -27,7 +27,6 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 import ModalFilter from "../../components/Modal/ModalFilter/ModalFilter";
 import { useSearchParams } from "react-router-dom";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
-import { AiOutlineSearch } from "react-icons/ai";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
 import Container from "../../components/Container/Container";
@@ -44,7 +43,7 @@ const ProductsCataloguePage = () => {
   const [productId, setProductId] = useState("");
   const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
-  const { isDesktop, isTablet } = useMediaRules();
+  const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const totalProducts = useSelector(getTotalItemsProduct);
@@ -54,22 +53,16 @@ const ProductsCataloguePage = () => {
   const article = searchParams.get("article");
   const isLoggedIn = useSelector(getIsLoggedIn);
 
-  console.log(isDesktop);
-  console.log(isTablet);
-  console.log(products);
-  console.log(totalProducts);
-  console.log(updatedProductList);
-  
-  useLayoutEffect(() => {
-    let newPerPage = 4;
+  useEffect(() => {
+    let newPerPage = 8;
     if (isTablet) {
       newPerPage = 6;
-    } else if (isDesktop) {
-      newPerPage = 8;
+    } else if (isMobile) {
+      newPerPage = 4;
     }
 
     setPerPage(newPerPage);
-  }, [isDesktop, isTablet]);
+  }, [isMobile, isTablet]);
 
   useEffect(() => {
     dispatch(
@@ -157,9 +150,8 @@ const ProductsCataloguePage = () => {
               onClick={() => {
                 setSearchParams({ article: filterByCode });
               }}
-            >
-              <AiOutlineSearch size={"1.8em"} />
-            </StyledBtnSearch>
+            />
+
             <StyledInput
               type="text"
               placeholder="Пошук"
@@ -173,13 +165,11 @@ const ProductsCataloguePage = () => {
                   setSearchParams({});
                   setFilterByCode("");
                 }}
-              >
-                <RxCrossCircled size={"1.5em"} />
-              </StyledBtnDeleteSearch>
+              />
             )}
           </StyledInputWrp>
         )}
-        <StyledTitle>Каталог товарів</StyledTitle>
+        <StyledTitle>{(updatedProductList.length !== 0 && !query && !article) ? "Каталог товарів" : "Результати пошуку"}</StyledTitle>
         {!isLoggedIn && (
           <BtnWrp>
             <MainButton
@@ -200,15 +190,13 @@ const ProductsCataloguePage = () => {
         ) : (
           <NotFound
             message={
-              query
-                ? "Відстутні товари у вибраній категорії"
-                : article
-                ? "Упс... Такого товару в нас немає"
+              query || article
+                ? "Упс... На жаль, за вашим запитом нічого не знайдено"
                 : "Товари відсутні"
             }
           />
         )}
-        {pageQty > 1 && (
+        {(pageQty > 1  && updatedProductList.length !== 0) && (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}

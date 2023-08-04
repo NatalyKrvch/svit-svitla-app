@@ -13,16 +13,16 @@ export const StyledFragment = styled.div`
 `;
 
 export const TitleWrp = styled.div`
-  max-width: 328px;
+  max-width: 320px;
   position: relative;
   border-bottom: 1px solid var(--middle-grey);
 
   @media screen and (min-width: 768px) {
-    max-width: 754px;
+    max-width: 750px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1168px;
+    max-width: 1155px;
   }
 
   /* &::after {
@@ -48,7 +48,7 @@ export const TitleWrp = styled.div`
 export const StyledTitle = styled.h2`
   font-weight: 400;
   font-size: 24px;
-  line-height: 120%;
+  line-height: 1.2;
   letter-spacing: -0.4px;
   margin-bottom: 8px;
   text-align: left;

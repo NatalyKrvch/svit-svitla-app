@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { AiOutlineSearch } from "react-icons/ai";
+import { RxCrossCircled } from "react-icons/rx";
 
 export const StyledFragment = styled.div`
   margin-left: auto;
@@ -93,6 +95,7 @@ export const StyledInputWrp = styled.div`
   padding: 4px 16px;
   width: 328px;
   height: 56px;
+  align-items: center;
   border: 2px solid var(--middle-grey);
   border-radius: 4px 4px 0px 0px;
   margin-bottom: 16px;
@@ -115,9 +118,9 @@ export const StyledInputWrp = styled.div`
     margin-bottom: 40px;
   }
 `;
-export const StyledBtnSearch = styled.button`
-  width: 48px;
-  height: 48px;
+export const StyledBtnSearch = styled(AiOutlineSearch)`
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,17 +128,21 @@ export const StyledBtnSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  &:hover svg {
+  &:hover  {
     transform: scale(1.5);
-    fill: var(--pressed-blue); 
+    fill: rgba(0, 0, 0, 0.6);
+  }
+
+  &:active {
+    fill: var(--brand-blue);
   }
 `;
 
-export const StyledBtnDeleteSearch = styled.button`
-  width: 48px;
-  height: 48px;
+export const StyledBtnDeleteSearch = styled(RxCrossCircled)`
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,10 +150,15 @@ export const StyledBtnDeleteSearch = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  transition: scale cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   &:hover {
-    scale: 1.2;
+    transform: scale(1.2);
+    fill: rgba(0, 0, 0, 0.6);
+  }
+
+  &:active {
+    fill: var(--brand-blue);
   }
 `;
 
