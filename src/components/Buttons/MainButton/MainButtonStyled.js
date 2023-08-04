@@ -69,6 +69,17 @@ const ButtonStyled = styled.button`
   };
   }
 
+  &:hover {
+    opacity: 80%;
+    background-color: ${props =>
+    props.buttonType === "secondary"
+      ? "var(--light-blue)"
+      : props.buttonType === "filter"
+        ? "var(--pressed-outlined)"
+        : ""
+  };
+  }
+
   @media screen and (min-width: 769px) {
     height: 56px;
     font-size: 20px;

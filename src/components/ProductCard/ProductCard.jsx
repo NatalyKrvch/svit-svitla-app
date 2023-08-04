@@ -7,14 +7,13 @@ import {
   StyledBtnDelete,
   StyledBtnEdit,
   StyledBtnWrp,
-  StyledButton,
+  ButtonWrapper,
   StyledImg,
   StyledP,
   StyledProductName,
   StyledTextWrapper,
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
-
 
 const ProductCard = ({
   product: { productCoverURL, productName, productCode, productPrice, _id },
@@ -34,12 +33,14 @@ const ProductCard = ({
         <StyledP>{`Артикул: ${productCode}`}</StyledP>
         <StyledP>{`Ціна: ${productPrice} грн`}</StyledP>
         {!isLoggedIn ? (
-          <StyledButton
-            type="button"
-            onClick={() => navigate(`/productcard/${_id}`)}
-          >
-            Деталі
-          </StyledButton>
+          <ButtonWrapper>
+            <MainButton
+              type="button"
+              onClick={() => navigate(`/productcard/${_id}`)}
+            >
+              Деталі
+            </MainButton>
+          </ButtonWrapper>
         ) : (
           <StyledBtnWrp>
             <StyledBtnEdit

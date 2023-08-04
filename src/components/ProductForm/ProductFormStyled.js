@@ -142,32 +142,32 @@ export const FakeButton = styled.span`
   }
 `;
 
-export const SubmitButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px;
-  max-width: 328px;
-  height: 48px;
-  background-color: ${(props) =>
-    props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
-  color: white;
-  border-radius: 8px;
-  transition: 400ms ease;
+// export const SubmitButton = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 12px 24px;
+//   max-width: 328px;
+//   height: 48px;
+//   background-color: ${(props) =>
+//     props.disabled ? "var(--middle-grey)" : "var(--dark-blue)"};
+//   color: white;
+//   border-radius: 8px;
+//   transition: 400ms ease;
 
-  &:active:not(:disabled) {
-    outline: 2px solid var(--dark-blue);
-    box-shadow: none;
-    background-color: var(--pressed-blue);
-  }
+//   &:active:not(:disabled) {
+//     outline: 2px solid var(--dark-blue);
+//     box-shadow: none;
+//     background-color: var(--pressed-blue);
+//   }
 
-  @media screen and (min-width: 768px) {
-    max-width: 373px;
-  }
+//   @media screen and (min-width: 768px) {
+//     max-width: 373px;
+//   }
 
-  @media screen and (min-width: 1280px) {
-  }
-`;
+//   @media screen and (min-width: 1280px) {
+//   }
+// `;
 export const StyledImg = styled.img`
   display: block;
   width: 48px;
@@ -316,3 +316,18 @@ export const StyledOptions = styled.li`
     max-width: 572px;
   }
 `;
+
+export const ButtonWrapper = styled.div`
+  width: 328px;
+  margin-top: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 365px;
+    margin-top: 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 373px;
+    margin-top: 32px;
+  }
+`

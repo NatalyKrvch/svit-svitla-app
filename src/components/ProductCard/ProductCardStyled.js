@@ -18,6 +18,13 @@ export const CardWrp = styled.div`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  & > button {
+    height: 48px;
+  }
+`
+
 export const ImgWrp = styled.div`
   cursor: pointer;
   overflow: hidden;
