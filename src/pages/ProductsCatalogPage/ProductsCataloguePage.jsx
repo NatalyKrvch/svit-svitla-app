@@ -170,7 +170,7 @@ const ProductsCataloguePage = () => {
           </StyledInputWrp>
         )}
         <StyledTitle>{(updatedProductList.length !== 0 && !query && !article) ? "Каталог товарів" : "Результати пошуку"}</StyledTitle>
-        {!isLoggedIn && (
+{/*         {!isLoggedIn && (
           <BtnWrp>
             <MainButton
               buttonType="filter"
@@ -181,7 +181,7 @@ const ProductsCataloguePage = () => {
               {query && <RxCrossCircled />}
             </MainButton>
           </BtnWrp>
-        )}
+        )} */}
         {updatedProductList.length !== 0 ? (
           <ProductList
             productsList={updatedProductList}
