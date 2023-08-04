@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const STyledContainer = styled.div``;
 
 export const StyledDiv = styled.div`
-  max-width: 328px;
+  width: 328px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
-    max-width: 753px;
+    width: 753px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1168px;
+    width: 1168px;
   }
 `;
 export const StyledInputWrp = styled.div`

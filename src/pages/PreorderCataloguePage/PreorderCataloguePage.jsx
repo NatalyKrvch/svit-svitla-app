@@ -59,6 +59,7 @@ const PreorderCataloguePage = () => {
     setPerPage(newPerPage);
   }, [isMobile, isTablet]);
 
+  console.log(perPage);
   useEffect(() => {
     dispatch(
       getCatalogs({
@@ -157,7 +158,7 @@ const PreorderCataloguePage = () => {
             </StyledInputWrp>
           )}
         </StyledDiv>
-        <StyledH2>Каталоги для передзамовлення</StyledH2>
+        <StyledH2>{(fetchedCatalogsList.length !== 0 && !filter )? "Каталоги для передзамовлення" : "Результати пошуку"}</StyledH2>
         {fetchedCatalogsList.length !== 0 ? (
           <CatalogsList
             catalogsList={fetchedCatalogsList}
@@ -169,7 +170,7 @@ const PreorderCataloguePage = () => {
           <NotFound
             message={
               filter
-                ? "Каталог з таким ім'ям не знайдено"
+                ? "Упс... На жаль, за вашим запитом нічого не знайдено"
                 : "Відсутні каталоги для передзамовлення"
             }
           />
@@ -191,7 +192,7 @@ const PreorderCataloguePage = () => {
             onCloseModal={closeModal}
           />
         )}
-        {pageQty > 1 && (
+        {(pageQty > 1 && fetchedCatalogsList.length !== 0 )&& (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}

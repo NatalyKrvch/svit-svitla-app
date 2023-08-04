@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+import { TbDownload } from "react-icons/tb";
 
 export const StyledDiv = styled.div`
   width: 156px;
@@ -111,22 +113,23 @@ export const StyledBtn = styled.button`
   }
 `;
 
-export const StyledBtnDownload = styled.button`
-  width: 48px;
-  height: 48px;
+export const StyledBtnDownload = styled(TbDownload)`
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: flex-start;
   border: none;
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  transition: 1s ease;
+  transition: 200ms ease;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover svg {
+  &:hover  {
     stroke: rgba(0, 0, 0, 0.6);
   }
 
-  &:active svg {
+  &:active {
     stroke: var(--brand-blue);
   }
 
@@ -134,5 +137,67 @@ export const StyledBtnDownload = styled.button`
   }
 
   @media screen and (min-width: 1281px) {
+    /* align-items: center; */
+    margin-top: 12px;
+  }
+`;
+
+
+export const StyledBtnEdit = styled(RiPencilLine)`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: flex-start;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover  {
+    fill: rgba(0, 0, 0, 0.6);
+  }
+
+  &:active {
+    fill: var(--brand-blue);
+  }
+
+  @media screen and (min-width: 769px) {
+  }
+
+  @media screen and (min-width: 1281px) {
+    /* align-items: center; */
+    margin-top: 12px;
+  }
+`;
+
+
+export const StyledBtnDelete= styled(RiDeleteBin6Line)`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: flex-start;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover  {
+    fill: rgba(0, 0, 0, 0.6);
+  }
+
+  &:active {
+    fill: var(--brand-blue);
+  }
+
+  @media screen and (min-width: 769px) {
+  }
+
+  @media screen and (min-width: 1281px) {
+    /* align-items: center; */
+    margin-top: 12px;
   }
 `;

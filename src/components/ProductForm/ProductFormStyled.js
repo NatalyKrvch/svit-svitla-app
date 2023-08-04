@@ -244,7 +244,7 @@ export const StyledWrpSelector = styled.div`
 
   &:hover,
   &:focus {
-    border: 2px solid var(--dark-blue);
+    border: 1px solid var(--dark-blue);
   }
 
   @media screen and (min-width: 768px) {
@@ -272,6 +272,7 @@ export const StyledButtonSelect = styled.span`
   display: flex;
   border: none;
   align-items: center;
+  align-self: stretch;
   justify-content: space-between;
   outline: none;
   cursor: pointer;
@@ -288,17 +289,20 @@ export const StyledButtonSelect = styled.span`
 
 export const StyledOptions = styled.li`
   max-width: 328px;
-  height: 30px;
-  padding: 8px 16px;
+  height: 73px;
+  padding: 8px 12px;
   font-size: 16px;
-  /* margin-left: auto; */
   line-height: 1, 5;
-  text-align: right;
+  text-align: left;
   letter-spacing: -0.4px;
   background: var(--light-blue);
-  box-shadow: var(--box-shadow);
-  border-radius: 4px;
+  /* box-shadow: var(--box-shadow); */
+  /* border-radius: 4px; */
+  border-bottom: 1px solid var(--middle-grey);
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  transition: 200ms ease;
   &:hover,
   &:focus {
     border: 1px solid var(--dark-blue);

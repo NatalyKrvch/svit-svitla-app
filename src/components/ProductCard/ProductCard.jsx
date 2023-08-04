@@ -4,6 +4,8 @@ import {
   CardWrp,
   ImgWrp,
   StyledBtn,
+  StyledBtnDelete,
+  StyledBtnEdit,
   StyledBtnWrp,
   ButtonWrapper,
   StyledImg,
@@ -12,8 +14,6 @@ import {
   StyledTextWrapper,
 } from "./ProductCardStyled";
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
-import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
-import MainButton from "../Buttons/MainButton/MainButton";
 
 const ProductCard = ({
   product: { productCoverURL, productName, productCode, productPrice, _id },
@@ -43,15 +43,11 @@ const ProductCard = ({
           </ButtonWrapper>
         ) : (
           <StyledBtnWrp>
-            <StyledBtn
-              type="button"
+            <StyledBtnEdit
               onClick={() => navigate(`/editproductcard/${_id}`)}
-            >
-              <RiPencilLine size={"1.5em"} />
-            </StyledBtn>
-            <StyledBtn type="button" onClick={() => onOpen(productCode, _id)}>
-              <RiDeleteBin6Line size={"1.5em"} />
-            </StyledBtn>
+            />
+
+            <StyledBtnDelete onClick={() => onOpen(productCode, _id)} />
           </StyledBtnWrp>
         )}
       </StyledTextWrapper>
