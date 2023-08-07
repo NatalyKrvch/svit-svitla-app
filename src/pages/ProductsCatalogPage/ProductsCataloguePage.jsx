@@ -196,7 +196,9 @@ const ProductsCataloguePage = () => {
             }
           />
         )}
-        {(pageQty > 1  && updatedProductList.length !== 0) && (
+       
+      </StyledFragment>
+      {(pageQty > 1  && updatedProductList.length !== 0) && (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}
@@ -204,7 +206,6 @@ const ProductsCataloguePage = () => {
             array={updatedProductList}
           />
         )}
-      </StyledFragment>
     </Container>
   );
 };

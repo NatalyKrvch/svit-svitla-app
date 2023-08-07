@@ -36,8 +36,7 @@ const EditCatalogueCard = () => {
   const { id } = useParams();
   const catalogsList = useSelector(getAllCatalogs);
   const currentCatalog = catalogsList.find((catalog) => catalog._id === id);
-  console.log(currentCatalog);
-
+ 
   const [name, setCatalogName] = useState(currentCatalog?.catalogName || "");
   const [year, setYear] = useState(currentCatalog?.catalogYear || "");
   const [coverImageUrl, setCoverImageUrl] = useState(
@@ -51,6 +50,9 @@ const EditCatalogueCard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const catalogNameFirstLetterUppercase =
+  name.charAt(0).toUpperCase() + name.slice(1);
 
   useEffect(() => {
     setCatalogName(currentCatalog?.catalogName || "");
@@ -114,7 +116,7 @@ const EditCatalogueCard = () => {
     <Container>
       <StyledDiv>
         <StyledTitle>Редагувати картку товару</StyledTitle>
-        <StyledP>{name}</StyledP>
+        <StyledP>{catalogNameFirstLetterUppercase}</StyledP>
         <StyledP>{year}</StyledP>
         <StyledForm action="" onSubmit={handleSubmit}>
           {!coverImageUrl ? (
@@ -183,7 +185,7 @@ const EditCatalogueCard = () => {
               pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
               title="Name may contain only letters, apostrophe, dash and spaces."
               onChange={handleCatalogNameChange}
-              value={name}
+              value={catalogNameFirstLetterUppercase}
             />
           </StyledInputWrapper>
           <StyledInputWrapper>

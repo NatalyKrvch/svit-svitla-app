@@ -2,9 +2,8 @@ import { useSelector } from "react-redux";
 import CatalogPlug from "../../images/CatalogPlug/catalog-plug.jpg";
 import {
   ImgWrp,
-  StyledBtnDelete,
+  StyledBtn,
   StyledBtnDownload,
-  StyledBtnEdit,
   StyledBtnWrp,
   StyledDiv,
   StyledImg,
@@ -14,6 +13,8 @@ import {
 import { getIsLoggedIn } from "../../redux/Auth/authSelectors";
 import { useNavigate } from "react-router";
 import ShareButton from "../Buttons/ShareButton/ShareButton";
+import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+import { TbDownload } from "react-icons/tb";
 
 const CatalogCard = ({ catalog, onOpenModal }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -53,16 +54,17 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
       </StyledTextWRP>
       <StyledBtnWrp>
         {isLoggedIn ? (
-          <StyledBtnEdit
-            onClick={() => navigate(`/editcatauloguecard/${_id}`)}
-          />
+          <StyledBtn onClick={() => navigate(`/editcatauloguecard/${_id}`)}>
+          <RiPencilLine size={"1.5em"}/>
+          </StyledBtn>
         ) : (
-          <StyledBtnDownload onClick={() => handleDownload(catalogFileURL)} />
-        )}
+          <StyledBtnDownload  onClick={() => handleDownload(catalogFileURL)} >
+          <TbDownload />
+          </StyledBtnDownload>)}
         {isLoggedIn ? (
-          <StyledBtnDelete
-            onClick={() => handleClick(catalogName, catalogYear, _id)}
-          />
+         <StyledBtn  onClick={() => handleClick(catalogName, catalogYear, _id)}>
+          <RiDeleteBin6Line size={"1.5em"}/>
+          </StyledBtn>
         ) : (
           <ShareButton
             title={catalogNameFirstLetterUppercase}
