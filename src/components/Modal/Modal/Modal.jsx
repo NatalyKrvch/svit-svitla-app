@@ -14,6 +14,7 @@ import {
 } from "./ModalStyled";
 import MainButton from "../../Buttons/MainButton/MainButton";
 import { createPortal } from "react-dom";
+import { useEffect } from "react";
 
 const Modal = ({
   color = "yellow",
@@ -25,8 +26,36 @@ const Modal = ({
   onCloseModal,
 }) => {
   const modalRoot = document.getElementById("modal-root");
+
+    useEffect(() => {
+      const body = document.body;
+      // Блокируем скроллинг фона при открытии модалки
+      body.style.overflow = "hidden";
+
+      // Убираем блокировку скроллинга при закрытии модалки
+      return () => {
+        body.style.overflow = "visible";
+      };
+    }, []);
+
+    useEffect(() => {
+      window.addEventListener("keydown", (event) => {
+        if (event.code === "Escape") {
+          onCloseModal();
+        }
+      });
+
+      return window.removeEventListener("keydown", (event) => {});
+    }, [onCloseModal]);
+
+    const handleOverlay = (event) => {
+      if (event.currentTarget === event.target) {
+        onCloseModal();
+      }
+  };
+  
   return createPortal(
-    <Overlay>
+    <Overlay onClick={handleOverlay}>
       <ModalBody>
         <StyledImg src={color === "yellow" ? lampYellow : lampRed} alt="lamp" />
         <StyledTitle>
