@@ -5,6 +5,7 @@ export const ContainerWrapper = styled.div`
   padding: 40px 16px;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center; 
   justify-content: center;
 
