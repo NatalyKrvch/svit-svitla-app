@@ -192,7 +192,8 @@ const PreorderCataloguePage = () => {
             onCloseModal={closeModal}
           />
         )}
-        {(pageQty > 1 && fetchedCatalogsList.length !== 0 )&& (
+      </STyledContainer>
+      {(pageQty > 1 && fetchedCatalogsList.length !== 0 )&& (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}
@@ -200,7 +201,6 @@ const PreorderCataloguePage = () => {
             array={fetchedCatalogsList}
           />
         )}
-      </STyledContainer>
     </Container>
   );
 };
