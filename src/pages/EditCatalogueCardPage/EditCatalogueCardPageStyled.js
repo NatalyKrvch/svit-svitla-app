@@ -113,6 +113,12 @@ export const StyledInput = styled.input`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     width: 495px;
@@ -135,6 +141,12 @@ export const FakeInputWrp = styled.div`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 495px;
@@ -283,4 +295,4 @@ export const ButtonWrapper = styled.div`
     width: 373px;
     margin-top: 32px;
   }
-`
+`;
