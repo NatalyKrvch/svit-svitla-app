@@ -11,6 +11,8 @@ color: var(--black);
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100%;
+  width: 100%;
 `
 export const ImgWrapper = styled.div`
   padding-top: 80px;
@@ -22,8 +24,8 @@ export const ImgStyled = styled.img`
 `
 export const YellowContainer = styled.div`
   background-color: var(--yellow);
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
 `
