@@ -158,7 +158,11 @@ const PreorderCataloguePage = () => {
             </StyledInputWrp>
           )}
         </StyledDiv>
-        <StyledH2>{(fetchedCatalogsList.length !== 0 && !filter )? "Каталоги для передзамовлення" : "Результати пошуку"}</StyledH2>
+        <StyledH2>
+          {fetchedCatalogsList.length !== 0 && !filter
+            ? "Каталоги для передзамовлення"
+            : "Результати пошуку"}
+        </StyledH2>
         {fetchedCatalogsList.length !== 0 ? (
           <CatalogsList
             catalogsList={fetchedCatalogsList}
@@ -192,7 +196,7 @@ const PreorderCataloguePage = () => {
             onCloseModal={closeModal}
           />
         )}
-        {(pageQty > 1 && fetchedCatalogsList.length !== 0 )&& (
+        {pageQty > 1 && fetchedCatalogsList.length !== 0 && (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}

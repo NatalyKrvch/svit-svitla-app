@@ -169,7 +169,11 @@ const ProductsCataloguePage = () => {
             )}
           </StyledInputWrp>
         )}
-        <StyledTitle>{(updatedProductList.length !== 0 && !query && !article) ? "Каталог товарів" : "Результати пошуку"}</StyledTitle>
+        <StyledTitle>
+          {updatedProductList.length !== 0 && !query && !article
+            ? "Каталог товарів"
+            : "Результати пошуку"}
+        </StyledTitle>
         {!isLoggedIn && (
           <BtnWrp>
             <MainButton
@@ -196,7 +200,7 @@ const ProductsCataloguePage = () => {
             }
           />
         )}
-        {(pageQty > 1  && updatedProductList.length !== 0) && (
+        {pageQty > 1 && updatedProductList.length !== 0 && (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}
