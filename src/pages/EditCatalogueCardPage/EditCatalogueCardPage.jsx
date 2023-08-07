@@ -148,11 +148,11 @@ const EditCatalogueCard = () => {
                 value={`Cover_${name}.jpeg`}
                 readOnly
               />
-              <StyledButtonDelete type="button ">
+              <StyledButtonDelete onClick={handleDeleteCoverImg}>
                 <RiDeleteBin6Line
                   size={"1.8em"}
                   color="white"
-                  onClick={handleDeleteCoverImg}
+                 
                 />
               </StyledButtonDelete>
             </StyledInputWrapper>

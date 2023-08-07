@@ -234,7 +234,8 @@ export const StyledImg = styled.img`
   height: 56px;
 `;
 
-export const StyledButtonDelete = styled.button`
+export const StyledButtonDelete = styled.span`
+  display: block;
   position: absolute;
   top: 0;
   right: 0;

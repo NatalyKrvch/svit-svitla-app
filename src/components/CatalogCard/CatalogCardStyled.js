@@ -123,11 +123,11 @@ export const StyledBtnDownload = styled.button`
   transition: 200ms ease;
   -webkit-tap-highlight-color: transparent;
 
-  &:hover  {
+  &:hover svg {
     stroke: rgba(0, 0, 0, 0.6);
   }
 
-  &:active {
+  &:active svg {
     stroke: var(--brand-blue);
   }
 
@@ -136,7 +136,7 @@ export const StyledBtnDownload = styled.button`
 
   @media screen and (min-width: 1281px) {
     /* align-items: center; */
-    margin-top: 12px;
+    /* margin-top: 12px; */
   }
 `;
 
