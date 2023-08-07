@@ -109,7 +109,7 @@ export const StyledBtn = styled.button`
   }
 
   @media screen and (min-width: 1281px) {
-    align-items: center;
+    /* align-items: center; */
   }
 `;
 
