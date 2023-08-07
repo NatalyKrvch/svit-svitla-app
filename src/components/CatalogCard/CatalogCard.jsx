@@ -59,7 +59,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
           </StyledBtn>
         ) : (
           <StyledBtnDownload  onClick={() => handleDownload(catalogFileURL)} >
-          <TbDownload />
+          <TbDownload size={"1.5em"}/>
           </StyledBtnDownload>)}
         {isLoggedIn ? (
          <StyledBtn  onClick={() => handleClick(catalogName, catalogYear, _id)}>

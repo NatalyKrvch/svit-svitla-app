@@ -49,7 +49,7 @@ const AuthorizationForm = () => {
   };
 
   const handleKeyPress = (evt) => {
-    if (evt.key === 'Enter') {
+    if (evt.key === 'Enter' || evt.key === 'Return') {
       onSubmitForm(evt);
     }
   };
