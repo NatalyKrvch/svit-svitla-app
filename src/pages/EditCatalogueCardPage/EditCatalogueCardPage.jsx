@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { getAllCatalogs } from "../../redux/Catalog/catalogSelectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CatalogPlug from "../../images/CatalogPlug/catalog-plug.jpg"
 import {
   ButtonWrapper,
   FakeButton,
@@ -27,7 +28,6 @@ import { MdDownloadDone } from "react-icons/md";
 import { HiArrowUpTray } from "react-icons/hi2";
 import { changeCatalog } from "../../redux/Catalog/catalogOperations";
 import { useEffect, useState } from "react";
-// import ModalChangeCatalog from "../../components/Modal/ModalChangeCatalog/ModalChangeCatalog";
 import Modal from "../../components/Modal/Modal/Modal";
 import Container from "../../components/Container/Container";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
@@ -36,11 +36,9 @@ const EditCatalogueCard = () => {
   const { id } = useParams();
   const catalogsList = useSelector(getAllCatalogs);
   const currentCatalog = catalogsList.find((catalog) => catalog._id === id);
-  console.log(currentCatalog);
-
+ 
   const [name, setCatalogName] = useState(currentCatalog?.catalogName || "");
   const [year, setYear] = useState(currentCatalog?.catalogYear || "");
-  // const [coverImage, setCoverImage] = useState(currentCatalog?.catalogCoverURL || null);
   const [coverImageUrl, setCoverImageUrl] = useState(
     currentCatalog?.catalogCoverURL || ""
   );
@@ -52,6 +50,9 @@ const EditCatalogueCard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const catalogNameFirstLetterUppercase =
+  name.charAt(0).toUpperCase() + name.slice(1);
 
   useEffect(() => {
     setCatalogName(currentCatalog?.catalogName || "");
@@ -77,6 +78,10 @@ const EditCatalogueCard = () => {
     setCoverImageUrl("");
     URL.revokeObjectURL(coverImageUrl);
   };
+
+  const handleDeleteCatalogFile = () => {
+    setCatalogFile("");
+  }
 
   const handleCatalogImagesDownload = (event) => {
     console.log(event.target.files);
@@ -111,7 +116,7 @@ const EditCatalogueCard = () => {
     <Container>
       <StyledDiv>
         <StyledTitle>Редагувати картку товару</StyledTitle>
-        <StyledP>{name}</StyledP>
+        <StyledP>{catalogNameFirstLetterUppercase}</StyledP>
         <StyledP>{year}</StyledP>
         <StyledForm action="" onSubmit={handleSubmit}>
           {!coverImageUrl ? (
@@ -133,7 +138,7 @@ const EditCatalogueCard = () => {
           ) : (
             <StyledInputWrapper>
               <StyledCoverLabel htmlFor="name">
-                Назва обкладинки
+              Обкладинка
               </StyledCoverLabel>
               <StyledImg src={coverImageUrl} alt="cover" />
               <StyledInput
@@ -152,6 +157,25 @@ const EditCatalogueCard = () => {
               </StyledButtonDelete>
             </StyledInputWrapper>
           )}
+          {catalogFile && (<StyledInputWrapper>
+              <StyledCoverLabel htmlFor="name">
+              Каталог
+              </StyledCoverLabel>
+              <StyledImg src={CatalogPlug} alt="cover" />
+              <StyledInput
+                id="name"
+                type="text"
+                value={`Catalog main.pdf`}
+                readOnly
+              />
+              <StyledButtonDelete type="button ">
+                <RiDeleteBin6Line
+                  size={"1.8em"}
+                  color="white"
+                  onClick={handleDeleteCatalogFile}
+                />
+              </StyledButtonDelete>
+            </StyledInputWrapper>)}
           <StyledInputWrapper>
             <StyledLabel htmlFor="catalogName">Назва каталогу</StyledLabel>
             <StyledInput
@@ -161,7 +185,7 @@ const EditCatalogueCard = () => {
               pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
               title="Name may contain only letters, apostrophe, dash and spaces."
               onChange={handleCatalogNameChange}
-              value={name}
+              value={catalogNameFirstLetterUppercase}
             />
           </StyledInputWrapper>
           <StyledInputWrapper>
@@ -178,6 +202,7 @@ const EditCatalogueCard = () => {
               type="file"
               onChange={handleCatalogImagesDownload}
               accept=".pdf"
+              disabled={catalogFile}
             />
             <FakeInputWrpDownload>
               <FakeButtonDownload>
@@ -199,7 +224,6 @@ const EditCatalogueCard = () => {
             </MainButton>
           </ButtonWrapper>
         </StyledForm>
-        {/* {showModal && <ModalChangeCatalog onCloseModal={closeModal} />} */}
         {showModal && (
           <Modal
             onCloseModal={closeModal}
