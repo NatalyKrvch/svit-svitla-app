@@ -1,11 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import {
   CardWrp,
   ImgWrp,
   StyledBtn,
-  StyledBtnDelete,
-  StyledBtnEdit,
   StyledBtnWrp,
   ButtonWrapper,
   StyledImg,
@@ -44,11 +43,12 @@ const ProductCard = ({
           </ButtonWrapper>
         ) : (
           <StyledBtnWrp>
-            <StyledBtnEdit
-              onClick={() => navigate(`/editproductcard/${_id}`)}
-            />
-
-            <StyledBtnDelete onClick={() => onOpen(productCode, _id)} />
+            <StyledBtn onClick={() => navigate(`/editproductcard/${_id}`)}>
+              <RiPencilLine size={"1.5em"} />
+            </StyledBtn>
+            <StyledBtn onClick={() => onOpen(productCode, _id)}>
+              <RiDeleteBin6Line size={"1.5em"} />
+            </StyledBtn>
           </StyledBtnWrp>
         )}
       </StyledTextWrapper>

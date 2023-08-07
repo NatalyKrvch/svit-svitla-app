@@ -260,6 +260,12 @@ export const FakeInputWrpDownload = styled.div`
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
+  transition: 200ms ease;
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--dark-blue);
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 495px;
