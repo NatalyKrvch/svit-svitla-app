@@ -73,7 +73,7 @@ const ProductsCataloguePage = () => {
         filter: query,
       })
     );
-  }, [pageNumber, article, query]);
+  }, [pageNumber, article, query, products.length]);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
@@ -200,7 +200,7 @@ const ProductsCataloguePage = () => {
             }
           />
         )}
-        {pageQty > 1 && updatedProductList.length !== 0 && (
+        {pageQty > 1 && (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}
