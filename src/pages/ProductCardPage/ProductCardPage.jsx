@@ -3,7 +3,7 @@ import ProductCharacteristics from "../../components/ProductsCharacteristics/Pro
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
-import { getCurrentProduct } from "../../redux/Product/productSelectors";
+import { getCurrentProduct, getLoadingProducts } from "../../redux/Product/productSelectors";
 import Carousel from "../../components/Carousel/Carousel";
 import {
   PageWrapper,
@@ -24,6 +24,7 @@ const ProductCardPage = () => {
   const dispatch = useDispatch();
   const currentProduct = useSelector(getCurrentProduct);
   const { isDesktop } = useMediaRules();
+  const isLoading = useSelector(getLoadingProducts);
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -43,7 +44,7 @@ const ProductCardPage = () => {
 
   return (
     <Container>
-      <PageWrapper>
+     {!isLoading &&  <PageWrapper>
         <TitleWrapper>
           <Title>
             <StyledH1>{productName}</StyledH1>
@@ -67,7 +68,7 @@ const ProductCardPage = () => {
             />
           </CharacteristicsWrapper>
         </ContentWrapper>
-      </PageWrapper>
+      </PageWrapper>}
     </Container>
   );
 };

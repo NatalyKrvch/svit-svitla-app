@@ -41,7 +41,7 @@ const ProductForm = ({ openModal }) => {
   const [productImagesUrl, setProductImagesUrl] = useState([]);
   const [category, setCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
+   console.log(category);
   const dispatch = useDispatch();
 
   const handleProductNameChange = (event) => {
@@ -167,7 +167,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="price"
           type="text"
-          pattern="^\d{1,3}( \d{3})*(\.\d{1,2})?|\d{1,3}(,\d{3})*(\.\d{1,2})?"
+          pattern="^\d+(\.\d{1,2})?$"   ///^\d+(\.\d{1,2})?$/
           title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
           required
           value={price}
@@ -188,7 +188,7 @@ const ProductForm = ({ openModal }) => {
       </StyledInputWrapper>
       <StyledWrpSelector>
         <StyledLabel htmlFor="country">Оберіть категорію</StyledLabel>
-        <StyledButtonSelect onClick={handleChooseCategoryClick}>
+        <StyledButtonSelect onClick={handleChooseCategoryClick} required>
           {category || "---------"}
           {isOpen ? <GoTriangleUp /> : <GoTriangleDown />}
         </StyledButtonSelect>
@@ -310,7 +310,7 @@ const ProductForm = ({ openModal }) => {
         <MainButton
           type="submit"
           disabled={
-            !productName || !productCode || !price || !manufacturerCountry
+            !productName || !productCode || !price || !manufacturerCountry || !category
           }
         >
           Зберегти

@@ -21,6 +21,7 @@ const ProductCard = ({
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
+  const productPriceThousandsSeparates = productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 
   return (
     <CardWrp>
@@ -31,7 +32,7 @@ const ProductCard = ({
       <StyledTextWrapper>
         <StyledProductName>{productName}</StyledProductName>
         <StyledP>{`Артикул: ${productCode}`}</StyledP>
-        <StyledP>{`Ціна: ${productPrice} грн`}</StyledP>
+        <StyledP>{`Ціна: ${productPriceThousandsSeparates} грн`}</StyledP>
         {!isLoggedIn ? (
           <ButtonWrapper>
             <MainButton

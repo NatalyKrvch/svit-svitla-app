@@ -73,7 +73,7 @@ const ProductsCataloguePage = () => {
         filter: query,
       })
     );
-  }, [pageNumber, perPage, article, query]);
+  }, [pageNumber, article, query]);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
