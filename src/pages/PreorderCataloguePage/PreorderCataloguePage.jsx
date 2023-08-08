@@ -49,7 +49,6 @@ const PreorderCataloguePage = () => {
 
   useEffect(() => {
     let newPerPage = 8;
-
     if (isMobile) {
       newPerPage = 4;
     } else if (isTablet) {
@@ -68,7 +67,7 @@ const PreorderCataloguePage = () => {
         catalogName: catalogNameSearch,
       })
     );
-  }, [pageNumber, catalogNameSearch, catalogsList.length]);
+  }, [pageNumber, catalogNameSearch, fetchedCatalogsList.length, perPage]);
 
   const totalItems = useSelector(getTotalItemsCatalogs);
 
@@ -163,7 +162,7 @@ const PreorderCataloguePage = () => {
             ? "Каталоги для передзамовлення"
             : "Результати пошуку"}
         </StyledH2>
-        {fetchedCatalogsList.length !== 0 ? (
+        {catalogsList.length !== 0 ? (
           <CatalogsList
             catalogsList={fetchedCatalogsList}
             onDelete={handleDeleteCatalog}
@@ -196,7 +195,7 @@ const PreorderCataloguePage = () => {
             onCloseModal={closeModal}
           />
         )}
-        {pageQty > 1 && fetchedCatalogsList.length !== 0 && (
+        {pageQty > 1 && (
           <Paginator
             pageQty={pageQty}
             pageNumber={pageNumber}

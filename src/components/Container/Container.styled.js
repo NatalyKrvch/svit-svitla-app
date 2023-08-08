@@ -5,7 +5,7 @@ export const ContainerWrapper = styled.div`
   padding: 40px 16px;
   position: relative;
   display: flex;
-  align-items: center; 
+  /* align-items: center;  */
   justify-content: center;
 
   @media screen and (min-width: 768px) {
