@@ -18,9 +18,17 @@ import MainButton from "../../Buttons/MainButton/MainButton";
 const ModalFilter = ({ onCloseModal, onSubmit }) => {
   const [filter, setFilter] = useState("");
 
-  const handleChooseFilterButton = (value) => {
-    setFilter(value);
-  };
+
+  useEffect(() => {
+    const body = document.body;
+    // Блокируем скроллинг фона при открытии модалки
+    body.style.overflow = "hidden";
+
+    // Убираем блокировку скроллинга при закрытии модалки
+    return () => {
+      body.style.overflow = "visible";
+    };
+  }, []);
 
   useEffect(() => {
     const handleEscapeKeyPress = (event) => {
@@ -36,6 +44,10 @@ const ModalFilter = ({ onCloseModal, onSubmit }) => {
 
   const handleInnerClick = (event) => {
     event.stopPropagation();
+  };
+
+  const handleChooseFilterButton = (value) => {
+    setFilter(value);
   };
 
   return (
