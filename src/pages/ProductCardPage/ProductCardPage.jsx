@@ -32,7 +32,7 @@ const ProductCardPage = () => {
   }, []);
 
   if (currentProduct === null) return;
-
+ 
   const allImgsURL = [
     currentProduct.productCoverURL,
     ...currentProduct.productPhotoURL,
@@ -65,6 +65,7 @@ const ProductCardPage = () => {
               price={currentProduct.productPrice}
               manufacturerCountry={currentProduct.productCountry}
               characteristicArray={currentProduct.additionalAttributes}
+              productCategory={currentProduct.productCategory}
             />
           </CharacteristicsWrapper>
         </ContentWrapper>
