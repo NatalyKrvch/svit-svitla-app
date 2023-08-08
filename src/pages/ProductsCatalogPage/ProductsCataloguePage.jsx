@@ -58,14 +58,15 @@ const ProductsCataloguePage = () => {
 
   useEffect(() => {
     let newPerPage = 8;
-    if (isTablet) {
-      newPerPage = 6;
-    } else if (isMobile) {
+    if (isMobile) {
       newPerPage = 4;
+    } else if (isTablet) {
+      newPerPage = 6;
     }
 
     setPerPage(newPerPage);
   }, [isMobile, isTablet]);
+
 
   useEffect(() => {
     dispatch(
@@ -76,7 +77,7 @@ const ProductsCataloguePage = () => {
         filter: query,
       })
     );
-  }, [pageNumber, article, query, products.length]);
+  }, [pageNumber, article, query, updatedProductList.length, perPage]);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
