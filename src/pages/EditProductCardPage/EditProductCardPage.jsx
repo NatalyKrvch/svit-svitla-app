@@ -33,7 +33,6 @@ import {
 
 import { nanoid } from "nanoid";
 import AddCharacteristicInputs from "../../components/AddCharacteristicInputs/AddCharacteristicInputs";
-// import ModalChangeProductCard from "../../components/Modal/ModalChangeProductCard/ModalChangeProductCard";
 import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import Modal from "../../components/Modal/Modal/Modal";
@@ -92,6 +91,8 @@ const EditProductCard = () => {
   if (!currentProduct) {
     return;
   }
+
+  const productPriceThousandsSeparates = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 
   const handleProductImagesChangeUrl = (event) => {
     const files = event.target.files;
@@ -315,7 +316,7 @@ const EditProductCard = () => {
             <StyledInput
               id="name"
               type="text"
-              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
+              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s]*"
               title="Будь-ласка вводьте літери англійського алфавіту"
               minLength={3}
               maxLength={16}
@@ -381,30 +382,33 @@ const EditProductCard = () => {
               </StyledList>
             )}
           </StyledWrpSelector>
-          {characteristicArray.map((item) => (
-            <AddCharacteristicInputs
-              key={item._id}
-              id={item._id}
-              onDelete={handleDeleteCharacteristicButton}
-              setCharacteristicArray={setCharacteristicArray}
-              characteristic={item}
-            />
-          ))}
-          <FakeInputWrp>
-            <FakeInputText>Додати характеристику</FakeInputText>
-            <FakeButton
-              type="button"
-              onClick={() => {
-                const id = nanoid();
-                setCharacteristicArray((prevState) => {
-                  return [...prevState, { _id: id }];
-                });
-                return;
-              }}
-            >
-              <BiPlusCircle size={"1.5em"} />
-            </FakeButton>
-          </FakeInputWrp>
+          {characteristicArray.map(({ _id, name, value }) => {
+        return (
+          <AddCharacteristicInputs
+            key={_id}
+            id={_id}
+            name={name}
+            value={value}
+            characteristicArray={characteristicArray}
+            setCharacteristicArray={setCharacteristicArray}
+          />
+        );
+      })}
+           <FakeInputWrp>
+        <FakeInputText>Додати характеристику</FakeInputText>
+        <FakeButton
+          type="button"
+          onClick={() => {
+            const id = nanoid();
+            setCharacteristicArray((prevState) => {
+              return [...prevState, { _id: id, name: "", value: "" }];
+            });
+            return;
+          }}
+        >
+          <BiPlusCircle size={"1.5em"} />
+        </FakeButton>
+      </FakeInputWrp>
           <ButtonWrapper>
             <MainButton
               type="submit"

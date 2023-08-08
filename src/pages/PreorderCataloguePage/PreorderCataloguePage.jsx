@@ -68,7 +68,7 @@ const PreorderCataloguePage = () => {
         catalogName: catalogNameSearch,
       })
     );
-  }, [pageNumber, perPage, catalogNameSearch, catalogsList.length]);
+  }, [pageNumber, catalogNameSearch, catalogsList.length]);
 
   const totalItems = useSelector(getTotalItemsCatalogs);
 

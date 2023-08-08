@@ -62,14 +62,14 @@ export const StyledInput = styled.input`
   width: 328px;
   /* height: 56px; */
   padding: 16px;
-  border: 2px solid var(--light-blue);
+  border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);
   transition: 200ms ease;
 
   &:hover,
   &:focus {
-    border: 2px solid var(--dark-blue);
+    border: 1px solid var(--dark-blue);
   }
 
   @media screen and (min-width: 768px) {
@@ -90,14 +90,14 @@ export const FakeInputWrp = styled.div`
   align-items: center;
   width: 328px;
   /* height: 56px; */
-  border: 2px solid var(--light-blue);
+  border: 1px solid var(--light-blue);
   border-radius: 4px;
   padding-left: 8px;
   transition: 200ms ease;
 
   &:hover,
   &:focus {
-    border: 2px solid var(--dark-blue);
+    border: 1px solid var(--dark-blue);
   }
 
   @media screen and (min-width: 768px) {
@@ -236,7 +236,7 @@ export const StyledWrpSelector = styled.div`
   background-color: transparent;
   border-radius: 4px 4px 0px 0px;
   margin-left: auto;
-  border: 2px solid var(--light-blue);
+  border: 1px solid var(--light-blue);
   display: flex;
   flex-direction: column;
   gap: 20px;

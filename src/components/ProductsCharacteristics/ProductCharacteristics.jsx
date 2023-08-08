@@ -18,11 +18,15 @@ const ProductCharacteristics = ({
   productCategory
 
 }) => {
+
+  const productPriceThousandsSeparates = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+
+
   return (
     <>
       <Styledh4>Характеристики товару</Styledh4>
       <StyledP>
-        Ціна: <StyledPriceCurrency>{`${price} грн.`}</StyledPriceCurrency>
+        Ціна: <StyledPriceCurrency>{`${productPriceThousandsSeparates} грн.`}</StyledPriceCurrency>
       </StyledP>
       <StyledPCountry>
         Виробник:{" "}

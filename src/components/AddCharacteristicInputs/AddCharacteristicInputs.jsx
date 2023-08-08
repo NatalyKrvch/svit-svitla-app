@@ -1,4 +1,3 @@
-import {  useState } from "react";
 import {
   StyledButton,
   StyledInput,
@@ -48,7 +47,6 @@ const AddCharacteristicInputs = ({
                   onChange={handleChange}
                 />
                 <StyledButton
-                  type="button "
                   onClick={() => {
                     handleDeleteCharacteristic(id);
                   }}
@@ -68,7 +66,7 @@ const AddCharacteristicInputs = ({
                   onChange={handleChange}
                 />
                 <StyledButton
-                  type="button "
+                  
                   onClick={() => {
                     handleDeleteCharacteristic(id);
                   }}
