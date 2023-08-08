@@ -31,7 +31,7 @@ import Container from "../../components/Container/Container";
 import Spinner from "../../components/Spinner/Spinner";
 
 const PreorderCataloguePage = () => {
-  const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
+  // const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [pageQty, setPageQty] = useState(0);
@@ -70,7 +70,7 @@ const PreorderCataloguePage = () => {
         catalogName: catalogNameSearch,
       })
     );
-  }, [pageNumber, catalogNameSearch, fetchedCatalogsList.length, perPage]);
+  }, [pageNumber, catalogNameSearch, catalogsList.length, perPage]);
 
   const totalItems = useSelector(getTotalItemsCatalogs);
 
@@ -83,12 +83,12 @@ const PreorderCataloguePage = () => {
   useEffect(() => {
     const calculatedPageQty = Math.ceil(totalItems / perPage);
     setPageQty(calculatedPageQty);
-    setFetchedCatalogsList(catalogsList);
-  }, [catalogsList, totalItems, perPage]);
+    // setFetchedCatalogsList(catalogsList);
+  }, [totalItems, perPage]);
 
-  const updateCatalogsList = (updatedList) => {
-    setFetchedCatalogsList(updatedList);
-  };
+  // const updateCatalogsList = (updatedList) => {
+  //   setFetchedCatalogsList(updatedList);
+  // };
 
   const openModal = (name, year, id) => {
     const catalogNameFirstLetterUppercase =
@@ -108,10 +108,10 @@ const PreorderCataloguePage = () => {
     setModalDeleteSuccessOpen(!modalDeleteSuccessOpen);
   };
 
-  const handleDeleteCatalog = (id) => {
-    dispatch(removeCatalog(id));
-    catalogsList.filter((catalog) => catalog._id !== id);
-  };
+  // const handleDeleteCatalog = (id) => {
+  //   dispatch(removeCatalog(id));
+  //   // catalogsList.filter((catalog) => catalog._id !== id);
+  // };
 
   const handleFilterCatalog = (ev) => {
     setFilter(ev.target.value.toLowerCase());
@@ -119,11 +119,11 @@ const PreorderCataloguePage = () => {
 
   // added________________________________________________________
   const handleDelete = () => {
-    const updatedList = catalogsList.filter(
-      (catalog) => catalog._id !== catalogId
-    );
+    // const updatedList = catalogsList.filter(
+    //   (catalog) => catalog._id !== catalogId
+    // );
     dispatch(removeCatalog(catalogId));
-    updateCatalogsList(updatedList);
+    // updateCatalogsList(updatedList);
     closeModal();
     handleDeleteSuccessModal();
   };
@@ -162,14 +162,14 @@ const PreorderCataloguePage = () => {
         )}
       </StyledDiv>
       <StyledH2>
-        {fetchedCatalogsList.length !== 0 && !filter
+        {catalogsList.length !== 0 && !filter
           ? "Каталоги для передзамовлення"
           : "Результати пошуку"}
       </StyledH2>
       {catalogsList.length !== 0 ? (
         <CatalogsList
-          catalogsList={fetchedCatalogsList}
-          onDelete={handleDeleteCatalog}
+          catalogsList={catalogsList}
+          // onDelete={handleDeleteCatalog}
           onOpenModal={openModal}
           closeModal={closeModal}
         />
@@ -204,7 +204,7 @@ const PreorderCataloguePage = () => {
           pageQty={pageQty}
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
-          array={fetchedCatalogsList}
+          array={catalogsList}
         />
       )}
     </STyledContainer>}

@@ -1,14 +1,13 @@
 import CatalogCard from "../CatalogCard/CatalogCard";
 import { StyledUl } from "./CatalogsListStyled";
 
-const CatalogsList = ({ catalogsList, onDelete, onOpenModal }) => {
+const CatalogsList = ({ catalogsList, onOpenModal }) => {
   return (
     <StyledUl>
       {catalogsList.map((catalog) => (
         <li key={catalog._id}>
           <CatalogCard
             catalog={catalog}
-            onDelete={onDelete}
             onOpenModal={onOpenModal}
           />
         </li>

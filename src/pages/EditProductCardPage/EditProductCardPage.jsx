@@ -92,7 +92,7 @@ const EditProductCard = () => {
     return;
   }
 
-  const productPriceThousandsSeparates = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+  // const productPriceThousandsSeparates = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 
   const handleProductImagesChangeUrl = (event) => {
     const files = event.target.files;
@@ -142,12 +142,6 @@ const EditProductCard = () => {
     setCoverImage(null);
     setCoverImageUrl("");
     URL.revokeObjectURL(coverImageUrl);
-  };
-
-  const handleDeleteCharacteristicButton = (id, evt) => {
-    evt.preventDefault();
-    const newArray = characteristicArray.filter((item) => item._id !== id);
-    setCharacteristicArray(newArray);
   };
 
   const onOpenModal = () => {

@@ -7,7 +7,8 @@ const Spinner = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      minHeight="100vh"
+      minHeight="60vh"
+      marginX="auto"
     >
       <Box>
         <CircleLoader color="var(--dark-blue)" size={150}/>
