@@ -12,10 +12,11 @@ import {
 } from "./ProductsCataloguePageStyled";
 import { FiFilter } from "react-icons/fi";
 import { RxCrossCircled } from "react-icons/rx";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import {
   getAllProducts,
+  getLoadingProducts,
   getTotalItemsProduct,
   isModalOpen,
 } from "../../redux/Product/productSelectors";
@@ -32,6 +33,7 @@ import { setModalOpen } from "../../redux/Product/productReducer";
 import Container from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ProductsCataloguePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -52,6 +54,7 @@ const ProductsCataloguePage = () => {
   const query = searchParams.get("query");
   const article = searchParams.get("article");
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const isLoading = useSelector(getLoadingProducts);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -123,92 +126,96 @@ const ProductsCataloguePage = () => {
 
   return (
     <Container>
-      <StyledFragment>
-        {showModalFilter && (
-          <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
-        )}
-        {isModalDeleteOpen && (
-          <Modal
-            color="red"
-            numberOfButtons={2}
-            title="Ви певні, що хочете видалити картку?"
-            empTitle={productCode}
-            onCloseModal={closeModalDelete}
-            onConfirmation={handleDelete}
-          />
-        )}
-        {modalOpen && (
-          <Modal
-            color="red"
-            onCloseModal={handleDeleteSuccessModal}
-            title={"Картка успішно видалена!"}
-          />
-        )}
-        {isLoggedIn && (
-          <StyledInputWrp>
-            <StyledBtnSearch
-              onClick={() => {
-                setSearchParams({ article: filterByCode });
-              }}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <StyledFragment>
+          {showModalFilter && (
+            <ModalFilter onCloseModal={closeModal} onSubmit={handleSubmit} />
+          )}
+          {isModalDeleteOpen && (
+            <Modal
+              color="red"
+              numberOfButtons={2}
+              title="Ви певні, що хочете видалити картку?"
+              empTitle={productCode}
+              onCloseModal={closeModalDelete}
+              onConfirmation={handleDelete}
             />
-
-            <StyledInput
-              type="text"
-              placeholder="Пошук"
-              value={filterByCode}
-              onChange={handleChangeFilterByCode}
-              onKeyDown={handleEnterPress}
+          )}
+          {modalOpen && (
+            <Modal
+              color="red"
+              onCloseModal={handleDeleteSuccessModal}
+              title={"Картка успішно видалена!"}
             />
-            {filterByCode && (
-              <StyledBtnDeleteSearch
+          )}
+          {isLoggedIn && (
+            <StyledInputWrp>
+              <StyledBtnSearch
                 onClick={() => {
-                  setSearchParams({});
-                  setFilterByCode("");
+                  setSearchParams({ article: filterByCode });
                 }}
               />
-            )}
-          </StyledInputWrp>
-        )}
-        <StyledTitle>
-          {updatedProductList.length !== 0 && !query && !article
-            ? "Каталог товарів"
-            : "Результати пошуку"}
-        </StyledTitle>
-        {!isLoggedIn && (
-          <BtnWrp>
-            <MainButton
-              buttonType="filter"
-              onClick={!query ? () => openModal() : () => setSearchParams({})}
-            >
-              {!query && <FiFilter size={"1.5em"} />}
-              {query ? `${query}` : "Фільтрувати"}
-              {query && <RxCrossCircled />}
-            </MainButton>
-          </BtnWrp>
-        )}
-        {updatedProductList.length !== 0 ? (
-          <ProductList
-            productsList={updatedProductList}
-            onOpen={openModalDelete}
-          />
-        ) : (
-          <NotFound
-            message={
-              query || article
-                ? "Упс... На жаль, за вашим запитом нічого не знайдено"
-                : "Товари відсутні"
-            }
-          />
-        )}
-        {pageQty > 1 && (
-          <Paginator
-            pageQty={pageQty}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-            array={updatedProductList}
-          />
-        )}
-      </StyledFragment>
+
+              <StyledInput
+                type="text"
+                placeholder="Пошук"
+                value={filterByCode}
+                onChange={handleChangeFilterByCode}
+                onKeyDown={handleEnterPress}
+              />
+              {filterByCode && (
+                <StyledBtnDeleteSearch
+                  onClick={() => {
+                    setSearchParams({});
+                    setFilterByCode("");
+                  }}
+                />
+              )}
+            </StyledInputWrp>
+          )}
+          <StyledTitle>
+            {updatedProductList.length !== 0 && !query && !article
+              ? "Каталог товарів"
+              : "Результати пошуку"}
+          </StyledTitle>
+          {!isLoggedIn && (
+            <BtnWrp>
+              <MainButton
+                buttonType="filter"
+                onClick={!query ? () => openModal() : () => setSearchParams({})}
+              >
+                {!query && <FiFilter size={"1.5em"} />}
+                {query ? `${query}` : "Фільтрувати"}
+                {query && <RxCrossCircled />}
+              </MainButton>
+            </BtnWrp>
+          )}
+          {updatedProductList.length !== 0 ? (
+            <ProductList
+              productsList={updatedProductList}
+              onOpen={openModalDelete}
+            />
+          ) : (
+            <NotFound
+              message={
+                query || article
+                  ? "Упс... На жаль, за вашим запитом нічого не знайдено"
+                  : "Товари відсутні"
+              }
+            />
+          )}
+          {pageQty > 1 && (
+            <Paginator
+              pageQty={pageQty}
+              pageNumber={pageNumber}
+              setPageNumber={setPageNumber}
+              array={updatedProductList}
+            />
+          )}
+        </StyledFragment>
+      )}
     </Container>
   );
 };
