@@ -8,6 +8,7 @@ import {
 } from "../../redux/Catalog/catalogOperations";
 import {
   getAllCatalogs,
+  getLoadingCatalogs,
   getTotalItemsCatalogs,
 } from "../../redux/Catalog/catalogSelectors";
 import {
@@ -27,6 +28,7 @@ import { useSearchParams } from "react-router-dom";
 import Paginator from "../../components/Pagination/Pagination";
 import NotFound from "../../components/NotFound/NotFound";
 import Container from "../../components/Container/Container";
+import Spinner from "../../components/Spinner/Spinner";
 
 const PreorderCataloguePage = () => {
   const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
@@ -46,6 +48,7 @@ const PreorderCataloguePage = () => {
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
   const { isMobile, isTablet } = useMediaRules();
+  const isLoading = useSelector(getLoadingCatalogs)
 
   useEffect(() => {
     let newPerPage = 8;
@@ -128,82 +131,83 @@ const PreorderCataloguePage = () => {
 
   return (
     <Container>
+     {isLoading? <Spinner/> :
       <STyledContainer>
-        <StyledDiv>
-          {isLoggedIn && (
-            <StyledInputWrp>
-              <StyledBtnSearch
-                onClick={() => setSearchParams({ catalogName: filter })}
+      <StyledDiv>
+        {isLoggedIn && (
+          <StyledInputWrp>
+            <StyledBtnSearch
+              onClick={() => setSearchParams({ catalogName: filter })}
+            >
+              <AiOutlineSearch size={"1.8em"} />
+            </StyledBtnSearch>
+            <StyledInput
+              type="text"
+              placeholder="Пошук"
+              value={filter}
+              onChange={handleFilterCatalog}
+              onKeyDown={handleEnterPress}
+            />
+            {filter && (
+              <StyledBtnDeleteSearch
+                onClick={() => {
+                  setSearchParams({});
+                  setFilter("");
+                }}
               >
-                <AiOutlineSearch size={"1.8em"} />
-              </StyledBtnSearch>
-              <StyledInput
-                type="text"
-                placeholder="Пошук"
-                value={filter}
-                onChange={handleFilterCatalog}
-                onKeyDown={handleEnterPress}
-              />
-              {filter && (
-                <StyledBtnDeleteSearch
-                  onClick={() => {
-                    setSearchParams({});
-                    setFilter("");
-                  }}
-                >
-                  <RxCrossCircled size={"1.5em"} />
-                </StyledBtnDeleteSearch>
-              )}
-            </StyledInputWrp>
-          )}
-        </StyledDiv>
-        <StyledH2>
-          {fetchedCatalogsList.length !== 0 && !filter
-            ? "Каталоги для передзамовлення"
-            : "Результати пошуку"}
-        </StyledH2>
-        {catalogsList.length !== 0 ? (
-          <CatalogsList
-            catalogsList={fetchedCatalogsList}
-            onDelete={handleDeleteCatalog}
-            onOpenModal={openModal}
-            closeModal={closeModal}
-          />
-        ) : (
-          <NotFound
-            message={
-              filter
-                ? "Упс... На жаль, за вашим запитом нічого не знайдено"
-                : "Відсутні каталоги для передзамовлення"
-            }
-          />
+                <RxCrossCircled size={"1.5em"} />
+              </StyledBtnDeleteSearch>
+            )}
+          </StyledInputWrp>
         )}
-        {showModal && (
-          <Modal
-            color="red"
-            numberOfButtons={2}
-            title="Ви певні, що хочете видалити каталог?"
-            empTitle={`${catalogName}   ${catalogYear}`}
-            onCloseModal={closeModal}
-            onConfirmation={handleDelete}
-          />
-        )}
-        {modalDeleteSuccessOpen && (
-          <Modal
-            color="red"
-            title="Картка каталогу успішно видалена!"
-            onCloseModal={closeModal}
-          />
-        )}
-        {pageQty > 1 && (
-          <Paginator
-            pageQty={pageQty}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-            array={fetchedCatalogsList}
-          />
-        )}
-      </STyledContainer>
+      </StyledDiv>
+      <StyledH2>
+        {fetchedCatalogsList.length !== 0 && !filter
+          ? "Каталоги для передзамовлення"
+          : "Результати пошуку"}
+      </StyledH2>
+      {catalogsList.length !== 0 ? (
+        <CatalogsList
+          catalogsList={fetchedCatalogsList}
+          onDelete={handleDeleteCatalog}
+          onOpenModal={openModal}
+          closeModal={closeModal}
+        />
+      ) : (
+        <NotFound
+          message={
+            filter
+              ? "Упс... На жаль, за вашим запитом нічого не знайдено"
+              : "Відсутні каталоги для передзамовлення"
+          }
+        />
+      )}
+      {showModal && (
+        <Modal
+          color="red"
+          numberOfButtons={2}
+          title="Ви певні, що хочете видалити каталог?"
+          empTitle={`${catalogName}   ${catalogYear}`}
+          onCloseModal={closeModal}
+          onConfirmation={handleDelete}
+        />
+      )}
+      {modalDeleteSuccessOpen && (
+        <Modal
+          color="red"
+          title="Картка каталогу успішно видалена!"
+          onCloseModal={closeModal}
+        />
+      )}
+      {pageQty > 1 && (
+        <Paginator
+          pageQty={pageQty}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          array={fetchedCatalogsList}
+        />
+      )}
+    </STyledContainer>}
     </Container>
   );
 };
