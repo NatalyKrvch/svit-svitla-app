@@ -135,3 +135,18 @@ border: none;
 outline: none;
 cursor: pointer;
 `
+
+export const ButtonWrapper = styled.div`
+  width: 328px;
+  margin-top: 24px;
+
+  @media screen and (min-width: 768px) {
+    width: 365px;
+    margin-top: 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 373px;
+    margin-top: 48px;
+  }
+`
