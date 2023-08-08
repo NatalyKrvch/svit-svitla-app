@@ -1,6 +1,7 @@
 import { TbDownload } from "react-icons/tb";
 import QRCode from "react-qr-code";
 import {
+  ButtonWrapper,
   StyledArticle,
   StyledButton,
   StyledContainer,
@@ -17,9 +18,12 @@ import { getCurrentProduct } from "../../redux/Product/productSelectors";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import * as htmlToImage from "html-to-image";
 import Container from "../../components/Container/Container";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
+import { useNavigate } from "react-router-dom";
 
 const QrCodeGeneration = () => {
   const { productName, productCode, _id } = useSelector(getCurrentProduct);
+  const navigate = useNavigate();
 
   const { isMobile } = useMediaRules();
 
@@ -62,7 +66,7 @@ const QrCodeGeneration = () => {
           <StyledQrCodeWrp id="qrCodeWrapper">
             <QRCode
               id="qrCode"
-              value={`https://green-coast-060de9f03.3.azurestaticapps.net/productcard/${_id}`}
+              value={`https://svit-svitla.com/productcard/${_id}`}
               size={isMobile ? 128 : 624}
               fgColor="#000000"
               bgColor="#ffffff"
@@ -71,6 +75,11 @@ const QrCodeGeneration = () => {
             />
           </StyledQrCodeWrp>
         </StyledWrpUpQrCode>
+        <ButtonWrapper>
+          <MainButton onClick={() => navigate(`/productcard/${_id}`)}>
+          Переглянути картку товару
+          </MainButton>
+        </ButtonWrapper>
       </StyledContainer>
     </Container>
   );
