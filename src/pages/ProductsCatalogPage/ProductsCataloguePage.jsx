@@ -43,7 +43,7 @@ const ProductsCataloguePage = () => {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [productCode, setProductCode] = useState("");
   const [productId, setProductId] = useState("");
-  const [updatedProductList, setUpdatedProductList] = useState([]);
+  // const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
@@ -77,7 +77,7 @@ const ProductsCataloguePage = () => {
         filter: query,
       })
     );
-  }, [pageNumber, article, query, updatedProductList.length, perPage]);
+  }, [pageNumber, article, query, products.length, perPage]);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
@@ -88,8 +88,8 @@ const ProductsCataloguePage = () => {
   useEffect(() => {
     const calculatedPageQty = Math.ceil(totalProducts / perPage);
     setPageQty(calculatedPageQty);
-    setUpdatedProductList(products);
-  }, [products, totalProducts, perPage]);
+    // setUpdatedProductList(products);
+  }, [totalProducts, perPage]);
 
   const openModal = () => {
     setShowModalFilter(true);
@@ -119,9 +119,9 @@ const ProductsCataloguePage = () => {
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
   const handleDelete = () => {
-    const updatedList = updatedProductList.filter((el) => el._id !== productId);
+    // const updatedList = updatedProductList.filter((el) => el._id !== productId);
     dispatch(removeProduct(productId));
-    setUpdatedProductList(updatedList);
+    // setUpdatedProductList(updatedList);
     closeModalDelete();
   };
 
@@ -177,7 +177,7 @@ const ProductsCataloguePage = () => {
             </StyledInputWrp>
           )}
           <StyledTitle>
-            {updatedProductList.length !== 0 && !query && !article
+            {products.length !== 0 && !query && !article
               ? "Каталог товарів"
               : "Результати пошуку"}
           </StyledTitle>
@@ -193,9 +193,9 @@ const ProductsCataloguePage = () => {
               </MainButton>
             </BtnWrp>
           )}
-          {updatedProductList.length !== 0 ? (
+          {products.length !== 0 ? (
             <ProductList
-              productsList={updatedProductList}
+              productsList={products}
               onOpen={openModalDelete}
             />
           ) : (
@@ -212,7 +212,7 @@ const ProductsCataloguePage = () => {
               pageQty={pageQty}
               pageNumber={pageNumber}
               setPageNumber={setPageNumber}
-              array={updatedProductList}
+              array={products}
             />
           )}
         </StyledFragment>
