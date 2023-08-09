@@ -9,15 +9,18 @@ export const Wrapper = styled.div`
 export const Main = styled.main`
     flex: 1;  
     display: flex;
+    padding-top: 40px;
     /* padding: 40px 16px;
-    position: relative;
+    position: relative; */
     
 
     @media screen and (min-width: 768px) {
-        padding: 64px 44px;
+        padding-top: 64px;
+        /* padding: 64px 44px; */
     }
 
   @media screen and (min-width: 1280px) {
-        padding: 72px 136px;
-    } */
+    padding-top: 72px;
+        /* padding: 72px 136px; */
+    }
 `
