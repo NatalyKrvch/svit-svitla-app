@@ -58,7 +58,6 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.currentProduct = payload;
-        console.log(state.currentProduct);
         state.isModalOpen = true;
         state.products.push(payload);
       })
@@ -74,7 +73,6 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.currentProduct = payload;
-        console.log(state.currentProduct);
         state.isModalOpen = true;
         state.products = state.products.map((obj) => {
           if (obj._id !== payload._id) return payload;
