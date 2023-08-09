@@ -1,26 +1,24 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 export const Main = styled.main`
-    flex: 1;  
-    display: flex;
-    padding-top: 40px;
-    /* padding: 40px 16px;
-    position: relative; */
-    
+  flex: 1;
+  display: flex;
+  padding-top: 40px;
+  padding-bottom: 32px;
 
-    @media screen and (min-width: 768px) {
-        padding-top: 64px;
-        /* padding: 64px 44px; */
-    }
+  @media screen and (min-width: 768px) {
+    padding-top: 64px;
+    padding-bottom: 48px;
+  }
 
   @media screen and (min-width: 1280px) {
     padding-top: 72px;
-        /* padding: 72px 136px; */
-    }
-`
+    padding-bottom: 56px;
+  }
+`;
