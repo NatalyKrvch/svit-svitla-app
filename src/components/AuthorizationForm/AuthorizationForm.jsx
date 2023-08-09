@@ -14,7 +14,8 @@ import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/Auth/authOperations";
 import MainButton from "../Buttons/MainButton/MainButton";
-import { Button } from "@mui/material";
+import TitleMain from "../TitleMain/TitleMain";
+
 
 const AuthorizationForm = () => {
   const [login, setLogin] = useState("");
@@ -57,9 +58,7 @@ const AuthorizationForm = () => {
 
   return (
     <StyledFragment>
-      <TitleWrp>
-        <StyledTitle>Авторизуйтесь</StyledTitle>
-      </TitleWrp>
+     <TitleMain text="Авторизуйтесь"/>
       <StyledForm onSubmit={onSubmitForm}>
         <StyledInputWrapper>
           <StyledLabel htmlFor="login">Логін</StyledLabel>

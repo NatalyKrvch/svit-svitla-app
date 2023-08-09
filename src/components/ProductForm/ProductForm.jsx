@@ -41,7 +41,6 @@ const ProductForm = ({ openModal }) => {
   const [productImagesUrl, setProductImagesUrl] = useState([]);
   const [category, setCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-   console.log(category);
   const dispatch = useDispatch();
 
   const handleProductNameChange = (event) => {
