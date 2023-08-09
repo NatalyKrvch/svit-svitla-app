@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 
-export const CardWrp = styled.div`
+export const CardWrp = styled.li`
   display: flex;
   flex-direction: column;
   width: 156px;
