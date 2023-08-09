@@ -20,6 +20,7 @@ import * as htmlToImage from "html-to-image";
 import Container from "../../components/Container/Container";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
 import { useNavigate } from "react-router-dom";
+import TitleMain from "../../components/TitleMain/TitleMain";
 
 const QrCodeGeneration = () => {
   const { productName, productCode, _id } = useSelector(getCurrentProduct);
@@ -49,9 +50,7 @@ const QrCodeGeneration = () => {
   return (
     <Container>
       <StyledContainer>
-        <StyledTitleWrp>
-          <StyledTitle>QR code товару</StyledTitle>
-        </StyledTitleWrp>
+        <TitleMain text="QR code товару"/>
         <StyledTextWrp>
           <div>
             <StyledProductName>{productName}</StyledProductName>

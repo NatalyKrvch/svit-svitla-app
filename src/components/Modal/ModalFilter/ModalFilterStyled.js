@@ -17,7 +17,7 @@ export const Overlay = styled.div`
 
 export const ModalBody = styled.div`
   position: relative;
-  max-width: 320px;
+  width: 320px;
   max-height: 80vh;
   overflow-y: auto;
   padding: 64px 20px 16px 20px;
@@ -32,7 +32,7 @@ export const ModalBody = styled.div`
   border-radius: 8px;
 
   @media screen and (min-width: 768px) {
-    max-width: 494px;
+    width: 494px;
     padding: 80px 16px 16px 16px;
   }
 `;

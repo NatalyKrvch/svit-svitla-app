@@ -14,7 +14,6 @@ const Paginator = ({ pageQty, pageNumber, setPageNumber, array }) => {
   };
 
   useEffect(() => {
-    console.log(array);
     if (pageNumber > 1 && array.length === 0) {
       setPageNumber(1);
     }

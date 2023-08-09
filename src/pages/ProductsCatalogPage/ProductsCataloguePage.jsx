@@ -43,7 +43,6 @@ const ProductsCataloguePage = () => {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [productCode, setProductCode] = useState("");
   const [productId, setProductId] = useState("");
-  // const [updatedProductList, setUpdatedProductList] = useState([]);
   const [filterByCode, setFilterByCode] = useState("");
   const { isMobile, isTablet } = useMediaRules();
   const dispatch = useDispatch();
@@ -88,7 +87,6 @@ const ProductsCataloguePage = () => {
   useEffect(() => {
     const calculatedPageQty = Math.ceil(totalProducts / perPage);
     setPageQty(calculatedPageQty);
-    // setUpdatedProductList(products);
   }, [totalProducts, perPage]);
 
   const openModal = () => {
@@ -119,9 +117,7 @@ const ProductsCataloguePage = () => {
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
   const handleDelete = () => {
-    // const updatedList = updatedProductList.filter((el) => el._id !== productId);
     dispatch(removeProduct(productId));
-    // setUpdatedProductList(updatedList);
     closeModalDelete();
   };
 

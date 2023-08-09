@@ -41,7 +41,7 @@ const AddCharacteristicInputs = ({
                   id={id + "priceName"}
                   name="name"
                   type="text"
-                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s()]*"
+                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s\(\)]*"
                   title="Пожалуйста, введите только буквы"
                   value={name}
                   onChange={handleChange}
@@ -81,45 +81,3 @@ const AddCharacteristicInputs = ({
 
 export default AddCharacteristicInputs;
 
-// <>
-//   <StyledInputWrapper>
-//     <StyledLabel htmlFor={id + "priceName"}>
-//       Назва характеристики
-//     </StyledLabel>
-//     <StyledInput
-//       id={id + "priceName"}
-//       type="text"
-//       pattern="[A-Za-z]+"
-//       title="Пожалуйста, введите только буквы"
-//       value={characteristicNamesInput}
-//       onChange={handleCharacteristicNameChange}
-//     />
-//     <StyledButton
-//       type="button "
-//       onClick={() => {
-//         onDelete(id);
-//       }}
-//     >
-//       <BiMinusCircle size={"1.8em"} />
-//     </StyledButton>
-//   </StyledInputWrapper>
-//   <StyledInputWrapper>
-//     <StyledLabel htmlFor={id + "price"}>Характеристика</StyledLabel>
-//     <StyledInput
-//       id={id + "price"}
-//       type="text"
-//       pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-//       title="Характеристика може включати тільки літери, апостроф, тире "
-//       value={characteristicValuesInput}
-//       onChange={handleCharacteristicValueChange}
-//     />
-//     <StyledButton
-//       type="button "
-//       onClick={() => {
-//         onDelete(id);
-//       }}
-//     >
-//       <BiMinusCircle size={"1.8em"} />
-//     </StyledButton>
-//   </StyledInputWrapper>
-// </>
