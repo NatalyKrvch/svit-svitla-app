@@ -57,6 +57,9 @@ export const StyledP = styled.p`
   line-height: 1.5;
   letter-spacing: -0.4px;
   flex-grow: 1;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
 
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -140,62 +143,3 @@ export const StyledBtnDownload = styled.button`
   }
 `;
 
-
-// export const StyledBtnEdit = styled(RiPencilLine)`
-//   width: 24px;
-//   height: 24px;
-//   display: flex;
-//   align-items: flex-start;
-//   border: none;
-//   background-color: transparent;
-//   outline: none;
-//   cursor: pointer;
-//   transition: 200ms ease;
-//   -webkit-tap-highlight-color: transparent;
-
-//   &:hover  {
-//     fill: rgba(0, 0, 0, 0.6);
-//   }
-
-//   &:active {
-//     fill: var(--brand-blue);
-//   }
-
-//   @media screen and (min-width: 769px) {
-//   }
-
-//   @media screen and (min-width: 1281px) {
-//     /* align-items: center; */
-//     margin-top: 12px;
-//   }
-// `;
-
-
-// export const StyledBtnDelete= styled(RiDeleteBin6Line)`
-//   width: 24px;
-//   height: 24px;
-//   display: flex;
-//   align-items: flex-start;
-//   border: none;
-//   background-color: transparent;
-//   outline: none;
-//   cursor: pointer;
-//   transition: 200ms ease;
-//   -webkit-tap-highlight-color: transparent;
-
-//   &:hover  {
-//     fill: rgba(0, 0, 0, 0.6);
-//   }
-
-//   &:active {
-//     fill: var(--brand-blue);
-//   }
-
-//   @media screen and (min-width: 769px) {
-//   }
-
-//   @media screen and (min-width: 1281px) {
-//     /* align-items: center; */
-//     margin-top: 12px;
-//   }
-// `;
