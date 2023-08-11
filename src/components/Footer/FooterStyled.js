@@ -81,7 +81,7 @@ export const InformationContainer = styled.div`
     }
 `
 export const GridContainer = styled.div`
-margin-left: 40px;
+    margin-left: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
