@@ -4,10 +4,6 @@ import PropTypes from "prop-types";
 import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
 
 function MenuHeader(props) {
-  MenuHeader.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
-  };
-  
   const { isLoggedIn, setLogoutModalOpen } = props;
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
 
@@ -31,5 +27,9 @@ function MenuHeader(props) {
     </>
   );
 }
+
+MenuHeader.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default MenuHeader;
