@@ -2,20 +2,22 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
 width: 360px;
-padding-top: 40px;
+/* padding-top: 40px;
 padding-left: 16px;
-padding-right: 16px;
-padding-bottom: 77px;
-margin-left: auto;
-margin-right: auto;
+padding-right: 16px; */
+/* padding-bottom: 77px; */
+/* margin-left: auto;
+margin-right: auto; */
 
   @media screen and (min-width: 768px) {
-    width: 495px;
-    margin-left: 40px;
+    /* width: 495px;
+    margin-left: 40px; */
+    margin-top: 42px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 572px;
+    /* width: 572px; */
+    margin-top: 48px;
   }
 
 `
@@ -96,7 +98,7 @@ export const StyledWrpUpQrCode = styled.div`
 width: 320px;
 height: 250px;
 padding: 32px 67px;
-margin: 32px auto auto auto;
+margin-top: 32px;
 border-radius: 8px;
 box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
 
@@ -104,7 +106,7 @@ box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0
     width: 495px;
     height: 388px;
     padding: 90px 156px;
-    margin-left: 0;
+    
   }
 
     @media screen and (min-width: 1280px) {
