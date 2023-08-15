@@ -1,22 +1,22 @@
 import styled from "styled-components"; 
 
 export const StyledContainer = styled.div`
-width: 360px;
+width: 328px;
 /* padding-top: 40px;
 padding-left: 16px;
 padding-right: 16px; */
 /* padding-bottom: 77px; */
-/* margin-left: auto;
-margin-right: auto; */
+margin-left: auto;
+margin-right: auto;
 
   @media screen and (min-width: 768px) {
-    /* width: 495px;
-    margin-left: 40px; */
+    width: 750px;
+    margin-left: 0;
     margin-top: 42px;
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 572px; */
+    width:1168px;
     margin-top: 48px;
   }
 

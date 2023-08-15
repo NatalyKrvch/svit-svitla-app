@@ -4,7 +4,7 @@ export const ContainerWrapper = styled.div`
   /* flex: 1; */
   padding: 40px 16px;
   position: relative;
-  display: flex;
+  /* display: flex; */
   /* align-items: center;  */
   justify-content: center;
 
