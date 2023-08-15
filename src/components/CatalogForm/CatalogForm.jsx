@@ -39,12 +39,20 @@ const CatalogForm = ({ openModal }) => {
   };
 
   const handleCatalogNameChange = (event) => {
-    setCatalogName(event.target.value);
-  };
+    const inputValue = event.target.value;
+    if (inputValue.trim() === "") {
+      setCatalogName("");
+    } else {
+    setCatalogName(inputValue);
+    }};
 
   const handleYearChange = (event) => {
-    setYear(event.target.value);
-  };
+    const inputValue = event.target.value;
+    if (inputValue.trim() === "") {
+      setYear("");
+    } else {
+    setYear(inputValue);
+  }};
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
