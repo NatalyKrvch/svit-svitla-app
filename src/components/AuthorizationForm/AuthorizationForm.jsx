@@ -57,8 +57,8 @@ const AuthorizationForm = () => {
 
 
   return (
-    <StyledFragment>
-     <TitleMain text="Авторизуйтесь"/>
+    <>
+      <TitleMain text="Авторизуйтесь"/>
       <StyledForm onSubmit={onSubmitForm}>
         <StyledInputWrapper>
           <StyledLabel htmlFor="login">Логін</StyledLabel>
@@ -98,7 +98,7 @@ const AuthorizationForm = () => {
           <MainButton type="submit">Увійти</MainButton>
         </ButtonWrapper>
       </StyledForm>
-    </StyledFragment>
+    </>
   );
 };
 

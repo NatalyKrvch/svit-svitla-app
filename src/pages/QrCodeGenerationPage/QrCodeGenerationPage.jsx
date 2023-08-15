@@ -49,8 +49,8 @@ const QrCodeGeneration = () => {
 
   return (
     <Container>
+      <TitleMain text="QR code товару" />
       <StyledContainer>
-        <TitleMain text="QR code товару"/>
         <StyledTextWrp>
           <div>
             <StyledProductName>{productName}</StyledProductName>
@@ -76,7 +76,7 @@ const QrCodeGeneration = () => {
         </StyledWrpUpQrCode>
         <ButtonWrapper>
           <MainButton onClick={() => navigate(`/productcard/${_id}`)}>
-          Переглянути картку товару
+            Переглянути картку товару
           </MainButton>
         </ButtonWrapper>
       </StyledContainer>
