@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getProductsAPI,
   addProductAPI,
@@ -51,8 +51,7 @@ export const removeProduct = createAsyncThunk(
 
 export const changeProduct = createAsyncThunk(
   "products/changeProduct",
-  async ({id, body}, thunkAPI) => {
-    console.log(id, body);
+  async ({ id, body }, thunkAPI) => {
     try {
       const data = await changeProductAPI(id, body);
       return data;
@@ -63,13 +62,13 @@ export const changeProduct = createAsyncThunk(
 );
 
 export const getProductById = createAsyncThunk(
-  'products/getProductById',
-  async (id, { rejectWithValue }) => { 
-    console.log("OPERATION by ID");
+  "products/getProductById",
+  async ({ id, navigate }, { rejectWithValue }) => {
     try {
       const data = await getProductByIdAPI(id);
       return data;
     } catch (error) {
+      navigate("/notFound")
       return rejectWithValue(error.message);
     }
   }

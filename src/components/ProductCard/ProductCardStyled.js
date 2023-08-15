@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardWrp = styled.div`
+export const CardWrp = styled.li`
   display: flex;
   flex-direction: column;
   width: 156px;

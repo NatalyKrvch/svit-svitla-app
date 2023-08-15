@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCharacteristics from "../../components/ProductsCharacteristics/ProductCharacteristics";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
 import { getCurrentProduct, getLoadingProducts } from "../../redux/Product/productSelectors";
 import Carousel from "../../components/Carousel/Carousel";
@@ -21,13 +21,14 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 const ProductCardPage = () => {
   const [currentURL, setCurrentURL] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentProduct = useSelector(getCurrentProduct);
   const { isDesktop } = useMediaRules();
   const isLoading = useSelector(getLoadingProducts);
 
   useEffect(() => {
-    dispatch(getProductById(id));
+    dispatch(getProductById({ id, navigate }));
     setCurrentURL(window.location.href);
   }, []);
 

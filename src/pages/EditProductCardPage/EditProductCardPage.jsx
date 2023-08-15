@@ -147,9 +147,10 @@ const EditProductCard = () => {
   const onOpenModal = () => {
     setShowModal(true);
   };
-
+  
   const onCloseModal = () => {
     setShowModal(false);
+    dispatch(setModalOpen(false));
     navigate("/");
   };
 

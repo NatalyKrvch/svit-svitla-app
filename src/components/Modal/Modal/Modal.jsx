@@ -1,6 +1,6 @@
 import { GrClose } from "react-icons/gr";
-import lampYellow from "../../../images/Popup/lamp-yellow@1x.png";
-import lampRed from "../../../images/Popup/lamp-red@1x.png";
+import lampYellow from "../../../images/Popup/lamp-yellow.svg";
+import lampRed from "../../../images/Popup/lamp-red.svg";
 
 import {
   BtnWrapper,
