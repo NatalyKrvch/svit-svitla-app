@@ -90,7 +90,7 @@ export const StyledInputWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    width: 495px;
+    max-width: 495px;
   }
 
   @media screen and (min-width: 1280px) {
