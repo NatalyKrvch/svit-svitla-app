@@ -339,6 +339,7 @@ const EditProductCard = () => {
               type="text"
               pattern="^\d+(\.\d{1,2})?$"
               title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
+              maxLength={9}
               required
               value={price}
               onChange={handlePriceChange}

@@ -77,8 +77,8 @@ export const StyledProductName = styled.div`
   line-height: 1.2;
   letter-spacing: -0.4px;
   flex-grow: 1;
-  white-space: nowrap; 
-  overflow: hidden; 
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -90,16 +90,22 @@ export const StyledProductName = styled.div`
 `;
 
 export const StyledP = styled.p`
+width: 156px;
   font-size: 16px;
   line-height: 1, 5;
   letter-spacing: -0.4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @media screen and (min-width: 769px) {
+     width: 235px;
   }
 
   @media screen and (min-width: 1281px) {
     font-size: 20px;
     line-height: 1.5;
+     width: 274px;
   }
 `;
 
