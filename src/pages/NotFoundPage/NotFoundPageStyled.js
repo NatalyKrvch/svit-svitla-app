@@ -17,7 +17,7 @@ export const PageWrapper = styled.div`
 export const ImgWrapper = styled.div`
   width: 100%;
   background-color: var(--main-black);
-
+  padding-top: 96px;
 `;
 export const ImgStyled = styled.img`
   width: 100%;
