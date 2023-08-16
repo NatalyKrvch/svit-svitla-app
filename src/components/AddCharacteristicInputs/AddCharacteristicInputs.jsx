@@ -45,6 +45,7 @@ const AddCharacteristicInputs = ({
                   title="Пожалуйста, введите только буквы"
                   value={name}
                   onChange={handleChange}
+                  required
                 />
                 <StyledButton
                   onClick={() => {
@@ -64,6 +65,7 @@ const AddCharacteristicInputs = ({
                   title="Характеристика може включати тільки літери українського чи англійського алфавіту, цифри та тире "
                   value={value}
                   onChange={handleChange}
+                  required
                 />
                 <StyledButton
                   

@@ -44,15 +44,28 @@ const ProductForm = ({ openModal }) => {
   const dispatch = useDispatch();
 
   const handleProductNameChange = (event) => {
-    setProductName(event.target.value);
+    const inputValue = event.target.value;
+   if (inputValue.trim() === "") {
+    setProductName("");
+  } else {
+    setProductName(inputValue);
+  }
   };
 
   const handleProductCodeChange = (event) => {
-    setProductCode(event.target.value);
+    const inputValue = event.target.value;
+    if(inputValue.trim() === ""){
+      setProductCode("");
+    }
+    setProductCode(inputValue);
   };
 
   const handlePriceChange = (event) => {
-    setPrice(event.target.value);
+    const inputValue = event.target.value;
+    if(inputValue.trim() === ""){
+      setPrice("");
+    }
+    setPrice(inputValue);
   };
 
   const handleManufacturerCountryChange = (event) => {
@@ -167,6 +180,7 @@ const ProductForm = ({ openModal }) => {
           type="text"
           pattern="^\d+(\.\d{1,2})?$"   ///^\d+(\.\d{1,2})?$/
           title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
+          maxLength={9}
           required
           value={price}
           onChange={handlePriceChange}

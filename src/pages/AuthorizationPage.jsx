@@ -6,6 +6,7 @@ import { isModalOpen } from "../redux/Auth/authSelectors";
 import { setModalOpen } from "../redux/Auth/authReducer";
 import Container from "../components/Container/Container";
 
+
 function Authorization() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

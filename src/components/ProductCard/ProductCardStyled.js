@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 
 export const CardWrp = styled.li`
   display: flex;
@@ -23,7 +22,7 @@ export const ButtonWrapper = styled.div`
   & > button {
     height: 48px;
   }
-`
+`;
 
 export const ImgWrp = styled.div`
   cursor: pointer;
@@ -33,7 +32,7 @@ export const ImgWrp = styled.div`
   transition: 400ms ease;
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: var(--box-shadow);
   }
 `;
@@ -73,23 +72,40 @@ export const StyledTextWrapper = styled.div`
 `;
 
 export const StyledProductName = styled.div`
+  width: 156px;
   font-size: 24px;
   line-height: 1.2;
   letter-spacing: -0.4px;
   flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @media screen and (min-width: 769px) {
+    width: 235px;
+  }
+
+  @media screen and (min-width: 1281px) {
+    width: 274px;
+  }
 `;
 
 export const StyledP = styled.p`
+width: 156px;
   font-size: 16px;
   line-height: 1, 5;
   letter-spacing: -0.4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @media screen and (min-width: 769px) {
+     width: 235px;
   }
 
   @media screen and (min-width: 1281px) {
     font-size: 20px;
     line-height: 1.5;
+     width: 274px;
   }
 `;
 
@@ -185,7 +201,6 @@ export const StyledBtn = styled.button`
 //     margin-top: 12px;
 //   }
 // `;
-
 
 // export const StyledBtnDelete= styled(RiDeleteBin6Line)`
 //   width: 24px;

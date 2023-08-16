@@ -3,7 +3,10 @@ import ProductCharacteristics from "../../components/ProductsCharacteristics/Pro
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
-import { getCurrentProduct, getLoadingProducts } from "../../redux/Product/productSelectors";
+import {
+  getCurrentProduct,
+  getLoadingProducts,
+} from "../../redux/Product/productSelectors";
 import Carousel from "../../components/Carousel/Carousel";
 import {
   PageWrapper,
@@ -17,6 +20,7 @@ import {
 import ShareButton from "../../components/Buttons/ShareButton/ShareButton";
 import Container from "../../components/Container/Container";
 import { useMediaRules } from "../../hooks/useMediaRules";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ProductCardPage = () => {
   const [currentURL, setCurrentURL] = useState("");
@@ -33,7 +37,7 @@ const ProductCardPage = () => {
   }, []);
 
   if (currentProduct === null) return;
- 
+
   const allImgsURL = [
     currentProduct.productCoverURL,
     ...currentProduct.productPhotoURL,
@@ -45,32 +49,36 @@ const ProductCardPage = () => {
 
   return (
     <Container>
-     {!isLoading &&  <PageWrapper>
-        <TitleWrapper>
-          <Title>
-            <StyledH1>{productName}</StyledH1>
-            <StyledP>Артикул: {productCode}</StyledP>
-          </Title>
-          {!isDesktop && (
-            <ShareButton
-              title={productName}
-              text={textForShare}
-              url={currentURL}
-            />
-          )}
-        </TitleWrapper>
-        <ContentWrapper>
-          <Carousel images={allImgsURL} />
-          <CharacteristicsWrapper>
-            <ProductCharacteristics
-              price={currentProduct.productPrice}
-              manufacturerCountry={currentProduct.productCountry}
-              characteristicArray={currentProduct.additionalAttributes}
-              productCategory={currentProduct.productCategory}
-            />
-          </CharacteristicsWrapper>
-        </ContentWrapper>
-      </PageWrapper>}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <PageWrapper>
+          <TitleWrapper>
+            <Title>
+              <StyledH1>{productName}</StyledH1>
+              <StyledP>Артикул: {productCode}</StyledP>
+            </Title>
+            {!isDesktop && (
+              <ShareButton
+                title={productName}
+                text={textForShare}
+                url={currentURL}
+              />
+            )}
+          </TitleWrapper>
+          <ContentWrapper>
+            <Carousel images={allImgsURL} />
+            <CharacteristicsWrapper>
+              <ProductCharacteristics
+                price={currentProduct.productPrice}
+                manufacturerCountry={currentProduct.productCountry}
+                characteristicArray={currentProduct.additionalAttributes}
+                productCategory={currentProduct.productCategory}
+              />
+            </CharacteristicsWrapper>
+          </ContentWrapper>
+        </PageWrapper>
+      )}
     </Container>
   );
 };

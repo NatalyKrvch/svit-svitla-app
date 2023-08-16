@@ -6,9 +6,12 @@ export const TitleWrp = styled.div`
   max-width: 320px;
   position: relative;
   border-bottom: 1px solid var(--middle-grey);
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
     max-width: 750px;
+    margin-left: 0;
   }
 
   @media screen and (min-width: 1280px) {
