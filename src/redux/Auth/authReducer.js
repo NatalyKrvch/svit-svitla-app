@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, logout, getCurrentUser } from "./authOperations";
+import { logIn, logout, updateToken } from "./authOperations";
 
 const pending = (state) => {
   state.isUserFetching = true;
@@ -36,8 +36,8 @@ export const authSlice = createSlice({
       .addCase(logIn.rejected, rejected)
       .addCase(logout.pending, pending)
       .addCase(logout.rejected, rejected)
-      .addCase(getCurrentUser.pending, pending)
-      .addCase(getCurrentUser.rejected, rejected)
+      .addCase(updateToken.pending, pending)
+      .addCase(updateToken.rejected, rejected)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.userData = {
           login: payload.login,
@@ -49,7 +49,9 @@ export const authSlice = createSlice({
         state.isUserFetching = false;
       })
       .addCase(logout.fulfilled, () => ({ ...initialState }))
-      .addCase(getCurrentUser.fulfilled, () => ({ ...initialState })),
+      .addCase(updateToken.fulfilled, (state, { payload }) => {
+        state.accessToken = payload.accessToken;
+      }),
 });
 
 export default authSlice.reducer;

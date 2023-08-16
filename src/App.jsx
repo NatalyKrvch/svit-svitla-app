@@ -1,7 +1,10 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect, useState } from "react";
 import Layout from "./pages/Layout/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { updateToken } from "./redux/Auth/authOperations";
+import { getIsLoggedIn, getUserId } from "./redux/Auth/authSelectors";
 const ProductsCataloguePage = lazy(() =>
   import("./pages/ProductsCatalogPage/ProductsCataloguePage")
 );
@@ -35,6 +38,12 @@ const CreateCardPage = lazy(() =>
 );
 
 function App() {
+  const dispatch = useDispatch();
+  const isLogined = useSelector(getIsLoggedIn);
+  const userId = useSelector(getUserId);
+  useEffect(() => {
+    isLogined && dispatch(updateToken(userId));
+  }, []);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
