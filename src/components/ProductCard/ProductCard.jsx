@@ -1,6 +1,8 @@
+import ProductImgPlug  from "../../images/ProductPlug/plug.jpg";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+
 import {
   CardWrp,
   ImgWrp,
@@ -26,7 +28,7 @@ const ProductCard = ({
   return (
     <CardWrp>
       <ImgWrp onClick={() => navigate(`/productcard/${_id}`)}>
-        <StyledImg src={productCoverURL} alt="Picture" />
+        <StyledImg src={productCoverURL ||  ProductImgPlug}  alt="Picture" />
       </ImgWrp>
 
       <StyledTextWrapper>
