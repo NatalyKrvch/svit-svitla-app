@@ -3,9 +3,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import {
-  getCurrentUserAPI,
   logInUserAPI,
   logOutUserAPI,
+  updateTokenAPI,
 } from "../../service/API/Auth&UserAPI";
 
 export const token = {
@@ -55,17 +55,17 @@ export const logout = createAsyncThunk(
   }
 );
 
-export const getCurrentUser = createAsyncThunk(
-  "auth/current",
+export const updateToken = createAsyncThunk(
+  "auth/updateToken",
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
-    const persistedAccessToken = state.auth.accessToken;
-    if (!persistedAccessToken) {
+    const persistedID = state.auth.userData.id;
+    if (!persistedID) {
       return rejectWithValue();
     }
-    token.set(persistedAccessToken);
     try {
-      const data = await getCurrentUserAPI();
+      const data = await updateTokenAPI(persistedID);
+      token.set(data.accessToken);
       return data;
     } catch (error) {
       return rejectWithValue(error);
