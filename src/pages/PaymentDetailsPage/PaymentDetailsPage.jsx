@@ -20,29 +20,21 @@ import { useMediaRules } from "../../hooks/useMediaRules";
 import Container from "../../components/Container/Container";
 
 const PaymentDetails = () => {
-  const ibanRef = useRef(null);
-  const bankRef = useRef(null);
-  const edrpouRef = useRef(null);
-  const fopRef = useRef(null);
-  const ipnRef = useRef(null);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const { isMobile , isTablet } = useMediaRules();
   const ibanText = `UA3932870400000260020\n54312944`;
   const bankText = `АТ КБ "ПРИВАТБАНК"\n(МФО 328704)`;
 
-  const copyText = (ref) => {
-    if (ref.current) {
-      ref.current.select();
-      navigator.clipboard
-        .writeText(ref.current.value)
+  const copyText = (text) => {
+      navigator.clipboard.writeText(text)
         .then(() => {
           Notiflix.Notify.success("Скопійовано у буфер обміну");
         })
         .catch((error) => {
           Notiflix.Notify.failure("Не вдалося скопіювати текст: ", error);
         });
-    }
-  };
+    };
+  
 
   return (
     <Container>
@@ -60,21 +52,16 @@ const PaymentDetails = () => {
               IBAN
             </StyledLabel>
             {!isLoggedIn && isMobile ? (
-              <StyledSpanIban ref={ibanRef} isLoggedIn={isLoggedIn}>
+              <StyledSpanIban isLoggedIn={isLoggedIn}>
                 {ibanText}
               </StyledSpanIban>
             ) : (
               <StyledInputIban
-                // id="name"
-                // type="text"
-                // value={"UA393287040000026002054312944"}
-                // readOnly
-                ref={ibanRef}
                 isLoggedIn={isLoggedIn}
               >{"UA393287040000026002054312944"}</StyledInputIban>
             )}
             {!isLoggedIn && (
-              <FakeButton onClick={() => copyText(ibanRef)}>
+              <FakeButton onClick={() => copyText( "UA393287040000026002054312944")}>
                 <FiCopy size={"1.5em"} />
               </FakeButton>
             )}
@@ -88,21 +75,16 @@ const PaymentDetails = () => {
               Банк
             </StyledLabel>
             {isMobile ? (
-              <StyledSpan ref={bankRef} isLoggedIn={isLoggedIn}>
+              <StyledSpan isLoggedIn={isLoggedIn}>
                 {bankText}
               </StyledSpan>
             ) : (
               <StyledInput
-                // id="name"
-                // type="text"
-                // value={`АТ КБ "ПРИВАТБАНК"(МФО 328704)`}
-                // readOnly
-                ref={bankRef}
                 isLoggedIn={isLoggedIn}
               >{`АТ КБ "ПРИВАТБАНК"(МФО 328704)`}</StyledInput>
             )}
             {!isLoggedIn && (
-              <FakeButton onClick={() => copyText(bankRef)}>
+              <FakeButton onClick={() => copyText(`АТ КБ "ПРИВАТБАНК"(МФО 328704)`)}>
                 <FiCopy size={"1.5em"} />
               </FakeButton>
             )}
@@ -112,15 +94,10 @@ const PaymentDetails = () => {
               ЕДРПОУ
             </StyledLabel>
             <StyledInput
-              // id="name"
-              // type="text"
-              // value={"38935167"}
-              // readOnly
-              ref={edrpouRef}
               isLoggedIn={isLoggedIn}
             >{"38935167"}</StyledInput>
             {!isLoggedIn && (
-              <FakeButton onClick={() => copyText(edrpouRef)}>
+              <FakeButton onClick={() => copyText("38935167")}>
                 <FiCopy size={"1.5em"} />
               </FakeButton>
             )}
@@ -130,15 +107,10 @@ const PaymentDetails = () => {
               ФОП
             </StyledLabel>
             <StyledInput
-              // id="name"
-              // type="text"
-              // value={`Ім'я Прізвище`}
-              // readOnly
-              ref={fopRef}
               isLoggedIn={isLoggedIn}
             >{`Ім'я Прізвище`}</StyledInput>
             {!isLoggedIn && (
-              <FakeButton onClick={() => copyText(fopRef)}>
+              <FakeButton onClick={() => copyText(`Ім'я Прізвище`)}>
                 <FiCopy size={"1.5em"} />
               </FakeButton>
             )}
@@ -148,15 +120,10 @@ const PaymentDetails = () => {
               ІПН
             </StyledLabel>
             <StyledInput
-              // id="name"
-              // type="text"
-              // value={"389351615535"}
-              // readOnly
-              ref={ipnRef}
               isLoggedIn={isLoggedIn}
             >{"389351615535"}</StyledInput>
             {!isLoggedIn && (
-              <FakeButton onClick={() => copyText(ipnRef)}>
+              <FakeButton onClick={() => copyText("389351615535")}>
                 <FiCopy size={"1.5em"} />
               </FakeButton>
             )}
