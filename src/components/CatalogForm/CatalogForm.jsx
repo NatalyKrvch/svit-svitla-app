@@ -23,7 +23,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdDownloadDone } from "react-icons/md";
 import MainButton from "../Buttons/MainButton/MainButton";
 
-const CatalogForm = ({ openModal }) => {
+const CatalogForm = () => {
   const [catalogName, setCatalogName] = useState("");
   const [year, setYear] = useState("");
   const [coverImage, setCoverImage] = useState(null);
@@ -70,7 +70,6 @@ const CatalogForm = ({ openModal }) => {
     setCoverImageUrl("");
     URL.revokeObjectURL(coverImageUrl);
     setCatalogFile("");
-    openModal();
   };
 
   const handleDeleteCoverImg = () => {

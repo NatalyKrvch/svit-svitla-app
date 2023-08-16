@@ -6,6 +6,7 @@ import {
   changeProductAPI,
   getProductByIdAPI,
 } from "../../service/API/productsApi";
+import { toast } from "react-toastify";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
@@ -31,6 +32,11 @@ export const addProduct = createAsyncThunk(
       const data = await addProductAPI(product);
       return data;
     } catch (error) {
+      if (error.response.status === 400) {
+        toast.error(
+          "Товар з таким артикулом вже існує. Будь ласка, перевірте введені дані!"
+        );
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -39,7 +45,6 @@ export const addProduct = createAsyncThunk(
 export const removeProduct = createAsyncThunk(
   "products/removeProduct",
   async (id, thunkAPI) => {
-    console.log(id);
     try {
       const data = await removeProductAPI(id);
       return data;

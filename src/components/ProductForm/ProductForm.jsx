@@ -135,7 +135,6 @@ const ProductForm = ({ openModal }) => {
     );
     formData.append("productCategory", category);
     dispatch(addProduct(formData));
-    openModal();
     setProductName("");
     setProductCode("");
     setPrice("");
