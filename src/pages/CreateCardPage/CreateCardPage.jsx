@@ -4,24 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilter } from "../../redux/Filter/selectors";
 import { StyledFragment} from "./CreateCardPageStyled";
 import DropdownCardSelector from "../../components/DropdownCardSelect/DropdownCardSelect";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Product/productReducer";
 import Container from "../../components/Container/Container";
 import TitleMain from "../../components/TitleMain/TitleMain";
+import { isModalOpen } from "../../redux/Product/productSelectors";
 
 const CreateCardPage = () => {
-  const [showModal, setShowModal] = useState(false);
-
+  const showModal = useSelector(isModalOpen);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onOpenModal = () => {
-    setShowModal(true);
-  };
 
   const onCloseModal = () => {
-    setShowModal(false);
     dispatch(setModalOpen(false));
     navigate(filter === "Картка товару" ? "/" : "/preordercatalogue");
   };
@@ -36,11 +31,11 @@ const CreateCardPage = () => {
   return (
     <Container>
       <StyledFragment>
-        <TitleMain text="Створити картку"/>
+        <TitleMain text="Створити картку" />
         <DropdownCardSelector />
-        {filter === "Картка товару" && <ProductForm openModal={onOpenModal} />}
+        {filter === "Картка товару" && <ProductForm />}
         {filter === "Картка каталогу" && (
-          <CatalogForm openModal={onOpenModal} />
+          <CatalogForm />
         )}
         {showModal && (
           <Modal
