@@ -237,11 +237,9 @@ export const FakeButton = styled.button`
   }
 
   &:active {
-    background-color: var(--dark-blue);
-
-    svg {
-      fill: var(--dark-blue);
-      stroke: white;
+   
+   svg {
+      stroke: var(--dark-blue);
     }
   }
 
