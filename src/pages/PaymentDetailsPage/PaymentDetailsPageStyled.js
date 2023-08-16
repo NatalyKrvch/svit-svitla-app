@@ -66,20 +66,34 @@ export const StyledDiv = styled.div`
 export const StyledInputWrapper = styled.div`
   position: relative;
   width: 328px;
-  height: ${({ isLoggedIn }) => (isLoggedIn ? "auto" : "56px")};
-  display: flex;
-  align-items: ${({ isLoggedIn }) => (isLoggedIn ? "center" : "flex-start")};
+  /* height: ${({ isLoggedIn }) => (isLoggedIn ? "auto" : "56px")}; */
+  display: grid;
+  /* align-items: ${({ isLoggedIn }) => (isLoggedIn ? "center" : "flex-start")};
   justify-content: ${({ isLoggedIn }) =>
-    isLoggedIn ? "left" : "space-evenly"};
+    isLoggedIn ? "left" : "space-evenly"}; */
+  grid-template-columns: ${({ isMobile, isTablet, isLoggedIn }) =>
+    isLoggedIn && isMobile
+      ? "328px"
+      : isLoggedIn && isTablet
+      ? "624px"
+      : isLoggedIn
+      ? "556px"
+      : !isLoggedIn && isMobile
+      ? "70px 220px 48px"
+      : !isLoggedIn && isTablet
+      ? "128px 448px 48px"
+      : "128px 495px 48px"};
+
+      grid-template-rows: ${({ isLoggedIn }) => (isLoggedIn ? "auto" : "64px")};
 
   @media screen and (min-width: 768px) {
     width: 624px;
-    gap: 18px;
+    /* gap: 18px; */
   }
 
   @media screen and (min-width: 1280px) {
     width: 572px;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     line-height: 1;
     letter-spacing: -0.4px;
   }
@@ -87,11 +101,11 @@ export const StyledInputWrapper = styled.div`
 
 export const StyledLabel = styled.label`
   position: ${({ isLoggedIn }) => (isLoggedIn ? "absolute" : "static")};
-  height: ${({ isLoggedIn }) => (isLoggedIn ? "24px" : "48px")};
-  width: ${({ isLoggedIn, isMobile }) =>
-    isLoggedIn ? "auto" : isMobile ? "105px" : "128px"};
+  /* height: ${({ isLoggedIn }) => (isLoggedIn ? "24px" : "48px")}; */
+  /* width: ${({ isLoggedIn, isMobile }) =>
+    isLoggedIn ? "auto" : isMobile ? "105px" : "128px"}; */
   font-size: ${({ isLoggedIn }) => (isLoggedIn ? "12px" : "16px")};
-  line-height: ${({ isLoggedIn }) => (isLoggedIn ? "2" : "none")};
+  line-height: ${({ isLoggedIn }) => (isLoggedIn ? "1.5" : "none")};
   color: ${({ isLoggedIn }) =>
     isLoggedIn ? "var(--dark-grey)" : "var(--main-black)"};
   background-color: ${({ isLoggedIn }) =>
@@ -103,7 +117,7 @@ export const StyledLabel = styled.label`
   @media screen and (min-width: 768px) {
     text-align: start;
     font-size: 16px;
-    line-height: 1, 5;
+    /* line-height: 1,5; */
     letter-spacing: -0.4px;
   }
 
@@ -123,7 +137,7 @@ export const StyledCoverLabel = styled.label`
   top: -8px;
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.span`
   display: block;
   width: 328px;
   padding: ${({ isLoggedIn }) => (isLoggedIn ? "16px" : "4px")};
@@ -145,12 +159,13 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const StyledInputIban = styled.input`
+export const StyledInputIban = styled.span`
+  display: block;
   font-weight: 600;
   display: block;
   width: 328px;
   padding: ${({ isLoggedIn }) => (isLoggedIn ? "16px" : "4px")};
-  padding-right: ${({isLoggedIn}) => (isLoggedIn ? "0" : "4px") };
+  padding-right: ${({ isLoggedIn }) => (isLoggedIn ? "0" : "4px")};
   text-align: ${({ isLoggedIn }) => (isLoggedIn ? "left" : "start")};
   border: ${({ isLoggedIn }) =>
     isLoggedIn ? "1px solid var(--light-blue)" : "none"};
@@ -158,7 +173,7 @@ export const StyledInputIban = styled.input`
   outline: var(--dark-blue);
 
   @media screen and (min-width: 768px) {
-    height: auto;
+    /* height: auto; */
     width: 624px;
     outline: none;
     font-size: 20px;
