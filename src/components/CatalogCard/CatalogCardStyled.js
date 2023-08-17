@@ -24,7 +24,6 @@ export const ImgWrp = styled.div`
   transition: 400ms ease;
   &:hover,
   &:focus {
-    transform: scale(1.02);
     box-shadow: var(--box-shadow);
   }
 `;
