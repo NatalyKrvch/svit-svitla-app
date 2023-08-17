@@ -8,9 +8,11 @@ export const ContainerWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     max-width: 753px;
+    padding: 64px 0;
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 1168px;
+    padding: 72px 0;
   }
 `;
