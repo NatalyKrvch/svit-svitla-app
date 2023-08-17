@@ -37,7 +37,6 @@ const productsSlice = createSlice({
       state.isModalOpen = payload;
     },
     setPage: (state, { payload }) => {
-      console.log(payload);
       state.page = payload;
     },
   },

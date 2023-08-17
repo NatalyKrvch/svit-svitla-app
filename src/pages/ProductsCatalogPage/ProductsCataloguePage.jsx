@@ -56,7 +56,7 @@ const ProductsCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isLoading = useSelector(getLoadingProducts);
   const pageNumber = useSelector(currentPage);
-  console.log(pageNumber);
+
 
   useEffect(() => {
     let newPerPage = 8;

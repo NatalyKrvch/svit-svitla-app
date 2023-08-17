@@ -9,7 +9,7 @@ const Paginator = ({ pageQty, array }) => {
   const { isMobile, isTablet, isDesktop } = useMediaRules();
   const pageNumber = useSelector(currentPage);
   const dispatch = useDispatch();
-  console.log(pageNumber);
+ 
 
   const handlePageChange = (_, number) => {
     if (number > pageQty || (number === pageNumber && pageQty === 1)) {
