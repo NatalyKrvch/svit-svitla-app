@@ -15,6 +15,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { useEffect } from "react";
 import { useState } from "react";
 import {
+  currentPage,
   getAllProducts,
   getLoadingProducts,
   getTotalItemsProduct,
@@ -36,7 +37,7 @@ import MainButton from "../../components/Buttons/MainButton/MainButton";
 import Spinner from "../../components/Spinner/Spinner";
 
 const ProductsCataloguePage = () => {
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [pageQty, setPageQty] = useState(0);
   const [showModalFilter, setShowModalFilter] = useState(false);
@@ -54,6 +55,8 @@ const ProductsCataloguePage = () => {
   const article = searchParams.get("article");
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isLoading = useSelector(getLoadingProducts);
+  const pageNumber = useSelector(currentPage);
+
 
   useEffect(() => {
     let newPerPage = 8;
@@ -206,8 +209,6 @@ const ProductsCataloguePage = () => {
           {pageQty > 1 && (
             <Paginator
               pageQty={pageQty}
-              pageNumber={pageNumber}
-              setPageNumber={setPageNumber}
               array={products}
             />
           )}

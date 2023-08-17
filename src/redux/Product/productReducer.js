@@ -23,6 +23,7 @@ const initialState = {
   isLoading: false,
   isModalOpen:false,
   error: null,
+  page: 1,
 };
 
 const productsSlice = createSlice({
@@ -34,6 +35,9 @@ const productsSlice = createSlice({
     },
     setModalOpen: (state, { payload }) => {
       state.isModalOpen = payload;
+    },
+    setPage: (state, { payload }) => {
+      state.page = payload;
     },
   },
   extraReducers: (builder) =>
@@ -88,4 +92,4 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 
-export const { setNewDate, setModalOpen } = productsSlice.actions;
+export const { setNewDate, setModalOpen, setPage } = productsSlice.actions;

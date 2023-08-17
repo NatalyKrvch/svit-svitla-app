@@ -1,21 +1,27 @@
 import { Pagination } from "@mui/material";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import { useEffect } from "react";
+import { currentPage } from "../../redux/Product/productSelectors";
+import { setPage } from "../../redux/Product/productReducer";
+import { useDispatch, useSelector } from "react-redux";
 
-const Paginator = ({ pageQty, pageNumber, setPageNumber, array }) => {
+const Paginator = ({ pageQty, array }) => {
   const { isMobile, isTablet, isDesktop } = useMediaRules();
+  const pageNumber = useSelector(currentPage);
+  const dispatch = useDispatch();
+ 
 
   const handlePageChange = (_, number) => {
     if (number > pageQty || (number === pageNumber && pageQty === 1)) {
-      setPageNumber(1);
+      dispatch(setPage(1));
     } else {
-      setPageNumber(number);
+      dispatch(setPage(number));
     }
   };
 
   useEffect(() => {
     if (pageNumber > 1 && array.length === 0) {
-      setPageNumber(1);
+      dispatch(setPage(1));
     }
   }, [pageNumber, array.length]);
 

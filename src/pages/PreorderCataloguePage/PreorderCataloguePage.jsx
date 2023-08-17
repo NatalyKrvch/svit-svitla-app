@@ -29,10 +29,11 @@ import Paginator from "../../components/Pagination/Pagination";
 import NotFound from "../../components/NotFound/NotFound";
 import Container from "../../components/Container/Container";
 import Spinner from "../../components/Spinner/Spinner";
+import { currentPage } from "../../redux/Product/productSelectors";
 
 const PreorderCataloguePage = () => {
   // const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [pageQty, setPageQty] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -49,6 +50,7 @@ const PreorderCataloguePage = () => {
   const catalogsList = useSelector(getAllCatalogs);
   const { isMobile, isTablet } = useMediaRules();
   const isLoading = useSelector(getLoadingCatalogs)
+  const pageNumber= useSelector(currentPage);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -202,8 +204,6 @@ const PreorderCataloguePage = () => {
       {pageQty > 1 && (
         <Paginator
           pageQty={pageQty}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
           array={catalogsList}
         />
       )}
