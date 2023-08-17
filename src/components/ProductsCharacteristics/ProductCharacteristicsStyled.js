@@ -24,6 +24,7 @@ export const Styledh2 = styled.h2`
   @media screen and (min-width: 1280px){
     font-size: 28px;
     line-height: 0.75;
+    margin-bottom: 48px;
   }
 `
 export const StyledPrice = styled.span`
@@ -62,6 +63,7 @@ export const StyledPAttribute = styled.p`
   display: inline-block;
   min-width: 150px;
   max-width: 150px;
+  margin-bottom: 18px;
   ${SmallFontSet}
 
   @media screen and (min-width: 768px) {
@@ -88,6 +90,6 @@ export const StyledSpanAttribute = styled.span`
   
   @media screen and (min-width: 1280px) {
     font-size: 24px;
-    margin-left: 24px;
+    margin-left: 48px;
   }
 `
