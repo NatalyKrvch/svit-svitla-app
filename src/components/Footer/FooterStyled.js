@@ -90,6 +90,7 @@ export const GridContainer = styled.div`
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
+    cursor: default;
 `
 export const StyledSpan = styled.span`
     height: 15px;

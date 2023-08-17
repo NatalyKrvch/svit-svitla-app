@@ -33,4 +33,5 @@ export const StyledTitle = styled.h2`
   letter-spacing: -0.4px;
   margin-left: auto;
   margin-right: auto;
+  cursor: default;
 `;

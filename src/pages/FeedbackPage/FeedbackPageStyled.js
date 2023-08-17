@@ -22,6 +22,7 @@ export const StyledH1 = styled.h1`
   border-bottom: 1px solid var(--middle-grey);
   padding-bottom: 8px;
   width: 100%;
+  cursor: default;
 
   @media screen and (min-width: 769px) {
     font-size: 48px;
@@ -34,6 +35,7 @@ export const StyledP = styled.p`
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.4px;
+  cursor: default;
 
   @media screen and (min-width: 769px) {
     margin: 40px 0 24px;
