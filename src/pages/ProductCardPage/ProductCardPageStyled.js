@@ -23,23 +23,23 @@ export const Title = styled.div`
 
 export const StyledH1 = styled.h1`
   margin-bottom: 4px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 24px;
   line-height: 28.8px;
   letter-spacing: -0.4px;
 
   @media screen and (min-width: 769px){
-    font-size: 32px;
+    font-size: 34px;
     margin-bottom: 8px;
   }
 `;
 
 export const StyledP = styled.p`
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24px;
   letter-spacing: -0.4px;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 
   @media screen and (min-width: 769px){
     font-size: 24px;
@@ -56,7 +56,7 @@ export const ContentWrapper = styled.div`
   }
 `
 export const CharacteristicsWrapper = styled.div`
-  width: 328px;
+  /* width: 328px; */
 
   @media screen and (min-width: 769px){
     width: 365px;
