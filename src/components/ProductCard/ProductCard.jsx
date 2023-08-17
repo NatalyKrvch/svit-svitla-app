@@ -1,4 +1,4 @@
-import ProductImgPlug from "../../images/ProductPlug/plug.jpg";
+import ProductImgPlug from "../../images/ProductPlug/plug.svg";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";

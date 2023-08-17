@@ -3,7 +3,7 @@ import ProductCharacteristics from "../../components/ProductsCharacteristics/Pro
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById } from "../../redux/Product/productOperations";
-import ProductImgPlug from "../../images/ProductPlug/plug.jpg";
+import ProductImgPlug from "../../images/ProductPlug/plug.svg";
 
 import {
   getCurrentProduct,
