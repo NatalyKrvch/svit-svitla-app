@@ -1,6 +1,8 @@
+import ProductImgPlug from "../../images/ProductPlug/plug.svg";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+
 import {
   CardWrp,
   ImgWrp,
@@ -21,14 +23,17 @@ const ProductCard = ({
 }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const navigate = useNavigate();
-  const productPriceThousandsSeparates = productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+  const productPriceThousandsSeparates = productPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
   return (
     <CardWrp>
-      <ImgWrp onClick={() => navigate(`/productcard/${_id}`)}>
-        <StyledImg src={productCoverURL} alt="Picture" />
-      </ImgWrp>
-
+      <Link to={`/productcard/${_id}`}>
+        <ImgWrp>
+          <StyledImg src={productCoverURL || ProductImgPlug} alt="Picture" />
+        </ImgWrp>
+      </Link>
       <StyledTextWrapper>
         <StyledProductName>{productName}</StyledProductName>
         <StyledP>{`Артикул: ${productCode}`}</StyledP>
