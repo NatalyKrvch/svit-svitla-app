@@ -56,7 +56,7 @@ export const ContentWrapper = styled.div`
   }
 `
 export const CharacteristicsWrapper = styled.div`
-  width: 328px;
+  /* width: 328px; */
 
   @media screen and (min-width: 769px){
     width: 365px;

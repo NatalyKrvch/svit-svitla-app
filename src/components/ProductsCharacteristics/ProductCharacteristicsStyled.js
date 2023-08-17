@@ -11,7 +11,7 @@ const SmallFontSet = `
   letter-spacing: 0.25px;
   line-height: 1,5;
 `
-export const Styledh2 = styled.h2`
+export const Styledh4 = styled.h2`
   ${LargeFontSet}
   line-height: 1,2;
   margin-bottom: 24px;
@@ -26,30 +26,30 @@ export const Styledh2 = styled.h2`
     line-height: 0.75;
   }
 `
-// export const StyledP = styled.p`
-//   font-weight: 600;
-//   font-size: 18px;
-//   line-height: 1,5;
-//   letter-spacing: -0.4px;
-//   margin-bottom: 16px;
+export const StyledP = styled.p`
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1,5;
+  letter-spacing: -0.4px;
+  margin-bottom: 16px;
 
-//   @media screen and (min-width: 768px) {
-//     font-size: 20px;
-//     margin-bottom: 16px;
-//   }
+  @media screen and (min-width: 769px) {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
 
-//   @media screen and (min-width: 1281px) {
-//     font-size: 24px;
-//   }
-// `
-export const StyledPrice = styled.span`
+  @media screen and (min-width: 1281px) {
+    font-size: 24px;
+  }
+`
+export const StyledPriceCurrency = styled.span`
   ${LargeFontSet}
   display: inline-block;
   font-size: 22px;
   line-height: 1.5;
   margin-bottom: 32px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     font-size: 24px;
   }
 
@@ -62,7 +62,7 @@ export const StyledPCountry = styled.p`
   ${SmallFontSet}
   margin-bottom: 8px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     font-size: 20px;
     margin-bottom: 16px;
   }
@@ -75,7 +75,7 @@ export const StyledPCountry = styled.p`
 export const StyledSpanCountry = styled.span`
   margin-left: 16px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     font-size: 20px;
     margin-left: 24px;
   }
@@ -86,41 +86,41 @@ export const StyledSpanCountry = styled.span`
   }
 `
 export const StyledUl = styled.ul`
-  width: 328px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 16px; 
 
-  @media screen and (min-width: 769px){
-    width: 365px;
+   @media screen and (min-width: 769px){
     font-size: 20px;
     gap: 16px;
   }
-  @media screen and (min-width: 1281px){
-    width: 473px;
-  }
+  /* display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px; */
 `
 export const StyledLi = styled.li`
   width: 100%;
   display: flex;
 `
 export const StyledPAttribute = styled.p`
-  width: 70px;
+  min-width: 150px;
+  max-width: 150px;
   ${SmallFontSet}
 
   @media screen and (min-width: 769px) {
     font-size: 20px;
-    width: 106px;
+    min-width: 190px;
+    max-width: 190px;
   }
 
   @media screen and (min-width: 1281px) {
     font-size: 24px;
-    width: 175px;
+    min-width: 230px;
+    max-width: 230px;
   }
 `
 export const StyledSpanAttribute = styled.span`
-  width: 242px;
   margin-left: 16px;
   ${SmallFontSet}
 
@@ -134,13 +134,8 @@ export const StyledSpanAttribute = styled.span`
     margin-left: 24px;
   }
 `
-
-export const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 45px;
-`
-export const GridItem = styled.div`
+export const StyledTable = styled.table`
+  width: 100%;
+  /* border-collapse: collapse; */
   border: 1px solid black;
-  text-align: center;
-`
+`;
