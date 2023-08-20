@@ -95,7 +95,14 @@ function App() {
         />
         <Route path="/paymentdetails" element={<PaymentDetails />} />
         <Route path="/productcard/:id" element={<ProductCardPage />} />
-        <Route path="/qrcodegeneration" element={<QrCodeGeneration />} />
+        <Route
+          path="/qrcodegeneration"
+          element={
+            <PrivateRoute>
+              <QrCodeGeneration />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
