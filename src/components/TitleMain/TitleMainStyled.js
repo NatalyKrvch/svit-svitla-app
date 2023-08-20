@@ -8,6 +8,7 @@ export const TitleWrp = styled.div`
   border-bottom: 1px solid var(--middle-grey);
   margin-left: auto;
   margin-right: auto;
+  cursor: default;
 
   @media screen and (min-width: 768px) {
     max-width: 750px;
@@ -27,6 +28,7 @@ font-weight: 400;
 letter-spacing: -0.4px;
 text-align: left;
 margin-bottom: 16px;
+cursor: default;
 
 @media screen and (min-width: 768px) {
   font-size: 48px;
