@@ -29,7 +29,7 @@ import Paginator from "../../components/Pagination/Pagination";
 import NotFound from "../../components/NotFound/NotFound";
 import Container from "../../components/Container/Container";
 import Spinner from "../../components/Spinner/Spinner";
-import { currentPage } from "../../redux/Product/productSelectors";
+import { currentPage } from "../../redux/Catalog/catalogSelectors";
 
 
 const PreorderCataloguePage = () => {
