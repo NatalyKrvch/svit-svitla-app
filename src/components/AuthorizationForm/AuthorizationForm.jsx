@@ -50,7 +50,8 @@ const AuthorizationForm = () => {
   };
 
   const handleKeyPress = (evt) => {
-    if (evt.key === 'Enter' || evt.key === 'Return') {
+    console.log(evt.key);
+    if (evt.key === 'Enter' || evt.key === 'Done' || evt.key === 'Return') {
       onSubmitForm(evt);
     }
   };
