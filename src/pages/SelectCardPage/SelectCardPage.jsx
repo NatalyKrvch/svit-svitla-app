@@ -7,14 +7,45 @@ import {
   StyledWrp,
   TitleWrp,
 } from "./SelectCardPageStyled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectFilter } from "../../redux/Filter/selectors";
 import Container from "../../components/Container/Container";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
+import { useEffect } from "react";
+import { setFilter } from "../../redux/Filter/slice";
 
 const SelectCardPage = () => {
   const navigate = useNavigate();
-  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
+  const filterData = useSelector(selectFilter);
+  const filter = Object.keys(filterData)
+  .filter(key => !isNaN(key)) 
+  .map(key => filterData[key])
+  .join('');
+
+
+  useEffect(
+    () => {
+      dispatch(setFilter("Вид картки"));
+      localStorage.removeItem("productName");
+      localStorage.removeItem("productCode");
+      localStorage.removeItem("productPrice");
+      localStorage.removeItem(
+        "manufacturerCountry"
+      );
+      localStorage.removeItem("category");
+      localStorage.removeItem("coverImage");
+      localStorage.removeItem("coverImageUrl");
+      localStorage.removeItem("productImages");
+      localStorage.removeItem("productImagesUrl");
+      localStorage.removeItem(
+        "additionalCharacteristics"
+      );
+      console.log("134564");
+      },
+    []
+  );
+ 
 
   return (
     <Container>

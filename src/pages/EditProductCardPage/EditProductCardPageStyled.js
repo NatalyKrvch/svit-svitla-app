@@ -28,6 +28,7 @@ export const StyledH = styled.h2`
 
   @media screen and (min-width: 1280px) {
     font-size: 48px;
+    width: 609px;
   }
 `;
 export const StyledTitleProduct = styled.h3`

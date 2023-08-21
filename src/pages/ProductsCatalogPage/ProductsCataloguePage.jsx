@@ -36,6 +36,7 @@ import NotFound from "../../components/NotFound/NotFound";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
 import Spinner from "../../components/Spinner/Spinner";
 
+
 const ProductsCataloguePage = () => {
   // const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
@@ -126,6 +127,7 @@ const ProductsCataloguePage = () => {
 
   return (
     <Container>
+      
       {isLoading ? (
         <Spinner />
       ) : (

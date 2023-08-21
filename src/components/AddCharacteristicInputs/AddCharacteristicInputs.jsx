@@ -21,6 +21,7 @@ const AddCharacteristicInputs = ({
      const {name, value} = ev.target
      setCharacteristicArray(p => 
       p.map((el) => el._id !== id ? el : {...el, [name] : value}))
+      localStorage.setItem("additionalCharacteristics", JSON.stringify(characteristicArray));
   };
  
   const handleDeleteCharacteristic = (id) => {
@@ -28,6 +29,7 @@ const AddCharacteristicInputs = ({
       (item) => item._id !== id
     );
     setCharacteristicArray(newArray);
+    localStorage.setItem("additionalCharacteristics", JSON.stringify(newArray) );
   };
 
   return (

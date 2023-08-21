@@ -77,13 +77,21 @@ const EditProductCard = () => {
 
   useEffect(() => {
     setProductName(currentProduct?.productName || "");
+    localStorage.setItem("productName", currentProduct?.productName );
     setProductCode(currentProduct?.productCode || "");
+    localStorage.setItem("productCode", currentProduct?.productCode );
     setPrice(currentProduct?.productPrice || "");
+    localStorage.setItem("productPrice", currentProduct?.productPrice);
     setManufacturerCountry(currentProduct?.productCountry || "");
+    localStorage.setItem("manufacturerCountry", currentProduct?.productCountry);
     setCharacteristicArray(currentProduct?.additionalAttributes || []);
+    localStorage.setItem("additionalCharacteristics", currentProduct?.additionalAttributes);
     setCoverImage(currentProduct?.productCoverURL || null);
+    // localStorage.setItem()
     setProductImages(currentProduct?.productPhotoURL || "");
+    // localStorage.setItem()
     setCategory(currentProduct?.productCategory || "");
+    localStorage.setItem("category", currentProduct?.productCategory);
   }, [currentProduct]);
 
   const dispatch = useDispatch();
@@ -122,6 +130,7 @@ const EditProductCard = () => {
     setProductName("");
   } else {
     setProductName(inputValue);
+    localStorage.setItem("productName", inputValue);
   }
   };
 
@@ -131,6 +140,7 @@ const EditProductCard = () => {
       setProductCode("");
     }
     setProductCode(inputValue);
+    localStorage.setItem("productCode", inputValue);
   };
 
   const handlePriceChange = (event) => {
@@ -139,16 +149,24 @@ const EditProductCard = () => {
       setPrice("");
     }
     setPrice(inputValue);
+    localStorage.setItem("productPrice", inputValue);
   };
 
   const handleManufacturerCountryChange = (event) => {
-    setManufacturerCountry(event.target.value);
+    const inputValue = event.target.value;
+    if (inputValue.trim() === "") {
+      setManufacturerCountry("");
+    }
+    setManufacturerCountry(inputValue);
+    localStorage.setItem("manufacturerCountry", inputValue);
   };
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
     setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
+
+    localStorage.setItem("coverImageUrl", URL.createObjectURL(file));
   };
 
   const handleDeleteCoverImg = () => {
@@ -170,6 +188,7 @@ const EditProductCard = () => {
   const handleOptionClick = (selectedOption) => {
     if (selectedOption !== category) {
       setCategory(selectedOption);
+      localStorage.setItem("category", selectedOption);
       setIsOpen(false);
     }
   };
@@ -184,7 +203,7 @@ const EditProductCard = () => {
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.name, value: obj.value };
     });
-
+    localStorage.setItem("productImagesUrl", JSON.stringify(productImagesUrl));
     const formData = new FormData();
     formData.append("productName", productName);
     formData.append("productCode", productCode);
