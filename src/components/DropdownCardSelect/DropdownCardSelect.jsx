@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { StyledButtonSelect, StyledList, StyledOptions, StyledWrpSelector } from "./DropdownCardSelectStyled";
 import { selectFilter } from "../../redux/Filter/selectors";
-import { filterReducer, setFilter } from "../../redux/Filter/slice";
+import { setFilter } from "../../redux/Filter/slice";
 import { useState } from "react";
 import { GoTriangleUp,  GoTriangleDown } from "react-icons/go"
 
@@ -16,7 +16,7 @@ const DropdownCardSelector = () => {
   .filter(key => !isNaN(key)) 
   .map(key => filterData[key])
   .join('');
-  console.log(filter);
+  
  
   const handleSelect = (selectedOption) => {
     dispatch(setFilter(selectedOption));
