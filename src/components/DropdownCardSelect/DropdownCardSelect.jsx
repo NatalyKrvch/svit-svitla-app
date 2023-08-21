@@ -16,7 +16,6 @@ const DropdownCardSelector = () => {
   .filter(key => !isNaN(key)) 
   .map(key => filterData[key])
   .join('');
-  console.log(filter);
  
   const handleSelect = (selectedOption) => {
     dispatch(setFilter(selectedOption));

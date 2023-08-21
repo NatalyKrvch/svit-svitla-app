@@ -17,6 +17,7 @@ const initialState = {
     email: null,
     id: null,
   },
+  isModalOpen:false,
 };
 
 export const authSlice = createSlice({
