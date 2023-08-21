@@ -19,6 +19,7 @@ const initialState = {
   catalogs: [],
   totalItems: 0,
   isLoading: false,
+  isModalOpen: false,
   error: null,
 };
 
@@ -28,6 +29,9 @@ const catalogsSlice = createSlice({
   reducers: {
     setNewDate: (state, { payload }) => {
       state.date = payload;
+    },
+    setModalOpen: (state, { payload }) => {
+      state.isModalOpen = payload;
     },
   },
   extraReducers: (builder) =>
@@ -49,11 +53,13 @@ const catalogsSlice = createSlice({
       .addCase(addCatalog.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.isModalOpen = true;
         state.catalogs.push(payload);
       })
       .addCase(removeCatalog.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.isModalOpen = true;
         state.catalogs = state.catalogs.filter(
           (catalog) => catalog._id !== payload._id
         );
@@ -61,6 +67,7 @@ const catalogsSlice = createSlice({
       .addCase(changeCatalog.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.isModalOpen = true;
         state.catalogs = state.catalogs
           .filter((catalog) => catalog._id !== payload._id)
           .push(...payload); //переделать скорее всего !!!
@@ -69,4 +76,4 @@ const catalogsSlice = createSlice({
 
 export default catalogsSlice.reducer;
 
-export const { setNewDate } = catalogsSlice.actions;
+export const { setNewDate, setModalOpen } = catalogsSlice.actions;

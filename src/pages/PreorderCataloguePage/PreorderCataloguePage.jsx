@@ -65,7 +65,6 @@ const PreorderCataloguePage = () => {
     setPerPage(newPerPage);
   }, [isMobile, isTablet]);
 
-  console.log(perPage);
   useEffect(() => {
     dispatch(
       getCatalogs({

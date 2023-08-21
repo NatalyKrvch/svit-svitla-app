@@ -35,7 +35,8 @@ import Container from "../../components/Container/Container";
 import NotFound from "../../components/NotFound/NotFound";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
 import Spinner from "../../components/Spinner/Spinner";
-
+import { isModalOpen as isAuthModalOpen } from "../../redux/Auth/authSelectors";
+import { setModalOpen as setAuthModalOpen } from "../../redux/Auth/authReducer";
 
 const ProductsCataloguePage = () => {
   // const [pageNumber, setPageNumber] = useState(1);
@@ -57,7 +58,7 @@ const ProductsCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isLoading = useSelector(getLoadingProducts);
   const pageNumber = useSelector(currentPage);
-
+const authModalOpen = useSelector(isAuthModalOpen);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -101,6 +102,10 @@ const ProductsCataloguePage = () => {
     setShowModalFilter(false);
   };
 
+  const closeAuthModal = () => {
+    dispatch(setAuthModalOpen(false));
+  };
+
   const handleSubmit = (filter) => {
     setSearchParams({ query: filter });
     closeModal();
@@ -124,10 +129,9 @@ const ProductsCataloguePage = () => {
     dispatch(removeProduct(productId));
     closeModalDelete();
   };
-
+  
   return (
     <Container>
-      
       {isLoading ? (
         <Spinner />
       ) : (
@@ -159,7 +163,6 @@ const ProductsCataloguePage = () => {
                   setSearchParams({ article: filterByCode });
                 }}
               />
-
               <StyledInput
                 type="text"
                 placeholder="Пошук"
@@ -189,16 +192,13 @@ const ProductsCataloguePage = () => {
                 onClick={!query ? () => openModal() : () => setSearchParams({})}
               >
                 {!query && <FiFilter size={"1.5em"} />}
-                {query ? `${query}` : "Фільтрувати"}
+                {query ? `${query}` : "Фільтрувати" }
                 {query && <RxCrossCircled />}
               </MainButton>
             </BtnWrp>
           )}
           {products.length !== 0 ? (
-            <ProductList
-              productsList={products}
-              onOpen={openModalDelete}
-            />
+            <ProductList productsList={products} onOpen={openModalDelete} />
           ) : (
             <NotFound
               message={
@@ -208,13 +208,15 @@ const ProductsCataloguePage = () => {
               }
             />
           )}
-          {pageQty > 1 && (
-            <Paginator
-              pageQty={pageQty}
-              array={products}
-            />
-          )}
+          {pageQty > 1 && <Paginator pageQty={pageQty} array={products} />}
         </StyledFragment>
+      )}
+      {authModalOpen && (
+        <Modal
+          title="Вітаємо!"
+          text="Авторизація успішна"
+          onCloseModal={closeAuthModal}
+        />
       )}
     </Container>
   );
