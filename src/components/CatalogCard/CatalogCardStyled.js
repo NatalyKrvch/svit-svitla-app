@@ -18,15 +18,14 @@ export const StyledDiv = styled.div`
 `;
 
 export const ImgWrp = styled.div`
-  cursor: pointer;
+  /* cursor: pointer; */
   overflow: hidden;
   border-radius: 1px;
-  transition: 400ms ease;
+  /* transition: 400ms ease;
   &:hover,
   &:focus {
-    transform: scale(1.02);
     box-shadow: var(--box-shadow);
-  }
+  } */
 `;
 export const StyledImg = styled.img`
   width: 156px;
@@ -50,6 +49,7 @@ export const StyledTextWRP = styled.div`
   margin-bottom: 8px;
   display: flex;
   flex-direction: column;
+  cursor: default;
 `;
 export const StyledP = styled.p`
   font-weight: 400;

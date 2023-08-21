@@ -56,12 +56,5 @@ export const ContentWrapper = styled.div`
   }
 `
 export const CharacteristicsWrapper = styled.div`
-  /* width: 328px; */
-
-  @media screen and (min-width: 769px){
-    width: 365px;
-  }
-  @media screen and (min-width: 1281px){
-    width: 473px;
-  }
+  cursor: default;
 `

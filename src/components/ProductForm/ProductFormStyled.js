@@ -113,6 +113,7 @@ export const FakeInputText = styled.p`
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.4px;
+  cursor: default;
   @media screen and (min-width: 768px) {
     font-size: 24px;
     line-height: 1;

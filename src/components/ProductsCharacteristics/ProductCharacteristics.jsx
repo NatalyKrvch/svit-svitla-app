@@ -1,14 +1,10 @@
 import {
   StyledLi,
-  StyledP,
   StyledPAttribute,
-  StyledPCountry,
-  StyledPriceCurrency,
+  StyledPrice,
   StyledSpanAttribute,
-  StyledSpanCountry,
   StyledUl,
-  StyledTable,
-  Styledh4,
+  Styledh2,
 } from "./ProductCharacteristicsStyled";
 import { nanoid } from "nanoid";
 
@@ -24,17 +20,19 @@ const ProductCharacteristics = ({
 
   return (
     <>
-      <Styledh4>Характеристики товару</Styledh4>
-      <StyledP>
-        Ціна:{" "}
-        <StyledPriceCurrency>{`${productPriceThousandsSeparates} грн.`}</StyledPriceCurrency>
-      </StyledP>
-      <StyledPCountry>
-        Виробник: <StyledSpanCountry>{manufacturerCountry}</StyledSpanCountry>
-      </StyledPCountry>
-      <StyledP>
-        Категорія: <StyledSpanCountry>{productCategory}</StyledSpanCountry>
-      </StyledP>
+      <StyledPrice>
+        {" "}
+        Вартість: {`${productPriceThousandsSeparates} грн.`}
+      </StyledPrice>
+      <Styledh2>Характеристики товару</Styledh2>
+      <div>
+        <StyledPAttribute>Категорія: </StyledPAttribute>
+        <StyledSpanAttribute>{productCategory}</StyledSpanAttribute>
+      </div>
+      <div>
+        <StyledPAttribute>Виробник: </StyledPAttribute>
+        <StyledSpanAttribute>{manufacturerCountry}</StyledSpanAttribute>
+      </div>
       {characteristicArray.length !== 0 && (
         <StyledUl>
           {characteristicArray.map((item) => (
@@ -42,14 +40,13 @@ const ProductCharacteristics = ({
               <StyledPAttribute>
                 {item.name ? `${item.name}: ` : ""}
               </StyledPAttribute>
-               <StyledSpanAttribute>
+              <StyledSpanAttribute>
                 {item.value ? item.value : ""}
-              </StyledSpanAttribute> 
+              </StyledSpanAttribute>
             </StyledLi>
           ))}
         </StyledUl>
       )}
-      
     </>
   );
 };

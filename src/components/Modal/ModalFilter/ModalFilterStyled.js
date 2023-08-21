@@ -64,6 +64,7 @@ export const StyledTitle = styled.h3`
   line-height: 1, 2;
   letter-spacing: -0.4px;
   margin-bottom: 16px;
+  cursor: default;
 
   @media screen and (min-width: 768px) {
     font-size: 32px;

@@ -99,6 +99,7 @@ export const StyledH2 = styled.h2`
   line-height: 1, 2;
   letter-spacing: -0.4px;
   margin-bottom: 16px;
+  cursor: default;
 
   @media screen and (min-width: 768px) {
     width: 490px;

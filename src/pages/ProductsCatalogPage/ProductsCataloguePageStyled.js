@@ -25,6 +25,7 @@ export const StyledTitle = styled.h2`
   letter-spacing: -0.4px;
   text-align: left;
   margin-bottom: 16px;
+  cursor: default;
 
   @media screen and (min-width: 768px) {
     font-size: 32px;

@@ -36,7 +36,8 @@ export const LogoWrapper = styled.div`
     }
 `
 
-export const StyledInstaA = styled.a`   
+export const StyledInstaA = styled.a`
+    display: none;
     position: absolute;
     cursor: pointer;
 
@@ -70,14 +71,12 @@ export const InformationContainer = styled.div`
         font-size: 14px;
         line-height: 29px;
         left: 90px;
-        /* top: 25px; */
     }
 
     @media screen and (min-width: 1281px) {
         font-weight: 500;
         font-size: 16px;
         left: 250px;
-        /* top: 25px; */
     }
 `
 export const GridContainer = styled.div`
@@ -91,6 +90,7 @@ export const GridContainer = styled.div`
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
+    cursor: default;
 `
 export const StyledSpan = styled.span`
     height: 15px;

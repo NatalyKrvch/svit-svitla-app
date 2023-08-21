@@ -61,6 +61,7 @@ export const StyledTextWrapper = styled.div`
   gap: 4px;
   margin-top: 4px;
   flex-grow: 1;
+  cursor: default;
 
   @media screen and (min-width: 769px) {
     width: 235px;
