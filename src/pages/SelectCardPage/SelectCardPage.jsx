@@ -41,7 +41,7 @@ const SelectCardPage = () => {
       localStorage.removeItem(
         "additionalCharacteristics"
       );
-    },
+      },
     []
   );
  
