@@ -12,7 +12,7 @@ import mobileLogo from "../../images/Logo/Mobile/Header/logo_mob@1x.svg";
 import burgerImg from "../../images/Menu/Burger.svg";
 import Modal from "../Modal/Modal/Modal";
 import { logout } from "../../redux/Auth/authOperations";
-import { setPage } from "../../redux/Product/productReducer";
+
 
 function Header() {
   const dispatch = useDispatch();
@@ -29,7 +29,6 @@ function Header() {
 
   const toggleBurgerMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    dispatch(setPage(1));
   };
 
   const closeModal = () => {
@@ -40,10 +39,6 @@ function Header() {
     dispatch(logout());
     setLogoutModalOpen(false);
   };
-
-  const handlePageSwitch = () => {
-    dispatch(setPage(1));
-  }
 
   return (
     <>
@@ -58,7 +53,6 @@ function Header() {
             <MenuHeader
               isLoggedIn={isLoggedIn}
               setLogoutModalOpen={setLogoutModalOpen}
-              onSwitchPage={handlePageSwitch}
             />
           )}
           {isMobile && (

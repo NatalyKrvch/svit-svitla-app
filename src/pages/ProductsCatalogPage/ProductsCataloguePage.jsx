@@ -58,7 +58,7 @@ const ProductsCataloguePage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isLoading = useSelector(getLoadingProducts);
   const pageNumber = useSelector(currentPage);
-const authModalOpen = useSelector(isAuthModalOpen);
+  const authModalOpen = useSelector(isAuthModalOpen);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -70,7 +70,6 @@ const authModalOpen = useSelector(isAuthModalOpen);
 
     setPerPage(newPerPage);
   }, [isMobile, isTablet]);
-
 
   useEffect(() => {
     dispatch(
@@ -129,7 +128,7 @@ const authModalOpen = useSelector(isAuthModalOpen);
     dispatch(removeProduct(productId));
     closeModalDelete();
   };
-  
+
   return (
     <Container>
       {isLoading ? (
@@ -191,9 +190,9 @@ const authModalOpen = useSelector(isAuthModalOpen);
                 buttonType="filter"
                 onClick={!query ? () => openModal() : () => setSearchParams({})}
               >
-                {!query && <FiFilter size={"1.5em"} />}
-                {query ? `${query}` : "Фільтрувати" }
-                {query && <RxCrossCircled />}
+                {query
+                  ? `${query}` && <RxCrossCircled />
+                  : <FiFilter size={"1.5em"} /> && "Фільтрувати"}
               </MainButton>
             </BtnWrp>
           )}

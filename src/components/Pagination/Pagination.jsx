@@ -2,35 +2,51 @@ import { Pagination } from "@mui/material";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import { useEffect } from "react";
 import { currentPage } from "../../redux/Product/productSelectors";
+import { currentPage as currentCatalogPage } from "../../redux/Catalog/catalogSelectors";
 import { setPage } from "../../redux/Product/productReducer";
+import { setPage as setCatalogPage } from "../../redux/Catalog/catalogReducer.js";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const Paginator = ({ pageQty, array }) => {
   const { isMobile, isTablet, isDesktop } = useMediaRules();
   const pageNumber = useSelector(currentPage);
+  const pageCatalogNumber = useSelector(currentCatalogPage);
   const dispatch = useDispatch();
- 
+  const location = useLocation();
+  console.log(location.pathname);
 
   const handlePageChange = (_, number) => {
     if (number > pageQty || (number === pageNumber && pageQty === 1)) {
-      dispatch(setPage(1));
+      if (location.pathname === "/") {
+        dispatch(setPage(1));
+      } else {
+        dispatch(setCatalogPage(1));
+      }
     } else {
-      dispatch(setPage(number));
+      if (location.pathname === "/") {
+        dispatch(setPage(number));
+      } else {
+        dispatch(setCatalogPage(number));
+      }
     }
   };
 
   useEffect(() => {
     if (pageNumber > 1 && array.length === 0) {
-      dispatch(setPage(1));
+      if (location.pathname === "/") {
+        dispatch(setPage(1));
+      } else {
+        dispatch(setCatalogPage(1));
+      }
     }
   }, [pageNumber, array.length]);
-
 
   return (
     <>
       <Pagination
         count={pageQty}
-        page={pageNumber}
+        page={location.pathname === '/' ? pageNumber : pageCatalogNumber}
         showFirstButton
         showLastButton
         onClick={() => {

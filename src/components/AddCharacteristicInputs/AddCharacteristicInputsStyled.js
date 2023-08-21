@@ -32,7 +32,10 @@ top: -8px;
 export const StyledInput = styled.input`
 width: 328px;
 /* height: 56px; */
-padding: 20px 16px;
+padding-top: 20px;
+padding-bottom: 20px;
+padding-left: 16px;
+padding-right: 55px;
 border: 1px solid var(--light-blue);
 border-radius: 4px;
 transition: 200ms ease;
