@@ -11,6 +11,7 @@ import Container from "../../components/Container/Container";
 import TitleMain from "../../components/TitleMain/TitleMain";
 import { isModalOpen } from "../../redux/Product/productSelectors";
 
+
 const CreateCardPage = () => {
   const showModal = useSelector(isModalOpen);
   const navigate = useNavigate();
@@ -26,7 +27,12 @@ const CreateCardPage = () => {
     navigate("/qrcodegeneration");
   };
 
-  const filter = useSelector(selectFilter);
+  const filterData = useSelector(selectFilter);
+  const filter = Object.keys(filterData)
+  .filter(key => !isNaN(key)) 
+  .map(key => filterData[key])
+  .join('');
+
 
   return (
     <Container>

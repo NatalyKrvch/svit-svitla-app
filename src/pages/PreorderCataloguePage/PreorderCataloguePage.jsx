@@ -31,6 +31,7 @@ import Container from "../../components/Container/Container";
 import Spinner from "../../components/Spinner/Spinner";
 import { currentPage } from "../../redux/Product/productSelectors";
 
+
 const PreorderCataloguePage = () => {
   // const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
   // const [pageNumber, setPageNumber] = useState(1);
@@ -51,6 +52,7 @@ const PreorderCataloguePage = () => {
   const { isMobile, isTablet } = useMediaRules();
   const isLoading = useSelector(getLoadingCatalogs)
   const pageNumber= useSelector(currentPage);
+
 
   useEffect(() => {
     let newPerPage = 8;
@@ -133,6 +135,7 @@ const PreorderCataloguePage = () => {
 
   return (
     <Container>
+       
      {isLoading? <Spinner/> :
       <STyledContainer>
       <StyledDiv>

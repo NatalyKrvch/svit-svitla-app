@@ -3,7 +3,7 @@ import menuConfig from "../menuConfig.json";
 import PropTypes from "prop-types";
 import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
 
-function MenuHeader(props) {
+function MenuHeader(props, onSwitchPage) {
   const { isLoggedIn, setLogoutModalOpen } = props;
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
 
@@ -18,7 +18,7 @@ function MenuHeader(props) {
         <StyledUl>
           {menuData.map((item, index) => (
             <li key={index}>
-              <StyledLink to={item.url}>{item.title}</StyledLink>
+              <StyledLink to={item.url} onClick={onSwitchPage}>{item.title}</StyledLink>
             </li>
           ))}
         </StyledUl>

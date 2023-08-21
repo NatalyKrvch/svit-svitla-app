@@ -110,7 +110,7 @@ export const StyledLabel = styled.label`
     isLoggedIn ? "var(--dark-grey)" : "var(--main-black)"};
   background-color: ${({ isLoggedIn }) =>
     isLoggedIn ? "var(--light-blue)" : "var(--main-white)"};
-  padding: ${({ isLoggedIn }) => (isLoggedIn ? "0 4px" : "4px 4px")};
+  padding: ${({ isLoggedIn }) => (isLoggedIn ? "0 4px" : "4.5px 4px")};
   left: 12px;
   top: -8px;
 
@@ -224,7 +224,7 @@ export const FakeButton = styled.button`
   height: 35px;
   border-radius: 50%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   border: none;
   background-color: transparent;

@@ -26,6 +26,11 @@ const reviewsPersistConfig = {
   key: "reviews",
   storage,
 };
+const filterPersistConfig = {
+  key: "filter",
+  storage,
+}
+
 
 const persistedReducerAuth = persistReducer(authPersistConfig, authReducer);
 const persistedReducerProducts = persistReducer(
@@ -41,13 +46,19 @@ const persistedReducerReviews = persistReducer(
   reviewReducer
 );
 
+const persistedReducerFilter = persistReducer(
+  filterPersistConfig,
+  filterReducer,
+)
+
+
 export const store = configureStore({
   reducer: {
     products: persistedReducerProducts,
     catalogs: persistedReducerCatalogs,
     reviews: persistedReducerReviews,
     auth: persistedReducerAuth,
-    filter: filterReducer,
+    filter: persistedReducerFilter,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

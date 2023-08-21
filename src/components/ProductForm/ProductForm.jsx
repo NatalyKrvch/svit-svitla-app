@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addProduct } from "../../redux/Product/productOperations";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { categoryList } from "./categoryList.json";
 import { BiPlusCircle } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -28,6 +28,11 @@ import {
 import AddCharacteristicInputs from "../AddCharacteristicInputs/AddCharacteristicInputs";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
+import {
+  error,
+  getLoadingProducts,
+} from "../../redux/Product/productSelectors";
+
 
 const ProductForm = ({ openModal }) => {
   const [productName, setProductName] = useState("");
@@ -42,67 +47,147 @@ const ProductForm = ({ openModal }) => {
   const [category, setCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  const errorOperations = useSelector(error);
+  const isLoading = useSelector(getLoadingProducts);
+
+  useEffect(() => {
+    const savedProductName = localStorage.getItem("productName");
+    const savedProductCode = localStorage.getItem("productCode");
+    const savedProductPrice = localStorage.getItem("productPrice");
+    const savedManufacturerCountry = localStorage.getItem(
+      "manufacturerCountry"
+    );
+    // const savedCoverImg = localStorage.getItem("coverImage");
+    const savedCoverImgUrl = localStorage.getItem("coverImageUrl");
+    const savedCategory = localStorage.getItem("category");
+    // const savedProductImages = localStorage.getItem("productImages");
+    // const savedProductImagesUrl = localStorage.getItem("productImagesUrl");
+    const savedAdditionalCharacteristics = localStorage.getItem(
+      "additionalCharacteristics"
+    );
+
+    if (savedProductName) {
+      setProductName(savedProductName);
+    }
+    if (savedProductCode) {
+      setProductCode(savedProductCode);
+    }
+    if (savedProductPrice) {
+      setPrice(savedProductPrice);
+    }
+    if (savedManufacturerCountry) {
+      setManufacturerCountry(savedManufacturerCountry);
+    }
+    // if (savedCoverImg) {
+    //   setCoverImage();
+    // }
+    if (savedCoverImgUrl) {
+      setCoverImageUrl(savedCoverImgUrl);
+    }
+    if (savedCategory) {
+      setCategory(savedCategory);
+    }
+    // if (savedProductImages) {
+    //   setProductImages(savedProductImages);
+    // }
+    // if (savedProductImagesUrl) {
+    //   setProductImagesUrl(savedProductImagesUrl);
+    // }
+    if (savedAdditionalCharacteristics) {
+      setCharacteristicArray(JSON.parse(savedAdditionalCharacteristics) || []);
+    }
+    if (!errorOperations && !isLoading) {
+      setProductName("");
+      setProductCode("");
+      setPrice("");
+      setManufacturerCountry("");
+      setCoverImage(null);
+      setProductImages([]);
+      setCharacteristicArray([]);
+      setCategory("");
+    } 
+  }, [errorOperations]);
 
   const handleProductNameChange = (event) => {
     const inputValue = event.target.value;
-   if (inputValue.trim() === "") {
-    setProductName("");
-  } else {
-    setProductName(inputValue);
-  }
+    if (inputValue.trim() === "") {
+      setProductName("");
+    } else {
+      setProductName(inputValue);
+      localStorage.setItem("productName", inputValue);
+    }
   };
 
   const handleProductCodeChange = (event) => {
     const inputValue = event.target.value;
-    if(inputValue.trim() === ""){
+    if (inputValue.trim() === "") {
       setProductCode("");
     }
     setProductCode(inputValue);
+    localStorage.setItem("productCode", inputValue);
   };
 
   const handlePriceChange = (event) => {
     const inputValue = event.target.value;
-    if(inputValue.trim() === ""){
+    if (inputValue.trim() === "") {
       setPrice("");
     }
     setPrice(inputValue);
+    localStorage.setItem("productPrice", inputValue);
   };
 
   const handleManufacturerCountryChange = (event) => {
-    setManufacturerCountry(event.target.value);
+    const inputValue = event.target.value;
+    if (inputValue.trim() === "") {
+      setManufacturerCountry("");
+    }
+    setManufacturerCountry(inputValue);
+    localStorage.setItem("manufacturerCountry", inputValue);
   };
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
     setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
+    
+    localStorage.setItem("coverImageUrl", URL.createObjectURL(file));
   };
 
   const handleProductImagesChange = (event) => {
     const files = event.target.files;
     const productImagesAdded = Array.from(files);
     setProductImages((p) => [...p, ...productImagesAdded]);
+  
     const urlArray = [...files].map((file) => URL.createObjectURL(file));
     setProductImagesUrl((p) => [...p, ...urlArray]);
+   
   };
 
   const handleDeleteCoverImg = () => {
     setCoverImage(null);
+    localStorage.removeItem("coverImage");
     setCoverImageUrl("");
+    localStorage.removeItem("coverImageUrl");
     URL.revokeObjectURL(coverImageUrl);
   };
 
   const handleDeletePhotoImg = (url) => {
     const newProductImages = productImages.filter((card) => card !== url);
     setProductImages(newProductImages);
+    // localStorage.setItem("productImages", JSON.stringify(newProductImages));
     const newProductImagesUrl = productImagesUrl.filter((card) => card !== url);
     URL.revokeObjectURL(url);
     setProductImagesUrl(newProductImagesUrl);
+    // localStorage.setItem(
+    //   "productImagesUrl",
+    //   JSON.stringify(newProductImagesUrl)
+    // );
   };
 
   const handleOptionClick = (selectedOption) => {
     if (selectedOption !== category) {
       setCategory(selectedOption);
+      localStorage.setItem("category", selectedOption);
       setIsOpen(false);
     }
     return;
@@ -117,6 +202,7 @@ const ProductForm = ({ openModal }) => {
     const additionalAttributes = characteristicArray.map((obj) => {
       return { name: obj.name, value: obj.value };
     });
+    localStorage.setItem("productImagesUrl", JSON.stringify(productImagesUrl));
 
     const formData = new FormData();
     formData.append("productName", productName);
@@ -135,15 +221,11 @@ const ProductForm = ({ openModal }) => {
     );
     formData.append("productCategory", category);
     dispatch(addProduct(formData));
-    setProductName("");
-    setProductCode("");
-    setPrice("");
-    setManufacturerCountry("");
-    setCoverImage(null);
-    setProductImages([]);
-    setCharacteristicArray([]);
-    setCategory("");
+  
+    
   };
+
+  
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -178,7 +260,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="price"
           type="text"
-          pattern="^\d+(\.\d{1,2})?$"   ///^\d+(\.\d{1,2})?$/
+          pattern="^\d+(\.\d{1,2})?$" ///^\d+(\.\d{1,2})?$/
           title="Будь-ласка введіть числовий формат ціни (наприлад, 10 або 10.99)"
           maxLength={9}
           required
@@ -322,7 +404,11 @@ const ProductForm = ({ openModal }) => {
         <MainButton
           type="submit"
           disabled={
-            !productName || !productCode || !price || !manufacturerCountry || !category
+            !productName ||
+            !productCode ||
+            !price ||
+            !manufacturerCountry ||
+            !category
           }
         >
           Зберегти
