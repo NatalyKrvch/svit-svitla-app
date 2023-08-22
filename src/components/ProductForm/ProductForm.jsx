@@ -234,7 +234,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="name"
           type="text"
-          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s]*"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,]*"
           title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           minLength={3}
           maxLength={25}
