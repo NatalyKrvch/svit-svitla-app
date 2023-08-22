@@ -160,7 +160,7 @@ const EditCatalogueCard = () => {
               <StyledCoverLabel htmlFor="name">
               Каталог
               </StyledCoverLabel>
-              <StyledImg src={CatalogPlug} alt="cover" />
+              {/* <StyledImg src={CatalogPlug} alt="cover" /> */}
               <StyledInput
                 id="name"
                 type="text"

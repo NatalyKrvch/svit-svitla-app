@@ -39,7 +39,6 @@ import { isModalOpen as isAuthModalOpen } from "../../redux/Auth/authSelectors";
 import { setModalOpen as setAuthModalOpen } from "../../redux/Auth/authReducer";
 
 const ProductsCataloguePage = () => {
-  // const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [pageQty, setPageQty] = useState(0);
   const [showModalFilter, setShowModalFilter] = useState(false);
@@ -191,8 +190,18 @@ const ProductsCataloguePage = () => {
                 onClick={!query ? () => openModal() : () => setSearchParams({})}
               >
                 {query
-                  ? `${query}` && <RxCrossCircled />
-                  : <FiFilter size={"1.5em"} /> && "Фільтрувати"}
+                  ? (
+                    <>
+                   {query} 
+                   <RxCrossCircled />
+                    </>
+                  )
+                  : (
+                    <>
+                    <FiFilter size={"1.5em"} /> 
+                    Фільтрувати
+                    </>
+                  )}
               </MainButton>
             </BtnWrp>
           )}
