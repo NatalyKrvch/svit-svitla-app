@@ -33,7 +33,6 @@ import {
   getLoadingProducts,
 } from "../../redux/Product/productSelectors";
 
-
 const ProductForm = ({ openModal }) => {
   const [productName, setProductName] = useState("");
   const [productCode, setProductCode] = useState("");
@@ -105,7 +104,7 @@ const ProductForm = ({ openModal }) => {
       setProductImages([]);
       setCharacteristicArray([]);
       setCategory("");
-    } 
+    }
   }, [errorOperations]);
 
   const handleProductNameChange = (event) => {
@@ -149,7 +148,7 @@ const ProductForm = ({ openModal }) => {
     const file = event.target.files[0];
     setCoverImageUrl(URL.createObjectURL(file));
     setCoverImage(file);
-    
+
     localStorage.setItem("coverImageUrl", URL.createObjectURL(file));
   };
 
@@ -157,10 +156,9 @@ const ProductForm = ({ openModal }) => {
     const files = event.target.files;
     const productImagesAdded = Array.from(files);
     setProductImages((p) => [...p, ...productImagesAdded]);
-  
+
     const urlArray = [...files].map((file) => URL.createObjectURL(file));
     setProductImagesUrl((p) => [...p, ...urlArray]);
-   
   };
 
   const handleDeleteCoverImg = () => {
@@ -221,11 +219,7 @@ const ProductForm = ({ openModal }) => {
     );
     formData.append("productCategory", category);
     dispatch(addProduct(formData));
-  
-    
   };
-
-  
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -237,7 +231,7 @@ const ProductForm = ({ openModal }) => {
           pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,]*"
           title="Будь-ласка вводьте літери англійського чи українського алфавіту"
           minLength={3}
-          maxLength={25}
+          maxLength={75}
           required
           value={productName}
           onChange={handleProductNameChange}
