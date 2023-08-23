@@ -43,8 +43,8 @@ const AddCharacteristicInputs = ({
                   id={id + "priceName"}
                   name="name"
                   type="text"
-                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s\(\),]*"
-                  title="Пожалуйста, введите только буквы"
+                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s\(\),0-9]*"
+                  title="Будь ласка, введіть тільки букви, цифри та знаки , ( )"
                   value={name}
                   onChange={handleChange}
                   required
@@ -63,8 +63,8 @@ const AddCharacteristicInputs = ({
                   id={id + "price"}
                   name="value"
                   type="text"
-                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9-\s]*"
-                  title="Характеристика може включати тільки літери українського чи англійського алфавіту, цифри та тире "
+                  pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\/\\]*"
+                  title="Характеристика може включати тільки літери українського чи англійського алфавіту, цифри та знаки - , \ / "
                   value={value}
                   onChange={handleChange}
                   required
