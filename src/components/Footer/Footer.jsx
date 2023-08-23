@@ -43,7 +43,7 @@ const email = (
 const workingHours = (
   <>
     <StyledSpan>Працюємо:</StyledSpan>
-    <time>10:00 - 18:00 (без вихідних)</time>
+    <time>Пн-пт 10:00 - 19:00</time>
   </>
 );
 
