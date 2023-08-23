@@ -109,7 +109,10 @@ export const StyledCoverLabel = styled.label`
 export const StyledInput = styled.input`
   width: 328px;
   height: 56px;
-  padding: 16px;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  padding-left: 50px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   outline: var(--dark-blue);

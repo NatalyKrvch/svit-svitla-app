@@ -73,6 +73,7 @@ const AuthorizationForm = () => {
             maxLength={16}
             value={login}
             onChange={handleChangeLogin}
+            onKeyDown={handleKeyPress}
           />
         </StyledInputWrapper>
         <StyledInputWrapper>
