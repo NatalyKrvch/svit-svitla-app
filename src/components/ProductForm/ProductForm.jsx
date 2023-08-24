@@ -228,8 +228,8 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="name"
           type="text"
-          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\\/]*"
-          title="Будь-ласка, вводьте літери англійського чи українського алфавіту"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\/\\()\[\]{}<>\|;:!*+=_&^%$#`~.?]*"
+          title="Будь-ласка, вводьте літери англійського чи українського алфавіту та деякі спеціальні символи"
           minLength={3}
           maxLength={75}
           required
@@ -267,7 +267,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="country"
           type="text"
-          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s()]"
+          pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\/\\()\[\]{}<>\|;:!*+=_&^%$#`~.?]*"
           title="Будь-ласка введіть літери англійсього чи українського алфавіту"
           required
           value={manufacturerCountry}
