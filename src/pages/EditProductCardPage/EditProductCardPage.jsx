@@ -343,7 +343,7 @@ const EditProductCard = () => {
             <StyledInput
               id="name"
               type="text"
-              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s]*"
+              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\/\\()\[\]{}<>\|;:!*+=_&^%$#`~.?]*"
               title="Будь-ласка вводьте літери англійського алфавіту"
               minLength={3}
               maxLength={16}
@@ -382,8 +382,8 @@ const EditProductCard = () => {
             <StyledInput
               id="country"
               type="text"
-              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ\s]*"
-              title="Будь-ласка введіть тільки літери кирилиці"
+              pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\/\\()\[\]{}<>\|;:!*+=_&^%$#`~.?]*"
+              title="Будь-ласка введіть літери англійського або українського алфавіту та деякі спеціальні символи"
               required
               value={manufacturerCountry}
               onChange={handleManufacturerCountryChange}
