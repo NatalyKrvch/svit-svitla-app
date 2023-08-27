@@ -19,12 +19,12 @@ import MainButton from "../../components/Buttons/MainButton/MainButton";
 import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Review/reviewReducer";
 import Container from "../../components/Container/Container";
-// import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 
 function Feedback() {
-  // const serviceID = import.meta.env.VITE_SERVICEID;
-  // const templateID = import.meta.env.VITE_TEMPLATEID;
-  // const keyID = import.meta.env.VITE_KEYID;
+  const serviceID = import.meta.env.VITE_SERVICEID;
+  const templateID = import.meta.env.VITE_TEMPLATEID;
+  const keyID = import.meta.env.VITE_KEYID;
 
   const [feedback, setFeedback] = useState("");
   const [selectedStars, setSelectedStars] = useState([]);
@@ -68,27 +68,27 @@ function Feedback() {
     if (typeof currentReviewDate === "undefined" || dateDifference > oneDay) {
       dispatch(addReview(review));
 
-      // emailjs
-      //   .send(
-      //     serviceID,
-      //     templateID,
-      //     {
-      //       from_name: "Svit Svitla Web-service",
-      //       from_email: "nataly.krvch@gmail.com",
-      //       message: JSON.stringify(review),
-      //     },
-      //     keyID
-      //   )
-      //   .then((response) => {
-      //     console.log(
-      //       "Повідомлення успішно надіслано!",
-      //       response.status,
-      //       response.text
-      //     );
-      //   })
-      //   .catch((error) => {
-      //     console.error("Помилка під час відправки повідомлення:", error);
-      //   });
+      emailjs
+        .send(
+          serviceID,
+          templateID,
+          {
+            from_name: "Svit Svitla Web-service",
+            from_email: "nataly.krvch@gmail.com",
+            message: JSON.stringify(review),
+          },
+          keyID
+        )
+        .then((response) => {
+          console.log(
+            "Повідомлення успішно надіслано!",
+            response.status,
+            response.text
+          );
+        })
+        .catch((error) => {
+          console.error("Помилка під час відправки повідомлення:", error);
+        });
       setFeedback("");
       setSelectedStars([]);
     } else {
