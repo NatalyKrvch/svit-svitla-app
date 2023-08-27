@@ -25,6 +25,7 @@ function Feedback() {
   const serviceID = import.meta.env.VITE_SERVICEID;
   const templateID = import.meta.env.VITE_TEMPLATEID;
   const keyID = import.meta.env.VITE_KEYID;
+  const userID = import.meta.env.VITE_USERID
 
   const [feedback, setFeedback] = useState("");
   const [selectedStars, setSelectedStars] = useState([]);
@@ -35,12 +36,8 @@ function Feedback() {
   const maxChar = 500;
   const dispatch = useDispatch();
   const currentDate = new Date().getTime();
-  console.log(currentDate);
   const dateDifference = currentDate - currentReviewDate;
-  console.log("difference", currentDate - currentReviewDate);
   const oneDay = 86400000;
-
-  console.log(currentReviewDate);
 
   const handleChange = (e) => {
     setFeedback(e.target.value);
@@ -77,7 +74,8 @@ function Feedback() {
             from_email: "nataly.krvch@gmail.com",
             message: JSON.stringify(review),
           },
-          keyID
+          keyID,
+          userID
         )
         .then((response) => {
           console.log(
