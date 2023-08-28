@@ -176,7 +176,7 @@ export const FakeButton = styled.span`
   align-items: center;
   justify-content: center;
   width: 48px;
-  height: 56px;
+  height: 54px;
   border: 1px solid var(--light-blue);
   border-radius: 4px;
   background-color: transparent;
