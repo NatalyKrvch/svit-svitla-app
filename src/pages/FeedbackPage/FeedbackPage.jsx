@@ -20,6 +20,7 @@ import Modal from "../../components/Modal/Modal/Modal";
 import { setModalOpen } from "../../redux/Review/reviewReducer";
 import Container from "../../components/Container/Container";
 import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
 
 function Feedback() {
   const serviceID = import.meta.env.VITE_SERVICEID;
@@ -78,6 +79,7 @@ function Feedback() {
           userID
         )
         .then((response) => {
+          toast.success("Повідомлення успішно надіслано!");
           console.log(
             "Повідомлення успішно надіслано!",
             response.status,
@@ -85,11 +87,13 @@ function Feedback() {
           );
         })
         .catch((error) => {
+          toast.error("Помилка під час відправки повідомлення!");
           console.error("Помилка під час відправки повідомлення:", error);
         });
       setFeedback("");
       setSelectedStars([]);
     } else {
+      toast.error("Сьогодні, ви вже залишили свій відгук!");
       return;
     }
   };
