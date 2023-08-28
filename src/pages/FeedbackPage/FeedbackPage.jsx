@@ -104,6 +104,7 @@ function Feedback() {
   const closeModal = () => {
     dispatch(setModalOpen(false));
   };
+  
   return (
     <Container>
       <PageWrapper>
