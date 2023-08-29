@@ -346,7 +346,7 @@ const EditProductCard = () => {
               pattern="[a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ0-9\s,\-\/\\()\[\]{}<>\|;:!*+=_&^%$#`~.?]*"
               title="Будь-ласка вводьте літери англійського алфавіту"
               minLength={3}
-              maxLength={16}
+              maxLength={70}
               required
               value={productName}
               onChange={handleProductNameChange}
