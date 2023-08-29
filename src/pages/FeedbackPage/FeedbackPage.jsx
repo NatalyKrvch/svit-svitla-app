@@ -93,7 +93,7 @@ function Feedback() {
       setFeedback("");
       setSelectedStars([]);
     } else {
-      toast.error("Сьогодні, ви вже залишили свій відгук!");
+      toast.error("Ви вже залишили свій відгук!");
       return;
     }
   };
