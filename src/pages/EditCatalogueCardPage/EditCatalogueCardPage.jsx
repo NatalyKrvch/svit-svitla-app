@@ -46,6 +46,7 @@ const EditCatalogueCard = () => {
     currentCatalog?.catalogFileURL || ""
   );
   const [showModal, setShowModal] = useState(false);
+  console.log(coverImageUrl);
   console.log(catalogFile);
 
   const dispatch = useDispatch();
@@ -100,6 +101,7 @@ const EditCatalogueCard = () => {
     formData.append("catalogYear", year);
     formData.append("catalogCoverURL", coverImageUrl || "");
     formData.append("catalogFileURL", catalogFile);
+    console.log(coverImageUrl);
     console.log(formData);
 
     dispatch(changeCatalog({ id: currentCatalog._id, catalog: formData }));

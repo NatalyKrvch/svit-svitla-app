@@ -72,9 +72,10 @@ const catalogsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.isModalOpen = true;
-        state.catalogs = state.catalogs
-          .filter((catalog) => catalog._id !== payload._id)
-          .push(...payload); //переделать скорее всего !!!
+        state.catalogs = state.catalogs.map((obj) => {
+          if (obj._id !== payload._id) return payload;
+          return obj;
+        });
       }),
 });
 
