@@ -39,6 +39,7 @@ const EditCatalogueCard = () => {
  
   const [name, setCatalogName] = useState(currentCatalog?.catalogName || "");
   const [year, setYear] = useState(currentCatalog?.catalogYear || "");
+  const [coverImage, setCoverImage] = useState(null);
   const [coverImageUrl, setCoverImageUrl] = useState(
     currentCatalog?.catalogCoverURL || ""
   );
@@ -58,24 +59,35 @@ const EditCatalogueCard = () => {
   useEffect(() => {
     setCatalogName(currentCatalog?.catalogName || "");
     setYear(currentCatalog?.catalogYear || "");
-    setCoverImageUrl(currentCatalog?.catalogCoverURL || null);
+    setCoverImage(currentCatalog?.catalogCoverURL || null);
+    setCoverImageUrl(currentCatalog?.catalogCoverURL || "");
     setCatalogFile(currentCatalog?.catalogFileURL || "");
   }, [currentCatalog]);
 
   const handleCatalogNameChange = (event) => {
-    setCatalogName(event.target.value);
-  };
+    const inputValue = event.target.value;
+    if (inputValue.trim() === "") {
+      setCatalogName("");
+    } else {
+    setCatalogName(inputValue);
+    }};
 
   const handleYearChange = (event) => {
-    setYear(event.target.value);
-  };
+    const inputValue = event.target.value;
+    if (inputValue.trim() === "") {
+      setYear("");
+    } else {
+    setYear(inputValue);
+  }};
 
   const handleCoverImageChange = (event) => {
     const file = event.target.files[0];
     setCoverImageUrl(URL.createObjectURL(file));
+    setCoverImage(file);
   };
 
   const handleDeleteCoverImg = () => {
+    setCoverImage(null);
     setCoverImageUrl("");
     URL.revokeObjectURL(coverImageUrl);
   };
@@ -85,7 +97,11 @@ const EditCatalogueCard = () => {
   }
 
   const handleCatalogImagesDownload = (event) => {
-    const files = event.target.files;
+    const files = event.target.files[0];
+    if (!files) {
+      alert("Будь-ласка завантажте файл каталогу.");
+      return;
+    }
     setCatalogFile(files);
   };
 
@@ -99,16 +115,17 @@ const EditCatalogueCard = () => {
     const formData = new FormData();
     formData.append("catalogName", name.toLowerCase());
     formData.append("catalogYear", year);
-    formData.append("catalogCoverURL", coverImageUrl || "");
+    formData.append("catalogCoverURL", coverImage || "");
     formData.append("catalogFileURL", catalogFile);
-    console.log(coverImageUrl);
-    console.log(formData);
+ 
 
     dispatch(changeCatalog({ id: currentCatalog._id, catalog: formData }));
 
     setCatalogName("");
     setYear("");
-    setCoverImageUrl(null);
+    setCoverImage(null);
+    setCoverImageUrl("");
+    URL.revokeObjectURL(coverImageUrl);
     setCatalogFile("");
     setShowModal(true);
   };
