@@ -49,7 +49,8 @@ export const logout = createAsyncThunk(
       token.unset();
       return data;
     } catch (error) {
-      toast.error("Щось пішло не так. Будь ласка спробуйте ще раз!");
+      console.log(error);
+      // toast.error("Щось пішло не так. Будь ласка спробуйте ще раз!");
       return rejectWithValue(error.response.status);
     }
   }
