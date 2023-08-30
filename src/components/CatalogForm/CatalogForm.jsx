@@ -29,6 +29,7 @@ const CatalogForm = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [coverImageUrl, setCoverImageUrl] = useState("");
   const [catalogFile, setCatalogFile] = useState("");
+  console.log(catalogName);
 
   const dispatch = useDispatch();
 
@@ -43,7 +44,7 @@ const CatalogForm = () => {
     if (inputValue.trim() === "") {
       setCatalogName("");
     } else {
-    setCatalogName(inputValue);
+    setCatalogName(inputValue.trim());
     }};
 
   const handleYearChange = (event) => {

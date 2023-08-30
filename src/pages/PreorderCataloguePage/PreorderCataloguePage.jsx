@@ -79,7 +79,7 @@ const PreorderCataloguePage = () => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      setSearchParams({ catalogName: filter });
+      setSearchParams({ catalogName: filter.toLowerCase()});
     }
   };
 
@@ -117,7 +117,7 @@ const PreorderCataloguePage = () => {
   // };
 
   const handleFilterCatalog = (ev) => {
-    setFilter(ev.target.value.toLowerCase());
+    setFilter(ev.target.value);
   };
 
   // added________________________________________________________
@@ -141,7 +141,7 @@ const PreorderCataloguePage = () => {
         {isLoggedIn && (
           <StyledInputWrp>
             <StyledBtnSearch
-              onClick={() => setSearchParams({ catalogName: filter })}
+              onClick={() => setSearchParams({ catalogName: filter.toLowerCase()})}
             >
               <AiOutlineSearch size={"1.8em"} />
             </StyledBtnSearch>
