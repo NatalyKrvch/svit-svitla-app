@@ -121,6 +121,7 @@ const ProductsCataloguePage = () => {
 
   const closeModalDelete = () => {
     setIsModalDeleteOpen(false);
+    dispatch(setModalOpen(false));
   };
   const handleChangeFilterByCode = (ev) => setFilterByCode(ev.target.value);
   const handleDelete = () => {

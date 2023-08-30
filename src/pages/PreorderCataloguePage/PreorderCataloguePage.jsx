@@ -104,7 +104,7 @@ const PreorderCataloguePage = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    dispatch(setShowModal(false));
+    dispatch(setModalOpen(false));
   };
 
   const handleDeleteSuccessModal = () => {
