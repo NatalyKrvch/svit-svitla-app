@@ -31,10 +31,7 @@ import Container from "../../components/Container/Container";
 import Spinner from "../../components/Spinner/Spinner";
 import { currentPage } from "../../redux/Catalog/catalogSelectors";
 
-
 const PreorderCataloguePage = () => {
-  // const [fetchedCatalogsList, setFetchedCatalogsList] = useState([]);
-  // const [pageNumber, setPageNumber] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const [pageQty, setPageQty] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -50,9 +47,8 @@ const PreorderCataloguePage = () => {
   const dispatch = useDispatch();
   const catalogsList = useSelector(getAllCatalogs);
   const { isMobile, isTablet } = useMediaRules();
-  const isLoading = useSelector(getLoadingCatalogs)
-  const pageNumber= useSelector(currentPage);
-
+  const isLoading = useSelector(getLoadingCatalogs);
+  const pageNumber = useSelector(currentPage);
 
   useEffect(() => {
     let newPerPage = 8;
@@ -73,26 +69,21 @@ const PreorderCataloguePage = () => {
         catalogName: catalogNameSearch,
       })
     );
-    
+    // eslint-disable-next-line
   }, [pageNumber, catalogNameSearch, catalogsList.length, perPage]);
 
   const totalItems = useSelector(getTotalItemsCatalogs);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      setSearchParams({ catalogName: filter.toLowerCase()});
+      setSearchParams({ catalogName: filter.toLowerCase() });
     }
   };
 
   useEffect(() => {
     const calculatedPageQty = Math.ceil(totalItems / perPage);
     setPageQty(calculatedPageQty);
-    // setFetchedCatalogsList(catalogsList);
   }, [totalItems, perPage]);
-
-  // const updateCatalogsList = (updatedList) => {
-  //   setFetchedCatalogsList(updatedList);
-  // };
 
   const openModal = (name, year, id) => {
     const catalogNameFirstLetterUppercase =
@@ -111,104 +102,96 @@ const PreorderCataloguePage = () => {
   const handleDeleteSuccessModal = () => {
     setModalDeleteSuccessOpen(!modalDeleteSuccessOpen);
   };
-
-  // const handleDeleteCatalog = (id) => {
-  //   dispatch(removeCatalog(id));
-  //   // catalogsList.filter((catalog) => catalog._id !== id);
-  // };
-
   const handleFilterCatalog = (ev) => {
     setFilter(ev.target.value);
-  };// added________________________________________________________
+  };
+
   const handleDelete = () => {
-    // const updatedList = catalogsList.filter(
-    //   (catalog) => catalog._id !== catalogId
-    // );
     dispatch(removeCatalog(catalogId));
-    // updateCatalogsList(updatedList);
     closeModal();
     handleDeleteSuccessModal();
   };
-  //____________________________________________________________
+
 
   return (
     <Container>
-       
-     {isLoading? <Spinner/> :
-      <STyledContainer>
-      <StyledDiv>
-        {isLoggedIn && (
-          <StyledInputWrp>
-            <StyledBtnSearch
-              onClick={() => setSearchParams({ catalogName: filter.toLowerCase()})}
-            >
-              <AiOutlineSearch size={"1.8em"} />
-            </StyledBtnSearch>
-            <StyledInput
-              type="text"
-              placeholder="Пошук"
-              value={filter}
-              onChange={handleFilterCatalog}
-              onKeyDown={handleEnterPress}
-            />
-            {filter && (
-              <StyledBtnDeleteSearch
-                onClick={() => {
-                  setSearchParams({});
-                  setFilter("");
-                }}
-              >
-                <RxCrossCircled size={"1.5em"} />
-              </StyledBtnDeleteSearch>
-            )}
-          </StyledInputWrp>
-        )}
-      </StyledDiv>
-      <StyledH2>
-        {catalogsList.length !== 0 && !filter
-          ? "Каталоги для передзамовлення"
-          : "Результати пошуку"}
-      </StyledH2>
-      {catalogsList.length !== 0 ? (
-        <CatalogsList
-          catalogsList={catalogsList}
-          // onDelete={handleDeleteCatalog}
-          onOpenModal={openModal}
-          closeModal={closeModal}
-        />
+      {isLoading ? (
+        <Spinner />
       ) : (
-        <NotFound
-          message={
-            filter
-              ? "Упс... На жаль, за вашим запитом нічого не знайдено"
-              : "Відсутні каталоги для передзамовлення"
-          }
-        />
+        <STyledContainer>
+          <StyledDiv>
+            {isLoggedIn && (
+              <StyledInputWrp>
+                <StyledBtnSearch
+                  onClick={() =>
+                    setSearchParams({ catalogName: filter.toLowerCase() })
+                  }
+                >
+                  <AiOutlineSearch size={"1.8em"} />
+                </StyledBtnSearch>
+                <StyledInput
+                  type="text"
+                  placeholder="Пошук"
+                  value={filter}
+                  onChange={handleFilterCatalog}
+                  onKeyDown={handleEnterPress}
+                />
+                {filter && (
+                  <StyledBtnDeleteSearch
+                    onClick={() => {
+                      setSearchParams({});
+                      setFilter("");
+                    }}
+                  >
+                    <RxCrossCircled size={"1.5em"} />
+                  </StyledBtnDeleteSearch>
+                )}
+              </StyledInputWrp>
+            )}
+          </StyledDiv>
+          <StyledH2>
+            {catalogsList.length !== 0 && !filter
+              ? "Каталоги для передзамовлення"
+              : "Результати пошуку"}
+          </StyledH2>
+          {catalogsList.length !== 0 ? (
+            <CatalogsList
+              catalogsList={catalogsList}
+              onOpenModal={openModal}
+              closeModal={closeModal}
+            />
+          ) : (
+            <NotFound
+              message={
+                filter
+                  ? "Упс... На жаль, за вашим запитом нічого не знайдено"
+                  : "Відсутні каталоги для передзамовлення"
+              }
+            />
+          )}
+          {showModal && (
+            <Modal
+              color="red"
+              numberOfButtons={2}
+              title="Ви певні, що хочете видалити каталог?"
+              empTitle={`${catalogName}   ${catalogYear}`}
+              onCloseModal={closeModal}
+              onConfirmation={handleDelete}
+            />
+          )}
+          {modalDeleteSuccessOpen && (
+            <Modal
+              color="red"
+              title="Картка каталогу успішно видалена!"
+              onCloseModal={() => {
+                closeModal();
+                handleDeleteSuccessModal();
+              }}
+            />
+          )}
+          {pageQty > 1 && <Paginator pageQty={pageQty} array={catalogsList} />}
+        </STyledContainer>
       )}
-      {showModal && (
-        <Modal
-          color="red"
-          numberOfButtons={2}
-          title="Ви певні, що хочете видалити каталог?"
-          empTitle={`${catalogName}   ${catalogYear}`}
-          onCloseModal={closeModal}
-          onConfirmation={handleDelete}
-        />
-      )}
-      {modalDeleteSuccessOpen && (
-        <Modal
-          color="red"
-          title="Картка каталогу успішно видалена!"
-          onCloseModal={closeModal}
-        />
-      )}
-      {pageQty > 1 && (
-        <Paginator
-          pageQty={pageQty}
-          array={catalogsList}
-        />
-      )}
-    </STyledContainer>}
     </Container>
   );
 };
