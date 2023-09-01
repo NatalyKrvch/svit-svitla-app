@@ -44,7 +44,7 @@ const CatalogForm = () => {
     if (inputValue.trim() === "") {
       setCatalogName("");
     } else {
-    setCatalogName(inputValue.trim());
+    setCatalogName(inputValue);
     }};
 
   const handleYearChange = (event) => {
