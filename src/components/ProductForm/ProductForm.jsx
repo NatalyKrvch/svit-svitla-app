@@ -242,7 +242,7 @@ const ProductForm = ({ openModal }) => {
         <StyledInput
           id="article"
           type="text"
-          pattern="^\d+(\.\d{1,2})?$"
+          pattern="^[a-zA-Zа-яА-Я\d\s\-]+(\.\d{1,2})?$"
           title="Будь-ласка введіть числовий формат (наприклад, 100 або 1099)"
           required
           value={productCode}
