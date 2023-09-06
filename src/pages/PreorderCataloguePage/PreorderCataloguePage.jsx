@@ -30,6 +30,7 @@ import NotFound from "../../components/NotFound/NotFound";
 import Container from "../../components/Container/Container";
 import Spinner from "../../components/Spinner/Spinner";
 import { currentPage } from "../../redux/Catalog/catalogSelectors";
+import { setModalOpen } from "../../redux/Catalog/catalogReducer";
 
 const PreorderCataloguePage = () => {
   const [perPage, setPerPage] = useState(4);
@@ -96,7 +97,7 @@ const PreorderCataloguePage = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    dispatch(setShowModal(false));
+    dispatch(setModalOpen(false));
   };
 
   const handleDeleteSuccessModal = () => {
