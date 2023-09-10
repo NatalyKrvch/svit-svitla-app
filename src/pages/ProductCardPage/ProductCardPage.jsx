@@ -36,6 +36,7 @@ const ProductCardPage = () => {
   useEffect(() => {
     dispatch(getProductById({ id, navigate }));
     setCurrentURL(window.location.href);
+    window.scrollTo(0, 0);
   }, []);
 
   if (currentProduct === null) return;

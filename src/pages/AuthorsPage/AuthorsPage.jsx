@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   GridWrapper,
   Item,
@@ -13,6 +13,10 @@ import Container from "../../components/Container/Container";
 import { nanoid } from "nanoid";
 
 function Authors() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Container>
