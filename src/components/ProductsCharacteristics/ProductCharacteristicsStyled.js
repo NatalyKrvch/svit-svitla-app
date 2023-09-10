@@ -30,17 +30,19 @@ export const Styledh2 = styled.h2`
 export const StyledPrice = styled.span`
   ${LargeFontSet}
   display: inline-block;
-  font-size: 22px;
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 2;
   margin-bottom: 32px;
+  border: 1px solid var(--middle-grey);
+  border-radius: 8px;
 
   @media screen and (min-width: 768px) {
-    font-size: 30px;
+    font-size: 26px;
     margin-bottom: 42px;
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 52px;
   }
 `

@@ -7,6 +7,7 @@ import {
   StyledBtnWrp,
   StyledDiv,
   StyledImg,
+  StyledName,
   StyledP,
   StyledTextWRP,
 } from "./CatalogCardStyled";
@@ -49,7 +50,7 @@ const CatalogCard = ({ catalog, onOpenModal }) => {
         <StyledImg src={catalogCoverURL || CatalogPlug} alt="cover" />
       </ImgWrp>
       <StyledTextWRP>
-        <StyledP>{catalogNameFirstLetterUppercase}</StyledP>
+        <StyledName>{catalogNameFirstLetterUppercase}</StyledName>
         <StyledP>{catalogYear}</StyledP>
       </StyledTextWRP>
       <StyledBtnWrp>

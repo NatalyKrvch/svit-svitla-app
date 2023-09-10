@@ -71,6 +71,20 @@ export const StyledP = styled.p`
   }
 `;
 
+export const StyledName = styled(StyledP)`
+  font-weight: 500;
+  font-size: 18px;
+
+  @media screen and (min-width: 769px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1281px) {
+    font-size: 22px;
+    letter-spacing: 0.25px;
+  }
+`
+
 export const StyledBtnWrp = styled.div`
   width: 156px;
   display: flex;
