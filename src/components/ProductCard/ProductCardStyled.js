@@ -4,11 +4,11 @@ export const CardWrp = styled.li`
   display: flex;
   flex-direction: column;
   width: 156px;
-  height: 381px;
+  height: 351px;
 
   @media screen and (min-width: 769px) {
     width: 235px;
-    height: 490px;
+    height: 460px;
   }
 
   @media screen and (min-width: 1281px) {
@@ -40,7 +40,7 @@ export const ImgWrp = styled.div`
 export const StyledImg = styled.img`
   width: 156px;
   height: 208px;
-  object-fit: cover;
+  object-fit: contain;
 
   @media screen and (min-width: 769px) {
     width: 235px;
@@ -74,7 +74,8 @@ export const StyledTextWrapper = styled.div`
 
 export const StyledProductName = styled.div`
   width: 156px;
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.4px;
   flex-grow: 1;
@@ -83,10 +84,12 @@ export const StyledProductName = styled.div`
   text-overflow: ellipsis;
   @media screen and (min-width: 769px) {
     width: 235px;
+    font-size: 22px;
   }
 
   @media screen and (min-width: 1281px) {
     width: 274px;
+    font-size: 22px;
   }
 `;
 
