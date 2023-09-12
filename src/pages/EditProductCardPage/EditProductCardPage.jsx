@@ -357,8 +357,8 @@ const EditProductCard = () => {
             <StyledInput
               id="article"
               type="text"
-              pattern="^\d+(\.\d{1,2})?$"
-              title="Будь-ласка введіть числовий формат (наприклад, 100 або 1099)"
+              pattern="^[a-zA-Zа-яА-Я0-9\s\-]+$"
+              title="Для введення доступні цифри, букви українського та англійського алфавіту та тире"
               required
               value={productCode}
               onChange={handleProductCodeChange}
