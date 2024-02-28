@@ -1,4 +1,14 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addReview } from "../../redux/Review/reviewOperations";
+import { getCurrentReviews, isModalOpen } from "../../redux/Review/reviewSelectors";
+import { toast } from "react-toastify";
+import { setModalOpen } from "../../redux/Review/reviewReducer";
 import Raiting from "../../components/Raiting/Raiting";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
+import Modal from "../../components/Modal/Modal/Modal";
+import Container from "../../components/Container/Container";
+import emailjs from "emailjs-com";
 import {
   StyledH1,
   PageWrapper,
@@ -8,37 +18,27 @@ import {
   StyledForm,
   Warning,
 } from "./FeedbackPageStyled";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addReview } from "../../redux/Review/reviewOperations";
-import {
-  getCurrentReviews,
-  isModalOpen,
-} from "../../redux/Review/reviewSelectors";
-import MainButton from "../../components/Buttons/MainButton/MainButton";
-import Modal from "../../components/Modal/Modal/Modal";
-import { setModalOpen } from "../../redux/Review/reviewReducer";
-import Container from "../../components/Container/Container";
-import emailjs from "emailjs-com";
-import { toast } from "react-toastify";
+
+const ONE_DAY = 86400000;
+const MAX_CHAR = 500;
+
+const serviceID = import.meta.env.VITE_SERVICEID;
+const templateID = import.meta.env.VITE_TEMPLATEID;
+const keyID = import.meta.env.VITE_KEYID;
+const userID = import.meta.env.VITE_USERID
 
 function Feedback() {
-  const serviceID = import.meta.env.VITE_SERVICEID;
-  const templateID = import.meta.env.VITE_TEMPLATEID;
-  const keyID = import.meta.env.VITE_KEYID;
-  const userID = import.meta.env.VITE_USERID
-
   const [feedback, setFeedback] = useState("");
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
+  
+  const dispatch = useDispatch();
   const currentReview = useSelector(getCurrentReviews);
   const modalOpen = useSelector(isModalOpen);
-  const currentReviewDate = currentReview?.lastDate;
-  const maxChar = 500;
-  const dispatch = useDispatch();
   const currentDate = new Date().getTime();
+  const currentReviewDate = currentReview?.lastDate;
   const dateDifference = currentDate - currentReviewDate;
-  const oneDay = 86400000;
+  const isButtonDisabled = typeof selectedStars === "undefined" || selectedStars < 1;
 
   const handleChange = (e) => {
     setFeedback(e.target.value);
@@ -63,7 +63,7 @@ function Feedback() {
       return;
     }
 
-    if (typeof currentReviewDate === "undefined" || dateDifference > oneDay) {
+    if (typeof currentReviewDate === "undefined" || dateDifference > ONE_DAY) {
       dispatch(addReview(review));
 
       emailjs
@@ -90,6 +90,7 @@ function Feedback() {
           toast.error("Помилка під час відправки повідомлення!");
           console.error("Помилка під час відправки повідомлення:", error);
         });
+
       setFeedback("");
       setSelectedStars([]);
     } else {
@@ -97,9 +98,6 @@ function Feedback() {
       return;
     }
   };
-
-  const isButtonDisabled =
-    typeof selectedStars === "undefined" || selectedStars < 1;
 
   const closeModal = () => {
     dispatch(setModalOpen(false));
@@ -121,7 +119,7 @@ function Feedback() {
             type="text"
             placeholder="Ваші враження"
             id="feedback"
-            maxLength={maxChar}
+            maxLength={MAX_CHAR}
             isTextareaEmpty={isTextareaEmpty}
           />
           {isTextareaEmpty && (

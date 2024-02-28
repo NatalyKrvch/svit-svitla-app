@@ -3,13 +3,11 @@ import Sprite from "../../images/symbol-defs.svg";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import PropTypes from "prop-types";
 
-function Raiting(props) {
-  const { onSelectedStars, selectedStars } = props;
-
+function Raiting({ onSelectedStars, selectedStars }) {
   const { isTablet, isDesktop } = useMediaRules();
   const starCounter = [1, 2, 3, 4, 5];
-
   let starSize = 36;
+
   if (isDesktop || isTablet) {
     starSize = 48;
   }
@@ -23,9 +21,7 @@ function Raiting(props) {
   return (
     <>
       <StarsContainer
-        onClick={(e) => {
-          handleStarClick(e.target.id);
-        }}
+        onClick={(e) => handleStarClick(e.target.id)}
       >
         {starCounter.map((key) => {
           const isSelected = selectedStars.includes(key);

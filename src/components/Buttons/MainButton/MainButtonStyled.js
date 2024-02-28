@@ -33,11 +33,10 @@ const ButtonStyled = styled.button`
   color: ${props =>
     props.buttonType === "primary" || props.buttonType === "warning"
       ? "var(--main-white)"
-      : " var(--black)"
+      : "var(--black)"
   };
 
   &[disabled] {
-    cursor: not-allowed;
     background-color: ${props =>
     props.buttonType === "primary" || props.buttonType === "warning"
       ? "var(--middle-grey)"
