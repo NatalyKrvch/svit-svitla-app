@@ -27,25 +27,6 @@ export const Styledh2 = styled.h2`
     margin-bottom: 48px;
   }
 `
-export const StyledPrice = styled.span`
-  ${LargeFontSet}
-  display: inline-block;
-  font-size: 18px;
-  line-height: 2;
-  margin-bottom: 32px;
-  border: 1px solid var(--middle-grey);
-  border-radius: 8px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 26px;
-    margin-bottom: 42px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 28px;
-    margin-bottom: 52px;
-  }
-`
 export const StyledUl = styled.ul`
   display: flex;
   flex-direction: column;
