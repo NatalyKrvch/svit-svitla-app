@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import ButtonStyled from "./MainButtonStyled";
 
+//buttonType: primary(blue), secondary(rtansparent), warning(red), filter
 function MainButton({ buttonType = "primary", children, ...props }) {
-  //buttonType: primary(blue), secondary(rtansparent), warning(red), filter
   return (
     <>
       <ButtonStyled buttonType={buttonType} {...props}>
