@@ -106,7 +106,7 @@ export const StyledTime = styled.div `
     
 `
 export const StyledLink = styled(Link)`
-    padding: 12px 0;
+    margin-top: 34px;
     text-decoration: underline;
     color: var(--light-blue); 
     &:visited {color: var(--light-blue);}
