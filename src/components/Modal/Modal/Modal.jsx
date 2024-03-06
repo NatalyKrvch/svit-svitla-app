@@ -1,7 +1,8 @@
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { GrClose } from "react-icons/gr";
 import lampYellow from "../../../images/Popup/lamp-yellow.svg";
 import lampRed from "../../../images/Popup/lamp-red.svg";
-
 import {
   BtnWrapper,
   CloseButton,
@@ -13,8 +14,6 @@ import {
   StyledTitle,
 } from "./ModalStyled";
 import MainButton from "../../Buttons/MainButton/MainButton";
-import { createPortal } from "react-dom";
-import { useEffect } from "react";
 
 const Modal = ({
   color = "yellow",
@@ -29,10 +28,8 @@ const Modal = ({
 
     useEffect(() => {
       const body = document.body;
-      // Блокируем скроллинг фона при открытии модалки
       body.style.overflow = "hidden";
 
-      // Убираем блокировку скроллинга при закрытии модалки
       return () => {
         body.style.overflow = "visible";
       };

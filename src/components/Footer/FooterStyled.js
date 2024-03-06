@@ -8,16 +8,15 @@ const font = `
     line-height: 1,5;
     letter-spacing: -0.4px;
 `
-
 export const StyledFooter = styled.footer`
     background-color: var(--dark-blue);
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 152px;
+    min-height: 200px;
 
     @media screen and (min-width: 769px) {
-        min-height: 175px;
+        min-height: 250px;
     }
 `
 export const LogoWrapper = styled.div`
@@ -35,7 +34,6 @@ export const LogoWrapper = styled.div`
         left: 100px;
     }
 `
-
 export const StyledInstaA = styled.a`
     display: none;
     position: absolute;
@@ -86,7 +84,6 @@ export const GridContainer = styled.div`
     grid-template-rows: auto;
     gap: 16px 24px;
 `
-
 export const TextWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
@@ -102,8 +99,14 @@ export const StyledSpan = styled.span`
         margin-right: 10px;
     }
 `
+export const StyledTime = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+`
 export const StyledLink = styled(Link)`
-    padding: 12px 0;
+    margin-top: 34px;
     text-decoration: underline;
     color: var(--light-blue); 
     &:visited {color: var(--light-blue);}

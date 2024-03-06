@@ -1,14 +1,11 @@
 import { useState } from "react";
 import {
-  StyledTitle,
   StyledForm,
   ButtonEye,
-  StyledFragment,
   StyledInput,
   StyledInputWrapper,
   StyledLabel,
   ButtonWrapper,
-  TitleWrp,
 } from "./AuthorizatioonFormStyled";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { useDispatch } from "react-redux";
@@ -56,7 +53,6 @@ const AuthorizationForm = () => {
     }
   };
 
-
   return (
     <>
       <TitleMain text="Авторизуйтесь"/>
@@ -82,7 +78,6 @@ const AuthorizationForm = () => {
             type={passwordVisible ? "text" : "password"}
             minLength={8}
             maxLength={16}
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Пароль може складатися тільки із латиниці, апострофа, пробілу, тире"
             id="password"
             required

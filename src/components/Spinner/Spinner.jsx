@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { CircleLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 
 const Spinner = () => {
   return (
@@ -11,7 +11,7 @@ const Spinner = () => {
       marginX="auto"
     >
       <Box>
-        <CircleLoader color="var(--dark-blue)" size={150}/>
+        <SyncLoader color="var(--dark-blue)" size={20}/>
       </Box>
     </Box>
   );

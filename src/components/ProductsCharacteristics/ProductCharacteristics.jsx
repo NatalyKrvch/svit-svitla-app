@@ -1,7 +1,6 @@
 import {
   StyledLi,
   StyledPAttribute,
-  StyledPrice,
   StyledSpanAttribute,
   StyledUl,
   Styledh2,
@@ -9,21 +8,12 @@ import {
 import { nanoid } from "nanoid";
 
 const ProductCharacteristics = ({
-  price,
   manufacturerCountry,
   characteristicArray,
   productCategory,
 }) => {
-  const productPriceThousandsSeparates = price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
   return (
     <>
-      <StyledPrice>
-        {" "}
-        Вартість: {`${productPriceThousandsSeparates} грн.`}
-      </StyledPrice>
       <Styledh2>Характеристики товару</Styledh2>
       <div>
         <StyledPAttribute>Категорія: </StyledPAttribute>

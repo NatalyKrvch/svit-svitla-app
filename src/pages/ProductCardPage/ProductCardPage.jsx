@@ -18,11 +18,14 @@ import {
   ContentWrapper,
   CharacteristicsWrapper,
   StyledH1,
+  CarouselAndPriceCtn,
 } from "./ProductCardPageStyled";
 import ShareButton from "../../components/Buttons/ShareButton/ShareButton";
 import Container from "../../components/Container/Container";
 import { useMediaRules } from "../../hooks/useMediaRules";
 import Spinner from "../../components/Spinner/Spinner";
+import Price from "../../components/Price/Price";
+import MainButton from "../../components/Buttons/MainButton/MainButton";
 
 const ProductCardPage = () => {
   const [currentURL, setCurrentURL] = useState("");
@@ -70,10 +73,13 @@ const ProductCardPage = () => {
             )}
           </TitleWrapper>
           <ContentWrapper>
-            <Carousel images={allImgsURL} />
+            <CarouselAndPriceCtn>
+              <Carousel images={allImgsURL} />
+              <Price price={currentProduct.productPrice}/>
+              {/* <MainButton>Замовити</MainButton> */}
+            </CarouselAndPriceCtn>
             <CharacteristicsWrapper>
               <ProductCharacteristics
-                price={currentProduct.productPrice}
                 manufacturerCountry={currentProduct.productCountry}
                 characteristicArray={currentProduct.additionalAttributes}
                 productCategory={currentProduct.productCategory}

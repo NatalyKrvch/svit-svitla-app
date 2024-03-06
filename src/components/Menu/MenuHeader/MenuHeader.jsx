@@ -3,12 +3,10 @@ import menuConfig from "../menuConfig.json";
 import PropTypes from "prop-types";
 import LogOutButton from "../../Buttons/LogOutButton/LogOutButton";
 
-function MenuHeader(props, onSwitchPage) {
-  const { isLoggedIn, setLogoutModalOpen } = props;
+function MenuHeader({ isLoggedIn, setLogoutModalOpen }) {
   const menuData = isLoggedIn ? menuConfig.adminMenu : menuConfig.userMenu;
 
-  const openModal = () => {
-    console.log("OPEN Modal desck");
+  const handleOpenModal = () => {
     setLogoutModalOpen(true);
   };
 
@@ -18,11 +16,11 @@ function MenuHeader(props, onSwitchPage) {
         <StyledUl>
           {menuData.map((item, index) => (
             <li key={index}>
-              <StyledLink to={item.url} onClick={onSwitchPage}>{item.title}</StyledLink>
+              <StyledLink to={item.url}>{item.title}</StyledLink>
             </li>
           ))}
         </StyledUl>
-        {isLoggedIn && <LogOutButton openModal={openModal} />}
+        {isLoggedIn && <LogOutButton openModal={handleOpenModal} />}
       </MenuWrapper>
     </>
   );
@@ -30,6 +28,7 @@ function MenuHeader(props, onSwitchPage) {
 
 MenuHeader.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
+  setLogoutModalOpen: PropTypes.func.isRequired,
 };
 
 export default MenuHeader;
