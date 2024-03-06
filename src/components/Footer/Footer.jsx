@@ -9,6 +9,7 @@ import {
   StyledLink,
   StyledInstaA,
   GridContainer,
+  StyledTime,
 } from "./FooterStyled";
 import mobileLogo from "../../images/Logo/Mobile/Footer/logo-mob@1x.svg";
 import tabletLogo from "../../images/Logo/Tablet/Footer/logo-tablet@1x.svg";
@@ -43,7 +44,11 @@ const email = (
 const workingHours = (
   <>
     <StyledSpan>Працюємо:</StyledSpan>
-    <time>Пн-пт 10:00 - 19:00</time>
+    <StyledTime>
+      <time>Пн-пт: 10:00 - 19:00</time>
+      <time>Сб: 9:00 - 18:00</time>
+      <StyledSpan>Неділя - вихідний</StyledSpan>
+    </StyledTime>
   </>
 );
 
