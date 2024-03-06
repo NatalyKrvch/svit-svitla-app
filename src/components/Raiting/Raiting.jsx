@@ -1,20 +1,26 @@
 import { StarsContainer } from "./RaitingStyled";
-import Sprite from "../../images/symbol-defs.svg";
 import { useMediaRules } from "../../hooks/useMediaRules";
+import Sprite from "../../images/symbol-defs.svg";
 import PropTypes from "prop-types";
+
+const STAR_COUNTER = [1, 2, 3, 4, 5];
+let STAR_SIZE = 36;
+const SELECTED_STAR_COLOR = '#FFE34E';
+const DEFAULT_STAR_COLOR = '#DBE4E8';
 
 function Raiting({ onSelectedStars, selectedStars }) {
   const { isTablet, isDesktop } = useMediaRules();
-  const starCounter = [1, 2, 3, 4, 5];
-  let starSize = 36;
 
   if (isDesktop || isTablet) {
-    starSize = 48;
+    STAR_SIZE = 48;
   }
 
-  const handleStarClick = (starKey) => {
-    const clickedIndex = starCounter.indexOf(+starKey);
-    const selectedStarsArr = starCounter.slice(0, clickedIndex + 1);
+  const handleStarClick = (starID) => {
+    const clickedIndex = STAR_COUNTER.indexOf(+starID);
+    const selectedStarsArr = STAR_COUNTER.slice(0, clickedIndex + 1);
+
+    if (!starID) return;
+  
     onSelectedStars(selectedStarsArr);
   };
 
@@ -23,13 +29,14 @@ function Raiting({ onSelectedStars, selectedStars }) {
       <StarsContainer
         onClick={(e) => handleStarClick(e.target.id)}
       >
-        {starCounter.map((key) => {
+        {STAR_COUNTER.map((key) => {
           const isSelected = selectedStars.includes(key);
+  
           return (
             <svg
               key={key}
-              width={starSize}
-              height={starSize}
+              width={STAR_SIZE}
+              height={STAR_SIZE}
               id={key}
               style={{ cursor: "pointer" }}
             >
@@ -37,7 +44,7 @@ function Raiting({ onSelectedStars, selectedStars }) {
                 id={key}
                 href={`${Sprite}#icon-star`}
                 style={{
-                  fill: isSelected ? "#FFE34E" : "#DBE4E8",
+                  fill: isSelected ? SELECTED_STAR_COLOR : DEFAULT_STAR_COLOR,
                 }}
               />
             </svg>

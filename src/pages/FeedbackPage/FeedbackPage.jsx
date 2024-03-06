@@ -28,17 +28,17 @@ const keyID = import.meta.env.VITE_KEYID;
 const userID = import.meta.env.VITE_USERID
 
 function Feedback() {
-  const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState('');
   const [selectedStars, setSelectedStars] = useState([]);
   const [isTextareaEmpty, setIsTextareaEmpty] = useState(false);
   
   const dispatch = useDispatch();
   const currentReview = useSelector(getCurrentReviews);
-  const modalOpen = useSelector(isModalOpen);
+  const isModalVisible = useSelector(isModalOpen);
   const currentDate = new Date().getTime();
   const currentReviewDate = currentReview?.lastDate;
   const dateDifference = currentDate - currentReviewDate;
-  const isButtonDisabled = typeof selectedStars === "undefined" || selectedStars < 1;
+  const isButtonDisabled = !selectedStars.length;
 
   const handleChange = (e) => {
     setFeedback(e.target.value);
@@ -58,7 +58,7 @@ function Feedback() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (feedback.trim() === "") {
+    if (feedback.trim() === '') {
       setIsTextareaEmpty(true);
       return;
     }
@@ -76,25 +76,25 @@ function Feedback() {
             message: JSON.stringify(review),
           },
           keyID,
-          userID
+          userID,
         )
         .then((response) => {
-          toast.success("Повідомлення успішно надіслано!");
+          toast.success("Відгук успішно надіслано");
           console.log(
-            "Повідомлення успішно надіслано!",
+            "Відгук успішно надіслано!",
             response.status,
-            response.text
+            response.text,
           );
         })
         .catch((error) => {
-          toast.error("Помилка під час відправки повідомлення!");
-          console.error("Помилка під час відправки повідомлення:", error);
+          toast.error("Помилка під час відправки відгука");
+          console.error("Помилка під час відправки відгука:", error);
         });
 
-      setFeedback("");
+      setFeedback('');
       setSelectedStars([]);
     } else {
-      toast.error("Ви вже залишили свій відгук!");
+      toast.error("Ви вже залишили свій відгук сьогодні");
       return;
     }
   };
@@ -137,7 +137,7 @@ function Feedback() {
           </ButtonWrapper>
         </StyledForm>
       </PageWrapper>
-      {modalOpen && (
+      {isModalVisible && (
         <Modal
           title="Дякуємо!"
           text="Стаємо краще завдяки вам"
