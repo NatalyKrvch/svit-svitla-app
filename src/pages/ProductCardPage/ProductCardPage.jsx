@@ -36,6 +36,7 @@ const ProductCardPage = () => {
   const [currentURL, setCurrentURL] = useState('');
   const [show, setShow] = useState(false);
   const [orderingData, setOrderingData] = useState('');
+
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,16 +48,19 @@ const ProductCardPage = () => {
   const productCode = currentProduct.productCode;
   const textForShare = `${productName} у магазині Світ світла`;
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const dataToSend = {
     Customer: orderingData,
     Product: productName,
     Article: productCode,
   }
 
-  // implement Email.js function
+  const allImgsURL = [
+    currentProduct.productCoverURL || ProductImgPlug,
+    ...currentProduct.productPhotoURL,
+  ];
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const sendData = () => {
     if (dataToSend) {
@@ -73,7 +77,7 @@ const ProductCardPage = () => {
           userID,
         )
         .then((response) => {
-          toast.success("Ваше замовлення успішно надіслано");
+          toast.success("Ваше замовлення успішно надіслано. Менеджер зконтактує з вами протягом робочого дня");
           console.log(
             response.status,
             response.text,
@@ -88,7 +92,6 @@ const ProductCardPage = () => {
 
   const handleOrderSubmit = () => {
     handleClose();
-    console.log('orderingData',orderingData)
     sendData();
   }
 
@@ -97,14 +100,9 @@ const ProductCardPage = () => {
     setCurrentURL(window.location.href);
     window.scrollTo(0, 0);
   }, []);
-
+  
   if (currentProduct === null) return;
-
-  const allImgsURL = [
-    currentProduct.productCoverURL || ProductImgPlug,
-    ...currentProduct.productPhotoURL,
-  ];
-
+  
   return (
     <Container>
       {isLoading ? (
