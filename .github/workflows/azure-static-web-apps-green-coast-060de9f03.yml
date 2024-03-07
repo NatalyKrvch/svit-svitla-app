@@ -23,6 +23,12 @@ jobs:
         run: |
           touch .env
           echo "${{ secrets.MY_VAR }}" >> .env
+          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env
+          echo "VITE_SERVICEID=${{ secrets.VITE_SERVICEID }}" >> .env
+          echo "VITE_TEMPLATEID=${{ secrets.VITE_TEMPLATEID }}" >> .env
+          echo "VITE_ORDERINGTEMPLATEID=${{ secrets.VITE_ORDERINGTEMPLATEID }}" >> .env
+          echo "VITE_KEYID=${{ secrets.VITE_KEYID }}" >> .env
+          echo "VITE_USERID=${{ secrets.VITE_USERID }}" >> .env
 
       - name: Build And Deploy
         id: builddeploy
