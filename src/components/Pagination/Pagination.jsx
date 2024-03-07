@@ -14,7 +14,6 @@ const Paginator = ({ pageQty, array }) => {
   const pageCatalogNumber = useSelector(currentCatalogPage);
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location.pathname);
 
   const handlePageChange = (_, number) => {
     if (number > pageQty || (number === pageNumber && pageQty === 1)) {
