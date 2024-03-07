@@ -23,6 +23,7 @@ jobs:
         run: |
           touch .env
           echo "${{ secrets.MY_VAR }}" >> .env
+          echo "VITE_ORDERINGTEMPLATEID=${{ secrets.VITE_ORDERINGTEMPLATEID }}" >> .env
 
       - name: Build And Deploy
         id: builddeploy
