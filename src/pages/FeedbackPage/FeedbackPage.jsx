@@ -81,14 +81,13 @@ function Feedback() {
         .then((response) => {
           toast.success("Відгук успішно надіслано");
           console.log(
-            "Відгук успішно надіслано!",
             response.status,
             response.text,
           );
         })
         .catch((error) => {
           toast.error("Помилка під час відправки відгука");
-          console.error("Помилка під час відправки відгука:", error);
+          console.error(error);
         });
 
       setFeedback('');

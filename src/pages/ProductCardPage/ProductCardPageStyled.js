@@ -55,11 +55,10 @@ export const CarouselAndPriceCtn = styled.div `
   flex-direction: column;
   gap: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 769px) {
     gap: 40px;
   }
-  
-  `
+`
 export const CharacteristicsWrapper = styled.div`
   cursor: default;
 

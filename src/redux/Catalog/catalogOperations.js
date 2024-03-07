@@ -6,11 +6,9 @@ import {
   changeCatalogAPI,
 } from "../../service/API/catalogsApi";
 
-
 export const getCatalogs = createAsyncThunk(
   "catalogs/getCatalogs",
   async ({ page, per_page, catalogName }, { rejectWithValue }) => {
-    console.log(page, per_page, catalogName);
     try {
       const data = await getCatalogsAPI(
         page ?? null,
