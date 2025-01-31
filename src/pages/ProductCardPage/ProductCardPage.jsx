@@ -44,8 +44,8 @@ const ProductCardPage = () => {
   const { isDesktop } = useMediaRules();
   const isLoading = useSelector(getLoadingProducts);
   
-  const productName = currentProduct.productName;
-  const productCode = currentProduct.productCode;
+  const productName = currentProduct?.productName || '';
+  const productCode = currentProduct?.productCode || '';
   const textForShare = `${productName} у магазині Світ світла`;
 
   const dataToSend = {
@@ -55,8 +55,8 @@ const ProductCardPage = () => {
   }
 
   const allImgsURL = [
-    currentProduct.productCoverURL || ProductImgPlug,
-    ...currentProduct.productPhotoURL,
+    currentProduct?.productCoverURL || ProductImgPlug || '',
+    // ...currentProduct.productPhotoURL,
   ];
 
   const handleClose = () => setShow(false);
