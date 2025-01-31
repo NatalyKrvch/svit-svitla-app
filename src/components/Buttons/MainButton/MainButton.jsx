@@ -14,7 +14,7 @@ function MainButton({ buttonType = "primary", children, ...props }) {
 
 MainButton.propTypes = {
   buttonType: PropTypes.oneOf(["primary", "secondary", "warning", "filter"]),
-  children: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default MainButton;
